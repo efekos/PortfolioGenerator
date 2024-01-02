@@ -41,3 +41,5 @@ build/
 .idea/
 .run/
 /.run
+
+MANIFEST.MF
