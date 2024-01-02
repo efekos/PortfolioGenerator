@@ -42,4 +42,4 @@ build/
 .run/
 /.run
 
-MANIFEST.MF
+META-INF/MANIFEST.MF
