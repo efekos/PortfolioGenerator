@@ -1,4 +1,4 @@
-package dev.efekos.pg.data;
+package dev.efekos.pg.data.schema;
 
 public class DayDate {
     private int day;

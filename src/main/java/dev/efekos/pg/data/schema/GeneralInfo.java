@@ -1,6 +1,8 @@
-package dev.efekos.pg.data;
+package dev.efekos.pg.data.schema;
 
-public class GeneralInfo {
+import com.google.gson.JsonObject;
+
+public class GeneralInfo implements JsonSchema{
     private String name;
     private DayDate birthDate;
     private String title;
@@ -11,8 +13,16 @@ public class GeneralInfo {
         this.title = title;
     }
 
+    public GeneralInfo() {
+    }
+
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void readJson(JsonObject object) {
+
     }
 
     public void setName(String name) {
