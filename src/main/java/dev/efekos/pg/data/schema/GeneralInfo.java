@@ -1,6 +1,9 @@
 package dev.efekos.pg.data.schema;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
+import dev.efekos.pg.data.DataGrabberContext;
 
 public class GeneralInfo implements JsonSchema{
     private String name;
@@ -21,8 +24,17 @@ public class GeneralInfo implements JsonSchema{
     }
 
     @Override
-    public void readJson(JsonObject object) {
+    public void readJson(JsonObject object, DataGrabberContext context) {
+        if(!object.has("name")) throw new JsonSyntaxException("'name' missing in file 'general.json'");
+        if(!object.has("title")) throw new JsonSyntaxException("'title' missing in file 'general.json'");
+        if(!object.has("birth")) throw new JsonSyntaxException("'birth' missing in file 'general.json'");
 
+        this.name = object.get("name").getAsString();
+        this.title = object.get("title").getAsString();
+        this.birthDate = new DayDate(26,2,2010);
+        JsonElement element = object.get("birth");
+        if(!element.isJsonObject()) throw new JsonSyntaxException("'birth' must be an object.");
+        birthDate.readJson(element.getAsJsonObject(),context);
     }
 
     public void setName(String name) {
