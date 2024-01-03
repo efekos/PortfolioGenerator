@@ -13,12 +13,17 @@ import java.util.List;
 
 public class DataGrabber {
     private final String mainPath;
+    private final DataGrabberContext context;
 
     public DataGrabber(String mainPath) {
         this.mainPath = mainPath+"\\data";
+        this.context =  new DataGrabberContext(mainPath+"\\data");
     }
 
     public GeneralInfo grabGeneralInfo()throws IOException {
+        context.setCurrentFile("general.json");
+
+
         Path path = Path.of(mainPath, "general.json");
         if(!Files.exists(path))throw new FileNotFoundException("'general.json' file missing.");
         String file = Files.readString(path);
@@ -27,7 +32,7 @@ public class DataGrabber {
         JsonObject object = element.getAsJsonObject();
 
         GeneralInfo generalInfo = new GeneralInfo();
-        generalInfo.readJson(object);
+        generalInfo.readJson(object,context);
 
         return generalInfo;
     }
