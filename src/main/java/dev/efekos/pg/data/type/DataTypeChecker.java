@@ -46,10 +46,10 @@ public class DataTypeChecker {
                 if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a string.");
             }
             case BOOLEAN -> {
-                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a boolean");
+                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a boolean.");
             }
             case INTEGER -> {
-                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be an integer");
+                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be an integer.");
             }
         }
     }
