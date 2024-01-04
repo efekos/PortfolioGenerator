@@ -7,5 +7,4 @@ public enum RequiredDataType {
     BOOLEAN,
     OBJECT,
     ARRAY,
-
 }
