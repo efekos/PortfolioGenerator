@@ -7,6 +7,7 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,6 +39,7 @@ public class GeneralInfo implements JsonSchema{
         checker.searchExceptions(object,"name", RequiredDataType.STRING);
         checker.searchExceptions(object,"title", RequiredDataType.STRING);
         checker.searchExceptions(object,"birth", RequiredDataType.OBJECT);
+        checker.searchExceptions(object,"native_language", RequiredDataType.STRING);
 
         // name, title
         this.name = object.get("name").getAsString();
@@ -47,6 +49,22 @@ public class GeneralInfo implements JsonSchema{
         this.birthDate = new DayDate(26,2,2010);
         birthDate.readJson(object.get("birth").getAsJsonObject(),context);
 
+        // native_language
+        this.nativeLanguage = Locale.forLanguageTag(object.get("native_language").getAsString());
+
+        // known_languages
+        try {
+
+            checker.searchExceptions(object,"known_languages", RequiredDataType.ARRAY);
+            this.knownLanguages = object
+                    .get("known_languages")
+                    .getAsJsonArray().asList()
+                    .stream().map(jsonElement -> Locale.forLanguageTag(jsonElement.getAsString()))
+                    .toList();
+
+        } catch (Exception e){
+            this.knownLanguages = new ArrayList<>();
+        }
 
     }
 
