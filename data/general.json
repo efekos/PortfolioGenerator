@@ -5,5 +5,10 @@
     "day": 26,
     "month": 2,
     "year": 2010
-  }
+  },
+  "native_language": "tr",
+  "known_languages": [
+    "tr",
+    "en-US"
+  ]
 }
