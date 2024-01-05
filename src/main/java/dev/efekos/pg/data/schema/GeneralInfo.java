@@ -17,11 +17,36 @@ public class GeneralInfo implements JsonSchema{
     private String title;
     private Locale nativeLanguage;
     private List<Locale> knownLanguages;
+    private String welcomer;
 
     public GeneralInfo(String name, DayDate birthDate, String title) {
         this.name = name;
         this.birthDate = birthDate;
         this.title = title;
+    }
+
+    public Locale getNativeLanguage() {
+        return nativeLanguage;
+    }
+
+    public void setNativeLanguage(Locale nativeLanguage) {
+        this.nativeLanguage = nativeLanguage;
+    }
+
+    public List<Locale> getKnownLanguages() {
+        return knownLanguages;
+    }
+
+    public void setKnownLanguages(List<Locale> knownLanguages) {
+        this.knownLanguages = knownLanguages;
+    }
+
+    public String getWelcomer() {
+        return welcomer;
+    }
+
+    public void setWelcomer(String welcomer) {
+        this.welcomer = welcomer;
     }
 
     public GeneralInfo() {
