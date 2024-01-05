@@ -41,7 +41,6 @@ public class Main {
 
         // data grabbing
         GeneralInfo generalInfo = grabber.grabGeneralInfo();
-        generalInfo.setWelcomer(grabber.grabMarkdownFile("welcomer"));
 
         System.out.println("Data grab process ended successfully");
 
