@@ -13,6 +13,12 @@ public class FileGenerator {
         System.out.println("Starting file generate process");
     }
 
+    /**
+     * Generates a main <code>index.html</code> file, the home page for the entire website.
+     * @param info Grabbed {@link GeneralInfo} to place its data to the page.
+     * @param binPath Path to the output folder.
+     * @throws IOException If something goes wrong
+     */
     public void generateIndexFile(GeneralInfo info, String binPath) throws IOException {
         System.out.println("Generating file: index.html");
 

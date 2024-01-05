@@ -7,18 +7,31 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
+    /**
+     * Main path that the program is running.
+     */
     private static String MAIN_PATH;
 
+    /**
+     * Returns a main path.
+     * @return main path that the program is running.
+     */
     public static Path getMainPath() {
         return Path.of(MAIN_PATH);
     }
 
+    /**
+     * Main method
+     * @param args u now at it izz
+     * @throws Exception If anything goes wrong
+     */
     public static void main(String[] args)throws Exception {
         MAIN_PATH = System.getProperty("user.dir");
         System.out.println("Hello World!");
@@ -50,6 +63,12 @@ public class Main {
         System.out.println("Done! output has been saved to "+binPath);
     }
 
+    /**
+     * Reads a resource from the resources folder, and returns it as a {@link String}.
+     * @param path Path to the file you want to reach.
+     * @return A file if found as {@link String}
+     * @throws IOException If {@link URL#openStream()} method fails.
+     */
     public static String readStringResource(String path) throws IOException {
         InputStream stream = Main.class.getResource(path).openStream();
         return new String(stream.readAllBytes());
