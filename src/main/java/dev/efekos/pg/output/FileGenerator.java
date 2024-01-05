@@ -10,9 +10,10 @@ import java.io.IOException;
 public class FileGenerator {
 
     public void generateIndexFile(GeneralInfo info,String binPath) throws IOException {
-        String fileString = Main.readStringResource("/site/index.html");
-        fileString = fileString.replaceAll("\\{name}",info.getName());
-        fileString = fileString.replaceAll("\\{title}",info.getTitle());
+        String fileString = Main.readStringResource("/site/index.html")
+        .replaceAll("\\{name}",info.getName())
+        .replaceAll("\\{title}",info.getTitle())
+        .replaceAll("\\{welcomer}",info.getWelcomer());
 
         File file = new File(binPath + "\\index.html");
 

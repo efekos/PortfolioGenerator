@@ -3,6 +3,9 @@ package dev.efekos.pg.data;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import dev.efekos.pg.data.schema.GeneralInfo;
+import dev.efekos.pg.util.Utilities;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,5 +38,18 @@ public class DataGrabber {
         generalInfo.readJson(object,context);
 
         return generalInfo;
+    }
+
+    private String readFile(String p) throws IOException{
+        Path path = Path.of(p);
+        if(!Files.exists(path))throw new FileNotFoundException("'"+path.getFileName().toFile()+"' file missing.");
+        return Files.readString(path);
+    }
+
+    public String grabMarkdownFile(String fileName) throws IOException{
+        String file = readFile(mainPath + "\\" + fileName + ".md");
+        Parser parser = Parser.builder().build();
+        HtmlRenderer renderer = HtmlRenderer.builder().build();
+        return renderer.render(parser.parse(file));
     }
 }
