@@ -23,6 +23,7 @@ public class Main {
 
         // data grabbing
         GeneralInfo generalInfo = grabber.grabGeneralInfo();
+        generalInfo.setWelcomer(grabber.grabMarkdownFile("welcomer"));
 
         // bin
         String binPath = MAIN_PATH+"\\bin";
