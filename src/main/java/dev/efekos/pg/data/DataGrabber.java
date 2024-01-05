@@ -19,13 +19,14 @@ public class DataGrabber {
     private final DataGrabberContext context;
 
     public DataGrabber(String mainPath) {
+        System.out.println("Starting data grab process");
         this.mainPath = mainPath+"\\data";
         this.context =  new DataGrabberContext(mainPath+"\\data");
     }
 
     public GeneralInfo grabGeneralInfo()throws IOException {
         context.setCurrentFile("general.json");
-
+        System.out.println("Grabbing file: general.json");
 
         Path path = Path.of(mainPath, "general.json");
         if(!Files.exists(path))throw new FileNotFoundException("'general.json' file missing.");
@@ -42,12 +43,16 @@ public class DataGrabber {
 
     private String readFile(String p) throws IOException{
         Path path = Path.of(p);
+        System.out.println("Reading file: "+path.getFileName());
+
         if(!Files.exists(path))throw new FileNotFoundException("'"+path.getFileName().toFile()+"' file missing.");
         return Files.readString(path);
     }
 
     public String grabMarkdownFile(String fileName) throws IOException{
         String file = readFile(mainPath + "\\" + fileName + ".md");
+        System.out.println("Reading markdown: "+fileName);
+
         Parser parser = Parser.builder().build();
         HtmlRenderer renderer = HtmlRenderer.builder().build();
         return renderer.render(parser.parse(file));

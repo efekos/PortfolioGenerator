@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
     private static String MAIN_PATH;
@@ -19,6 +21,8 @@ public class Main {
 
     public static void main(String[] args)throws Exception {
         MAIN_PATH = System.getProperty("user.dir");
+        System.out.println("Hello World!");
+
 
         DataGrabber grabber = new DataGrabber(MAIN_PATH);
 
@@ -26,16 +30,24 @@ public class Main {
         GeneralInfo generalInfo = grabber.grabGeneralInfo();
         generalInfo.setWelcomer(grabber.grabMarkdownFile("welcomer"));
 
+        System.out.println("Data grab process ended successfully");
+
         // bin
-        String binPath = MAIN_PATH+"\\bin";
-        Path path = Path.of(binPath);
-        FileUtils.deleteDirectory(path.toFile());
+        System.out.println("Refreshing bin");
+        String binPathString = MAIN_PATH+"\\bin";
+        Path binPath = Path.of(binPathString);
+        FileUtils.deleteDirectory(binPath.toFile());
 
         // generating
         FileGenerator generator = new FileGenerator();
-        Files.createDirectory(path);
+        Files.createDirectory(binPath);
 
-        generator.generateIndexFile(generalInfo,binPath);
+        generator.generateIndexFile(generalInfo,binPathString);
+
+        System.out.println("File generate process ended successfully");
+
+
+        System.out.println("Done! output has been saved to "+binPath);
     }
 
     public static String readStringResource(String path) throws IOException {
