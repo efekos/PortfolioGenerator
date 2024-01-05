@@ -3,6 +3,7 @@ package dev.efekos.pg;
 import dev.efekos.pg.data.DataGrabber;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.output.FileGenerator;
+import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +29,7 @@ public class Main {
         // bin
         String binPath = MAIN_PATH+"\\bin";
         Path path = Path.of(binPath);
-        Files.deleteIfExists(path);
+        FileUtils.deleteDirectory(path.toFile());
 
         // generating
         FileGenerator generator = new FileGenerator();
