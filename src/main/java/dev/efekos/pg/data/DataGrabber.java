@@ -58,6 +58,8 @@ public class DataGrabber {
         GeneralInfo generalInfo = new GeneralInfo();
         generalInfo.readJson(object,context);
 
+        generalInfo.setWelcomer(grabMarkdownFile("welcomer"));
+
         return generalInfo;
     }
 
