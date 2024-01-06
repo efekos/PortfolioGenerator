@@ -35,7 +35,6 @@ public class DataGrabber {
      *                 directory or doesn't exist.
      */
     public DataGrabber(String mainPath) {
-        System.out.println("Starting data grab process");
         this.mainPath = mainPath+"\\data";
         this.context =  new DataGrabberContext(mainPath+"\\data");
     }

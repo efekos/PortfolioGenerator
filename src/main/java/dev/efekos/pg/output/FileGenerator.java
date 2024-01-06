@@ -9,10 +9,6 @@ import java.io.IOException;
 
 public class FileGenerator {
 
-    public FileGenerator() {
-        System.out.println("Starting file generate process");
-    }
-
     /**
      * Generates a main <code>index.html</code> file, the home page for the entire website.
      * @param info Grabbed {@link GeneralInfo} to place its data to the page.

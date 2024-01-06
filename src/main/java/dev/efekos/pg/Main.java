@@ -47,13 +47,15 @@ public class Main {
     }
 
     private static void startFileGenerateProcess() throws IOException {
+        System.out.println("Starting file generate process");
         FileGenerator generator = new FileGenerator();
 
         generator.generateIndexFile(context.grabbedGeneralInfo, context.binPath);
+        System.out.println("File generate process ended successfully");
     }
 
     private static void startBinRefreshProcess() throws IOException {
-        System.out.println("Refreshing bin");
+        System.out.println("Starting refresh bin process");
         String binPathString = MAIN_PATH+"\\bin";
         Path binPath = Path.of(binPathString);
         FileUtils.deleteDirectory(binPath.toFile());
@@ -61,9 +63,11 @@ public class Main {
         Files.createDirectory(Path.of(context.binPath));
 
         context.binPath = binPathString;
+        System.out.println("Bin refresh process ended successfully");
     }
 
     private static void startDataGrabProcess() throws IOException {
+        System.out.println("Starting data grab process");
         DataGrabber grabber = new DataGrabber(MAIN_PATH);
 
         GeneralInfo generalInfo = grabber.grabGeneralInfo();
@@ -71,7 +75,15 @@ public class Main {
 
         context.grabbedGeneralInfo = generalInfo;
         context.grabbedEducationInfo = educationInfo;
+        System.out.println("Data grab process ended successfully");
     }
+
+
+
+
+
+
+
 
     /**
      * Reads a resource from the resources folder, and returns it as a {@link String}.
