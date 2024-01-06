@@ -2,6 +2,7 @@ package dev.efekos.pg.data;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
+import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.util.Utilities;
 import org.commonmark.parser.Parser;
@@ -48,11 +49,9 @@ public class DataGrabber {
         context.setCurrentFile("general.json");
         System.out.println("Grabbing file: general.json");
 
-        Path path = Path.of(mainPath, "general.json");
-        if(!Files.exists(path))throw new FileNotFoundException("'general.json' file missing.");
-        String file = Files.readString(path);
+        String file = readFile(mainPath+"\\general.json");
         JsonElement element = JsonParser.parseString(file);
-        if(!element.isJsonObject())throw new JsonSyntaxException("Bro ur 'general.json' file isn't even an object do you know how json files usually work");
+        if(!element.isJsonObject())throw new JsonSyntaxException("'general.json' not object");
         JsonObject object = element.getAsJsonObject();
 
         GeneralInfo generalInfo = new GeneralInfo();
@@ -79,5 +78,20 @@ public class DataGrabber {
         Parser parser = Parser.builder().build();
         HtmlRenderer renderer = HtmlRenderer.builder().build();
         return renderer.render(parser.parse(file));
+    }
+
+
+    public EducationInfo grabEducationInfo()throws IOException{
+        context.setCurrentFile("education.json");
+        System.out.println("Grabbing file: education.json");
+
+        String file = readFile(mainPath + "\\education.json");
+        JsonElement element = JsonParser.parseString(file);
+        if(!element.isJsonObject()) throw new JsonSyntaxException("'general.json' not object");
+        JsonObject object = element.getAsJsonObject();
+
+        EducationInfo info = new EducationInfo();
+        info.readJson(object,context);
+        return info;
     }
 }

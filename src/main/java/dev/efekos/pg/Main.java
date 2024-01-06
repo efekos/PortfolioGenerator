@@ -1,6 +1,7 @@
 package dev.efekos.pg;
 
 import dev.efekos.pg.data.DataGrabber;
+import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.output.FileGenerator;
 import org.apache.commons.io.FileUtils;
@@ -10,8 +11,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main {
     /**
@@ -41,6 +40,7 @@ public class Main {
 
         // data grabbing
         GeneralInfo generalInfo = grabber.grabGeneralInfo();
+        EducationInfo educationInfo = grabber.grabEducationInfo();
 
         System.out.println("Data grab process ended successfully");
 
