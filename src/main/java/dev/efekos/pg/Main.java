@@ -4,6 +4,7 @@ import dev.efekos.pg.data.DataGrabber;
 import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.output.FileGenerator;
+import dev.efekos.pg.util.WorkContext;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
@@ -26,6 +27,8 @@ public class Main {
         return Path.of(MAIN_PATH);
     }
 
+    private static final WorkContext context = new WorkContext();
+
     /**
      * Main method
      * @param args u now at it izz
@@ -36,30 +39,38 @@ public class Main {
         System.out.println("Hello World!");
 
 
-        DataGrabber grabber = new DataGrabber(MAIN_PATH);
+        startDataGrabProcess(); // read files
+        startBinRefreshProcess(); // clear bin folder
+        startFileGenerateProcess(); // generate files
 
-        // data grabbing
-        GeneralInfo generalInfo = grabber.grabGeneralInfo();
-        EducationInfo educationInfo = grabber.grabEducationInfo();
+        System.out.println("Done! output has been saved to "+context.binPath);
+    }
 
-        System.out.println("Data grab process ended successfully");
+    private static void startFileGenerateProcess() throws IOException {
+        FileGenerator generator = new FileGenerator();
 
-        // bin
+        generator.generateIndexFile(context.grabbedGeneralInfo, context.binPath);
+    }
+
+    private static void startBinRefreshProcess() throws IOException {
         System.out.println("Refreshing bin");
         String binPathString = MAIN_PATH+"\\bin";
         Path binPath = Path.of(binPathString);
         FileUtils.deleteDirectory(binPath.toFile());
 
-        // generating
-        FileGenerator generator = new FileGenerator();
-        Files.createDirectory(binPath);
+        Files.createDirectory(Path.of(context.binPath));
 
-        generator.generateIndexFile(generalInfo,binPathString);
+        context.binPath = binPathString;
+    }
 
-        System.out.println("File generate process ended successfully");
+    private static void startDataGrabProcess() throws IOException {
+        DataGrabber grabber = new DataGrabber(MAIN_PATH);
 
+        GeneralInfo generalInfo = grabber.grabGeneralInfo();
+        EducationInfo educationInfo = grabber.grabEducationInfo();
 
-        System.out.println("Done! output has been saved to "+binPath);
+        context.grabbedGeneralInfo = generalInfo;
+        context.grabbedEducationInfo = educationInfo;
     }
 
     /**
