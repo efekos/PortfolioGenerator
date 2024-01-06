@@ -86,7 +86,7 @@ public class DataGrabber {
 
         String file = readFile(mainPath + "\\education.json");
         JsonElement element = JsonParser.parseString(file);
-        if(!element.isJsonObject()) throw new JsonSyntaxException("'general.json' not object");
+        if(!element.isJsonObject()) throw new JsonSyntaxException("'education.json' not object");
         JsonObject object = element.getAsJsonObject();
 
         EducationInfo info = new EducationInfo();
