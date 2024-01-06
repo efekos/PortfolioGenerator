@@ -1,5 +1,6 @@
 package dev.efekos.pg.data.schema;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
@@ -18,6 +19,7 @@ public class GeneralInfo implements JsonSchema{
     private Locale nativeLanguage;
     private List<Locale> knownLanguages;
     private String welcomer;
+    private List<SocialLink> socialLinks;
 
     public GeneralInfo(String name, DayDate birthDate, String title) {
         this.name = name;
@@ -65,6 +67,7 @@ public class GeneralInfo implements JsonSchema{
         checker.searchExceptions(object,"title", RequiredDataType.STRING);
         checker.searchExceptions(object,"birth", RequiredDataType.OBJECT);
         checker.searchExceptions(object,"native_language", RequiredDataType.STRING);
+        checker.searchExceptions(object,"social_links", RequiredDataType.ARRAY);
 
         // name, title
         this.name = object.get("name").getAsString();
@@ -91,6 +94,27 @@ public class GeneralInfo implements JsonSchema{
             this.knownLanguages = new ArrayList<>();
         }
 
+
+        // social_links
+        JsonArray array = object.get("social_links").getAsJsonArray();
+        List<SocialLink> links = new ArrayList<>();
+        for (JsonElement element : array) {
+            if(!element.isJsonObject()) throw new JsonSyntaxException("Elements in 'social_links' must be an object.");
+            JsonObject linkObject = element.getAsJsonObject();
+
+            SocialLink link = new SocialLink(null,null);
+            link.readJson(linkObject,context);
+            links.add(link);
+        }
+        this.socialLinks = links;
+    }
+
+    public List<SocialLink> getSocialLinks() {
+        return socialLinks;
+    }
+
+    public void setSocialLinks(List<SocialLink> socialLinks) {
+        this.socialLinks = socialLinks;
     }
 
     public void setName(String name) {
