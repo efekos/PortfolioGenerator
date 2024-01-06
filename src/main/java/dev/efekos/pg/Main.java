@@ -60,7 +60,7 @@ public class Main {
         Path binPath = Path.of(binPathString);
         FileUtils.deleteDirectory(binPath.toFile());
 
-        Files.createDirectory(Path.of(context.binPath));
+        Files.createDirectory(binPath);
 
         context.binPath = binPathString;
         System.out.println("Bin refresh process ended successfully");
