@@ -34,22 +34,22 @@ public class DataTypeChecker {
         JsonElement element = object.get(requiredKey);
         switch (type){
             case ARRAY -> {
-                if(!element.isJsonArray())throw new JsonSyntaxException("'"+requiredKey+"' must be an array.");
+                if(!element.isJsonArray())throw new JsonSyntaxException("'"+requiredKey+"' must be an array in file '"+currentFile+"'");
             }
             case DOUBLE -> {
-                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a double.");
+                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a double in file '"+currentFile+"'");
             }
             case OBJECT -> {
-                if(!element.isJsonObject()) throw new JsonSyntaxException("'"+requiredKey+"' must be an object.");
+                if(!element.isJsonObject()) throw new JsonSyntaxException("'"+requiredKey+"' must be an object in file '"+currentFile+"'");
             }
             case STRING -> {
-                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a string.");
+                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a string in file '"+currentFile+"'");
             }
             case BOOLEAN -> {
-                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a boolean.");
+                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a boolean in file '"+currentFile+"'");
             }
             case INTEGER -> {
-                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be an integer.");
+                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be an integer in file '"+currentFile+"'");
             }
         }
     }
