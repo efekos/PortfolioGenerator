@@ -28,7 +28,7 @@ public class EducationInfo implements JsonSchema{
 
     @Override
     public void readJson(JsonObject object, DataGrabberContext context) throws JsonParseException {
-        DataTypeChecker checker = new DataTypeChecker();
+        DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
 
         checker.searchExceptions(object,"entries", RequiredDataType.ARRAY);
 
