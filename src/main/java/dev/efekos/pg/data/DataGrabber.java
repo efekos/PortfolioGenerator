@@ -3,6 +3,7 @@ package dev.efekos.pg.data;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import dev.efekos.pg.data.schema.EducationInfo;
+import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.util.Utilities;
 import org.commonmark.parser.Parser;
@@ -13,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -90,6 +92,21 @@ public class DataGrabber {
         JsonObject object = element.getAsJsonObject();
 
         EducationInfo info = new EducationInfo();
+        info.readJson(object,context);
+        return info;
+    }
+
+    public ExperienceInfo grabExperienceInfO() throws IOException {
+        context.setCurrentFile("experience.json");
+        System.out.println("Grabbing file: experience.json");
+
+
+        String file = readFile(mainPath + "\\experience.json");
+        JsonElement element = JsonParser.parseString(file);
+        if(!element.isJsonObject()) throw new JsonSyntaxException("'experience.json' not object");
+        JsonObject object = element.getAsJsonObject();
+
+        ExperienceInfo info = new ExperienceInfo(new ArrayList<>());
         info.readJson(object,context);
         return info;
     }
