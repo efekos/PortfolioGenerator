@@ -2,6 +2,7 @@ package dev.efekos.pg;
 
 import dev.efekos.pg.data.DataGrabber;
 import dev.efekos.pg.data.schema.EducationInfo;
+import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.output.FileGenerator;
 import dev.efekos.pg.util.WorkContext;
@@ -43,14 +44,14 @@ public class Main {
         startBinRefreshProcess(); // clear bin folder
         startFileGenerateProcess(); // generate files
 
-        System.out.println("Done! output has been saved to "+context.binPath);
+        System.out.println("Done! output has been saved to "+context.getBinPath());
     }
 
     private static void startFileGenerateProcess() throws IOException {
         System.out.println("Starting file generate process");
         FileGenerator generator = new FileGenerator();
 
-        generator.generateIndexFile(context.grabbedGeneralInfo, context.binPath);
+        generator.generateIndexFile(context.getGrabbedGeneralInfo(), context.getBinPath());
         System.out.println("File generate process ended successfully");
     }
 
@@ -62,7 +63,7 @@ public class Main {
 
         Files.createDirectory(binPath);
 
-        context.binPath = binPathString;
+        context.setBinPath(binPathString);
         System.out.println("Bin refresh process ended successfully");
     }
 
@@ -72,9 +73,11 @@ public class Main {
 
         GeneralInfo generalInfo = grabber.grabGeneralInfo();
         EducationInfo educationInfo = grabber.grabEducationInfo();
+        ExperienceInfo info = grabber.grabExperienceInfO();
 
-        context.grabbedGeneralInfo = generalInfo;
-        context.grabbedEducationInfo = educationInfo;
+        context.setGrabbedGeneralInfo(generalInfo);
+        context.setGrabbedEducationInfo(educationInfo);
+        context.setExperienceInfo(info);
         System.out.println("Data grab process ended successfully");
     }
 
