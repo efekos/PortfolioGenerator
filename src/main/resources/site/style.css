@@ -4,13 +4,22 @@
 }
 
 p {
-    border-top: 1rem;
-    border-bottom: 1rem;
+    border-top: 0.1rem;
+    border-bottom: 0.1rem;
     border-color: white;
-    border-radius: 0.5rem;
     border-style: solid;
+    border-left: 0;
+    border-right: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+a{
+    color: cornflowerblue;
+    text-decoration: none;
 }
 
 body {
-    background-color: #080808;
+    background-color: #151515;
 }
