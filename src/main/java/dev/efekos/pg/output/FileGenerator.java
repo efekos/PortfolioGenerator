@@ -54,7 +54,7 @@ public class FileGenerator {
 
         String fileString = Main.readStringResource(resourceLocation);
         File file = new File(binPath+outputLocation);
-        file.mkdirs();
+        file.getParentFile().mkdirs();
         file.createNewFile();
 
         FileWriter writer = new FileWriter(file);
