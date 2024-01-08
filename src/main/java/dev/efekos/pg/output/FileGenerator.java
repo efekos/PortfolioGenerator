@@ -4,8 +4,11 @@ import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.GeneralInfo;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class FileGenerator {
 
@@ -41,7 +44,18 @@ public class FileGenerator {
         writer.write(fileString);
         writer.flush();
         writer.close();
+
+        System.out.println("Generated file: index.html");
     }
 
-    public void putImageFiles(MainImageFileInfo info,){}
+    public void copyProfileImage(String mainPath) throws IOException{
+        System.out.println("Moving file: profile.png");
+
+        Path dataPath = Path.of(mainPath, "data", "profile.png");
+        if(!Files.exists(dataPath)) throw new FileNotFoundException("Required file: profile.png");
+
+        Files.copy(dataPath,Path.of(binPath,"images","profile.png"));
+
+        System.out.println("Moved file: profile.png");
+    }
 }
