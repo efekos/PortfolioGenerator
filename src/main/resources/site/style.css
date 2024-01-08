@@ -1,0 +1,16 @@
+* {
+    color: white;
+    font-family: "Fredoka Semibold","Segoe UI",Calibri,Helvetica,Arial,sans-serif;
+}
+
+p {
+    border-top: 1rem;
+    border-bottom: 1rem;
+    border-color: white;
+    border-radius: 0.5rem;
+    border-style: solid;
+}
+
+body {
+    background-color: #080808;
+}
