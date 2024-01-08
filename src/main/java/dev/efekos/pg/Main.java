@@ -49,9 +49,12 @@ public class Main {
 
     private static void startFileGenerateProcess() throws IOException {
         System.out.println("Starting file generate process");
-        FileGenerator generator = new FileGenerator();
+        FileGenerator generator = new FileGenerator(context.getBinPath());
 
-        generator.generateIndexFile(context.getGrabbedGeneralInfo(), context.getBinPath());
+        generator.generateIndexFile(context.getGrabbedGeneralInfo());
+        generator.copyProfileImage(MAIN_PATH);
+
+
         System.out.println("File generate process ended successfully");
     }
 
@@ -80,12 +83,6 @@ public class Main {
         context.setExperienceInfo(info);
         System.out.println("Data grab process ended successfully");
     }
-
-
-
-
-
-
 
 
     /**
