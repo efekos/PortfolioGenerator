@@ -54,6 +54,7 @@ public class FileGenerator {
         Path dataPath = Path.of(mainPath, "data", "profile.png");
         if(!Files.exists(dataPath)) throw new FileNotFoundException("Required file: profile.png");
 
+        Files.createDirectory(Path.of(binPath,"images"));
         Files.copy(dataPath,Path.of(binPath,"images","profile.png"));
 
         System.out.println("Moved file: profile.png");
