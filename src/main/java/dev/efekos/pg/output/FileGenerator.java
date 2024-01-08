@@ -46,6 +46,23 @@ public class FileGenerator {
         writer.close();
 
         System.out.println("Generated file: index.html");
+        copyFile("/site/style.css","\\style\\main_style.css");
+    }
+
+    public void copyFile(String resourceLocation,String outputLocation) throws IOException {
+        System.out.println("Copying file: "+resourceLocation);
+
+        String fileString = Main.readStringResource(resourceLocation);
+        File file = new File(binPath+outputLocation);
+        file.mkdirs();
+        file.createNewFile();
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(fileString);
+        writer.flush();
+        writer.close();
+
+        System.out.println("Copied file: "+resourceLocation);
     }
 
     public void copyProfileImage(String mainPath) throws IOException{
