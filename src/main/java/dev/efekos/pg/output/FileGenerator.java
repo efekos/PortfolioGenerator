@@ -9,13 +9,22 @@ import java.io.IOException;
 
 public class FileGenerator {
 
+    private final String binPath;
+
+    /**
+     * Constructs a new {@link FileGenerator}
+     * @param binPath Path to the output folder.
+     */
+    public FileGenerator(String binPath) {
+        this.binPath = binPath;
+    }
+
     /**
      * Generates a main <code>index.html</code> file, the home page for the entire website.
      * @param info Grabbed {@link GeneralInfo} to place its data to the page.
-     * @param binPath Path to the output folder.
      * @throws IOException If something goes wrong
      */
-    public void generateIndexFile(GeneralInfo info, String binPath) throws IOException {
+    public void generateIndexFile(GeneralInfo info) throws IOException {
         System.out.println("Generating file: index.html");
 
         String fileString = Main.readStringResource("/site/index.html")
@@ -33,4 +42,6 @@ public class FileGenerator {
         writer.flush();
         writer.close();
     }
+
+    public void putImageFiles(MainImageFileInfo info,){}
 }
