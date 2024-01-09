@@ -56,6 +56,7 @@ public class Main {
 
         generator.generateIndexFile(context.getGrabbedGeneralInfo());
         generator.copyProfileImage(MAIN_PATH);
+        generator.generateCertificatesFile(context.getGrabbedGeneralInfo(),context.getCertificates());
 
 
         System.out.println("File generate process ended successfully");
