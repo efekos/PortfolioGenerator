@@ -1,16 +1,28 @@
 package dev.efekos.pg.util;
 
+import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
+
+import java.util.List;
 
 public class WorkContext {
     private EducationInfo grabbedEducationInfo;
     private GeneralInfo grabbedGeneralInfo;
     private ExperienceInfo experienceInfo;
     private String binPath;
+    private List<Certificate> certificates;
 
     public WorkContext() {
+    }
+
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
     }
 
     public ExperienceInfo getExperienceInfo() {
