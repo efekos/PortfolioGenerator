@@ -31,9 +31,9 @@ public class FileGenerator {
         System.out.println("Generating file: index.html");
 
         String fileString = Main.readStringResource("/site/index.html")
-        .replaceAll("\\{name}",info.getName())
-        .replaceAll("\\{title}",info.getTitle())
-        .replaceAll("\\{welcomer}",info.getWelcomer());
+        .replaceAll("%%name%%",info.getName())
+        .replaceAll("%%title%%",info.getTitle())
+        .replaceAll("%%welcomer%%",info.getWelcomer());
 
         File file = new File(binPath + "\\index.html");
 
