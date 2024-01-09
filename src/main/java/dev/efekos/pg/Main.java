@@ -1,6 +1,7 @@
 package dev.efekos.pg;
 
 import dev.efekos.pg.data.DataGrabber;
+import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
@@ -13,6 +14,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     /**
@@ -77,10 +80,12 @@ public class Main {
         GeneralInfo generalInfo = grabber.grabGeneralInfo();
         EducationInfo educationInfo = grabber.grabEducationInfo();
         ExperienceInfo info = grabber.grabExperienceInfO();
+        List<Certificate> certificates = grabber.grabCertificates();
 
         context.setGrabbedGeneralInfo(generalInfo);
         context.setGrabbedEducationInfo(educationInfo);
         context.setExperienceInfo(info);
+        context.setCertificates(certificates);
         System.out.println("Data grab process ended successfully");
     }
 
