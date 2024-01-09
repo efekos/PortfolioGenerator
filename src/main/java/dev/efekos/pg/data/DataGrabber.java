@@ -1,11 +1,11 @@
 package dev.efekos.pg.data;
 
 import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
+import dev.efekos.pg.Main;
+import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
-import dev.efekos.pg.util.Utilities;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
@@ -13,8 +13,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -109,5 +111,36 @@ public class DataGrabber {
         ExperienceInfo info = new ExperienceInfo(new ArrayList<>());
         info.readJson(object,context);
         return info;
+    }
+
+    public List<Certificate> grabCertificates() throws IOException {
+        System.out.println("Grabbing directory: certificates");
+        String dirPathString = mainPath+"\\certificates";
+        Path dirPath = Path.of(dirPathString);
+
+        if(!Files.exists(dirPath)) throw new FileNotFoundException(dirPathString);
+        if(!Files.isDirectory(dirPath)) throw new NotDirectoryException(dirPathString);
+
+        File dir = new File(dirPathString);
+
+        File[] files = dir.listFiles((drir, name) -> name.endsWith(".json"));
+        ArrayList<Certificate> certificates = new ArrayList<>();
+
+
+        for (File file : Arrays.asList(files)) {
+            context.setCurrentFile(file.getPath().replace(mainPath,""));
+
+            String stringJson = readFile(file.getPath());
+            JsonElement element = JsonParser.parseString(stringJson);
+            if(!element.isJsonObject()) throw new JsonSyntaxException("'"+file.getPath()+"' not object");
+            JsonObject object = element.getAsJsonObject();
+
+            Certificate certificate = new Certificate();
+            certificate.readJson(object,context);
+
+            certificates.add(certificate);
+        }
+
+        return certificates;
     }
 }
