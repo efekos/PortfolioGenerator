@@ -50,7 +50,7 @@ public class CertificateDisplay implements JsonSchema{
         checker.searchExceptions(object,"title", RequiredDataType.STRING);
         checker.searchExceptions(object,"description", RequiredDataType.STRING);
 
-        setImage(Main.getMainPath()+"\\data\\certificates\\"+object.get("image").getAsString().replaceAll("/","\\"));
+        setImage(object.get("image").getAsString());
         setTitle(object.get("title").getAsString());
         setDescription(object.get("description").getAsString());
     }
