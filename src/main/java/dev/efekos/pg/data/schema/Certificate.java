@@ -48,7 +48,7 @@ public class Certificate implements JsonSchema {
         // images
         Map<String, JsonElement> imagesMap = object.get("images").getAsJsonObject().asMap();
         List<String> seenTypeKeys = new ArrayList<>();
-
+        this.images = new HashMap<>();
 
         imagesMap.forEach((typeKey, jsonElement) -> {
             if(!ALLOWED_IMAGE_TYPES.contains(typeKey.toLowerCase(Locale.ROOT))) throw new JsonParseException("Image type '"+typeKey+"' not allowed");
@@ -65,7 +65,7 @@ public class Certificate implements JsonSchema {
 
 
     private String toImagePath(String path) {
-        return Main.getMainPath() + "\\data\\certificates\\" + path.replaceAll("/", "\\");
+        return Main.getMainPath() + "\\data\\certificates\\" + path.replaceAll("/", "\\\\");
     }
 
     public Certificate(Map<String, String> images, DayDate when, CertificateType certificateType, CertificateDisplay display) {
