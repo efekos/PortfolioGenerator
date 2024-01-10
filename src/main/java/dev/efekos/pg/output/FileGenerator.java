@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Locale;
 
 public class FileGenerator {
 
@@ -57,10 +58,16 @@ public class FileGenerator {
         writer.close();
     }
 
+    private String makeId(String id){
+        return id
+                .replaceAll(" ","_")
+                .toLowerCase(Locale.ROOT);
+    }
+
     public void generateCertificatesFile(GeneralInfo info, List<Certificate> certificates) throws IOException {
         System.out.println("Generating file: certificate.html");
 
-        List<String> elementList = certificates.stream().map(certificate -> "<img src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\", alt=\"" + certificate.getDisplay().getTitle() + "\"></img>").toList();
+        List<String> elementList = certificates.stream().map(certificate -> "<a href=\"./certificate/"+makeId(certificate.getDisplay().getTitle())+"\"><img src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\", alt=\"" + certificate.getDisplay().getTitle() + "\"></img>").toList();
 
         String fileString = Main.readStringResource("/site/certificates.html")
                 .replaceAll("%%name%%", info.getName())
