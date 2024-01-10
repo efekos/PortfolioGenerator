@@ -8,7 +8,7 @@ import dev.efekos.pg.data.type.RequiredDataType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExperienceInfo implements JsonSchema{
+public class ExperienceInfo implements JsonSchema {
 
     private List<ExperienceEntry> entries;
 
@@ -28,16 +28,16 @@ public class ExperienceInfo implements JsonSchema{
     public void readJson(JsonObject object, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
 
-        checker.searchExceptions(object,"entries", RequiredDataType.ARRAY);
+        checker.searchExceptions(object, "entries", RequiredDataType.ARRAY);
 
         JsonArray array = object.get("entries").getAsJsonArray();
         ArrayList<ExperienceEntry> experienceList = new ArrayList<>();
 
         for (JsonElement element : array) {
-            if(!element.isJsonObject()) throw new JsonSyntaxException("elements in 'entries' must be an object");
+            if (!element.isJsonObject()) throw new JsonSyntaxException("elements in 'entries' must be an object");
 
             ExperienceEntry entry = new ExperienceEntry();
-            entry.readJson(element.getAsJsonObject(),context);
+            entry.readJson(element.getAsJsonObject(), context);
             experienceList.add(entry);
         }
 

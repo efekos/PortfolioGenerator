@@ -7,7 +7,8 @@ import dev.efekos.pg.data.DataGrabberContext;
 public interface JsonSchema {
     /**
      * Reads values from the object given.
-     * @param object A {@link JsonObject}.
+     *
+     * @param object  A {@link JsonObject}.
      * @param context Current grabbing context for exception messages
      * @throws JsonParseException Depending on what class is this.
      */

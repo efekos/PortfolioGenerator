@@ -8,7 +8,7 @@ import dev.efekos.pg.data.type.RequiredDataType;
 /**
  * Represents a date that just needs a day, year, and month.
  */
-public class DayDate implements JsonSchema{
+public class DayDate implements JsonSchema {
     /**
      * Day of the date. Will be day of the month (such as 2nd July, but not Tuesday)
      */
@@ -24,9 +24,10 @@ public class DayDate implements JsonSchema{
 
     /**
      * Constructs a new {@link DayDate}
-     * @param day Day of this date. Will be considered as day of the month (such as 2nd July, but not Tuesday).
+     *
+     * @param day   Day of this date. Will be considered as day of the month (such as 2nd July, but not Tuesday).
      * @param month Month of this date.
-     * @param year Year of this date.
+     * @param year  Year of this date.
      */
     public DayDate(int day, int month, int year) {
         this.day = day;
@@ -36,6 +37,7 @@ public class DayDate implements JsonSchema{
 
     /**
      * Returns the day of this date
+     *
      * @return Day value of this date
      */
     public int getDay() {
@@ -44,6 +46,7 @@ public class DayDate implements JsonSchema{
 
     /**
      * Changes the day of this date
+     *
      * @param day New day value
      */
     public void setDay(int day) {
@@ -52,6 +55,7 @@ public class DayDate implements JsonSchema{
 
     /**
      * Returns month value of this date.
+     *
      * @return Month of this date.
      */
     public int getMonth() {
@@ -60,6 +64,7 @@ public class DayDate implements JsonSchema{
 
     /**
      * Changes the month of this date.
+     *
      * @param month Month of this date.
      */
     public void setMonth(int month) {
@@ -68,6 +73,7 @@ public class DayDate implements JsonSchema{
 
     /**
      * Returns the year of this date.
+     *
      * @return Year value of this date.
      */
     public int getYear() {
@@ -76,6 +82,7 @@ public class DayDate implements JsonSchema{
 
     /**
      * Changes the year value of this date.
+     *
      * @param year New year value.
      */
     public void setYear(int year) {
@@ -85,9 +92,9 @@ public class DayDate implements JsonSchema{
 
     public void readJson(JsonObject object, DataGrabberContext context) {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
-        checker.searchExceptions(object,"year", RequiredDataType.INTEGER);
-        checker.searchExceptions(object,"month", RequiredDataType.INTEGER);
-        checker.searchExceptions(object,"day", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "year", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "month", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "day", RequiredDataType.INTEGER);
 
         this.day = object.get("day").getAsInt();
         this.year = object.get("year").getAsInt();

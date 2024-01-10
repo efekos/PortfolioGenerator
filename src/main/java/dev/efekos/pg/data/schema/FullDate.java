@@ -5,7 +5,7 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 
-public class FullDate implements JsonSchema{
+public class FullDate implements JsonSchema {
     private int day;
     private int month;
     private int year;
@@ -75,12 +75,12 @@ public class FullDate implements JsonSchema{
         DataTypeChecker checker = new DataTypeChecker();
         checker.setCurrentFile(context.getCurrentFile());
 
-        checker.searchExceptions(object,"day", RequiredDataType.INTEGER);
-        checker.searchExceptions(object,"month", RequiredDataType.INTEGER);
-        checker.searchExceptions(object,"year", RequiredDataType.INTEGER);
-        checker.searchExceptions(object,"minute", RequiredDataType.INTEGER);
-        checker.searchExceptions(object,"hour", RequiredDataType.INTEGER);
-        checker.searchExceptions(object,"second", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "day", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "month", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "year", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "minute", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "hour", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "second", RequiredDataType.INTEGER);
 
         this.day = object.get("day").getAsInt();
         this.month = object.get("month").getAsInt();

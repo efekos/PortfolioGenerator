@@ -51,14 +51,16 @@ public class Certificate implements JsonSchema {
         this.images = new HashMap<>();
 
         imagesMap.forEach((typeKey, jsonElement) -> {
-            if(!ALLOWED_IMAGE_TYPES.contains(typeKey.toLowerCase(Locale.ROOT))) throw new JsonParseException("Image type '"+typeKey+"' not allowed");
-            if(seenTypeKeys.contains(typeKey.toLowerCase(Locale.ROOT))) throw new JsonParseException("Already saw image type '"+typeKey+"'");
+            if (!ALLOWED_IMAGE_TYPES.contains(typeKey.toLowerCase(Locale.ROOT)))
+                throw new JsonParseException("Image type '" + typeKey + "' not allowed");
+            if (seenTypeKeys.contains(typeKey.toLowerCase(Locale.ROOT)))
+                throw new JsonParseException("Already saw image type '" + typeKey + "'");
             seenTypeKeys.add(typeKey);
 
-            if(!jsonElement.isJsonPrimitive()) throw new JsonSyntaxException("Values of 'images' must be string");
+            if (!jsonElement.isJsonPrimitive()) throw new JsonSyntaxException("Values of 'images' must be string");
 
             String path = toImagePath(jsonElement.getAsString());
-            this.images.put(typeKey,path);
+            this.images.put(typeKey, path);
 
         });
     }
@@ -66,13 +68,6 @@ public class Certificate implements JsonSchema {
 
     private String toImagePath(String path) {
         return Main.getMainPath() + "\\data\\certificates\\" + path.replaceAll("/", "\\\\");
-    }
-
-    public Certificate(Map<String, String> images, DayDate when, CertificateType certificateType, CertificateDisplay display) {
-        this.images = images;
-        this.when = when;
-        this.certificateType = certificateType;
-        this.display = display;
     }
 
     public Certificate() {

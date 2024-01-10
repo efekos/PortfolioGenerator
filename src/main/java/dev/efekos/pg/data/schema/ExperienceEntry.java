@@ -19,7 +19,7 @@ public class ExperienceEntry implements JsonSchema {
         this.to = to;
     }
 
-    public ExperienceEntry(){
+    public ExperienceEntry() {
 
     }
 
@@ -59,20 +59,20 @@ public class ExperienceEntry implements JsonSchema {
     public void readJson(JsonObject object, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
 
-        checker.searchExceptions(object,"company", RequiredDataType.STRING);
-        checker.searchExceptions(object,"position",RequiredDataType.STRING);
-        checker.searchExceptions(object,"from",RequiredDataType.OBJECT);
-        checker.searchExceptions(object,"to",RequiredDataType.OBJECT);
+        checker.searchExceptions(object, "company", RequiredDataType.STRING);
+        checker.searchExceptions(object, "position", RequiredDataType.STRING);
+        checker.searchExceptions(object, "from", RequiredDataType.OBJECT);
+        checker.searchExceptions(object, "to", RequiredDataType.OBJECT);
 
         this.company = object.get("company").getAsString();
         this.position = object.get("position").getAsString();
 
 
-        MonthDate fromDate = new MonthDate(0,0);
-        fromDate.readJson(object.get("from").getAsJsonObject(),context);
+        MonthDate fromDate = new MonthDate(0, 0);
+        fromDate.readJson(object.get("from").getAsJsonObject(), context);
 
-        MonthDate toDate = new MonthDate(0,0);
-        toDate.readJson(object.get("to").getAsJsonObject(),context);
+        MonthDate toDate = new MonthDate(0, 0);
+        toDate.readJson(object.get("to").getAsJsonObject(), context);
 
         this.from = fromDate;
         this.to = toDate;

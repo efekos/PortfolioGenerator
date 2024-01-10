@@ -14,7 +14,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -25,6 +24,7 @@ public class Main {
 
     /**
      * Returns a main path.
+     *
      * @return main path that the program is running.
      */
     public static Path getMainPath() {
@@ -33,21 +33,15 @@ public class Main {
 
     private static final WorkContext context = new WorkContext();
 
-    /**
-     * Main method
-     * @param args u now at it izz
-     * @throws Exception If anything goes wrong
-     */
-    public static void main(String[] args)throws Exception {
+    public static void main(String[] args) throws Exception {
         MAIN_PATH = System.getProperty("user.dir");
         System.out.println("Hello World!");
-
 
         startDataGrabProcess(); // read files
         startBinRefreshProcess(); // clear bin folder
         startFileGenerateProcess(); // generate files
 
-        System.out.println("Done! output has been saved to "+context.getBinPath());
+        System.out.println("Done! output has been saved to " + context.getBinPath());
     }
 
     private static void startFileGenerateProcess() throws IOException {
@@ -56,7 +50,7 @@ public class Main {
 
         generator.generateIndexFile(context.getGrabbedGeneralInfo());
         generator.copyProfileImage(MAIN_PATH);
-        generator.generateCertificatesFile(context.getGrabbedGeneralInfo(),context.getCertificates());
+        generator.generateCertificatesFile(context.getGrabbedGeneralInfo(), context.getCertificates());
 
 
         System.out.println("File generate process ended successfully");
@@ -64,7 +58,7 @@ public class Main {
 
     private static void startBinRefreshProcess() throws IOException {
         System.out.println("Starting refresh bin process");
-        String binPathString = MAIN_PATH+"\\bin";
+        String binPathString = MAIN_PATH + "\\bin";
         Path binPath = Path.of(binPathString);
         FileUtils.deleteDirectory(binPath.toFile());
 
@@ -93,6 +87,7 @@ public class Main {
 
     /**
      * Reads a resource from the resources folder, and returns it as a {@link String}.
+     *
      * @param path Path to the file you want to reach.
      * @return A file if found as {@link String}
      * @throws IOException If {@link URL#openStream()} method fails.

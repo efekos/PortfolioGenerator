@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class GeneralInfo implements JsonSchema{
+public class GeneralInfo implements JsonSchema {
     private String name;
     private DayDate birthDate;
     private String title;
@@ -63,19 +63,19 @@ public class GeneralInfo implements JsonSchema{
         DataTypeChecker checker = new DataTypeChecker();
         checker.setCurrentFile(context.getCurrentFile());
 
-        checker.searchExceptions(object,"name", RequiredDataType.STRING);
-        checker.searchExceptions(object,"title", RequiredDataType.STRING);
-        checker.searchExceptions(object,"birth", RequiredDataType.OBJECT);
-        checker.searchExceptions(object,"native_language", RequiredDataType.STRING);
-        checker.searchExceptions(object,"social_links", RequiredDataType.ARRAY);
+        checker.searchExceptions(object, "name", RequiredDataType.STRING);
+        checker.searchExceptions(object, "title", RequiredDataType.STRING);
+        checker.searchExceptions(object, "birth", RequiredDataType.OBJECT);
+        checker.searchExceptions(object, "native_language", RequiredDataType.STRING);
+        checker.searchExceptions(object, "social_links", RequiredDataType.ARRAY);
 
         // name, title
         this.name = object.get("name").getAsString();
         this.title = object.get("title").getAsString();
 
         // birth
-        this.birthDate = new DayDate(26,2,2010);
-        birthDate.readJson(object.get("birth").getAsJsonObject(),context);
+        this.birthDate = new DayDate(26, 2, 2010);
+        birthDate.readJson(object.get("birth").getAsJsonObject(), context);
 
         // native_language
         this.nativeLanguage = Locale.forLanguageTag(object.get("native_language").getAsString());
@@ -83,14 +83,14 @@ public class GeneralInfo implements JsonSchema{
         // known_languages
         try {
 
-            checker.searchExceptions(object,"known_languages", RequiredDataType.ARRAY);
+            checker.searchExceptions(object, "known_languages", RequiredDataType.ARRAY);
             this.knownLanguages = object
                     .get("known_languages")
                     .getAsJsonArray().asList()
                     .stream().map(jsonElement -> Locale.forLanguageTag(jsonElement.getAsString()))
                     .toList();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             this.knownLanguages = new ArrayList<>();
         }
 
@@ -99,11 +99,11 @@ public class GeneralInfo implements JsonSchema{
         JsonArray array = object.get("social_links").getAsJsonArray();
         List<SocialLink> links = new ArrayList<>();
         for (JsonElement element : array) {
-            if(!element.isJsonObject()) throw new JsonSyntaxException("Elements in 'social_links' must be an object.");
+            if (!element.isJsonObject()) throw new JsonSyntaxException("Elements in 'social_links' must be an object.");
             JsonObject linkObject = element.getAsJsonObject();
 
-            SocialLink link = new SocialLink(null,null);
-            link.readJson(linkObject,context);
+            SocialLink link = new SocialLink(null, null);
+            link.readJson(linkObject, context);
             links.add(link);
         }
         this.socialLinks = links;

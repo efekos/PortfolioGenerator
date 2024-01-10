@@ -39,13 +39,13 @@ public class FileGenerator {
                 .replaceAll("%%title%%", info.getTitle())
                 .replaceAll("%%welcomer%%", info.getWelcomer());
 
-        writeFile(binPath + "\\index.html",fileString);
+        writeFile(binPath + "\\index.html", fileString);
 
         System.out.println("Generated file: index.html");
         copyResource("/site/style.css", "\\style\\main_style.css");
     }
 
-    private void writeFile(String path,String content) throws IOException {
+    private void writeFile(String path, String content) throws IOException {
         File file = new File(path);
 
         file.createNewFile();
@@ -65,9 +65,9 @@ public class FileGenerator {
         String fileString = Main.readStringResource("/site/certificates.html")
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%title%%", info.getTitle())
-                .replaceAll("%%images%%",String.join("",elementList));
+                .replaceAll("%%images%%", String.join("", elementList));
 
-        writeFile(binPath+"\\certificates.html",fileString);
+        writeFile(binPath + "\\certificates.html", fileString);
         System.out.println("Generated file: certificates.html");
 
         System.out.println("Copying images for file: certificates.html");
@@ -75,13 +75,13 @@ public class FileGenerator {
         for (Certificate certificate : certificates) {
             for (String value : certificate.getImages().values()) {
                 Path valuePath = Path.of(value); // data daki dosya
-                if(!Files.exists(valuePath)) throw new FileNotFoundException(value);
+                if (!Files.exists(valuePath)) throw new FileNotFoundException(value);
 
                 String imagePath = value.replace(Main.getMainPath() + "\\data\\certificates", "");
-                String certificatesFolderPath = binPath+"\\images\\certificate";
-                Files.createDirectories(Path.of(certificatesFolderPath,imagePath).getParent());
+                String certificatesFolderPath = binPath + "\\images\\certificate";
+                Files.createDirectories(Path.of(certificatesFolderPath, imagePath).getParent());
 
-                Files.copy(valuePath,Path.of(certificatesFolderPath,imagePath));
+                Files.copy(valuePath, Path.of(certificatesFolderPath, imagePath));
             }
         }
     }
@@ -102,11 +102,11 @@ public class FileGenerator {
         System.out.println("Copied file: " + resourceLocation);
     }
 
-    private byte[] readFileInBytes(String p) throws IOException{
+    private byte[] readFileInBytes(String p) throws IOException {
         Path path = Path.of(p);
-        System.out.println("Reading file: "+path.getFileName());
+        System.out.println("Reading file: " + path.getFileName());
 
-        if(!Files.exists(path))throw new FileNotFoundException("'"+path.getFileName().toFile()+"' file missing.");
+        if (!Files.exists(path)) throw new FileNotFoundException("'" + path.getFileName().toFile() + "' file missing.");
         return Files.readAllBytes(path);
     }
 

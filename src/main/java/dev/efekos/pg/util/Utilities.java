@@ -11,10 +11,11 @@ public class Utilities {
 
     /**
      * Converts a markdown string to html string using CommonMark.
+     *
      * @param markdown Markdown input string.
      * @return HTML output string.
      */
-    public static String markdownToHtml(String markdown){
+    public static String markdownToHtml(String markdown) {
         Parser parser = new Parser.Builder().build();
         Node node = parser.parse(markdown);
         return HtmlRenderer.builder().build().render(node);

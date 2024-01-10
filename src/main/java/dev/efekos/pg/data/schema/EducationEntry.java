@@ -1,6 +1,5 @@
 package dev.efekos.pg.data.schema;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
@@ -10,7 +9,7 @@ import dev.efekos.pg.data.type.RequiredDataType;
 import java.util.Arrays;
 import java.util.Optional;
 
-public class EducationEntry implements JsonSchema{
+public class EducationEntry implements JsonSchema {
     private EducationEntryIcon icon;
     private String title;
     private MonthDate start;
@@ -29,11 +28,11 @@ public class EducationEntry implements JsonSchema{
     public void readJson(JsonObject object, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
 
-        checker.searchExceptions(object,"title", RequiredDataType.STRING);
-        checker.searchExceptions(object,"icon",RequiredDataType.STRING);
-        checker.searchExceptions(object,"location",RequiredDataType.STRING);
-        checker.searchExceptions(object,"start",RequiredDataType.OBJECT);
-        checker.searchExceptions(object,"until",RequiredDataType.OBJECT);
+        checker.searchExceptions(object, "title", RequiredDataType.STRING);
+        checker.searchExceptions(object, "icon", RequiredDataType.STRING);
+        checker.searchExceptions(object, "location", RequiredDataType.STRING);
+        checker.searchExceptions(object, "start", RequiredDataType.OBJECT);
+        checker.searchExceptions(object, "until", RequiredDataType.OBJECT);
 
         // title,location
         this.title = object.get("title").getAsString();
@@ -42,16 +41,17 @@ public class EducationEntry implements JsonSchema{
         // icon
         String iconString = object.get("icon").getAsString();
         Optional<EducationEntryIcon> entryIcon = Arrays.stream(EducationEntryIcon.values()).filter(educationEntryIcon -> educationEntryIcon.getId().equals(iconString)).findFirst();
-        if(!entryIcon.isPresent())  throw new JsonParseException("Unknown education entry icon type '"+iconString+"' in file '"+context.getCurrentFile()+"'");
+        if (!entryIcon.isPresent())
+            throw new JsonParseException("Unknown education entry icon type '" + iconString + "' in file '" + context.getCurrentFile() + "'");
         this.icon = entryIcon.get();
 
         // start,until
 
-        MonthDate startDate = new MonthDate(0,0);
-        startDate.readJson(object.get("start").getAsJsonObject(),context);
+        MonthDate startDate = new MonthDate(0, 0);
+        startDate.readJson(object.get("start").getAsJsonObject(), context);
 
-        MonthDate untilDate = new MonthDate(0,0);
-        startDate.readJson(object.get("until").getAsJsonObject(),context);
+        MonthDate untilDate = new MonthDate(0, 0);
+        startDate.readJson(object.get("until").getAsJsonObject(), context);
 
         this.start = startDate;
         this.until = untilDate;

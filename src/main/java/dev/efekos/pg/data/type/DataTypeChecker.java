@@ -6,8 +6,6 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import dev.efekos.pg.Main;
 
-import java.lang.reflect.Method;
-
 public class DataTypeChecker {
 
     private String currentFile;
@@ -16,7 +14,7 @@ public class DataTypeChecker {
         this.currentFile = currentFile;
     }
 
-    public DataTypeChecker(){
+    public DataTypeChecker() {
         this(Main.getMainPath().toString());
     }
 
@@ -28,28 +26,35 @@ public class DataTypeChecker {
         this.currentFile = currentFile;
     }
 
-    public void searchExceptions(JsonObject object, String requiredKey, RequiredDataType type)throws JsonParseException{
-        if(!object.has(requiredKey))throw new JsonSyntaxException("'"+requiredKey+"' missing in file '"+currentFile+"'");
+    public void searchExceptions(JsonObject object, String requiredKey, RequiredDataType type) throws JsonParseException {
+        if (!object.has(requiredKey))
+            throw new JsonSyntaxException("'" + requiredKey + "' missing in file '" + currentFile + "'");
 
         JsonElement element = object.get(requiredKey);
-        switch (type){
+        switch (type) {
             case ARRAY -> {
-                if(!element.isJsonArray())throw new JsonSyntaxException("'"+requiredKey+"' must be an array in file '"+currentFile+"'");
+                if (!element.isJsonArray())
+                    throw new JsonSyntaxException("'" + requiredKey + "' must be an array in file '" + currentFile + "'");
             }
             case DOUBLE -> {
-                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a double in file '"+currentFile+"'");
+                if (!element.isJsonPrimitive())
+                    throw new JsonSyntaxException("'" + requiredKey + "' must be a double in file '" + currentFile + "'");
             }
             case OBJECT -> {
-                if(!element.isJsonObject()) throw new JsonSyntaxException("'"+requiredKey+"' must be an object in file '"+currentFile+"'");
+                if (!element.isJsonObject())
+                    throw new JsonSyntaxException("'" + requiredKey + "' must be an object in file '" + currentFile + "'");
             }
             case STRING -> {
-                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a string in file '"+currentFile+"'");
+                if (!element.isJsonPrimitive())
+                    throw new JsonSyntaxException("'" + requiredKey + "' must be a string in file '" + currentFile + "'");
             }
             case BOOLEAN -> {
-                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be a boolean in file '"+currentFile+"'");
+                if (!element.isJsonPrimitive())
+                    throw new JsonSyntaxException("'" + requiredKey + "' must be a boolean in file '" + currentFile + "'");
             }
             case INTEGER -> {
-                if(!element.isJsonPrimitive()) throw new JsonSyntaxException("'"+requiredKey+"' must be an integer in file '"+currentFile+"'");
+                if (!element.isJsonPrimitive())
+                    throw new JsonSyntaxException("'" + requiredKey + "' must be an integer in file '" + currentFile + "'");
             }
         }
     }

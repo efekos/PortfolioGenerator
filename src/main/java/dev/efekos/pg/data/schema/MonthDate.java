@@ -6,7 +6,7 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 
-public class MonthDate implements JsonSchema{
+public class MonthDate implements JsonSchema {
     private int month;
     private int year;
 
@@ -35,8 +35,8 @@ public class MonthDate implements JsonSchema{
     public void readJson(JsonObject object, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
 
-        checker.searchExceptions(object,"month", RequiredDataType.INTEGER);
-        checker.searchExceptions(object,"year", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "month", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "year", RequiredDataType.INTEGER);
 
         this.month = object.get("month").getAsInt();
         this.year = object.get("year").getAsInt();
