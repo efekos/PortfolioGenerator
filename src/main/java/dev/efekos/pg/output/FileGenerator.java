@@ -65,7 +65,7 @@ public class FileGenerator {
     }
 
     public void generateCertificatesFile(GeneralInfo info, List<Certificate> certificates) throws IOException {
-        System.out.println("Generating file: certificate.html");
+        System.out.println("Generating file: certificates.html");
 
         List<String> elementList = certificates.stream().map(certificate -> "<a href=\"./certificate/"+makeId(certificate.getDisplay().getTitle())+"\"><img src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\", alt=\"" + certificate.getDisplay().getTitle() + "\"></img>").toList();
 
@@ -107,25 +107,5 @@ public class FileGenerator {
         writer.close();
 
         System.out.println("Copied file: " + resourceLocation);
-    }
-
-    private byte[] readFileInBytes(String p) throws IOException {
-        Path path = Path.of(p);
-        System.out.println("Reading file: " + path.getFileName());
-
-        if (!Files.exists(path)) throw new FileNotFoundException("'" + path.getFileName().toFile() + "' file missing.");
-        return Files.readAllBytes(path);
-    }
-
-    public void copyProfileImage(String mainPath) throws IOException {
-        System.out.println("Moving file: profile.png");
-
-        Path dataPath = Path.of(mainPath, "data", "profile.png");
-        if (!Files.exists(dataPath)) throw new FileNotFoundException("Required file: profile.png");
-
-        Files.createDirectory(Path.of(binPath, "images"));
-        Files.copy(dataPath, Path.of(binPath, "images", "profile.png"));
-
-        System.out.println("Moved file: profile.png");
     }
 }
