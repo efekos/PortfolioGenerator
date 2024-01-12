@@ -48,8 +48,14 @@ public class Main {
         System.out.println("Starting file generate process");
         FileGenerator generator = new FileGenerator(context.getBinPath());
 
+
+        // generating
         generator.generateIndexFile(context.getGrabbedGeneralInfo());
         generator.generateCertificatesFile(context.getGrabbedGeneralInfo(), context.getCertificates());
+
+
+        // copying
+        generator.copyStyleFiles();
 
 
         System.out.println("File generate process ended successfully");
