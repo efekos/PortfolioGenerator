@@ -43,7 +43,15 @@ public class FileGenerator {
         writeFile(binPath + "\\index.html", fileString);
 
         System.out.println("Generated file: index.html");
-        copyResource("/site/style.css", "\\style\\main_style.css");
+    }
+
+    public void copyStyleFiles()throws IOException{
+        System.out.println("Copying style files");
+
+        copyResource("/site/style.css",binPath+"\\style\\main_style.css");
+        copyResource("/site/style_certificates.css",binPath+"\\style\\certificates.css");
+
+        System.out.println("Copied all style files");
     }
 
     private void writeFile(String path, String content) throws IOException {
