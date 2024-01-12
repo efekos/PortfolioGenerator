@@ -67,7 +67,7 @@ public class FileGenerator {
     public void generateCertificatesFile(GeneralInfo info, List<Certificate> certificates) throws IOException {
         System.out.println("Generating file: certificates.html");
 
-        List<String> elementList = certificates.stream().map(certificate -> "<a href=\"./certificate/"+makeId(certificate.getDisplay().getTitle())+"\"><img src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\", alt=\"" + certificate.getDisplay().getTitle() + "\"></img>").toList();
+        List<String> elementList = certificates.stream().map(certificate -> "<a href=\"./certificate/"+makeId(certificate.getDisplay().getTitle())+".html\"><img src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\", alt=\"" + certificate.getDisplay().getTitle() + "\"></img>").toList();
 
         String fileString = Main.readStringResource("/site/certificates.html")
                 .replaceAll("%%name%%", info.getName())
