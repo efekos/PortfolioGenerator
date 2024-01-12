@@ -48,8 +48,8 @@ public class FileGenerator {
     public void copyStyleFiles()throws IOException{
         System.out.println("Copying style files");
 
-        copyResource("/site/style.css",binPath+"\\style\\main_style.css");
-        copyResource("/site/style_certificates.css",binPath+"\\style\\certificates.css");
+        copyResource("/site/style.css","\\style\\main_style.css");
+        copyResource("/site/style_certificates.css","\\style\\certificates.css");
 
         System.out.println("Copied all style files");
     }
