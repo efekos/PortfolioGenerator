@@ -49,7 +49,6 @@ public class Main {
         FileGenerator generator = new FileGenerator(context.getBinPath());
 
         generator.generateIndexFile(context.getGrabbedGeneralInfo());
-        generator.copyProfileImage(MAIN_PATH);
         generator.generateCertificatesFile(context.getGrabbedGeneralInfo(), context.getCertificates());
 
 
