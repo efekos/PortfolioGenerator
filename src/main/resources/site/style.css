@@ -1,25 +1,29 @@
-* {
-    color: white;
-    font-family: "Fredoka Semibold","Segoe UI",Calibri,Helvetica,Arial,sans-serif;
-}
-
-p {
-    border-top: 0.1rem;
-    border-bottom: 0.1rem;
-    border-color: white;
-    border-style: solid;
-    border-left: 0;
-    border-right: 0;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    font-size: 1.25rem;
-}
-
-a{
-    color: cornflowerblue;
-    text-decoration: none;
-}
-
 body {
-    background-color: #151515;
+    background-color: #03080E;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 2rem;
+    font-size: 1.5rem;
+}
+
+h1#name {
+    font-family: Fredoka,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #4C9EFF;
+    font-size: 5rem;
+    text-align: center;
+    filter: drop-shadow(0rem 0rem 4rem #4C9EFF);
+    will-change: filter;
+    transition: filter 200ms;
+    user-select: none;
+    margin-bottom: 1rem;
+}
+
+h1#name:hover {
+    filter: drop-shadow(0rem 0rem 2rem #4C9EFF);
+}
+
+h2#title {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
