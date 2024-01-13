@@ -59,6 +59,7 @@ public class Main {
 
 
         System.out.println("File generate process ended successfully");
+        System.out.println("------------");
     }
 
     private static void startBinRefreshProcess() throws IOException {
@@ -71,6 +72,7 @@ public class Main {
 
         context.setBinPath(binPathString);
         System.out.println("Bin refresh process ended successfully");
+        System.out.println("------------");
     }
 
     private static void startDataGrabProcess() throws IOException {
@@ -87,6 +89,7 @@ public class Main {
         context.setExperienceInfo(info);
         context.setCertificates(certificates);
         System.out.println("Data grab process ended successfully");
+        System.out.println("------------");
     }
 
 
