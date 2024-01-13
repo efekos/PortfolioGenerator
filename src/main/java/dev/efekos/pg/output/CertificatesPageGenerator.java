@@ -48,7 +48,21 @@ public class CertificatesPageGenerator implements Generator{
         }
     }
 
-    public void generateSinglePages(GeneralInfo info, List<Certificate> certificates) {
+    public void generateSinglePages(GeneralInfo info, List<Certificate> certificates) throws IOException {
+        String resourceFile = Main.readStringResource("/site/single_certificate.html");
 
+        Files.createDirectory(Path.of(binPath,"certificate"));
+
+        for (Certificate certificate : certificates) {
+            String imagePath = certificate.getDisplay().getImage().replace(Main.getMainPath() + "\\data\\certificates", "");
+
+            String certificateFile = resourceFile
+                    .replaceAll("%%name%%",info.getName())
+                    .replaceAll("%%cname%%",certificate.getDisplay().getTitle())
+                    .replaceAll("%%cdescription%%",certificate.getDisplay().getDescription())
+                    .replaceAll("%%cipath%%",imagePath.replaceAll("\\\\","/"));
+
+            writeFile(binPath+"\\certificate\\"+makeId(certificate.getDisplay().getTitle())+".html",certificateFile);
+        }
     }
 }
