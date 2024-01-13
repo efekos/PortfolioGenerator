@@ -34,6 +34,7 @@ public class CertificatesPageGenerator implements Generator{
     }
 
     public void copyImages(GeneralInfo info,List<Certificate> certificates)throws IOException{
+        System.out.println("Copying certificate images");
         for (Certificate certificate : certificates) {
             for (String value : certificate.getImages().values()) {
                 Path valuePath = Path.of(value); // data daki dosya
@@ -46,14 +47,17 @@ public class CertificatesPageGenerator implements Generator{
                 Files.copy(valuePath, Path.of(certificatesFolderPath, imagePath));
             }
         }
+        System.out.println("Copied certificate images");
     }
 
     public void generateSinglePages(GeneralInfo info, List<Certificate> certificates) throws IOException {
+        System.out.println("Generating single certificate files");
         String resourceFile = Main.readStringResource("/site/single_certificate.html");
 
         Files.createDirectory(Path.of(binPath,"certificate"));
 
         for (Certificate certificate : certificates) {
+            System.out.println("Generating file: certificate/"+makeId(certificate.getDisplay().getTitle()) + ".html");
             String imagePath = certificate.getDisplay().getImage().replace(Main.getMainPath() + "\\data\\certificates", "");
 
             String certificateFile = resourceFile
@@ -62,7 +66,10 @@ public class CertificatesPageGenerator implements Generator{
                     .replaceAll("%%cdescription%%",certificate.getDisplay().getDescription())
                     .replaceAll("%%cipath%%",imagePath.replaceAll("\\\\","/"));
 
-            writeFile(binPath+"\\certificate\\"+makeId(certificate.getDisplay().getTitle())+".html",certificateFile);
+            String outputPath = binPath + "\\certificate\\" + makeId(certificate.getDisplay().getTitle()) + ".html";
+            writeFile(outputPath,certificateFile);
+            System.out.println("Generated file: certificate/"+makeId(certificate.getDisplay().getTitle())+".html");
         }
+        System.out.println("Generated single certificate files");
     }
 }
