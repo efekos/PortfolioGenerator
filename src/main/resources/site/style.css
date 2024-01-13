@@ -2,7 +2,7 @@ body {
     background-color: #03080E;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 2rem;
+    padding: 3rem;
     font-size: 1.5rem;
 }
 
@@ -26,4 +26,57 @@ h2#title {
     text-align: center;
     font-size: 2rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #4cbdff;
+}
+
+.btn {
+    padding: 2rem;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    color: white;
+    font-family: Lato,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 650;
+    will-change: filter;
+    transition: filter 1.5s;
+    cursor: pointer;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.btn-blue {
+    background: linear-gradient(180deg,#00E8FF 0%, #0066FF 100%);
+}
+
+.btn-blue:hover{
+    filter: drop-shadow(0rem 0rem 16rem #00E8FF);
+}
+
+
+.btn-green {
+    background: linear-gradient(180deg,#52ff3b 0%, #04520b 100%);
+}
+
+.btn-green:hover{
+    filter: drop-shadow(0rem 0rem 16rem #52ff3b);
+}
+
+.btn-red {
+    background: linear-gradient(180deg,#FAFF00 0%, #ff0000 100%);
+}
+
+.btn-red:hover{
+    filter: drop-shadow(0rem 0rem 16rem #FAFF00);
+}
+
+
+.btn-orange {
+    background: linear-gradient(180deg,#FF7A00 0%, #ff0000 100%);
+}
+
+.btn-orange:hover{
+    filter: drop-shadow(0rem 0rem 16rem #FF7A00);
 }
