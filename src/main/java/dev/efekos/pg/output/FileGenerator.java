@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class FileGenerator implements Generator{
 
@@ -51,5 +52,18 @@ public class FileGenerator implements Generator{
         generator.generateActualFile(info, certificates);
         generator.copyImages(info,certificates);
         generator.generateSinglePages(info,certificates);
+    }
+
+    public void generateBioFile(GeneralInfo info) throws IOException{
+        System.out.println("Generating file: bio.html");
+
+
+        String bio = info.getBio();
+        String bioFile = Main.readStringResource("/sire/bio.html").replaceAll("%%bio%%",bio);
+
+        writeFile(binPath+"\\bio.html",bioFile);
+
+
+        System.out.println("Generated file: bio.html");
     }
 }

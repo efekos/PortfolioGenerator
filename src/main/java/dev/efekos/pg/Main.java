@@ -52,7 +52,7 @@ public class Main {
         // generating
         generator.generateIndexFile(context.getGrabbedGeneralInfo());
         generator.generateCertificatesFile(context.getGrabbedGeneralInfo(), context.getCertificates());
-
+        generator.generateBioFile(context.getGrabbedGeneralInfo());
 
         // copying
         generator.copyStyleFiles();
