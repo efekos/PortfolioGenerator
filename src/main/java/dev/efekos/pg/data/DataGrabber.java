@@ -6,6 +6,7 @@ import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
+import dev.efekos.pg.util.Utilities;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
@@ -78,9 +79,7 @@ public class DataGrabber {
         String file = readFile(mainPath + "\\" + fileName + ".md");
         System.out.println("Reading markdown: "+fileName);
 
-        Parser parser = Parser.builder().build();
-        HtmlRenderer renderer = HtmlRenderer.builder().build();
-        return renderer.render(parser.parse(file));
+        return Utilities.markdownToHtml(file);
     }
 
 
