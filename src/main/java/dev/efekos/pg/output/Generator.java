@@ -14,6 +14,13 @@ public interface Generator {
                 .toLowerCase(Locale.ROOT);
     }
 
+    default String makeIdForLink(String id){
+        return id
+                .replaceAll(" ","_")
+                .replaceAll("#","%23")
+                .toLowerCase(Locale.ROOT);
+    }
+
     default void copyResource(String resourceLocation, String outputLocation,String binPath) throws IOException {
         System.out.println("Copying file: " + resourceLocation);
 
