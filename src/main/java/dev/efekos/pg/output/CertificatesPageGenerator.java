@@ -3,6 +3,7 @@ package dev.efekos.pg.output;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.GeneralInfo;
+import dev.efekos.pg.util.DateHelper;
 
 import javax.imageio.IIOException;
 import java.io.FileNotFoundException;
@@ -64,6 +65,7 @@ public class CertificatesPageGenerator implements Generator{
                     .replaceAll("%%name%%",info.getName())
                     .replaceAll("%%cname%%",certificate.getDisplay().getTitle())
                     .replaceAll("%%cdescription%%",certificate.getDisplay().getDescription())
+                    .replaceAll("%%cdate%%", makeDateString(certificate))
                     .replaceAll("%%cipath%%",imagePath.replaceAll("\\\\","/"));
 
             String outputPath = binPath + "\\certificate\\" + makeId(certificate.getDisplay().getTitle()) + ".html";
@@ -71,5 +73,9 @@ public class CertificatesPageGenerator implements Generator{
             System.out.println("Generated file: certificate/"+makeId(certificate.getDisplay().getTitle())+".html");
         }
         System.out.println("Generated single certificate files");
+    }
+
+    private static String makeDateString(Certificate certificate) {
+        return certificate.getWhen().getDay() + " of " + DateHelper.monthToString(certificate.getWhen().getMonth()) + ", " + certificate.getWhen().getYear();
     }
 }
