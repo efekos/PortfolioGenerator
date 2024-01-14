@@ -19,6 +19,7 @@ public class GeneralInfo implements JsonSchema {
     private Locale nativeLanguage;
     private List<Locale> knownLanguages;
     private String welcomer;
+    private String bio;
     private List<SocialLink> socialLinks;
 
     public GeneralInfo(String name, DayDate birthDate, String title) {
@@ -49,6 +50,14 @@ public class GeneralInfo implements JsonSchema {
 
     public void setWelcomer(String welcomer) {
         this.welcomer = welcomer;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public GeneralInfo() {
