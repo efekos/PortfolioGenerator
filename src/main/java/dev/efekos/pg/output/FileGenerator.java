@@ -59,7 +59,7 @@ public class FileGenerator implements Generator{
 
 
         String bio = info.getBio();
-        String bioFile = Main.readStringResource("/sire/bio.html").replaceAll("%%bio%%",bio);
+        String bioFile = Main.readStringResource("/site/bio.html").replaceAll("%%bio%%",bio);
 
         writeFile(binPath+"\\bio.html",bioFile);
 
