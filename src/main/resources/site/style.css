@@ -80,3 +80,18 @@ a {
 .btn-orange:hover{
     filter: drop-shadow(0rem 0rem 16rem #FF7A00);
 }
+
+
+
+.btn-download {
+    color: #363636;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: rgb(238, 238, 238);
+    will-change: background-color;
+    transition: background-color 200ms;
+}
+
+.btn-download:hover {
+    background-color: rgb(200, 200, 200);
+}
