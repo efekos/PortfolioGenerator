@@ -1,23 +1,22 @@
 package dev.efekos.pg.data.schema;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+import dev.efekos.pg.util.LocaleHelper;
+import dev.efekos.pg.util.Locale;
+
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class GeneralInfo implements JsonSchema {
     private String name;
     private DayDate birthDate;
     private String title;
-    private Locale nativeLanguage;
-    private List<Locale> knownLanguages;
+    private String nativeLanguage;
+    private List<String> knownLanguages;
     private String welcomer;
     private String bio;
     private List<SocialLink> socialLinks;
@@ -29,19 +28,19 @@ public class GeneralInfo implements JsonSchema {
     }
 
     public Locale getNativeLanguage() {
-        return nativeLanguage;
+        return LocaleHelper.getLocale(nativeLanguage);
     }
 
     public void setNativeLanguage(Locale nativeLanguage) {
-        this.nativeLanguage = nativeLanguage;
+        this.nativeLanguage = nativeLanguage.code();
     }
 
     public List<Locale> getKnownLanguages() {
-        return knownLanguages;
+        return knownLanguages.stream().map(LocaleHelper::getLocale).toList();
     }
 
     public void setKnownLanguages(List<Locale> knownLanguages) {
-        this.knownLanguages = knownLanguages;
+        this.knownLanguages = knownLanguages.stream().map(Locale::code).toList();
     }
 
     public String getWelcomer() {
@@ -87,7 +86,8 @@ public class GeneralInfo implements JsonSchema {
         birthDate.readJson(object.get("birth").getAsJsonObject(), context);
 
         // native_language
-        this.nativeLanguage = Locale.forLanguageTag(object.get("native_language").getAsString());
+        this.nativeLanguage = object.get("native_language").getAsString();
+        if(!LocaleHelper.isValid(this.nativeLanguage)) throw new JsonParseException("Unknown native language code '"+this.nativeLanguage+"'");
 
         // known_languages
         try {
@@ -96,11 +96,19 @@ public class GeneralInfo implements JsonSchema {
             this.knownLanguages = object
                     .get("known_languages")
                     .getAsJsonArray().asList()
-                    .stream().map(jsonElement -> Locale.forLanguageTag(jsonElement.getAsString()))
+                    .stream().map(jsonElement -> jsonElement.getAsString())
                     .toList();
 
         } catch (Exception e) {
             this.knownLanguages = new ArrayList<>();
+        }
+        for (String knownLanguage : this.knownLanguages) {
+            if(!LocaleHelper.isValid(knownLanguage)) throw new JsonParseException("Unknown known language code '"+knownLanguage+"'");
+        }
+
+        if(!this.knownLanguages.contains(this.nativeLanguage)) {
+            System.out.println("[WARNING] Known languages doesn't contain native language, automatically adding native language into known languages");
+            knownLanguages.add(nativeLanguage);
         }
 
 
