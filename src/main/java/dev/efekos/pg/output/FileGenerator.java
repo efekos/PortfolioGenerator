@@ -66,4 +66,19 @@ public class FileGenerator implements Generator{
 
         System.out.println("Generated file: bio.html");
     }
+
+    public void copyIcons() throws IOException{
+        System.out.println("Copying icons");
+
+        copyIcon("external_site","external");
+
+        System.out.println("Copied icons");
+    }
+
+    private void copyIcon(String resourceName,String binName) throws IOException {
+        System.out.println("Copying icon: "+resourceName);
+        String string = Main.readStringResource("/site/icon/"+resourceName+".svg");
+        writeFile(binPath+"\\icons\\"+binName+".svg",string);
+        System.out.println("Copied icon: "+resourceName);
+    }
 }

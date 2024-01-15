@@ -56,6 +56,8 @@ public class Main {
 
         // copying
         generator.copyStyleFiles();
+        generator.copyIcons();
+
 
 
         System.out.println("File generate process ended successfully");
