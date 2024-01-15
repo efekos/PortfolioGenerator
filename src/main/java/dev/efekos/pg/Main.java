@@ -53,6 +53,7 @@ public class Main {
 
     private static void startFileGenerateProcess() throws IOException {
         System.out.println("Starting file generate process");
+        long time = new Date().getTime();
         FileGenerator generator = new FileGenerator(context.getBinPath());
 
 
@@ -66,13 +67,16 @@ public class Main {
         generator.copyIcons();
 
 
-
-        System.out.println("File generate process ended successfully");
+        long time2 = new Date().getTime();
+        float difference = (float) (time2-time)/1000;
+        System.out.println("File generate process ended successfully in "+difference+"s");
         System.out.println("------------");
     }
 
     private static void startBinRefreshProcess() throws IOException {
         System.out.println("Starting refresh bin process");
+        long time = new Date().getTime();
+
         String binPathString = MAIN_PATH + "\\bin";
         Path binPath = Path.of(binPathString);
         FileUtils.deleteDirectory(binPath.toFile());
@@ -80,12 +84,17 @@ public class Main {
         Files.createDirectory(binPath);
 
         context.setBinPath(binPathString);
-        System.out.println("Bin refresh process ended successfully");
+
+        long time2 = new Date().getTime();
+        float difference = (float) (time2-time)/1000;
+        System.out.println("Bin refresh process ended successfully in "+difference+"s");
         System.out.println("------------");
     }
 
     private static void startDataGrabProcess() throws IOException {
         System.out.println("Starting data grab process");
+        long time = new Date().getTime();
+
         DataGrabber grabber = new DataGrabber(MAIN_PATH);
 
         GeneralInfo generalInfo = grabber.grabGeneralInfo();
@@ -97,7 +106,11 @@ public class Main {
         context.setGrabbedEducationInfo(educationInfo);
         context.setExperienceInfo(info);
         context.setCertificates(certificates);
-        System.out.println("Data grab process ended successfully");
+
+
+        long time2 = new Date().getTime();
+        float difference = (float) (time2-time)/1000;
+        System.out.println("Data grab process ended successfully in "+difference+"s");
         System.out.println("------------");
     }
 
