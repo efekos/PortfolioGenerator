@@ -6,6 +6,7 @@ import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.output.FileGenerator;
+import dev.efekos.pg.util.LocaleHelper;
 import dev.efekos.pg.util.WorkContext;
 import org.apache.commons.io.FileUtils;
 
@@ -40,6 +41,7 @@ public class Main {
 
         long time = new Date().getTime();
 
+        LocaleHelper.loadLocales();
         startDataGrabProcess(); // read files
         startBinRefreshProcess(); // clear bin folder
         startFileGenerateProcess(); // generate files
@@ -106,7 +108,6 @@ public class Main {
         context.setGrabbedEducationInfo(educationInfo);
         context.setExperienceInfo(info);
         context.setCertificates(certificates);
-
 
         long time2 = new Date().getTime();
         float difference = (float) (time2 - time) / 1000;
