@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -37,11 +38,17 @@ public class Main {
         MAIN_PATH = System.getProperty("user.dir");
         System.out.println("Hello World!");
 
+        long time = new Date().getTime();
+
         startDataGrabProcess(); // read files
         startBinRefreshProcess(); // clear bin folder
         startFileGenerateProcess(); // generate files
 
-        System.out.println("Done! output has been saved to " + context.getBinPath());
+        long time2 = new Date().getTime();
+
+        float seconds = (float) (time2 - time) /1000;
+
+        System.out.println("Done in "+seconds+"s! output has been saved to " + context.getBinPath());
     }
 
     private static void startFileGenerateProcess() throws IOException {
