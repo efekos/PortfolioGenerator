@@ -70,6 +70,8 @@ public class FileGenerator implements Generator{
     public void copyIcons() throws IOException{
         System.out.println("Copying icons");
 
+        Files.createDirectory(Path.of(binPath,"images","icon"));
+
         copyIcon("external_site","external");
 
         System.out.println("Copied icons");
@@ -78,7 +80,7 @@ public class FileGenerator implements Generator{
     private void copyIcon(String resourceName,String binName) throws IOException {
         System.out.println("Copying icon: "+resourceName);
         String string = Main.readStringResource("/site/icon/"+resourceName+".svg");
-        writeFile(binPath+"\\icons\\"+binName+".svg",string);
+        writeFile(binPath+"\\images\\icon\\"+binName+".svg",string);
         System.out.println("Copied icon: "+resourceName);
     }
 }
