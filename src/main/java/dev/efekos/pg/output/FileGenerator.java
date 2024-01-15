@@ -3,6 +3,7 @@ package dev.efekos.pg.output;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.GeneralInfo;
+import dev.efekos.pg.util.Locale;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,7 +24,9 @@ public class FileGenerator implements Generator {
         String fileString = Main.readStringResource("/site/index.html")
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%title%%", info.getTitle())
-                .replaceAll("%%welcomer%%", info.getWelcomer());
+                .replaceAll("%%welcomer%%", info.getWelcomer())
+                .replaceAll("%%native%%", info.getNativeLanguage().name())
+                .replaceAll("%%known%%",String.join(", ",info.getKnownLanguages().stream().map(Locale::name).toList()));
 
         writeFile(binPath + "\\index.html", fileString);
 
