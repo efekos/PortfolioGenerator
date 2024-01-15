@@ -1,14 +1,14 @@
 package dev.efekos.pg.data;
 
-import com.google.gson.*;
-import dev.efekos.pg.Main;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.util.Utilities;
-import org.commonmark.parser.Parser;
-import org.commonmark.renderer.html.HtmlRenderer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,31 +35,33 @@ public class DataGrabber {
 
     /**
      * Constructs a new {@link DataGrabber}
+     *
      * @param mainPath Main path of the app, note that the main directory this grabber will be using is the 'data'
      *                 directory inside this main path. You will likely get an {@link IOException} if this path isn't a
      *                 directory or doesn't exist.
      */
     public DataGrabber(String mainPath) {
-        this.mainPath = mainPath+"\\data";
-        this.context =  new DataGrabberContext(mainPath+"\\data");
+        this.mainPath = mainPath + "\\data";
+        this.context = new DataGrabberContext(mainPath + "\\data");
     }
 
     /**
      * Grabs a {@link GeneralInfo} from the data folder.
+     *
      * @return {@link GeneralInfo} that has been read from the json files.
      * @throws IOException If something goes wrong.
      */
-    public GeneralInfo grabGeneralInfo()throws IOException {
+    public GeneralInfo grabGeneralInfo() throws IOException {
         context.setCurrentFile("general.json");
         System.out.println("Grabbing file: general.json");
 
-        String file = readFile(mainPath+"\\general.json");
+        String file = readFile(mainPath + "\\general.json");
         JsonElement element = JsonParser.parseString(file);
-        if(!element.isJsonObject())throw new JsonSyntaxException("'general.json' not object");
+        if (!element.isJsonObject()) throw new JsonSyntaxException("'general.json' not object");
         JsonObject object = element.getAsJsonObject();
 
         GeneralInfo generalInfo = new GeneralInfo();
-        generalInfo.readJson(object,context);
+        generalInfo.readJson(object, context);
 
         generalInfo.setWelcomer(grabMarkdownFile("welcomer"));
         generalInfo.setBio(grabMarkdownFile("bio"));
@@ -67,34 +69,34 @@ public class DataGrabber {
         return generalInfo;
     }
 
-    private String readFile(String p) throws IOException{
+    private String readFile(String p) throws IOException {
         Path path = Path.of(p);
-        System.out.println("Reading file: "+path.getFileName());
+        System.out.println("Reading file: " + path.getFileName());
 
-        if(!Files.exists(path))throw new FileNotFoundException("'"+path.getFileName().toFile()+"' file missing.");
+        if (!Files.exists(path)) throw new FileNotFoundException("'" + path.getFileName().toFile() + "' file missing.");
         return Files.readString(path);
     }
 
 
-    public String grabMarkdownFile(String fileName) throws IOException{
+    public String grabMarkdownFile(String fileName) throws IOException {
         String file = readFile(mainPath + "\\" + fileName + ".md");
-        System.out.println("Reading markdown: "+fileName);
+        System.out.println("Reading markdown: " + fileName);
 
         return Utilities.markdownToHtml(file);
     }
 
 
-    public EducationInfo grabEducationInfo()throws IOException{
+    public EducationInfo grabEducationInfo() throws IOException {
         context.setCurrentFile("education.json");
         System.out.println("Grabbing file: education.json");
 
         String file = readFile(mainPath + "\\education.json");
         JsonElement element = JsonParser.parseString(file);
-        if(!element.isJsonObject()) throw new JsonSyntaxException("'education.json' not object");
+        if (!element.isJsonObject()) throw new JsonSyntaxException("'education.json' not object");
         JsonObject object = element.getAsJsonObject();
 
         EducationInfo info = new EducationInfo();
-        info.readJson(object,context);
+        info.readJson(object, context);
         return info;
     }
 
@@ -105,21 +107,21 @@ public class DataGrabber {
 
         String file = readFile(mainPath + "\\experience.json");
         JsonElement element = JsonParser.parseString(file);
-        if(!element.isJsonObject()) throw new JsonSyntaxException("'experience.json' not object");
+        if (!element.isJsonObject()) throw new JsonSyntaxException("'experience.json' not object");
         JsonObject object = element.getAsJsonObject();
 
         ExperienceInfo info = new ExperienceInfo(new ArrayList<>());
-        info.readJson(object,context);
+        info.readJson(object, context);
         return info;
     }
 
     public List<Certificate> grabCertificates() throws IOException {
         System.out.println("Grabbing directory: certificates");
-        String dirPathString = mainPath+"\\certificates";
+        String dirPathString = mainPath + "\\certificates";
         Path dirPath = Path.of(dirPathString);
 
-        if(!Files.exists(dirPath)) throw new FileNotFoundException(dirPathString);
-        if(!Files.isDirectory(dirPath)) throw new NotDirectoryException(dirPathString);
+        if (!Files.exists(dirPath)) throw new FileNotFoundException(dirPathString);
+        if (!Files.isDirectory(dirPath)) throw new NotDirectoryException(dirPathString);
 
         File dir = new File(dirPathString);
 
@@ -128,15 +130,15 @@ public class DataGrabber {
 
 
         for (File file : Arrays.asList(files)) {
-            context.setCurrentFile(file.getPath().replace(mainPath,""));
+            context.setCurrentFile(file.getPath().replace(mainPath, ""));
 
             String stringJson = readFile(file.getPath());
             JsonElement element = JsonParser.parseString(stringJson);
-            if(!element.isJsonObject()) throw new JsonSyntaxException("'"+file.getPath()+"' not object");
+            if (!element.isJsonObject()) throw new JsonSyntaxException("'" + file.getPath() + "' not object");
             JsonObject object = element.getAsJsonObject();
 
             Certificate certificate = new Certificate();
-            certificate.readJson(object,context);
+            certificate.readJson(object, context);
 
             certificates.add(certificate);
         }

@@ -8,20 +8,20 @@ import java.io.IOException;
 import java.util.Locale;
 
 public interface Generator {
-    default String makeId(String id){
+    default String makeId(String id) {
         return id
-                .replaceAll(" ","_")
+                .replaceAll(" ", "_")
                 .toLowerCase(Locale.ROOT);
     }
 
-    default String makeIdForLink(String id){
+    default String makeIdForLink(String id) {
         return id
-                .replaceAll(" ","_")
-                .replaceAll("#","%23")
+                .replaceAll(" ", "_")
+                .replaceAll("#", "%23")
                 .toLowerCase(Locale.ROOT);
     }
 
-    default void copyResource(String resourceLocation, String outputLocation,String binPath) throws IOException {
+    default void copyResource(String resourceLocation, String outputLocation, String binPath) throws IOException {
         System.out.println("Copying file: " + resourceLocation);
 
         String fileString = Main.readStringResource(resourceLocation);

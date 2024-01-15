@@ -12,7 +12,7 @@ import dev.efekos.pg.data.type.RequiredDataType;
 import java.util.*;
 
 public class Certificate implements JsonSchema {
-    private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList("png", "jpg", "jpeg","pdf");
+    private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList("png", "jpg", "jpeg", "pdf");
 
     private Map<String, String> images;
     private DayDate when;

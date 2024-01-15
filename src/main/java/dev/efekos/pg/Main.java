@@ -46,9 +46,9 @@ public class Main {
 
         long time2 = new Date().getTime();
 
-        float seconds = (float) (time2 - time) /1000;
+        float seconds = (float) (time2 - time) / 1000;
 
-        System.out.println("Done in "+seconds+"s! output has been saved to " + context.getBinPath());
+        System.out.println("Done in " + seconds + "s! output has been saved to " + context.getBinPath());
     }
 
     private static void startFileGenerateProcess() throws IOException {
@@ -68,8 +68,8 @@ public class Main {
 
 
         long time2 = new Date().getTime();
-        float difference = (float) (time2-time)/1000;
-        System.out.println("File generate process ended successfully in "+difference+"s");
+        float difference = (float) (time2 - time) / 1000;
+        System.out.println("File generate process ended successfully in " + difference + "s");
         System.out.println("------------");
     }
 
@@ -86,8 +86,8 @@ public class Main {
         context.setBinPath(binPathString);
 
         long time2 = new Date().getTime();
-        float difference = (float) (time2-time)/1000;
-        System.out.println("Bin refresh process ended successfully in "+difference+"s");
+        float difference = (float) (time2 - time) / 1000;
+        System.out.println("Bin refresh process ended successfully in " + difference + "s");
         System.out.println("------------");
     }
 
@@ -109,8 +109,8 @@ public class Main {
 
 
         long time2 = new Date().getTime();
-        float difference = (float) (time2-time)/1000;
-        System.out.println("Data grab process ended successfully in "+difference+"s");
+        float difference = (float) (time2 - time) / 1000;
+        System.out.println("Data grab process ended successfully in " + difference + "s");
         System.out.println("------------");
     }
 
