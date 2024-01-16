@@ -29,16 +29,13 @@ public class EducationInfo implements JsonSchema {
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
-        checker.expectObject(element);
-        JsonObject object = element.getAsJsonObject();
+        checker.expectArray(element);
 
-        checker.searchExceptions(object, "entries", RequiredDataType.ARRAY);
-
-        JsonArray array = object.get("entries").getAsJsonArray();
+        JsonArray array = element.getAsJsonArray();
         List<EducationEntry> entryList = new ArrayList<>();
         for (JsonElement element1 : array) {
             if (!element1.isJsonObject())
-                throw new JsonSyntaxException("Elements in 'entries' must be an object at '" + context.getCurrentFile() + "'");
+                throw new JsonSyntaxException("Elements in 'education.json' must be an object");
             EducationEntry entry = new EducationEntry(EducationEntryIcon.SCHOOL, null, null, null, null);
             entry.readJson(element1.getAsJsonObject(), context);
             entryList.add(entry);

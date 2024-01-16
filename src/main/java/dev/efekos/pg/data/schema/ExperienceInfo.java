@@ -27,16 +27,13 @@ public class ExperienceInfo implements JsonSchema {
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
-        checker.expectObject(element);
-        JsonObject object = element.getAsJsonObject();
+        checker.expectArray(element);
 
-        checker.searchExceptions(object, "entries", RequiredDataType.ARRAY);
-
-        JsonArray array = object.get("entries").getAsJsonArray();
+        JsonArray array = element.getAsJsonArray();
         ArrayList<ExperienceEntry> experienceList = new ArrayList<>();
 
         for (JsonElement element1 : array) {
-            if (!element1.isJsonObject()) throw new JsonSyntaxException("elements in 'entries' must be an object");
+            if (!element1.isJsonObject()) throw new JsonSyntaxException("Elements in 'experience.json' must be an object");
 
             ExperienceEntry entry = new ExperienceEntry();
             entry.readJson(element1.getAsJsonObject(), context);
