@@ -21,7 +21,7 @@ public interface Generator {
                 .toLowerCase(Locale.ROOT);
     }
 
-    default void copyResource(String resourceLocation, String outputLocation, String binPath) throws IOException {
+    default void copyStringResource(String resourceLocation, String outputLocation, String binPath) throws IOException {
         System.out.println("Copying file: " + resourceLocation);
 
         String fileString = Main.readStringResource(resourceLocation);
