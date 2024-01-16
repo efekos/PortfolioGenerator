@@ -81,6 +81,8 @@ public class FileGenerator implements Generator {
 
         copyIcon("external_site", "external");
 
+        Files.copy(Path.of(Main.getMainPath().toString(),"data","profile.png"),Path.of(binPath,"images","profile.png"));
+
         System.out.println("Copied icons");
     }
 
