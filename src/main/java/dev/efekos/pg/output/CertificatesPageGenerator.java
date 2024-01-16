@@ -24,12 +24,12 @@ public class CertificatesPageGenerator implements Generator {
     public void generateActualFile(GeneralInfo info, List<Certificate> certificates) throws IOException {
         System.out.println("Generating file: certificates.html");
 
-        List<String> elementList = certificates.stream().map(certificate -> "<a href=\"./certificate/" + makeIdForLink(certificate.getDisplay().getTitle()) + ".html\"><img class=\"certificate-image\" src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\", alt=\"" + certificate.getDisplay().getTitle() + "\"></img>").toList();
+        List<String> elementList = certificates.stream().map(certificate -> "<a href=\"./certificate/" + makeIdForLink(certificate.getDisplay().getTitle()) + ".html\"><img class=\"certificate-image-small\" src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\" alt=\"" + certificate.getDisplay().getTitle() + "\" />").toList();
 
         String fileString = Main.readStringResource("/site/certificates.html")
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%title%%", info.getTitle())
-                .replaceAll("%%images%%", String.join("", elementList));
+                .replaceAll("%%images%%", String.join("\n", elementList));
 
         writeFile(binPath + "\\certificates.html", fileString);
         System.out.println("Generated file: certificates.html");

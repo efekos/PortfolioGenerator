@@ -13,7 +13,6 @@ import java.util.*;
 
 public class Certificate implements JsonSchema {
     private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList("png", "jpg", "jpeg", "pdf");
-
     private Map<String, String> images;
     private DayDate when;
     private CertificateType certificateType;
@@ -38,12 +37,12 @@ public class Certificate implements JsonSchema {
 
         // when
         DayDate date = new DayDate(0, 0, 0);
-        date.readJson(object.get("when").getAsJsonObject(), context);
+        date.readJson(object.get("when"), context);
         setWhen(date);
 
         // display
         CertificateDisplay certificateDisplay = new CertificateDisplay("", "", "");
-        certificateDisplay.readJson(object.get("display").getAsJsonObject(), context);
+        certificateDisplay.readJson(object.get("display"),context);
         setDisplay(certificateDisplay);
 
         // images
