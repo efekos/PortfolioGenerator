@@ -58,4 +58,8 @@ public class DataTypeChecker {
             }
         }
     }
+
+    public void expectObject(JsonElement element) throws JsonParseException {
+        if(!element.isJsonObject()) throw new JsonSyntaxException("Element not object");
+    }
 }

@@ -1,5 +1,6 @@
 package dev.efekos.pg.data.schema;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
@@ -42,8 +43,10 @@ public class CertificateDisplay implements JsonSchema {
     }
 
     @Override
-    public void readJson(JsonObject object, DataGrabberContext context) throws JsonParseException {
+    public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
+        checker.expectObject(element);
+        JsonObject object = element.getAsJsonObject();
 
         checker.searchExceptions(object, "image", RequiredDataType.STRING);
         checker.searchExceptions(object, "title", RequiredDataType.STRING);

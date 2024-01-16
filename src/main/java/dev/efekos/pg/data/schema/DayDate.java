@@ -1,9 +1,15 @@
 package dev.efekos.pg.data.schema;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents a date that just needs a day, year, and month.
@@ -90,8 +96,25 @@ public class DayDate implements JsonSchema {
     }
 
 
-    public void readJson(JsonObject object, DataGrabberContext context) {
+    public void readJson(JsonElement element, DataGrabberContext context) {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
+
+        if(element.isJsonObject()) parseObject(element.getAsJsonObject(),checker);
+        else {
+            String stringDate = element.getAsString();
+
+            if(!STRING_DATE_PATTERN.matcher(stringDate).matches()) throw new JsonParseException("Invalid date");
+
+            String[] members = stringDate.split("-");
+
+            this.year = Integer.parseInt(members[0]);
+            this.month = Integer.parseInt(members[1]);
+            this.day = Integer.parseInt(members[2]);
+        }
+    }
+    private final Pattern STRING_DATE_PATTERN = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+
+    private void parseObject(JsonObject object, DataTypeChecker checker) {
         checker.searchExceptions(object, "year", RequiredDataType.INTEGER);
         checker.searchExceptions(object, "month", RequiredDataType.INTEGER);
         checker.searchExceptions(object, "day", RequiredDataType.INTEGER);

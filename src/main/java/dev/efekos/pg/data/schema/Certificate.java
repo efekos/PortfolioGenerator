@@ -20,8 +20,10 @@ public class Certificate implements JsonSchema {
     private CertificateDisplay display;
 
     @Override
-    public void readJson(JsonObject object, DataGrabberContext context) throws JsonParseException {
+    public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
+        checker.expectObject(element);
+        JsonObject object = element.getAsJsonObject();
 
         checker.searchExceptions(object, "images", RequiredDataType.OBJECT);
         checker.searchExceptions(object, "when", RequiredDataType.OBJECT);

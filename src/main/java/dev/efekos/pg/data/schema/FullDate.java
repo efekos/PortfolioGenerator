@@ -1,5 +1,6 @@
 package dev.efekos.pg.data.schema;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
@@ -71,9 +72,10 @@ public class FullDate implements JsonSchema {
     }
 
     @Override
-    public void readJson(JsonObject object, DataGrabberContext context) {
-        DataTypeChecker checker = new DataTypeChecker();
-        checker.setCurrentFile(context.getCurrentFile());
+    public void readJson(JsonElement element, DataGrabberContext context) {
+        DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
+        checker.expectObject(element);
+        JsonObject object = element.getAsJsonObject();
 
         checker.searchExceptions(object, "day", RequiredDataType.INTEGER);
         checker.searchExceptions(object, "month", RequiredDataType.INTEGER);

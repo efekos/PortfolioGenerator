@@ -67,9 +67,10 @@ public class GeneralInfo implements JsonSchema {
     }
 
     @Override
-    public void readJson(JsonObject object, DataGrabberContext context) {
-        DataTypeChecker checker = new DataTypeChecker();
-        checker.setCurrentFile(context.getCurrentFile());
+    public void readJson(JsonElement element, DataGrabberContext context) {
+        DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
+        checker.expectObject(element);
+        JsonObject object = element.getAsJsonObject();
 
         checker.searchExceptions(object, "name", RequiredDataType.STRING);
         checker.searchExceptions(object, "title", RequiredDataType.STRING);
@@ -115,12 +116,9 @@ public class GeneralInfo implements JsonSchema {
         // social_links
         JsonArray array = object.get("social_links").getAsJsonArray();
         List<SocialLink> links = new ArrayList<>();
-        for (JsonElement element : array) {
-            if (!element.isJsonObject()) throw new JsonSyntaxException("Elements in 'social_links' must be an object.");
-            JsonObject linkObject = element.getAsJsonObject();
-
+        for (JsonElement element1 : array) {
             SocialLink link = new SocialLink(null, null);
-            link.readJson(linkObject, context);
+            link.readJson(element1, context);
             links.add(link);
         }
         this.socialLinks = links;
