@@ -102,7 +102,7 @@ public class Main {
 
         GeneralInfo generalInfo = grabber.grabGeneralInfo();
         EducationInfo educationInfo = grabber.grabEducationInfo();
-        ExperienceInfo info = grabber.grabExperienceInfO();
+        ExperienceInfo info = grabber.grabExperienceInfo();
         List<Certificate> certificates = grabber.grabCertificates();
 
         context.setGrabbedGeneralInfo(generalInfo);
