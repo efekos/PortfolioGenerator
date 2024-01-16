@@ -57,11 +57,9 @@ public class DataGrabber {
 
         String file = readFile(mainPath + "\\general.json");
         JsonElement element = JsonParser.parseString(file);
-        if (!element.isJsonObject()) throw new JsonSyntaxException("'general.json' not object");
-        JsonObject object = element.getAsJsonObject();
 
         GeneralInfo generalInfo = new GeneralInfo();
-        generalInfo.readJson(object, context);
+        generalInfo.readJson(element, context);
 
         generalInfo.setWelcomer(grabMarkdownFile("welcomer"));
         generalInfo.setBio(grabMarkdownFile("bio"));
@@ -92,26 +90,22 @@ public class DataGrabber {
 
         String file = readFile(mainPath + "\\education.json");
         JsonElement element = JsonParser.parseString(file);
-        if (!element.isJsonObject()) throw new JsonSyntaxException("'education.json' not object");
-        JsonObject object = element.getAsJsonObject();
 
         EducationInfo info = new EducationInfo();
-        info.readJson(object, context);
+        info.readJson(element, context);
         return info;
     }
 
-    public ExperienceInfo grabExperienceInfO() throws IOException {
+    public ExperienceInfo grabExperienceInfo() throws IOException {
         context.setCurrentFile("experience.json");
         System.out.println("Grabbing file: experience.json");
 
 
         String file = readFile(mainPath + "\\experience.json");
         JsonElement element = JsonParser.parseString(file);
-        if (!element.isJsonObject()) throw new JsonSyntaxException("'experience.json' not object");
-        JsonObject object = element.getAsJsonObject();
 
         ExperienceInfo info = new ExperienceInfo(new ArrayList<>());
-        info.readJson(object, context);
+        info.readJson(element, context);
         return info;
     }
 
