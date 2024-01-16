@@ -3,7 +3,8 @@ package dev.efekos.pg.data.schema;
 public enum EducationEntryIcon {
     SCHOOL("school"),
     UNIVERSITY("university"),
-    DEGREE("degree");
+    DEGREE("degree"),
+    COURSE("course");
 
     private final String id;
 
