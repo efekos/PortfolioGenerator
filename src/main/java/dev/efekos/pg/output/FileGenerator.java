@@ -36,10 +36,19 @@ public class FileGenerator implements Generator {
     public void copyStyleFiles() throws IOException {
         System.out.println("Copying style files");
 
-        copyResource("/site/style.css", "\\style\\main_style.css", binPath);
-        copyResource("/site/style_certificates.css", "\\style\\certificates.css", binPath);
+        copyStringResource("/site/style.css", "\\style\\main_style.css", binPath);
+        copyStringResource("/site/style_certificates.css", "\\style\\certificates.css", binPath);
 
         System.out.println("Copied all style files");
+    }
+
+    public void generateScriptFiles(GeneralInfo info) throws IOException {
+        System.out.println("Generating script files");
+
+        String string = Main.readStringResource("/site/age_calculator.js").replaceAll("%%byear%%",info.getBirthDate().getYear()+"");
+        writeFile(binPath+"\\age_calculator.js",string);
+
+        System.out.println("Generates script files");
     }
 
     public void generateCertificatesFile(GeneralInfo info, List<Certificate> certificates) throws IOException {

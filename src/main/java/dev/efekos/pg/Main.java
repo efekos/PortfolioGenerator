@@ -63,6 +63,7 @@ public class Main {
         generator.generateIndexFile(context.getGrabbedGeneralInfo());
         generator.generateCertificatesFile(context.getGrabbedGeneralInfo(), context.getCertificates());
         generator.generateBioFile(context.getGrabbedGeneralInfo());
+        generator.generateScriptFiles(context.getGrabbedGeneralInfo());
 
         // copying
         generator.copyStyleFiles();
