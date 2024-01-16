@@ -26,7 +26,6 @@ public class Certificate implements JsonSchema {
         JsonObject object = element.getAsJsonObject();
 
         checker.searchExceptions(object, "images", RequiredDataType.OBJECT);
-        checker.searchExceptions(object, "when", RequiredDataType.OBJECT);
         checker.searchExceptions(object, "type", RequiredDataType.STRING);
         checker.searchExceptions(object, "display", RequiredDataType.OBJECT);
 

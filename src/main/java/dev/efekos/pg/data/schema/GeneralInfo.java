@@ -74,7 +74,7 @@ public class GeneralInfo implements JsonSchema {
 
         checker.searchExceptions(object, "name", RequiredDataType.STRING);
         checker.searchExceptions(object, "title", RequiredDataType.STRING);
-        checker.searchExceptions(object, "birth", RequiredDataType.OBJECT);
+       // checker.searchExceptions(object, "birth", RequiredDataType.OBJECT);
         checker.searchExceptions(object, "native_language", RequiredDataType.STRING);
         checker.searchExceptions(object, "social_links", RequiredDataType.ARRAY);
 
@@ -84,7 +84,7 @@ public class GeneralInfo implements JsonSchema {
 
         // birth
         this.birthDate = new DayDate(26, 2, 2010);
-        birthDate.readJson(object.get("birth").getAsJsonObject(), context);
+        birthDate.readJson(object.get("birth"), context);
 
         // native_language
         this.nativeLanguage = object.get("native_language").getAsString();

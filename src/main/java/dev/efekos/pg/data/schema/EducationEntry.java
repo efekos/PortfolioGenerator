@@ -34,8 +34,6 @@ public class EducationEntry implements JsonSchema {
         checker.searchExceptions(object, "title", RequiredDataType.STRING);
         checker.searchExceptions(object, "icon", RequiredDataType.STRING);
         checker.searchExceptions(object, "location", RequiredDataType.STRING);
-        checker.searchExceptions(object, "start", RequiredDataType.OBJECT);
-        checker.searchExceptions(object, "until", RequiredDataType.OBJECT);
 
         // title,location
         this.title = object.get("title").getAsString();

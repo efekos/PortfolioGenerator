@@ -100,18 +100,21 @@ public class DayDate implements JsonSchema {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
 
         if(element.isJsonObject()) parseObject(element.getAsJsonObject(),checker);
-        else {
-            String stringDate = element.getAsString();
-
-            if(!STRING_DATE_PATTERN.matcher(stringDate).matches()) throw new JsonParseException("Invalid date");
-
-            String[] members = stringDate.split("-");
-
-            this.year = Integer.parseInt(members[0]);
-            this.month = Integer.parseInt(members[1]);
-            this.day = Integer.parseInt(members[2]);
-        }
+        else parseString(element);
     }
+
+    private void parseString(JsonElement element) {
+        String stringDate = element.getAsString();
+
+        if(!STRING_DATE_PATTERN.matcher(stringDate).matches()) throw new JsonParseException("Invalid date");
+
+        String[] members = stringDate.split("-");
+
+        this.year = Integer.parseInt(members[0]);
+        this.month = Integer.parseInt(members[1]);
+        this.day = Integer.parseInt(members[2]);
+    }
+
     private final Pattern STRING_DATE_PATTERN = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
 
     private void parseObject(JsonObject object, DataTypeChecker checker) {

@@ -64,8 +64,6 @@ public class ExperienceEntry implements JsonSchema {
 
         checker.searchExceptions(object, "company", RequiredDataType.STRING);
         checker.searchExceptions(object, "position", RequiredDataType.STRING);
-        checker.searchExceptions(object, "from", RequiredDataType.OBJECT);
-        checker.searchExceptions(object, "to", RequiredDataType.OBJECT);
 
         this.company = object.get("company").getAsString();
         this.position = object.get("position").getAsString();
