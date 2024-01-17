@@ -5,6 +5,7 @@ import dev.efekos.pg.Main;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 public interface Generator {
@@ -42,7 +43,7 @@ public interface Generator {
 
         file.createNewFile();
 
-        FileWriter writer = new FileWriter(file);
+        FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
 
         writer.write(content);
         writer.flush();

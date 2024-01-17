@@ -22,15 +22,15 @@ public class EducationPageGenerator implements Generator{
                             <li>
                                 <div class="entry">
                                     <div>
-                                        <img src="./images/type/university.svg" alt="School" width="25" class="type" />
+                                        <img src="./images/icon/university.svg" alt="School" width="25" class="icon" />
                                     </div>
                                     <div>
                                         <span class="title">%%pname%%</span>
                                     </div>
                                     <div>
-                                        <img src="./images/type/university.svg" width="20" class="type-text"/><span class="alt">%%ptype%%</span><br>
-                                        <img src="./images/type/location.svg" width="20" class="type-text"/><span class="alt">%%plocation%%</span><br>
-                                        <img src="./images/type/clock.svg" width="20" class="type-text"/><span class="alt">%%pstart%% - %%pend%%</span>
+                                        <img src="./images/icon/university.svg" width="20" class="type-text"/><span class="alt">%%ptype%%</span><br>
+                                        <img src="./images/icon/location.svg" width="20" class="type-text"/><span class="alt">%%plocation%%</span><br>
+                                        <img src="./images/icon/clock.svg" width="20" class="type-text"/><span class="alt">%%pstart%% - %%pend%%</span>
                                     </div>
                                 </div>
                             </li>\
@@ -48,7 +48,7 @@ public class EducationPageGenerator implements Generator{
                 .replaceAll("%%entries%%",String.join("",elementsGenerated))
                 .replaceAll("%%name%%",generalInfo.getName());
 
-        writeFile(binPath+"\\education.json",file);
+        writeFile(binPath+"\\education.html",file);
     }
 
     private final List<String> elementsGenerated = new ArrayList<>();
