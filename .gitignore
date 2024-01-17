@@ -41,5 +41,7 @@ build/
 .idea/
 .run/
 /.run
+./data
+/data
 
 META-INF/MANIFEST.MF
