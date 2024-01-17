@@ -3,7 +3,6 @@ package dev.efekos.pg.data.schema;
 import com.google.gson.*;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
-import dev.efekos.pg.data.type.RequiredDataType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class EducationInfo implements JsonSchema {
         for (JsonElement element1 : array) {
             if (!element1.isJsonObject())
                 throw new JsonSyntaxException("Elements in 'education.json' must be an object");
-            EducationEntry entry = new EducationEntry(EducationEntryIcon.SCHOOL, null, null, null, null);
+            EducationEntry entry = new EducationEntry(EducationEntryType.SCHOOL, null, null, null, null);
             entry.readJson(element1.getAsJsonObject(), context);
             entryList.add(entry);
         }

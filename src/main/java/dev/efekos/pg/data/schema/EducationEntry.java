@@ -11,14 +11,14 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class EducationEntry implements JsonSchema {
-    private EducationEntryIcon icon;
+    private EducationEntryType type;
     private String title;
     private MonthDate start;
     private MonthDate until;
     private String location;
 
-    public EducationEntry(EducationEntryIcon icon, String title, MonthDate start, MonthDate until, String location) {
-        this.icon = icon;
+    public EducationEntry(EducationEntryType type, String title, MonthDate start, MonthDate until, String location) {
+        this.type = type;
         this.title = title;
         this.start = start;
         this.until = until;
@@ -32,19 +32,19 @@ public class EducationEntry implements JsonSchema {
         JsonObject object = element.getAsJsonObject();
 
         checker.searchExceptions(object, "title", RequiredDataType.STRING);
-        checker.searchExceptions(object, "icon", RequiredDataType.STRING);
+        checker.searchExceptions(object, "type", RequiredDataType.STRING);
         checker.searchExceptions(object, "location", RequiredDataType.STRING);
 
         // title,location
         this.title = object.get("title").getAsString();
         this.location = object.get("location").getAsString();
 
-        // icon
-        String iconString = object.get("icon").getAsString();
-        Optional<EducationEntryIcon> entryIcon = Arrays.stream(EducationEntryIcon.values()).filter(educationEntryIcon -> educationEntryIcon.getId().equals(iconString)).findFirst();
+        // type
+        String iconString = object.get("type").getAsString();
+        Optional<EducationEntryType> entryIcon = Arrays.stream(EducationEntryType.values()).filter(educationEntryType -> educationEntryType.getId().equals(iconString)).findFirst();
         if (!entryIcon.isPresent())
-            throw new JsonParseException("Unknown education entry icon type '" + iconString + "' in file '" + context.getCurrentFile() + "'");
-        this.icon = entryIcon.get();
+            throw new JsonParseException("Unknown education entry type type '" + iconString + "' in file '" + context.getCurrentFile() + "'");
+        this.type = entryIcon.get();
 
         // start,until
 
@@ -58,12 +58,12 @@ public class EducationEntry implements JsonSchema {
         this.until = untilDate;
     }
 
-    public EducationEntryIcon getIcon() {
-        return icon;
+    public EducationEntryType getType() {
+        return type;
     }
 
-    public void setIcon(EducationEntryIcon icon) {
-        this.icon = icon;
+    public void setType(EducationEntryType type) {
+        this.type = type;
     }
 
     public String getTitle() {
