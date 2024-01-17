@@ -49,10 +49,10 @@ public class EducationEntry implements JsonSchema {
         // start,until
 
         MonthDate startDate = new MonthDate(0, 0);
-        startDate.readJson(object.get("start").getAsJsonObject(), context);
+        startDate.readJson(object.get("start"), context);
 
         MonthDate untilDate = new MonthDate(0, 0);
-        startDate.readJson(object.get("until").getAsJsonObject(), context);
+        startDate.readJson(object.get("until"), context);
 
         this.start = startDate;
         this.until = untilDate;

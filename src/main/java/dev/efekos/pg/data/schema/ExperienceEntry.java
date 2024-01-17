@@ -70,10 +70,10 @@ public class ExperienceEntry implements JsonSchema {
 
 
         MonthDate fromDate = new MonthDate(0, 0);
-        fromDate.readJson(object.get("from").getAsJsonObject(), context);
+        fromDate.readJson(object.get("from"), context);
 
         MonthDate toDate = new MonthDate(0, 0);
-        toDate.readJson(object.get("to").getAsJsonObject(), context);
+        toDate.readJson(object.get("to"), context);
 
         this.from = fromDate;
         this.to = toDate;
