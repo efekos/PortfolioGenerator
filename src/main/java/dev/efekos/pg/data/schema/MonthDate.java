@@ -6,6 +6,7 @@ import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+import dev.efekos.pg.util.DateHelper;
 
 import java.util.regex.Pattern;
 
@@ -73,5 +74,10 @@ public class MonthDate implements JsonSchema,Comparable<MonthDate> {
         } else {
             return yearComparison;
         }
+    }
+
+    @Override
+    public String toString() {
+        return DateHelper.monthToString(month)+", "+year;
     }
 }

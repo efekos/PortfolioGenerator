@@ -6,6 +6,7 @@ import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+import dev.efekos.pg.util.DateHelper;
 
 import java.time.LocalDate;
 import java.util.regex.Pattern;
@@ -137,5 +138,10 @@ public class DayDate implements JsonSchema,Comparable<DayDate> {
                 return dayc;
             } else return monthc;
         } else return yearc;
+    }
+
+    @Override
+    public String toString() {
+        return day+" of "+ DateHelper.monthToString(month)+", "+year;
     }
 }

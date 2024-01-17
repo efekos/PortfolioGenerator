@@ -6,6 +6,7 @@ import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+import dev.efekos.pg.util.DateHelper;
 
 import java.util.regex.Pattern;
 
@@ -133,5 +134,10 @@ public class FullDate implements JsonSchema,Comparable<FullDate> {
                 } else return dayc;
             } else return monthc;
         } else return yearc;
+    }
+
+    @Override
+    public String toString() {
+        return hour+":"+minute+":"+second+", "+day+" of "+DateHelper.monthToString(month)+", "+year;
     }
 }
