@@ -2,6 +2,7 @@ package dev.efekos.pg.output;
 
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.Certificate;
+import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.util.Locale;
 
@@ -59,6 +60,8 @@ public class FileGenerator implements Generator {
         generator.generateActualFile(info, certificates);
         generator.copyImages(info, certificates);
         generator.generateSinglePages(info, certificates);
+
+        System.out.println("Generated certificate pages");
     }
 
     public void generateBioFile(GeneralInfo info) throws IOException {
@@ -74,12 +77,20 @@ public class FileGenerator implements Generator {
         System.out.println("Generated file: bio.html");
     }
 
+    public void generateEducationFile(GeneralInfo info, EducationInfo educationInfo)throws IOException{
+        EducationPageGenerator generator = new EducationPageGenerator(binPath);
+        generator.generate(info,educationInfo);
+    }
+
     public void copyIcons() throws IOException {
         System.out.println("Copying icons");
 
         Files.createDirectory(Path.of(binPath, "images", "icon"));
 
         copyIcon("external_site", "external");
+        copyIcon("clock","clock");
+        copyIcon("location","location");
+        copyIcon("university","university");
 
         Files.copy(Path.of(Main.getMainPath().toString(),"data","profile.png"),Path.of(binPath,"images","profile.png"));
 

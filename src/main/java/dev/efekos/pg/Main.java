@@ -64,6 +64,7 @@ public class Main {
         generator.generateCertificatesFile(context.getGrabbedGeneralInfo(), context.getCertificates());
         generator.generateBioFile(context.getGrabbedGeneralInfo());
         generator.generateScriptFiles(context.getGrabbedGeneralInfo());
+        generator.generateEducationFile(context.getGrabbedGeneralInfo(),context.getGrabbedEducationInfo());
 
         // copying
         generator.copyStyleFiles();
