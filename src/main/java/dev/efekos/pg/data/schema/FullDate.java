@@ -9,13 +9,13 @@ import dev.efekos.pg.data.type.RequiredDataType;
 
 import java.util.regex.Pattern;
 
-public class FullDate implements JsonSchema {
-    private int day;
-    private int month;
-    private int year;
-    private int minute;
-    private int hour;
-    private int second;
+public class FullDate implements JsonSchema,Comparable<FullDate> {
+    private Integer day;
+    private Integer month;
+    private Integer year;
+    private Integer minute;
+    private Integer hour;
+    private Integer second;
 
     public FullDate(int day, int month, int year, int minute, int hour, int second) {
         this.day = day;
@@ -111,5 +111,27 @@ public class FullDate implements JsonSchema {
         this.minute = object.get("minute").getAsInt();
         this.hour = object.get("hour").getAsInt();
         this.second = object.get("second").getAsInt();
+    }
+
+    @Override
+    public int compareTo(FullDate other) {
+        int yearc = year.compareTo(other.year);
+        int monthc = month.compareTo(other.month);
+        int dayc = day.compareTo(other.day);
+        int hourc = hour.compareTo(other.hour);
+        int minc = minute.compareTo(other.minute);
+        int secc = second.compareTo(other.second);
+
+        if(yearc==0){
+            if(monthc==0){
+                if(dayc==0){
+                    if(hourc==0){
+                        if(minc==0){
+                            return secc;
+                        } else return minc;
+                    } else return hourc;
+                } else return dayc;
+            } else return monthc;
+        } else return yearc;
     }
 }

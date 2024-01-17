@@ -7,26 +7,25 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 
-import java.util.Arrays;
-import java.util.regex.Matcher;
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 /**
  * Represents a date that just needs a day, year, and month.
  */
-public class DayDate implements JsonSchema {
+public class DayDate implements JsonSchema,Comparable<DayDate> {
     /**
      * Day of the date. Will be day of the month (such as 2nd July, but not Tuesday)
      */
-    private int day;
+    private Integer day;
     /**
      * Month of the date.
      */
-    private int month;
+    private Integer month;
     /**
      * Year of the date.
      */
-    private int year;
+    private Integer year;
 
     /**
      * Constructs a new {@link DayDate}
@@ -125,5 +124,18 @@ public class DayDate implements JsonSchema {
         this.day = object.get("day").getAsInt();
         this.year = object.get("year").getAsInt();
         this.month = object.get("month").getAsInt();
+    }
+
+    @Override
+    public int compareTo(DayDate other) {
+        int yearc = year.compareTo(other.year);
+        int monthc = month.compareTo(other.month);
+        int dayc = day.compareTo(other.day);
+
+        if(yearc==0){
+            if(monthc==0){
+                return dayc;
+            } else return monthc;
+        } else return yearc;
     }
 }

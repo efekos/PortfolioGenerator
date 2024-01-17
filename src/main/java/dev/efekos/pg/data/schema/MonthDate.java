@@ -9,9 +9,9 @@ import dev.efekos.pg.data.type.RequiredDataType;
 
 import java.util.regex.Pattern;
 
-public class MonthDate implements JsonSchema {
-    private int month;
-    private int year;
+public class MonthDate implements JsonSchema,Comparable<MonthDate> {
+    private Integer month;
+    private Integer year;
 
     public MonthDate(int month, int year) {
         this.month = month;
@@ -62,4 +62,16 @@ public class MonthDate implements JsonSchema {
 
     private final Pattern STRING_DATE_PATTERN = Pattern.compile("[0-9]{4}-[0-9]{2}");
 
+    @Override
+    public int compareTo(MonthDate other) {
+        // Compare years first
+        int yearComparison = this.year.compareTo(other.year);
+
+        // If years are the same, compare months
+        if (yearComparison == 0) {
+            return this.month.compareTo(other.month);
+        } else {
+            return yearComparison;
+        }
+    }
 }
