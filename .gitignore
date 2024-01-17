@@ -43,5 +43,7 @@ build/
 /.run
 ./data
 /data
+./bin
+/bin
 
 META-INF/MANIFEST.MF
