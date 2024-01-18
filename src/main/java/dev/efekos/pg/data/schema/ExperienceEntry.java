@@ -80,7 +80,7 @@ public class ExperienceEntry implements JsonSchema {
 
         if (object.has("current_job")) {
 
-            checker.searchExceptions(object,"current_job",RequiredDataType.BOOLEAN);
+            checker.searchExceptions(object, "current_job", RequiredDataType.BOOLEAN);
 
             this.currentJob = object.get("current_job").getAsBoolean();
 
@@ -88,16 +88,13 @@ public class ExperienceEntry implements JsonSchema {
             this.currentJob = false;
         }
 
-        if(!currentJob){
-            MonthDate fromDate = new MonthDate(0, 0);
-            fromDate.readJson(object.get("from"), context);
+        MonthDate fromDate = new MonthDate(0, 0);
+        fromDate.readJson(object.get("from"), context);
 
-            MonthDate toDate = new MonthDate(0, 0);
-            toDate.readJson(object.get("to"), context);
+        MonthDate toDate = new MonthDate(0, 0);
+        toDate.readJson(object.get("to"), context);
 
-            this.from = fromDate;
-            this.to = toDate;
-        }
-
+        this.from = fromDate;
+        this.to = toDate;
     }
 }
