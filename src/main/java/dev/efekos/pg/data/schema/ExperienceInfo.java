@@ -11,6 +11,7 @@ import java.util.List;
 public class ExperienceInfo implements JsonSchema {
 
     private List<ExperienceEntry> entries;
+    private ExperienceEntry currentJob = null;
 
     public ExperienceInfo(List<ExperienceEntry> entries) {
         this.entries = entries;
@@ -22,6 +23,19 @@ public class ExperienceInfo implements JsonSchema {
 
     public void setEntries(List<ExperienceEntry> entries) {
         this.entries = entries;
+    }
+
+    public ExperienceEntry getCurrentJob() {
+        return currentJob;
+    }
+
+    public void setCurrentJob(ExperienceEntry currentJob) {
+        if(!currentJob.isCurrentJob()) throw new RuntimeException("Is your brain okay dude you are literally passing in a non current job entry into fucking set current job method");
+        this.currentJob = currentJob;
+    }
+
+    public boolean hasCurrentJob(){
+        return currentJob!=null;
     }
 
     @Override
@@ -37,6 +51,12 @@ public class ExperienceInfo implements JsonSchema {
 
             ExperienceEntry entry = new ExperienceEntry();
             entry.readJson(element1.getAsJsonObject(), context);
+
+            if(entry.isCurrentJob()) {
+                if(this.currentJob!=null) throw new JsonParseException("Only one entry can be current job");
+                this.currentJob = entry;
+            }
+
             experienceList.add(entry);
         }
 
