@@ -95,3 +95,7 @@ a {
 .btn-download:hover {
     background-color: rgb(200, 200, 200);
 }
+
+br {
+    user-select: none;
+}
