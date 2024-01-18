@@ -12,6 +12,7 @@ public class ExperienceEntry implements JsonSchema {
     private String position;
     private MonthDate from;
     private MonthDate to;
+    private boolean currentJob;
 
     public ExperienceEntry(String company, String position, MonthDate from, MonthDate to) {
         this.company = company;
@@ -56,6 +57,14 @@ public class ExperienceEntry implements JsonSchema {
         this.to = to;
     }
 
+    public boolean isCurrentJob() {
+        return currentJob;
+    }
+
+    public void setCurrentJob(boolean currentJob) {
+        this.currentJob = currentJob;
+    }
+
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
@@ -69,13 +78,26 @@ public class ExperienceEntry implements JsonSchema {
         this.position = object.get("position").getAsString();
 
 
-        MonthDate fromDate = new MonthDate(0, 0);
-        fromDate.readJson(object.get("from"), context);
+        if (object.has("current_job")) {
 
-        MonthDate toDate = new MonthDate(0, 0);
-        toDate.readJson(object.get("to"), context);
+            checker.searchExceptions(object,"current_job",RequiredDataType.BOOLEAN);
 
-        this.from = fromDate;
-        this.to = toDate;
+            this.currentJob = object.get("current_job").getAsBoolean();
+
+        } else {
+            this.currentJob = false;
+        }
+
+        if(!currentJob){
+            MonthDate fromDate = new MonthDate(0, 0);
+            fromDate.readJson(object.get("from"), context);
+
+            MonthDate toDate = new MonthDate(0, 0);
+            toDate.readJson(object.get("to"), context);
+
+            this.from = fromDate;
+            this.to = toDate;
+        }
+
     }
 }
