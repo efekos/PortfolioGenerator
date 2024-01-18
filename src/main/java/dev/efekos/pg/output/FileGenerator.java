@@ -103,6 +103,9 @@ public class FileGenerator implements Generator {
 
         Files.copy(Path.of(Main.getMainPath().toString(),"data","profile.png"),Path.of(binPath,"images","profile.png"));
 
+        writeFile(binPath+"\\images\\icon\\credit_note.txt","Every icon used here is from heroicons.com");
+
+
         System.out.println("Copied icons");
     }
 
