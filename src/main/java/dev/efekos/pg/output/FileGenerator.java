@@ -3,6 +3,7 @@ package dev.efekos.pg.output;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.EducationInfo;
+import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.util.Locale;
 
@@ -32,6 +33,12 @@ public class FileGenerator implements Generator {
         writeFile(binPath + "\\index.html", fileString);
 
         System.out.println("Generated file: index.html");
+    }
+
+    public void generateExperienceFile(GeneralInfo generalInfo, ExperienceInfo experienceInfo)throws IOException{
+        ExperiencePageGenerator generator = new ExperiencePageGenerator(binPath);
+
+        generator.generate(generalInfo,experienceInfo);
     }
 
     public void copyStyleFiles() throws IOException {
@@ -92,6 +99,7 @@ public class FileGenerator implements Generator {
         copyIcon("clock","clock");
         copyIcon("location","location");
         copyIcon("university","university");
+        copyIcon("briefcase","briefcase");
 
         Files.copy(Path.of(Main.getMainPath().toString(),"data","profile.png"),Path.of(binPath,"images","profile.png"));
 

@@ -65,6 +65,7 @@ public class Main {
         generator.generateBioFile(context.getGrabbedGeneralInfo());
         generator.generateScriptFiles(context.getGrabbedGeneralInfo());
         generator.generateEducationFile(context.getGrabbedGeneralInfo(),context.getGrabbedEducationInfo());
+        generator.generateExperienceFile(context.getGrabbedGeneralInfo(),context.getExperienceInfo());
 
         // copying
         generator.copyStyleFiles();
