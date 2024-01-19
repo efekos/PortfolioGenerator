@@ -58,7 +58,6 @@ public class Main {
         long time = new Date().getTime();
         FileGenerator generator = new FileGenerator(context.getBinPath());
 
-
         // generating
         generator.generateIndexFile(context.getGrabbedGeneralInfo());
         generator.generateCertificatesFile(context.getGrabbedGeneralInfo(), context.getCertificates());

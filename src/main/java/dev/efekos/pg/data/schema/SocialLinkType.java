@@ -20,6 +20,7 @@ public enum SocialLinkType {
     NPM("npm","rgb(145, 93, 93)","rgb(173, 101, 101)"),
     STACKOVERFLOW("stackoverflow","rgb(156, 110, 58)","rgb(184, 130, 70)"),
     CROWDIN("crowdin","rgb(32, 38, 41)","rgb(48, 59, 64)"),
+    VSCODE("vscode_marketplace","rgb(20, 68, 107)","rgb(29, 93, 145)"),
     YOUTUBE("youtube","rgb(128, 12, 12)","rgb(148, 32, 32)");
 
     private final String id;
