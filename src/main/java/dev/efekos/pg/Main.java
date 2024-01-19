@@ -66,10 +66,10 @@ public class Main {
         generator.generateScriptFiles(context.getGrabbedGeneralInfo());
         generator.generateEducationFile(context.getGrabbedGeneralInfo(),context.getGrabbedEducationInfo());
         generator.generateExperienceFile(context.getGrabbedGeneralInfo(),context.getExperienceInfo());
+        generator.generateStyleFiles(context.getGrabbedGeneralInfo());
 
         // copying
-        generator.copyStyleFiles();
-        generator.copyIcons();
+        generator.copyIcons(context.getGrabbedGeneralInfo());
 
 
         long time2 = new Date().getTime();
