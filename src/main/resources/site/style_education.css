@@ -7,7 +7,7 @@
 }
 
 .mainList>li {
-    border-left: 1rem #252525 dotted;
+    border-left:0.7rem #252525 dotted;
     padding-left: 1rem;
 }
 
