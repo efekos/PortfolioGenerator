@@ -9,6 +9,7 @@ import dev.efekos.pg.util.Locale;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class GeneralInfo implements JsonSchema {
     private List<String> knownLanguages;
     private String welcomer;
     private String bio;
-    private Map<SocialLinkType,String> socialLinks;
+    private Map<SocialLinkType,String> socialLinks = new HashMap<>();
 
     public GeneralInfo(String name, DayDate birthDate, String title) {
         this.name = name;
@@ -123,10 +124,6 @@ public class GeneralInfo implements JsonSchema {
 
     public void setNativeLanguage(String nativeLanguage) {
         this.nativeLanguage = nativeLanguage;
-    }
-
-    public void setKnownLanguages(List<String> knownLanguages) {
-        this.knownLanguages = knownLanguages;
     }
 
     public Map<SocialLinkType, String> getSocialLinks() {
