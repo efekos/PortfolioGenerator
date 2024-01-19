@@ -118,7 +118,10 @@ public class GeneralInfo implements JsonSchema {
         linksObject.asMap().forEach((key, link) -> {
             if(!SocialLinkType.isValidId(key)) throw new JsonParseException("Unknown social link id '"+key+"'");
 
-            socialLinks.put(SocialLinkType.findById(key),link.getAsString());
+            SocialLinkType id = SocialLinkType.findById(key);
+
+            if(socialLinks.containsKey(id)) throw new JsonParseException("Social link id '"+key+"' used more than once");
+            socialLinks.put(id,link.getAsString());
         });
     }
 
