@@ -1,3 +1,5 @@
+@import "./social_icons.css";
+
 body {
     background-color: #03080E;
     color: white;
@@ -7,11 +9,11 @@ body {
 }
 
 h1#name {
-    font-family: Fredoka,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Fredoka, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #4C9EFF;
     font-size: 5rem;
     text-align: center;
-    filter: drop-shadow(0rem 0rem 4rem #4C9EFF);
+    filter: drop-shadow(0rem 0rem 16rem #4C9EFF);
     will-change: filter;
     transition: filter 200ms;
     user-select: none;
@@ -38,7 +40,7 @@ a {
     font-size: 1.5rem;
     border-radius: 1rem;
     color: white;
-    font-family: Lato,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Lato, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 650;
     will-change: filter;
     transition: filter 1.5s;
@@ -48,7 +50,7 @@ a {
 }
 
 .btn-blue {
-    background: linear-gradient(180deg,#00E8FF 0%, #0066FF 100%);
+    background: linear-gradient(180deg, #00E8FF 0%, #0066FF 100%);
 }
 
 .btn-blue:hover{
@@ -57,31 +59,29 @@ a {
 
 
 .btn-green {
-    background: linear-gradient(180deg,#52ff3b 0%, #04520b 100%);
+    background: linear-gradient(180deg, #52ff3b 0%, #04520b 100%);
 }
 
-.btn-green:hover{
+.btn-green:hover {
     filter: drop-shadow(0rem 0rem 16rem #52ff3b);
 }
 
 .btn-red {
-    background: linear-gradient(180deg,#FAFF00 0%, #ff0000 100%);
+    background: linear-gradient(180deg, #FAFF00 0%, #ff0000 100%);
 }
 
-.btn-red:hover{
+.btn-red:hover {
     filter: drop-shadow(0rem 0rem 16rem #FAFF00);
 }
 
 
 .btn-orange {
-    background: linear-gradient(180deg,#FF7A00 0%, #ff0000 100%);
+    background: linear-gradient(180deg, #FF7A00 0%, #ff0000 100%);
 }
 
-.btn-orange:hover{
+.btn-orange:hover {
     filter: drop-shadow(0rem 0rem 16rem #FF7A00);
 }
-
-
 
 .btn-download {
     color: #363636;
@@ -98,4 +98,11 @@ a {
 
 br {
     user-select: none;
+}
+
+
+.icon {
+    background-color: #404040;
+    padding: 1rem;
+    border-radius: 100rem;
 }
