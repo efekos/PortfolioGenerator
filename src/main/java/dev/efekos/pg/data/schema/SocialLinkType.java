@@ -16,6 +16,10 @@ public enum SocialLinkType {
     TWITCH("twitch","rgb(72, 40, 105)","rgb(98, 52, 145)"),
     X("x","rgb(68, 68, 68)","rgb(94, 94, 94)"),
     TWITTER("twitter","rgb(12, 91, 128)","rgb(32, 121, 148)"),
+    THREADS("threads","rgb(58, 53, 59)","rgb(80, 73, 82)"),
+    NPM("npm","rgb(145, 93, 93)","rgb(173, 101, 101)"),
+    STACKOVERFLOW("stackoverflow","rgb(156, 110, 58)","rgb(184, 130, 70)"),
+    CROWDIN("crowdin","rgb(32, 38, 41)","rgb(48, 59, 64)"),
     YOUTUBE("youtube","rgb(128, 12, 12)","rgb(148, 32, 32)");
 
     private final String id;
