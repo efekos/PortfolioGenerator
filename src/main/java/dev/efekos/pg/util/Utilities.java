@@ -4,6 +4,9 @@ import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 /**
  * Utilities class used for various different methods inside it.
  */
@@ -19,5 +22,11 @@ public class Utilities {
         Parser parser = new Parser.Builder().build();
         Node node = parser.parse(markdown);
         return HtmlRenderer.builder().build().render(node);
+    }
+
+    public static String getDomainName(String url) throws URISyntaxException {
+        URI uri = new URI(url);
+        String domain = uri.getHost();
+        return domain.startsWith("www.") ? domain.substring(4) : domain;
     }
 }
