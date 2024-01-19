@@ -15,33 +15,69 @@
     %%welcomer%%
 
     <br/><br/><br/>
+    <div style="text-align: center">
+        <a href="./certificates.html">
+            <button class="btn btn-blue">Certificates</button>
+        </a>
+        <a href="./education.html">
+            <button class="btn btn-red">Education</button>
+        </a>
+        <a href="./experience.html">
+            <button class="btn btn-orange">Experience</button>
+        </a>
+        <a href="./projects.html">
+            <button class="btn btn-green">Projects</button>
+        </a>
+        <a href="./bio.html">
+            <button class="btn btn-blue">Bio</button>
+        </a>
 
-    <a href="./certificates.html">
-        <button class="btn btn-blue">Certificates</button>
-    </a>
-    <a href="./education.html">
-        <button class="btn btn-red">Education</button>
-    </a>
-    <a href="./experience.html">
-        <button class="btn btn-red">Experience</button>
-    </a>
-    <a href="./projects.html">
-        <button class="btn btn-green">Projects</button>
-    </a>
-    <a href="./socials.html">
-        <button class="btn btn-orange">Socials</button>
-    </a>
-    <a href="./bio.html">
-        <button class="btn btn-blue">Bio</button>
-    </a>
+        <br><br>
+
+        %%socialElements%%
+    </div>
 
     <h1>About</h1>
 
-    Age: <span id="age"></span><br>
-    Native language: %%native%%<br>
-    Known languages: %%known%%
+    %%aboutEntries%%
 
     <script src="./age_calculator.js"></script>
+
+
+    <style>
+        .entry {
+            background-color: #202020;
+            border-radius: 1rem;
+            padding: 1.2rem;
+            margin-top: 1rem;
+            will-change: background-color;
+            transition: background-color 200ms;
+            border: 0.1rem #151515 solid;
+        }
+
+        .entries > .entry {
+            display: inline-block;
+        }
+
+        .entry:hover {
+            background-color: #252525;
+        }
+
+        .entry > div {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .alt {
+            margin-left: 0.5rem;
+            color: #707070;
+            font-size: 1.34rem;
+        }
+
+        .title {
+            margin-left: 0.5rem;
+        }
+    </style>
 </div>
 </body>
 </html>
