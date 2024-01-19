@@ -10,6 +10,7 @@ import dev.efekos.pg.util.Locale;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class GeneralInfo implements JsonSchema {
     private String name;
@@ -19,7 +20,7 @@ public class GeneralInfo implements JsonSchema {
     private List<String> knownLanguages;
     private String welcomer;
     private String bio;
-    private List<SocialLink> socialLinks;
+    private Map<SocialLinkType,String> socialLinks;
 
     public GeneralInfo(String name, DayDate birthDate, String title) {
         this.name = name;
@@ -74,9 +75,8 @@ public class GeneralInfo implements JsonSchema {
 
         checker.searchExceptions(object, "name", RequiredDataType.STRING);
         checker.searchExceptions(object, "title", RequiredDataType.STRING);
-       // checker.searchExceptions(object, "birth", RequiredDataType.OBJECT);
         checker.searchExceptions(object, "native_language", RequiredDataType.STRING);
-        checker.searchExceptions(object, "social_links", RequiredDataType.ARRAY);
+        checker.searchExceptions(object, "social_links", RequiredDataType.OBJECT);
 
         // name, title
         this.name = object.get("name").getAsString();
@@ -112,23 +112,28 @@ public class GeneralInfo implements JsonSchema {
             knownLanguages.add(nativeLanguage);
         }
 
-
         // social_links
-        JsonArray array = object.get("social_links").getAsJsonArray();
-        List<SocialLink> links = new ArrayList<>();
-        for (JsonElement element1 : array) {
-            SocialLink link = new SocialLink(null, null);
-            link.readJson(element1, context);
-            links.add(link);
-        }
-        this.socialLinks = links;
+        JsonObject linksObject = object.get("social_links").getAsJsonObject();
+        linksObject.asMap().forEach((key, link) -> {
+            if(!SocialLinkType.isValidId(key)) throw new JsonParseException("Unknown social link id '"+key+"'");
+
+            socialLinks.put(SocialLinkType.findById(key),link.getAsString());
+        });
     }
 
-    public List<SocialLink> getSocialLinks() {
+    public void setNativeLanguage(String nativeLanguage) {
+        this.nativeLanguage = nativeLanguage;
+    }
+
+    public void setKnownLanguages(List<String> knownLanguages) {
+        this.knownLanguages = knownLanguages;
+    }
+
+    public Map<SocialLinkType, String> getSocialLinks() {
         return socialLinks;
     }
 
-    public void setSocialLinks(List<SocialLink> socialLinks) {
+    public void setSocialLinks(Map<SocialLinkType, String> socialLinks) {
         this.socialLinks = socialLinks;
     }
 
