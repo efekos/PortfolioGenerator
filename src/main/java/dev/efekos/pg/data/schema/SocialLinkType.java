@@ -21,6 +21,9 @@ public enum SocialLinkType {
     STACKOVERFLOW("stackoverflow","rgb(156, 110, 58)","rgb(184, 130, 70)"),
     CROWDIN("crowdin","rgb(32, 38, 41)","rgb(48, 59, 64)"),
     VSCODE("vscode_marketplace","rgb(20, 68, 107)","rgb(29, 93, 145)"),
+    PATREON("patreon","rgb(89, 74, 67)","rgb(125, 103, 92)"),
+    BUY_ME_A_COFFEE("buy_me_a_coffee","rgb(110, 103, 26)","rgb(133, 124, 32)"),
+    KOFI("kofi","rgb(110, 41, 49)","rgb(135, 53, 62)"),
     YOUTUBE("youtube","rgb(128, 12, 12)","rgb(148, 32, 32)");
 
     private final String id;

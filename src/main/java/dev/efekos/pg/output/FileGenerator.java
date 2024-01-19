@@ -23,9 +23,7 @@ public class FileGenerator implements Generator {
         System.out.println("Generating file: index.html");
 
         List<String> socialLinkElements = new ArrayList<>();
-        info.getSocialLinks().forEach((type,link) -> {
-            socialLinkElements.add(generateSocialElement(type,link));
-        });
+        info.getSocialLinks().forEach((type,link) -> socialLinkElements.add(generateSocialElement(type,link)));
 
         String fileString = Main.readStringResource("/site/index.html")
                 .replaceAll("%%name%%", info.getName())
@@ -66,8 +64,11 @@ public class FileGenerator implements Generator {
 
     private String generateSocialElement(SocialLinkType type,String link){
         String templateElement = """
-                <a target="_blank" href="%%link%%"><img src="images/icon/social/%%icon%%.svg" alt="Icon"
-                                    class="social-icon icon-%%icon%%" width="24"></a>
+                <a target="_blank" href="%%link%%">
+                      <div class="social-icon icon-%%icon%%">
+                            <img src="images/icon/social/%%icon%%.svg" alt="Icon" width="24">
+                      </div>
+                </a>
                 """;
         return templateElement.replaceAll("%%link%%",link).replaceAll("%%icon%%",type.getId());
     }
@@ -93,27 +94,29 @@ public class FileGenerator implements Generator {
         List<String> generatedSelections = new ArrayList<>();
         generatedSelections.add("""
                 .social-icon {
-                    padding: 1rem;
-                    border-radius: 100rem;
-                    will-change: background-color;
-                    transition: background-color 200ms;
-                    background-color: #404040;
-                }
+                      padding: 1rem;
+                      border-radius: 10rem;
+                      will-change: background-color;
+                      transition: background-color 200ms;
+                      background-color: #404040;
+                      width: 1.5rem;
+                      height: 1.5rem;
+                      display: inline-block;
+                  }
+                  
                 """);
-        info.getSocialLinks().forEach((type,link) -> {
-            generatedSelections.add("""
-                    
-                    .icon-%%i%% {
-                        background-color: %%n%%;
-                    }
-                                        
-                    .icon-%%i%%:hover {
-                        background-color: %%h%%;
-                    }
-                    """.replaceAll("%%n%%",type.getNormalColor())
-                    .replaceAll("%%h%%",type.getHighlightColor())
-                    .replaceAll("%%i%%",type.getId()));
-        });
+        info.getSocialLinks().forEach((type,link) -> generatedSelections.add("""
+                
+                .icon-%%i%% {
+                    background-color: %%n%%;
+                }
+                                    
+                .icon-%%i%%:hover {
+                    background-color: %%h%%;
+                }
+                """.replaceAll("%%n%%",type.getNormalColor())
+                .replaceAll("%%h%%",type.getHighlightColor())
+                .replaceAll("%%i%%",type.getId())));
 
         writeFile(binPath+"\\style\\social_icons.css",String.join("\n",generatedSelections));
         System.out.println("Generated file: style/social_icons.css");
