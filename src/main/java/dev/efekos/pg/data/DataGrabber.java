@@ -154,6 +154,7 @@ public class DataGrabber {
 
             String mainJson = readFile(file.getPath()+"\\main.json");
             Project project = new Project();
+            context.setCurrentFile(context.getCurrentFile()+"\\mainPath.json");
             project.readJson(JsonParser.parseString(mainJson),context);
 
             project.setId(file.toPath().getFileName().toString());
