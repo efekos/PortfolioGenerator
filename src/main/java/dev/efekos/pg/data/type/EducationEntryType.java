@@ -1,4 +1,4 @@
-package dev.efekos.pg.data.schema;
+package dev.efekos.pg.data.type;
 
 public enum EducationEntryType {
     SCHOOL("school","School"),

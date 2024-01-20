@@ -2,6 +2,7 @@ package dev.efekos.pg.output;
 
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.*;
+import dev.efekos.pg.data.type.SocialLinkType;
 import dev.efekos.pg.util.Locale;
 
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class FileGenerator implements Generator {
                 .replaceAll("%%alt%%",alt);
     }
 
-    private String generateSocialElement(SocialLinkType type,String link){
+    private String generateSocialElement(SocialLinkType type, String link){
         String templateElement = """
                 <a target="_blank" href="%%link%%">
                       <div class="social-icon icon-%%icon%%">

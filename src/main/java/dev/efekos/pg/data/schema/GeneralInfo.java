@@ -4,6 +4,7 @@ import com.google.gson.*;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+import dev.efekos.pg.data.type.SocialLinkType;
 import dev.efekos.pg.util.LocaleHelper;
 import dev.efekos.pg.util.Locale;
 

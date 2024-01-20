@@ -3,6 +3,7 @@ package dev.efekos.pg.data.schema;
 import com.google.gson.*;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
+import dev.efekos.pg.data.type.EducationEntryType;
 
 import java.util.ArrayList;
 import java.util.List;
