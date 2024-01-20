@@ -1,10 +1,7 @@
 package dev.efekos.pg;
 
 import dev.efekos.pg.data.DataGrabber;
-import dev.efekos.pg.data.schema.Certificate;
-import dev.efekos.pg.data.schema.EducationInfo;
-import dev.efekos.pg.data.schema.ExperienceInfo;
-import dev.efekos.pg.data.schema.GeneralInfo;
+import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.output.FileGenerator;
 import dev.efekos.pg.util.LocaleHelper;
 import dev.efekos.pg.util.WorkContext;
@@ -105,11 +102,13 @@ public class Main {
         EducationInfo educationInfo = grabber.grabEducationInfo();
         ExperienceInfo info = grabber.grabExperienceInfo();
         List<Certificate> certificates = grabber.grabCertificates();
+        List<Project> projects = grabber.grabProjects();
 
         context.setGrabbedGeneralInfo(generalInfo);
         context.setGrabbedEducationInfo(educationInfo);
         context.setExperienceInfo(info);
         context.setCertificates(certificates);
+        context.setProjects(projects);
 
         long time2 = new Date().getTime();
         float difference = (float) (time2 - time) / 1000;

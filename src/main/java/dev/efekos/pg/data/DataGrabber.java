@@ -3,11 +3,7 @@ package dev.efekos.pg.data;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
-import dev.efekos.pg.data.schema.Certificate;
-import dev.efekos.pg.data.schema.EducationInfo;
-import dev.efekos.pg.data.schema.ExperienceInfo;
-import dev.efekos.pg.data.schema.GeneralInfo;
+import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.util.Utilities;
 
 import java.io.File;
@@ -17,7 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -78,7 +73,7 @@ public class DataGrabber {
 
     public String grabMarkdownFile(String fileName) throws IOException {
         String file = readFile(mainPath + "\\" + fileName + ".md");
-        System.out.println("Reading markdown: " + fileName);
+        System.out.println("Reading markdown: " + fileName.replaceAll("\\\\","/"));
 
         return Utilities.markdownToHtml(file);
     }
@@ -123,12 +118,11 @@ public class DataGrabber {
         ArrayList<Certificate> certificates = new ArrayList<>();
 
 
-        for (File file : Arrays.asList(files)) {
+        for (File file : files) {
             context.setCurrentFile(file.getPath().replace(mainPath, ""));
 
             String stringJson = readFile(file.getPath());
             JsonElement element = JsonParser.parseString(stringJson);
-            if (!element.isJsonObject()) throw new JsonSyntaxException("'" + file.getPath() + "' not object");
             JsonObject object = element.getAsJsonObject();
 
             Certificate certificate = new Certificate();
@@ -138,5 +132,39 @@ public class DataGrabber {
         }
 
         return certificates;
+    }
+
+    public List<Project> grabProjects() throws IOException {
+        System.out.println("Grabbing directory: projects");
+        String dirPathString = mainPath+"\\projects";
+        Path dirPath = Path.of(dirPathString);
+
+        if(!Files.exists(dirPath)) throw new FileNotFoundException(dirPathString);
+        if(!Files.isDirectory(dirPath)) throw new NotDirectoryException(dirPathString);
+
+        File dir = new File(dirPathString);
+
+
+        List<Project> projects = new ArrayList<>();
+        for (File file : dir.listFiles()) {
+            if(!Files.isDirectory(file.toPath())) throw new NotDirectoryException(file.getAbsolutePath());
+
+            context.setCurrentFile(file.getPath().replace(mainPath, ""));
+            System.out.println("Grabbing directory: projects/"+file.toPath().getFileName().toString());
+
+            String mainJson = readFile(file.getPath()+"\\main.json");
+            Project project = new Project();
+            project.readJson(JsonParser.parseString(mainJson),context);
+
+            project.setId(file.toPath().getFileName().toString());
+            project.setReadmeFile(grabMarkdownFile("projects\\"+project.getId()+"\\readme"));
+            project.setFullLicense(grabMarkdownFile("projects\\"+project.getId()+"\\license"));
+
+            projects.add(project);
+            System.out.println("Grabbed directory: projects/"+project.getId());
+        }
+
+        System.out.println("Grabbed directory: projects");
+        return projects;
     }
 }

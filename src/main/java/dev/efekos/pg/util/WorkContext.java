@@ -1,9 +1,6 @@
 package dev.efekos.pg.util;
 
-import dev.efekos.pg.data.schema.Certificate;
-import dev.efekos.pg.data.schema.EducationInfo;
-import dev.efekos.pg.data.schema.ExperienceInfo;
-import dev.efekos.pg.data.schema.GeneralInfo;
+import dev.efekos.pg.data.schema.*;
 
 import java.util.List;
 
@@ -55,5 +52,15 @@ public class WorkContext {
 
     public void setBinPath(String binPath) {
         this.binPath = binPath;
+    }
+
+    private List<Project> projects;
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }
