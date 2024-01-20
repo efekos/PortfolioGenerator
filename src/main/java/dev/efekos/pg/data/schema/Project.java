@@ -3,6 +3,7 @@ package dev.efekos.pg.data.schema;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.ProjectLinkType;
@@ -25,6 +26,7 @@ public class Project implements JsonSchema{
     private String version;
     private String license;
     private String fullLicense; //nijson
+    private DayDate release;
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
@@ -49,6 +51,10 @@ public class Project implements JsonSchema{
         this.version = object.get("version").getAsString();
         this.license = object.get("license").getAsString();
 
+        if(!object.has("release")) throw new JsonSyntaxException("'release' required in file '"+context.getCurrentFile()+"'");
+        this.release = new DayDate(0,0,0);
+        release.readJson(object.get("release"),context);
+
         JsonObject linksObject = object.get("links").getAsJsonObject();
         linksObject.asMap().forEach((key, link) -> {
             if(!ProjectLinkType.isValidId(key)) throw new JsonParseException("Unknown link id '"+key+"'");
@@ -63,6 +69,14 @@ public class Project implements JsonSchema{
         for (JsonElement jsonElement : object.get("tags").getAsJsonArray()) {
             tags.add(jsonElement.getAsString());
         }
+    }
+
+    public DayDate getRelease() {
+        return release;
+    }
+
+    public void setRelease(DayDate release) {
+        this.release = release;
     }
 
     public String getVersion() {
