@@ -42,7 +42,7 @@ public class DataGrabber {
      */
     public DataGrabber(String mainPath) {
         this.mainPath = mainPath + "\\data";
-        this.context = new DataGrabberContext(mainPath + "\\data");
+        this.context = new DataGrabberContext(mainPath + "\\data",this.mainPath);
     }
 
     /**
