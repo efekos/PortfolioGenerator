@@ -33,12 +33,12 @@ public class Main {
     private static final WorkContext context = new WorkContext();
 
     public static void main(String[] args) throws Exception {
+        LocaleHelper.loadLocales();
         MAIN_PATH = System.getProperty("user.dir");
         System.out.println("Hello World!");
 
         long time = new Date().getTime();
 
-        LocaleHelper.loadLocales();
         startDataGrabProcess(); // read files
         startBinRefreshProcess(); // clear bin folder
         startFileGenerateProcess(); // generate files

@@ -14,6 +14,7 @@ public class LocaleHelper {
     private static final Map<String,Locale> localeList = new HashMap<>();
 
     public static void loadLocales() throws IOException {
+        System.out.println("Loading locales...");
         String jsonString = Main.readStringResource("/valid_locales.json");
         JsonObject element = JsonParser.parseString(jsonString).getAsJsonObject();
 
