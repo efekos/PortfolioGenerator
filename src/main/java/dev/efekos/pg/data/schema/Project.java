@@ -38,6 +38,8 @@ public class Project implements JsonSchema{
         checker.searchExceptions(object,"change_log",RequiredDataType.STRING);
         checker.searchExceptions(object,"tags",RequiredDataType.ARRAY);
         checker.searchExceptions(object,"summary",RequiredDataType.STRING);
+        checker.searchExceptions(object,"version",RequiredDataType.STRING);
+        checker.searchExceptions(object,"license",RequiredDataType.STRING);
 
 
         this.displayName = object.get("display_name").getAsString();
