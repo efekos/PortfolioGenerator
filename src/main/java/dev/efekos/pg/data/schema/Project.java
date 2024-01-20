@@ -7,9 +7,7 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.ProjectLinkType;
 import dev.efekos.pg.data.type.RequiredDataType;
-import dev.efekos.pg.data.type.SocialLinkType;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +24,7 @@ public class Project implements JsonSchema{
     private String summary;
     private String version;
     private String license;
+    private String fullLicense; //nijson
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
@@ -108,6 +107,14 @@ public class Project implements JsonSchema{
         return mainWebsite;
     }
 
+    public String getFullLicense() {
+        return fullLicense;
+    }
+
+    public void setFullLicense(String fullLicense) {
+        this.fullLicense = fullLicense;
+    }
+
     public void setMainWebsite(String mainWebsite) {
         this.mainWebsite = mainWebsite;
     }
@@ -134,5 +141,13 @@ public class Project implements JsonSchema{
 
     public void setReadmeFile(String readmeFile) {
         this.readmeFile = readmeFile;
+    }
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
     }
 }
