@@ -1,5 +1,9 @@
 package dev.efekos.pg.data.type;
 
+import dev.efekos.pg.data.schema.Project;
+
+import java.util.Arrays;
+
 public enum ProjectLinkType {
     ISSUES("issues","Issue Tracker"),
     SOURCE("source","Source"),
@@ -24,5 +28,13 @@ public enum ProjectLinkType {
 
     public String getDisplay() {
         return display;
+    }
+
+    public static ProjectLinkType findById(String id){
+        return Arrays.stream(values()).filter(socialLinkType -> socialLinkType.id.equals(id)).findFirst().get();
+    }
+
+    public static boolean isValidId(String id){
+        return Arrays.stream(values()).anyMatch(socialLinkType -> socialLinkType.id.equals(id));
     }
 }
