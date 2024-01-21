@@ -86,6 +86,7 @@ public class FileGenerator implements Generator {
         copyStringResource("/site/style.css", "\\style\\main_style.css", binPath);
         copyStringResource("/site/style_certificates.css", "\\style\\certificates.css", binPath);
         copyStringResource("/site/style_education.css", "\\style\\education.css", binPath);
+        copyStringResource("/site/style_projects.css", "\\style\\projects.css", binPath);
 
         System.out.println("Copied all static style files");
 
@@ -195,5 +196,13 @@ public class FileGenerator implements Generator {
         String string = Main.readStringResource("/site/icon/" + resourceName + ".svg");
         writeFile(binPath + "\\images\\icon\\" + binName + ".svg", string);
         System.out.println("Copied icon: " + resourceName);
+    }
+
+    public void generateProjectsPage(List<Project> projects) throws Exception{
+        System.out.println("Generating projects page");
+        ProjectPageGenerator generator = new ProjectPageGenerator(binPath);
+
+        generator.generateMainPage(projects);
+        System.out.println("Generated projects page");
     }
 }

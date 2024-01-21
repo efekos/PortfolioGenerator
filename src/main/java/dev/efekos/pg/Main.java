@@ -50,7 +50,7 @@ public class Main {
         System.out.println("Done in " + seconds + "s! output has been saved to " + context.getBinPath());
     }
 
-    private static void startFileGenerateProcess() throws IOException {
+    private static void startFileGenerateProcess() throws Exception {
         System.out.println("Starting file generate process");
         long time = new Date().getTime();
         FileGenerator generator = new FileGenerator(context.getBinPath());
@@ -63,6 +63,7 @@ public class Main {
         generator.generateEducationFile(context.getGrabbedGeneralInfo(),context.getGrabbedEducationInfo());
         generator.generateExperienceFile(context.getGrabbedGeneralInfo(),context.getExperienceInfo());
         generator.generateStyleFiles(context.getGrabbedGeneralInfo());
+        generator.generateProjectsPage(context.getProjects());
 
         // copying
         generator.copyIcons(context.getGrabbedGeneralInfo());
