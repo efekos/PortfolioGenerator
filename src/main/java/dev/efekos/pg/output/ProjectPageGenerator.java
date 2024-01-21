@@ -32,7 +32,7 @@ public class ProjectPageGenerator implements Generator {
                     .replaceAll("%%prname%%", project.getDisplayName())
                     .replaceAll("%%prversion%%", project.getVersion())
                     .replaceAll("%%prsummary%%", project.getSummary())
-                    .replaceAll("%%prlisence%%", project.getLicense())
+                    .replaceAll("%%prlicense%%", project.getLicense())
                     .replaceAll("%%prcreatedate%%", project.getRelease().toString());
             elements.add(element);
         }
