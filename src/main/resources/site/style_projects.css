@@ -1,0 +1,56 @@
+.glow-white {
+    filter: drop-shadow(0 0 1rem white);
+}
+
+.mainList {
+    list-style: none;
+}
+
+.mainList>li {
+    border-left:0.7rem #252525 dotted;
+    padding-left: 1rem;
+}
+
+.entry {
+    background-color: #202020;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    will-change: background-color;
+    transition: background-color 200ms;
+    border: 0.1rem #151515 solid;
+}
+
+.entry:hover {
+    background-color: #252525;
+}
+
+.entry>div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.alt {
+    font-size: 1rem;
+    color: #707070;
+    font-weight: 750;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.title {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.icon {
+    padding: 0;
+    background-color: transparent;
+    border-radius: 1rem;
+}
+
+.icon-text {
+    height: 100%;
+    vertical-align: middle;
+    margin-right: 0.1rem;
+}
