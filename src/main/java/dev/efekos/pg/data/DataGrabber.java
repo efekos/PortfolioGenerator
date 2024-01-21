@@ -149,17 +149,24 @@ public class DataGrabber {
         for (File file : dir.listFiles()) {
             if(!Files.isDirectory(file.toPath())) throw new NotDirectoryException(file.getAbsolutePath());
 
+            // log
             context.setCurrentFile(file.getPath().replace(mainPath, ""));
             System.out.println("Grabbing directory: projects/"+file.toPath().getFileName().toString());
 
+            // main json
             String mainJson = readFile(file.getPath()+"\\main.json");
             Project project = new Project();
-            context.setCurrentFile(context.getCurrentFile()+"\\mainPath.json");
+            context.setCurrentFile(context.getCurrentFile()+"\\main.json");
             project.readJson(JsonParser.parseString(mainJson),context);
 
+            // id,readme,license
             project.setId(file.toPath().getFileName().toString());
             project.setReadmeFile(grabMarkdownFile("projects\\"+project.getId()+"\\readme"));
             project.setFullLicense(grabMarkdownFile("projects\\"+project.getId()+"\\license"));
+
+            // icon
+            Path iconPath = Path.of(mainPath, "projects",project.getId(), "icon.png");
+            if(!Files.exists(iconPath)) throw new FileNotFoundException(iconPath.toString());
 
             projects.add(project);
             System.out.println("Grabbed directory: projects/"+project.getId());

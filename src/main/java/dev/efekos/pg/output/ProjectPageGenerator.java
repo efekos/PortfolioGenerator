@@ -3,6 +3,9 @@ package dev.efekos.pg.output;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.Project;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +25,29 @@ public class ProjectPageGenerator implements Generator {
         System.out.println("Generated file: projects/"+project.getId()+"/readme_finder.js");
     }
 
+    private void copyIcons(List<Project> projects) throws IOException{
+        System.out.println("Copying project icons");
+
+        for (Project project : projects) {
+            copyIcon(project);
+        }
+
+        System.out.println("Copied project icons");
+    }
+
+    private void copyIcon(Project project) throws IOException {
+        System.out.println("Copying project icon: "+project.getId());
+
+        Path dataPath = Path.of(Main.getMainPath().toString(), "data", "projects", project.getId(), "icon.png");
+        Path binPath = Path.of(this.binPath, "images", "projects", project.getId(), "icon.png");
+
+        binPath.getParent().toFile().mkdirs();
+
+        Files.copy(dataPath,binPath);
+
+        System.out.println("Copied project icon: "+project.getId());
+    }
+
     public void generateMainPage(List<Project> projects) throws Exception{
         System.out.println("Generating file: projects.html");
         List<String> elements = new ArrayList<>();
@@ -30,6 +56,7 @@ public class ProjectPageGenerator implements Generator {
         for (Project project : projects) {
             String element = elementTemplate
                     .replaceAll("%%prname%%", project.getDisplayName())
+                    .replaceAll("%%prid%%", project.getId())
                     .replaceAll("%%prversion%%", project.getVersion())
                     .replaceAll("%%prsummary%%", project.getSummary())
                     .replaceAll("%%prlicense%%", project.getLicense())
@@ -42,5 +69,6 @@ public class ProjectPageGenerator implements Generator {
 
         writeFile(binPath+"\\projects.html",file);
         System.out.println("Generated file: projects.html");
+        copyIcons(projects);
     }
 }
