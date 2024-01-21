@@ -99,10 +99,3 @@ a {
 br {
     user-select: none;
 }
-
-
-.icon {
-    background-color: #404040;
-    padding: 1rem;
-    border-radius: 100rem;
-}
