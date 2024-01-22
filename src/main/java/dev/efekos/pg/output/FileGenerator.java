@@ -198,11 +198,11 @@ public class FileGenerator implements Generator {
         System.out.println("Copied icon: " + resourceName);
     }
 
-    public void generateProjectsPage(List<Project> projects) throws Exception{
+    public void generateProjectsPage(GeneralInfo generalInfo,List<Project> projects) throws Exception{
         System.out.println("Generating projects page");
         ProjectPageGenerator generator = new ProjectPageGenerator(binPath);
 
-        generator.generateMainPage(projects);
+        generator.generateMainPage(generalInfo,projects);
         System.out.println("Generated projects page");
     }
 }

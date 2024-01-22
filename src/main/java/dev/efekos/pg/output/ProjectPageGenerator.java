@@ -1,6 +1,7 @@
 package dev.efekos.pg.output;
 
 import dev.efekos.pg.Main;
+import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.data.schema.Project;
 
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class ProjectPageGenerator implements Generator {
         System.out.println("Copied project icon: "+project.getId());
     }
 
-    public void generateMainPage(List<Project> projects) throws Exception{
+    public void generateMainPage(GeneralInfo generalInfo,List<Project> projects) throws Exception{
         System.out.println("Generating file: projects.html");
         List<String> elements = new ArrayList<>();
 
@@ -60,6 +61,7 @@ public class ProjectPageGenerator implements Generator {
                     .replaceAll("%%prversion%%", project.getVersion())
                     .replaceAll("%%prsummary%%", project.getSummary())
                     .replaceAll("%%prlicense%%", project.getLicense())
+                    .replaceAll("%%name%%",generalInfo.getName())
                     .replaceAll("%%prcreatedate%%", project.getRelease().toString());
             elements.add(element);
         }
