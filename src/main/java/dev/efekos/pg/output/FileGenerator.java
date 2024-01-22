@@ -205,4 +205,14 @@ public class FileGenerator implements Generator {
         generator.generateMainPage(generalInfo,projects);
         System.out.println("Generated projects page");
     }
+
+    public void copyLibraries() throws IOException{
+        System.out.println("Copying library files");
+
+        copyStringResource("/site/lib/marked.js","\\lib\\marked.js",binPath);
+        copyStringResource("/site/lib/prism.js","\\lib\\marked.js",binPath);
+        copyStringResource("/site/lib/prism.css","\\lib\\marked.js",binPath);
+
+        System.out.println("Copied library files");
+    }
 }

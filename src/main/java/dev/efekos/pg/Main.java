@@ -64,6 +64,7 @@ public class Main {
         generator.generateExperienceFile(context.generalInfo,context.experienceInfo);
         generator.generateStyleFiles(context.generalInfo);
         generator.generateProjectsPage(context.generalInfo,context.projects);
+        generator.copyLibraries();
 
         // copying
         generator.copyIcons(context.generalInfo);
