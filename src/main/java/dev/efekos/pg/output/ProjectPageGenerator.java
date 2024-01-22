@@ -17,13 +17,32 @@ public class ProjectPageGenerator implements Generator {
         this.binPath = binPath;
     }
 
-    private void generateScript(Project project) throws Exception{
+    private void generateScript(Project project) throws IOException{
         System.out.println("Generating file: projects/"+project.getId()+"/readme_finder.js");
         String file = Main.readStringResource("/site/project_readme_finder.js")
                 .replaceAll("%%link%%",project.getReadmeFile());
 
         writeFile(binPath+"\\projects\\"+project.getId()+"\\readme_finder.js",file);
         System.out.println("Generated file: projects/"+project.getId()+"/readme_finder.js");
+    }
+
+    public void generateSinglePage(GeneralInfo info,Project project) throws IOException{
+        Path mainDirectory = Path.of(binPath, "projects", project.getId());
+
+        Files.createDirectory(mainDirectory);
+
+        String html = Main.readStringResource("/site/project.html")
+                .replace("%%name%%",info.getName())
+                .replaceAll("%%prname%%",project.getDisplayName())
+                .replaceAll("%%prid%%",project.getId());
+
+        generateScript(project);
+    }
+
+    public void generateSinglePages(GeneralInfo info,List<Project> projects)throws IOException{
+        for (Project project : projects) {
+            generateSinglePage(info,project);
+        }
     }
 
     private void copyIcons(List<Project> projects) throws IOException{
@@ -34,19 +53,6 @@ public class ProjectPageGenerator implements Generator {
         }
 
         System.out.println("Copied project icons");
-    }
-
-    private void copyIcon(Project project) throws IOException {
-        System.out.println("Copying project icon: "+project.getId());
-
-        Path dataPath = Path.of(Main.getMainPath().toString(), "data", "projects", project.getId(), "icon.png");
-        Path binPath = Path.of(this.binPath, "images", "projects", project.getId(), "icon.png");
-
-        binPath.getParent().toFile().mkdirs();
-
-        Files.copy(dataPath,binPath);
-
-        System.out.println("Copied project icon: "+project.getId());
     }
 
     public void generateMainPage(GeneralInfo generalInfo,List<Project> projects) throws Exception{
@@ -72,5 +78,18 @@ public class ProjectPageGenerator implements Generator {
         writeFile(binPath+"\\projects.html",file);
         System.out.println("Generated file: projects.html");
         copyIcons(projects);
+    }
+
+    private void copyIcon(Project project) throws IOException {
+        System.out.println("Copying project icon: "+project.getId());
+
+        Path dataPath = Path.of(Main.getMainPath().toString(), "data", "projects", project.getId(), "icon.png");
+        Path binPath = Path.of(this.binPath, "images", "projects", project.getId(), "icon.png");
+
+        binPath.getParent().toFile().mkdirs();
+
+        Files.copy(dataPath,binPath);
+
+        System.out.println("Copied project icon: "+project.getId());
     }
 }
