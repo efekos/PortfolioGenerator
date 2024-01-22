@@ -161,12 +161,15 @@ public class DataGrabber {
 
             // id,readme,license
             project.setId(file.toPath().getFileName().toString());
-            project.setReadmeFile(grabMarkdownFile("projects\\"+project.getId()+"\\readme"));
             project.setFullLicense(grabMarkdownFile("projects\\"+project.getId()+"\\license"));
 
             // icon
             Path iconPath = Path.of(mainPath, "projects",project.getId(), "icon.png");
             if(!Files.exists(iconPath)) throw new FileNotFoundException(iconPath.toString());
+
+            // assets
+            Path assetsPath = Path.of(mainPath,"projects",project.getId(),"assets");
+            if(!Files.exists(assetsPath)) throw new FileNotFoundException(assetsPath+". Note that this folder will be copied, so put your gallery images here.");
 
             projects.add(project);
             System.out.println("Grabbed directory: projects/"+project.getId());

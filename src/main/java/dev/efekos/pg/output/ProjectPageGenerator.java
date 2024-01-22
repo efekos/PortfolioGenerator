@@ -1,12 +1,15 @@
 package dev.efekos.pg.output;
 
+import com.sun.nio.file.ExtendedCopyOption;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.data.schema.Project;
+import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +31,21 @@ public class ProjectPageGenerator implements Generator {
 
     public void generateSinglePage(GeneralInfo info,Project project) throws IOException{
         Path mainDirectory = Path.of(binPath, "projects", project.getId());
+        Path mainDataDirectory = Path.of(Main.getMainPath().toString(),"data", "projects", project.getId());
 
         mainDirectory.toFile().mkdirs();
 
+        //index.html
         String html = Main.readStringResource("/site/project.html")
                 .replace("%%name%%",info.getName())
                 .replaceAll("%%prname%%",project.getDisplayName())
                 .replaceAll("%%prid%%",project.getId());
 
         writeFile(mainDirectory+"\\index.html",html);
+
+        //assets
+        Path assetsDirectory = Path.of(mainDataDirectory.toString(), "assets");
+        FileUtils.copyDirectory(assetsDirectory.toFile(),Path.of(mainDirectory.toString(),"assets").toFile());
 
         generateScript(project);
     }
