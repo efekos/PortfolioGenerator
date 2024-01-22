@@ -98,3 +98,7 @@ pre[class*="language-"] {
     display: inline-block;
     vertical-align: middle;
 }
+
+.nav>li>a{
+    color: white;
+}
