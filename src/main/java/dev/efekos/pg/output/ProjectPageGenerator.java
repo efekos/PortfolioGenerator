@@ -29,12 +29,14 @@ public class ProjectPageGenerator implements Generator {
     public void generateSinglePage(GeneralInfo info,Project project) throws IOException{
         Path mainDirectory = Path.of(binPath, "projects", project.getId());
 
-        Files.createDirectory(mainDirectory);
+        mainDirectory.toFile().mkdirs();
 
         String html = Main.readStringResource("/site/project.html")
                 .replace("%%name%%",info.getName())
                 .replaceAll("%%prname%%",project.getDisplayName())
                 .replaceAll("%%prid%%",project.getId());
+
+        writeFile(mainDirectory+"\\index.html",html);
 
         generateScript(project);
     }

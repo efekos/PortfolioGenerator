@@ -203,6 +203,7 @@ public class FileGenerator implements Generator {
         ProjectPageGenerator generator = new ProjectPageGenerator(binPath);
 
         generator.generateMainPage(generalInfo,projects);
+        generator.generateSinglePages(generalInfo,projects);
         System.out.println("Generated projects page");
     }
 
@@ -210,8 +211,8 @@ public class FileGenerator implements Generator {
         System.out.println("Copying library files");
 
         copyStringResource("/site/lib/marked.js","\\lib\\marked.js",binPath);
-        copyStringResource("/site/lib/prism.js","\\lib\\marked.js",binPath);
-        copyStringResource("/site/lib/prism.css","\\lib\\marked.js",binPath);
+        copyStringResource("/site/lib/prism.js","\\lib\\prism.js",binPath);
+        copyStringResource("/site/lib/prism.css","\\lib\\prism.css",binPath);
 
         System.out.println("Copied library files");
     }

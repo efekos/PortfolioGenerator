@@ -42,6 +42,7 @@ public class Project implements JsonSchema{
         checker.searchExceptions(object,"summary",RequiredDataType.STRING);
         checker.searchExceptions(object,"version",RequiredDataType.STRING);
         checker.searchExceptions(object,"license",RequiredDataType.STRING);
+        checker.searchExceptions(object,"readme_link",RequiredDataType.STRING);
 
 
         this.displayName = object.get("display_name").getAsString();
@@ -50,6 +51,7 @@ public class Project implements JsonSchema{
         this.summary = object.get("summary").getAsString();
         this.version = object.get("version").getAsString();
         this.license = object.get("license").getAsString();
+        this.readmeFile = object.get("readme_link").getAsString();
 
         if(!object.has("release")) throw new JsonSyntaxException("'release' required in file '"+context.getCurrentFile()+"'");
         this.release = new DayDate(0,0,0);
