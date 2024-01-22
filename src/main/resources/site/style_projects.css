@@ -54,3 +54,47 @@
     vertical-align: middle;
     margin-right: 0.1rem;
 }
+
+.hidden {
+    color: transparent;
+    background-color: #252525;
+}
+
+.markdown {
+    padding: 1rem;
+    border: #4d5153 solid 0.15rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+}
+
+.nav {
+    list-style: none;
+    vertical-align: middle;
+    background-color: #232627;
+    text-align: left;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.nav>li {
+    display: inline-block;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    padding: 0.5rem;
+    user-select: none;
+}
+
+.nav>li#selected {
+    border-bottom: #0080ff 0.25rem solid;
+}
+
+pre[class*="language-"] {
+    padding: 1rem;
+    border: #4d5153 0.1rem solid;
+    border-radius: 0.15rem;
+}
+
+.horizontal-list div {
+    display: inline-block;
+    vertical-align: middle;
+}
