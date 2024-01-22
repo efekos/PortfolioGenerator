@@ -43,6 +43,16 @@ public class ProjectPageGenerator implements Generator {
 
         writeFile(mainDirectory+"\\index.html",html);
 
+        //license.html
+        String license = Main.readStringResource("/site/project_license.html")
+                .replaceAll("%%name%%",info.getName())
+                .replaceAll("%%prname%%",project.getDisplayName())
+                .replaceAll("%%prid%%",project.getId())
+                .replaceAll("%%prlicense%%",project.getLicense())
+                .replaceAll("%%prflicense%%",project.getFullLicense());
+
+        writeFile(mainDirectory+"\\license.html",license);
+
         //assets
         Path assetsDirectory = Path.of(mainDataDirectory.toString(), "assets");
         FileUtils.copyDirectory(assetsDirectory.toFile(),Path.of(mainDirectory.toString(),"assets").toFile());
