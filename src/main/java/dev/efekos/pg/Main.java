@@ -47,26 +47,26 @@ public class Main {
 
         float seconds = (float) (time2 - time) / 1000;
 
-        System.out.println("Done in " + seconds + "s! output has been saved to " + context.getBinPath());
+        System.out.println("Done in " + seconds + "s! output has been saved to " + context.binPath);
     }
 
     private static void startFileGenerateProcess() throws Exception {
         System.out.println("Starting file generate process");
         long time = new Date().getTime();
-        FileGenerator generator = new FileGenerator(context.getBinPath());
+        FileGenerator generator = new FileGenerator(context.binPath);
 
         // generating
-        generator.generateIndexFile(context.getGrabbedGeneralInfo());
-        generator.generateCertificatesFile(context.getGrabbedGeneralInfo(), context.getCertificates());
-        generator.generateBioFile(context.getGrabbedGeneralInfo());
-        generator.generateScriptFiles(context.getGrabbedGeneralInfo());
-        generator.generateEducationFile(context.getGrabbedGeneralInfo(),context.getGrabbedEducationInfo());
-        generator.generateExperienceFile(context.getGrabbedGeneralInfo(),context.getExperienceInfo());
-        generator.generateStyleFiles(context.getGrabbedGeneralInfo());
-        generator.generateProjectsPage(context.getProjects());
+        generator.generateIndexFile(context.generalInfo);
+        generator.generateCertificatesFile(context.generalInfo, context.certificates);
+        generator.generateBioFile(context.generalInfo);
+        generator.generateScriptFiles(context.generalInfo);
+        generator.generateEducationFile(context.generalInfo,context.educationInfo);
+        generator.generateExperienceFile(context.generalInfo,context.experienceInfo);
+        generator.generateStyleFiles(context.generalInfo);
+        generator.generateProjectsPage(context.generalInfo,context.projects);
 
         // copying
-        generator.copyIcons(context.getGrabbedGeneralInfo());
+        generator.copyIcons(context.generalInfo);
 
 
         long time2 = new Date().getTime();
@@ -85,7 +85,7 @@ public class Main {
 
         Files.createDirectory(binPath);
 
-        context.setBinPath(binPathString);
+        context.binPath = binPathString;
 
         long time2 = new Date().getTime();
         float difference = (float) (time2 - time) / 1000;
@@ -105,11 +105,11 @@ public class Main {
         List<Certificate> certificates = grabber.grabCertificates();
         List<Project> projects = grabber.grabProjects();
 
-        context.setGrabbedGeneralInfo(generalInfo);
-        context.setGrabbedEducationInfo(educationInfo);
-        context.setExperienceInfo(info);
-        context.setCertificates(certificates);
-        context.setProjects(projects);
+        context.generalInfo = generalInfo;
+        context.educationInfo = educationInfo;
+        context.experienceInfo = info;
+        context.certificates = certificates;
+        context.projects = projects;
 
         long time2 = new Date().getTime();
         float difference = (float) (time2 - time) / 1000;
