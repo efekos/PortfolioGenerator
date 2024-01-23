@@ -80,7 +80,7 @@ public class FileGenerator implements Generator {
         generator.generate(generalInfo, experienceInfo);
     }
 
-    public void generateStyleFiles(GeneralInfo info) throws IOException {
+    public void generateStyleFiles(GeneralInfo info,TagColorInfo tagColorInfo) throws IOException {
         System.out.println("Copying static style files");
 
         copyStringResource("/site/style.css", "\\style\\main_style.css", binPath);
@@ -122,6 +122,16 @@ public class FileGenerator implements Generator {
 
         writeFile(binPath + "\\style\\social_icons.css", String.join("\n", generatedSelections));
         System.out.println("Generated file: style/social_icons.css");
+
+        System.out.println("Generating file: style/project_tags.css");
+        List<String> generatedSelectors = new ArrayList<>();
+        String template = Main.readStringResource("/site/style_project_tag.css");
+        tagColorInfo.getColors().forEach((key, color) -> {
+            generatedSelectors.add(template.replaceAll("%%tcolor%%",color).replaceAll("%%tname%%",key));
+        });
+
+        writeFile(binPath+"\\style\\project_tags.css",String.join("\n",generatedSelectors));
+        System.out.println("Generated file: style/project_tags.css");
 
         System.out.println("Generates all non-static style files");
     }

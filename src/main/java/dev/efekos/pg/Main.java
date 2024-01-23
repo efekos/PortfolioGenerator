@@ -62,7 +62,7 @@ public class Main {
         generator.generateScriptFiles(context.generalInfo);
         generator.generateEducationFile(context.generalInfo, context.educationInfo);
         generator.generateExperienceFile(context.generalInfo, context.experienceInfo);
-        generator.generateStyleFiles(context.generalInfo);
+        generator.generateStyleFiles(context.generalInfo,context.tagColorInfo);
         generator.generateProjectsPage(context.generalInfo, context.projects);
         generator.copyLibraries();
 

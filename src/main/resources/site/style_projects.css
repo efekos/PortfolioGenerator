@@ -1,3 +1,5 @@
+@import "./project_tags.css";
+
 .glow-white {
     filter: drop-shadow(0 0 1rem white);
 }
