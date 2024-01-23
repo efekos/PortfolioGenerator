@@ -87,6 +87,7 @@ public class FileGenerator implements Generator {
         copyStringResource("/site/style_certificates.css", "\\style\\certificates.css", binPath);
         copyStringResource("/site/style_education.css", "\\style\\education.css", binPath);
         copyStringResource("/site/style_projects.css", "\\style\\projects.css", binPath);
+        copyStringResource("/site/style_gallery_modals.css", "\\style\\gallery_modals.css", binPath);
 
         System.out.println("Copied all static style files");
 

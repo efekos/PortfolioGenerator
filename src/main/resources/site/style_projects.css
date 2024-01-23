@@ -1,4 +1,5 @@
 @import "./project_tags.css";
+@import "./gallery_modals.css";
 
 .glow-white {
     filter: drop-shadow(0 0 1rem white);
