@@ -100,6 +100,7 @@ public class ProjectPageGenerator implements Generator {
                     .replaceAll("%%prsummary%%", project.getSummary())
                     .replaceAll("%%prlicense%%", project.getLicense())
                     .replaceAll("%%name%%", generalInfo.getName())
+                    .replaceAll("%%tags%%",String.join("",project.getTags().stream().map(s -> "<div class=\"project-tag-"+s+"\">"+s+"</div>").toList()))
                     .replaceAll("%%prcreatedate%%", project.getRelease().toString());
             elements.add(element);
         }
