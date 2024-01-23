@@ -105,12 +105,14 @@ public class Main {
         ExperienceInfo info = grabber.grabExperienceInfo();
         List<Certificate> certificates = grabber.grabCertificates();
         List<Project> projects = grabber.grabProjects();
+        TagColorInfo grabTagColorInfo = grabber.grabTagColorInfo();
 
         context.generalInfo = generalInfo;
         context.educationInfo = educationInfo;
         context.experienceInfo = info;
         context.certificates = certificates;
         context.projects = projects;
+        context.tagColorInfo = grabTagColorInfo;
 
         long time2 = new Date().getTime();
         float difference = (float) (time2 - time) / 1000;

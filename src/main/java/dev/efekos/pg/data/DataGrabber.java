@@ -70,6 +70,18 @@ public class DataGrabber {
         return Files.readString(path);
     }
 
+    public TagColorInfo grabTagColorInfo() throws IOException{
+        String path = mainPath + "\\tag_colors.json";
+
+        String file = readFile(path);
+        JsonElement element = JsonParser.parseString(file);
+
+        TagColorInfo info = new TagColorInfo();
+        context.setCurrentFile("tag_colors.json");
+        info.readJson(element,context);
+        return info;
+    }
+
 
     public String grabMarkdownFile(String fileName) throws IOException {
         String file = readFile(mainPath + "\\" + fileName + ".md");

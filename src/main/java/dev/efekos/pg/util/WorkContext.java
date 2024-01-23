@@ -11,4 +11,5 @@ public class WorkContext {
     public String binPath;
     public List<Certificate> certificates;
     public List<Project> projects;
+    public TagColorInfo tagColorInfo;
 }
