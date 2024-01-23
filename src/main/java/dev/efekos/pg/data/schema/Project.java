@@ -27,6 +27,7 @@ public class Project implements JsonSchema {
     private String license;
     private String fullLicense; //nijson
     private DayDate release;
+    private ProjectGalleryImageList galleryImages;
 
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
@@ -73,6 +74,14 @@ public class Project implements JsonSchema {
         for (JsonElement jsonElement : object.get("tags").getAsJsonArray()) {
             tags.add(jsonElement.getAsString());
         }
+    }
+
+    public ProjectGalleryImageList getGalleryImages() {
+        return galleryImages;
+    }
+
+    public void setGalleryImages(ProjectGalleryImageList galleryImages) {
+        this.galleryImages = galleryImages;
     }
 
     public DayDate getRelease() {

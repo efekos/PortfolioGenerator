@@ -154,26 +154,32 @@ public class DataGrabber {
         if (!Files.exists(dirPath)) throw new FileNotFoundException(dirPathString);
         if (!Files.isDirectory(dirPath)) throw new NotDirectoryException(dirPathString);
 
-        File dir = new File(dirPathString);
+        File projectsDir = new File(dirPathString);
 
 
         List<Project> projects = new ArrayList<>();
-        for (File file : dir.listFiles()) {
-            if (!Files.isDirectory(file.toPath())) throw new NotDirectoryException(file.getAbsolutePath());
+        for (File dir : projectsDir.listFiles()) {
+            if (!Files.isDirectory(dir.toPath())) throw new NotDirectoryException(dir.getAbsolutePath());
 
             // log
-            context.setCurrentFile(file.getPath().replace(mainPath, ""));
-            System.out.println("Grabbing directory: projects/" + file.toPath().getFileName().toString());
+            context.setCurrentFile(dir.getPath().replace(mainPath, ""));
+            System.out.println("Grabbing directory: projects/" + dir.toPath().getFileName().toString());
 
             // main json
-            String mainJson = readFile(file.getPath() + "\\main.json");
+            String mainJson = readFile(dir.getPath() + "\\main.json");
             Project project = new Project();
             context.setCurrentFile(context.getCurrentFile() + "\\main.json");
             project.readJson(JsonParser.parseString(mainJson), context);
 
             // id,readme,license
-            project.setId(file.toPath().getFileName().toString());
+            project.setId(dir.toPath().getFileName().toString());
             project.setFullLicense(grabMarkdownFile("projects\\" + project.getId() + "\\license"));
+
+            // gallery
+            ProjectGalleryImageList images = new ProjectGalleryImageList();
+            context.setCurrentFile("projects/"+project.getId()+"/gallery.json");
+            images.readJson(JsonParser.parseString(readFile(dir.getPath()+"\\gallery.json")),context);
+            project.setGalleryImages(images);
 
             // icon
             Path iconPath = Path.of(mainPath, "projects", project.getId(), "icon.png");
@@ -182,7 +188,7 @@ public class DataGrabber {
             // assets
             Path assetsPath = Path.of(mainPath, "projects", project.getId(), "assets");
             if (!Files.exists(assetsPath))
-                throw new FileNotFoundException(assetsPath + ". Note that this folder will be copied, so put your gallery images here.");
+                throw new FileNotFoundException(assetsPath.toString());
 
             projects.add(project);
             System.out.println("Grabbed directory: projects/" + project.getId());
