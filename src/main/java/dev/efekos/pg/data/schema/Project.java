@@ -14,10 +14,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Project implements JsonSchema{
+public class Project implements JsonSchema {
     private String id; // nijson
     private String displayName;
-    private Map<ProjectLinkType,String> links = new HashMap<>();
+    private Map<ProjectLinkType, String> links = new HashMap<>();
     private String mainWebsite;
     private String changeLogFile;
     private List<String> tags = new ArrayList<>();
@@ -27,6 +27,7 @@ public class Project implements JsonSchema{
     private String license;
     private String fullLicense; //nijson
     private DayDate release;
+
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
@@ -34,15 +35,15 @@ public class Project implements JsonSchema{
         checker.expectObject(element);
         JsonObject object = element.getAsJsonObject();
 
-        checker.searchExceptions(object,"display_name", RequiredDataType.STRING);
-        checker.searchExceptions(object,"links",RequiredDataType.OBJECT);
-        checker.searchExceptions(object,"main_website",RequiredDataType.STRING);
-        checker.searchExceptions(object,"change_log",RequiredDataType.STRING);
-        checker.searchExceptions(object,"tags",RequiredDataType.ARRAY);
-        checker.searchExceptions(object,"summary",RequiredDataType.STRING);
-        checker.searchExceptions(object,"version",RequiredDataType.STRING);
-        checker.searchExceptions(object,"license",RequiredDataType.STRING);
-        checker.searchExceptions(object,"readme_link",RequiredDataType.STRING);
+        checker.searchExceptions(object, "display_name", RequiredDataType.STRING);
+        checker.searchExceptions(object, "links", RequiredDataType.OBJECT);
+        checker.searchExceptions(object, "main_website", RequiredDataType.STRING);
+        checker.searchExceptions(object, "change_log", RequiredDataType.STRING);
+        checker.searchExceptions(object, "tags", RequiredDataType.ARRAY);
+        checker.searchExceptions(object, "summary", RequiredDataType.STRING);
+        checker.searchExceptions(object, "version", RequiredDataType.STRING);
+        checker.searchExceptions(object, "license", RequiredDataType.STRING);
+        checker.searchExceptions(object, "readme_link", RequiredDataType.STRING);
 
 
         this.displayName = object.get("display_name").getAsString();
@@ -53,18 +54,19 @@ public class Project implements JsonSchema{
         this.license = object.get("license").getAsString();
         this.readmeFile = object.get("readme_link").getAsString();
 
-        if(!object.has("release")) throw new JsonSyntaxException("'release' required in file '"+context.getCurrentFile()+"'");
-        this.release = new DayDate(0,0,0);
-        release.readJson(object.get("release"),context);
+        if (!object.has("release"))
+            throw new JsonSyntaxException("'release' required in file '" + context.getCurrentFile() + "'");
+        this.release = new DayDate(0, 0, 0);
+        release.readJson(object.get("release"), context);
 
         JsonObject linksObject = object.get("links").getAsJsonObject();
         linksObject.asMap().forEach((key, link) -> {
-            if(!ProjectLinkType.isValidId(key)) throw new JsonParseException("Unknown link id '"+key+"'");
+            if (!ProjectLinkType.isValidId(key)) throw new JsonParseException("Unknown link id '" + key + "'");
 
             ProjectLinkType id = ProjectLinkType.findById(key);
 
-            if(this.links.containsKey(id)) throw new JsonParseException("Link id '"+key+"' used more than once");
-            this.links.put(id,link.getAsString());
+            if (this.links.containsKey(id)) throw new JsonParseException("Link id '" + key + "' used more than once");
+            this.links.put(id, link.getAsString());
         });
 
         tags.clear();

@@ -37,7 +37,7 @@ public class DataGrabber {
      */
     public DataGrabber(String mainPath) {
         this.mainPath = mainPath + "\\data";
-        this.context = new DataGrabberContext(mainPath + "\\data",this.mainPath);
+        this.context = new DataGrabberContext(mainPath + "\\data", this.mainPath);
     }
 
     /**
@@ -73,7 +73,7 @@ public class DataGrabber {
 
     public String grabMarkdownFile(String fileName) throws IOException {
         String file = readFile(mainPath + "\\" + fileName + ".md");
-        System.out.println("Reading markdown: " + fileName.replaceAll("\\\\","/"));
+        System.out.println("Reading markdown: " + fileName.replaceAll("\\\\", "/"));
 
         return Utilities.markdownToHtml(file);
     }
@@ -136,43 +136,44 @@ public class DataGrabber {
 
     public List<Project> grabProjects() throws IOException {
         System.out.println("Grabbing directory: projects");
-        String dirPathString = mainPath+"\\projects";
+        String dirPathString = mainPath + "\\projects";
         Path dirPath = Path.of(dirPathString);
 
-        if(!Files.exists(dirPath)) throw new FileNotFoundException(dirPathString);
-        if(!Files.isDirectory(dirPath)) throw new NotDirectoryException(dirPathString);
+        if (!Files.exists(dirPath)) throw new FileNotFoundException(dirPathString);
+        if (!Files.isDirectory(dirPath)) throw new NotDirectoryException(dirPathString);
 
         File dir = new File(dirPathString);
 
 
         List<Project> projects = new ArrayList<>();
         for (File file : dir.listFiles()) {
-            if(!Files.isDirectory(file.toPath())) throw new NotDirectoryException(file.getAbsolutePath());
+            if (!Files.isDirectory(file.toPath())) throw new NotDirectoryException(file.getAbsolutePath());
 
             // log
             context.setCurrentFile(file.getPath().replace(mainPath, ""));
-            System.out.println("Grabbing directory: projects/"+file.toPath().getFileName().toString());
+            System.out.println("Grabbing directory: projects/" + file.toPath().getFileName().toString());
 
             // main json
-            String mainJson = readFile(file.getPath()+"\\main.json");
+            String mainJson = readFile(file.getPath() + "\\main.json");
             Project project = new Project();
-            context.setCurrentFile(context.getCurrentFile()+"\\main.json");
-            project.readJson(JsonParser.parseString(mainJson),context);
+            context.setCurrentFile(context.getCurrentFile() + "\\main.json");
+            project.readJson(JsonParser.parseString(mainJson), context);
 
             // id,readme,license
             project.setId(file.toPath().getFileName().toString());
-            project.setFullLicense(grabMarkdownFile("projects\\"+project.getId()+"\\license"));
+            project.setFullLicense(grabMarkdownFile("projects\\" + project.getId() + "\\license"));
 
             // icon
-            Path iconPath = Path.of(mainPath, "projects",project.getId(), "icon.png");
-            if(!Files.exists(iconPath)) throw new FileNotFoundException(iconPath.toString());
+            Path iconPath = Path.of(mainPath, "projects", project.getId(), "icon.png");
+            if (!Files.exists(iconPath)) throw new FileNotFoundException(iconPath.toString());
 
             // assets
-            Path assetsPath = Path.of(mainPath,"projects",project.getId(),"assets");
-            if(!Files.exists(assetsPath)) throw new FileNotFoundException(assetsPath+". Note that this folder will be copied, so put your gallery images here.");
+            Path assetsPath = Path.of(mainPath, "projects", project.getId(), "assets");
+            if (!Files.exists(assetsPath))
+                throw new FileNotFoundException(assetsPath + ". Note that this folder will be copied, so put your gallery images here.");
 
             projects.add(project);
-            System.out.println("Grabbed directory: projects/"+project.getId());
+            System.out.println("Grabbed directory: projects/" + project.getId());
         }
 
         System.out.println("Grabbed directory: projects");

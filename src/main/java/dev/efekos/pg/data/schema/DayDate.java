@@ -8,13 +8,12 @@ import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 import dev.efekos.pg.util.DateHelper;
 
-import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 /**
  * Represents a date that just needs a day, year, and month.
  */
-public class DayDate implements JsonSchema,Comparable<DayDate> {
+public class DayDate implements JsonSchema, Comparable<DayDate> {
     /**
      * Day of the date. Will be day of the month (such as 2nd July, but not Tuesday)
      */
@@ -99,14 +98,14 @@ public class DayDate implements JsonSchema,Comparable<DayDate> {
     public void readJson(JsonElement element, DataGrabberContext context) {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
 
-        if(element.isJsonObject()) parseObject(element.getAsJsonObject(),checker);
+        if (element.isJsonObject()) parseObject(element.getAsJsonObject(), checker);
         else parseString(element);
     }
 
     private void parseString(JsonElement element) {
         String stringDate = element.getAsString();
 
-        if(!STRING_DATE_PATTERN.matcher(stringDate).matches()) throw new JsonParseException("Invalid date");
+        if (!STRING_DATE_PATTERN.matcher(stringDate).matches()) throw new JsonParseException("Invalid date");
 
         String[] members = stringDate.split("-");
 
@@ -133,8 +132,8 @@ public class DayDate implements JsonSchema,Comparable<DayDate> {
         int monthc = month.compareTo(other.month);
         int dayc = day.compareTo(other.day);
 
-        if(yearc==0){
-            if(monthc==0){
+        if (yearc == 0) {
+            if (monthc == 0) {
                 return dayc;
             } else return monthc;
         } else return yearc;
@@ -142,6 +141,6 @@ public class DayDate implements JsonSchema,Comparable<DayDate> {
 
     @Override
     public String toString() {
-        return day+" of "+ DateHelper.monthToString(month)+", "+year;
+        return day + " of " + DateHelper.monthToString(month) + ", " + year;
     }
 }

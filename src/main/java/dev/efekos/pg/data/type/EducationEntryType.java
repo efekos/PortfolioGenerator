@@ -1,10 +1,10 @@
 package dev.efekos.pg.data.type;
 
 public enum EducationEntryType {
-    SCHOOL("school","School"),
-    UNIVERSITY("university","University"),
-    DEGREE("degree","Degree"),
-    COURSE("course","Course");
+    SCHOOL("school", "School"),
+    UNIVERSITY("university", "University"),
+    DEGREE("degree", "Degree"),
+    COURSE("course", "Course");
 
     private final String id;
     private final String display;

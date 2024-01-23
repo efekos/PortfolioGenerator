@@ -60,10 +60,10 @@ public class DataTypeChecker {
     }
 
     public void expectObject(JsonElement element) throws JsonParseException {
-        if(!element.isJsonObject()) throw new JsonSyntaxException("'"+currentFile+"' must be an object");
+        if (!element.isJsonObject()) throw new JsonSyntaxException("'" + currentFile + "' must be an object");
     }
 
     public void expectArray(JsonElement element) throws JsonParseException {
-        if(!element.isJsonArray()) throw new JsonSyntaxException("'"+currentFile+"' must be an array");
+        if (!element.isJsonArray()) throw new JsonSyntaxException("'" + currentFile + "' must be an array");
     }
 }

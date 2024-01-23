@@ -43,7 +43,7 @@ public class Certificate implements JsonSchema {
 
         // display
         CertificateDisplay certificateDisplay = new CertificateDisplay("", "", "");
-        certificateDisplay.readJson(object.get("display"),context);
+        certificateDisplay.readJson(object.get("display"), context);
         setDisplay(certificateDisplay);
 
         // images

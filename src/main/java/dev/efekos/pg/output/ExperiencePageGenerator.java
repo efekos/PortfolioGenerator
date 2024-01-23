@@ -62,7 +62,7 @@ public class ExperiencePageGenerator implements Generator {
         String file = Main.readStringResource("/site/experience.html")
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%cc%%", currentJobElement)
-                .replaceAll("%%ch%%",!currentJobElement.equals("")?"<h2>Job History</h2><br>":"")
+                .replaceAll("%%ch%%", !currentJobElement.equals("") ? "<h2>Job History</h2><br>" : "")
                 .replaceAll("%%name%%", generalInfo.getName());
 
         writeFile(binPath + "\\experience.html", file);
@@ -77,7 +77,7 @@ public class ExperiencePageGenerator implements Generator {
 
         elementsGenerated.clear();
         for (ExperienceEntry entry : entries) {
-            if(entry.isCurrentJob())continue;
+            if (entry.isCurrentJob()) continue;
             String element = EDUCATION_ENTRY_ELEMENT.replaceAll("%%pcompany%%", entry.getCompany())
                     .replaceAll("%%ppos%%", entry.getPosition())
                     .replaceAll("%%pstart%%", entry.getFrom().toString())
@@ -93,7 +93,7 @@ public class ExperiencePageGenerator implements Generator {
                     .replaceAll("%%pstart%%", entry.getFrom().toString())
                     .replaceAll("%%pend%%", entry.getTo().toString());
 
-            currentJobElement = "<br><h2>Current Job</h2><br>" + element+"<br><br>";
+            currentJobElement = "<br><h2>Current Job</h2><br>" + element + "<br><br>";
         }
     }
 }

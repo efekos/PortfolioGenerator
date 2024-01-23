@@ -1,13 +1,14 @@
 package dev.efekos.pg.data.schema;
 
-import com.google.gson.*;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 import dev.efekos.pg.data.type.SocialLinkType;
-import dev.efekos.pg.util.LocaleHelper;
 import dev.efekos.pg.util.Locale;
-
+import dev.efekos.pg.util.LocaleHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class GeneralInfo implements JsonSchema {
     private List<String> knownLanguages;
     private String welcomer;
     private String bio;
-    private Map<SocialLinkType,String> socialLinks = new HashMap<>();
+    private Map<SocialLinkType, String> socialLinks = new HashMap<>();
 
     public GeneralInfo(String name, DayDate birthDate, String title) {
         this.name = name;
@@ -90,7 +91,8 @@ public class GeneralInfo implements JsonSchema {
 
         // native_language
         this.nativeLanguage = object.get("native_language").getAsString();
-        if(!LocaleHelper.isValid(this.nativeLanguage)) throw new JsonParseException("Unknown native language code '"+this.nativeLanguage+"'");
+        if (!LocaleHelper.isValid(this.nativeLanguage))
+            throw new JsonParseException("Unknown native language code '" + this.nativeLanguage + "'");
 
         // known_languages
         try {
@@ -106,10 +108,11 @@ public class GeneralInfo implements JsonSchema {
             this.knownLanguages = new ArrayList<>();
         }
         for (String knownLanguage : this.knownLanguages) {
-            if(!LocaleHelper.isValid(knownLanguage)) throw new JsonParseException("Unknown known language code '"+knownLanguage+"'");
+            if (!LocaleHelper.isValid(knownLanguage))
+                throw new JsonParseException("Unknown known language code '" + knownLanguage + "'");
         }
 
-        if(!this.knownLanguages.contains(this.nativeLanguage)) {
+        if (!this.knownLanguages.contains(this.nativeLanguage)) {
             System.out.println("[WARNING] Known languages doesn't contain native language, automatically adding native language into known languages");
             knownLanguages.add(nativeLanguage);
         }
@@ -117,12 +120,13 @@ public class GeneralInfo implements JsonSchema {
         // social_links
         JsonObject linksObject = object.get("social_links").getAsJsonObject();
         linksObject.asMap().forEach((key, link) -> {
-            if(!SocialLinkType.isValidId(key)) throw new JsonParseException("Unknown social link id '"+key+"'");
+            if (!SocialLinkType.isValidId(key)) throw new JsonParseException("Unknown social link id '" + key + "'");
 
             SocialLinkType id = SocialLinkType.findById(key);
 
-            if(socialLinks.containsKey(id)) throw new JsonParseException("Social link id '"+key+"' used more than once");
-            socialLinks.put(id,link.getAsString());
+            if (socialLinks.containsKey(id))
+                throw new JsonParseException("Social link id '" + key + "' used more than once");
+            socialLinks.put(id, link.getAsString());
         });
     }
 

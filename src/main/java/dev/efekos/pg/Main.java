@@ -60,10 +60,10 @@ public class Main {
         generator.generateCertificatesFile(context.generalInfo, context.certificates);
         generator.generateBioFile(context.generalInfo);
         generator.generateScriptFiles(context.generalInfo);
-        generator.generateEducationFile(context.generalInfo,context.educationInfo);
-        generator.generateExperienceFile(context.generalInfo,context.experienceInfo);
+        generator.generateEducationFile(context.generalInfo, context.educationInfo);
+        generator.generateExperienceFile(context.generalInfo, context.experienceInfo);
         generator.generateStyleFiles(context.generalInfo);
-        generator.generateProjectsPage(context.generalInfo,context.projects);
+        generator.generateProjectsPage(context.generalInfo, context.projects);
         generator.copyLibraries();
 
         // copying

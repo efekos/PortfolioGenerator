@@ -10,7 +10,7 @@ import dev.efekos.pg.util.DateHelper;
 
 import java.util.regex.Pattern;
 
-public class MonthDate implements JsonSchema,Comparable<MonthDate> {
+public class MonthDate implements JsonSchema, Comparable<MonthDate> {
     private Integer month;
     private Integer year;
 
@@ -39,13 +39,13 @@ public class MonthDate implements JsonSchema,Comparable<MonthDate> {
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
 
-        if(element.isJsonObject())parseObject(checker, element.getAsJsonObject());
+        if (element.isJsonObject()) parseObject(checker, element.getAsJsonObject());
         else parseString(element.getAsString());
     }
 
     private void parseString(String date) {
 
-        if(!STRING_DATE_PATTERN.matcher(date).matches()) throw new JsonParseException("Invalid date");
+        if (!STRING_DATE_PATTERN.matcher(date).matches()) throw new JsonParseException("Invalid date");
 
         String[] members = date.split("-");
 
@@ -78,6 +78,6 @@ public class MonthDate implements JsonSchema,Comparable<MonthDate> {
 
     @Override
     public String toString() {
-        return DateHelper.monthToString(month)+", "+year;
+        return DateHelper.monthToString(month) + ", " + year;
     }
 }

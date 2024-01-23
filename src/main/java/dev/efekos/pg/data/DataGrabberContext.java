@@ -10,7 +10,7 @@ public class DataGrabberContext {
     }
 
     public void setCurrentFile(String currentFile) {
-        this.currentFile = currentFile.replaceAll("\\\\","/");
+        this.currentFile = currentFile.replaceAll("\\\\", "/");
     }
 
     public String getCurrentFile() {

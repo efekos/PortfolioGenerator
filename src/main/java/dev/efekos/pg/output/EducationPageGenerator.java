@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class EducationPageGenerator implements Generator{
+public class EducationPageGenerator implements Generator {
     private final String binPath;
 
     public EducationPageGenerator(String binPath) {
@@ -36,19 +36,19 @@ public class EducationPageGenerator implements Generator{
                             </li>\
                     """;
 
-    public void generate(GeneralInfo generalInfo,EducationInfo info) throws IOException{
+    public void generate(GeneralInfo generalInfo, EducationInfo info) throws IOException {
         System.out.println("Generating file: education.html");
         generateElements(info);
-        generateFile(generalInfo,info);
+        generateFile(generalInfo, info);
         System.out.println("Generated file: education.html");
     }
 
-    private void generateFile(GeneralInfo generalInfo,EducationInfo info) throws IOException {
+    private void generateFile(GeneralInfo generalInfo, EducationInfo info) throws IOException {
         String file = Main.readStringResource("/site/education.html")
-                .replaceAll("%%entries%%",String.join("",elementsGenerated))
-                .replaceAll("%%name%%",generalInfo.getName());
+                .replaceAll("%%entries%%", String.join("", elementsGenerated))
+                .replaceAll("%%name%%", generalInfo.getName());
 
-        writeFile(binPath+"\\education.html",file);
+        writeFile(binPath + "\\education.html", file);
     }
 
     private final List<String> elementsGenerated = new ArrayList<>();
@@ -59,11 +59,11 @@ public class EducationPageGenerator implements Generator{
 
         elementsGenerated.clear();
         for (EducationEntry entry : entries) {
-            String element = EDUCATION_ENTRY_ELEMENT.replaceAll("%%pname%%",entry.getTitle())
-                    .replaceAll("%%ptype%%",entry.getType().getDisplay())
-                    .replaceAll("%%plocation%%",entry.getLocation())
-                    .replaceAll("%%pstart%%",entry.getStart().toString())
-                    .replaceAll("%%pend%%",entry.getUntil().toString());
+            String element = EDUCATION_ENTRY_ELEMENT.replaceAll("%%pname%%", entry.getTitle())
+                    .replaceAll("%%ptype%%", entry.getType().getDisplay())
+                    .replaceAll("%%plocation%%", entry.getLocation())
+                    .replaceAll("%%pstart%%", entry.getStart().toString())
+                    .replaceAll("%%pend%%", entry.getUntil().toString());
 
             elementsGenerated.add(element);
         }

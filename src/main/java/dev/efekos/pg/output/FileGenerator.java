@@ -24,27 +24,27 @@ public class FileGenerator implements Generator {
         System.out.println("Generating file: index.html");
 
         List<String> socialLinkElements = new ArrayList<>();
-        info.getSocialLinks().forEach((type,link) -> socialLinkElements.add(generateSocialElement(type,link)));
+        info.getSocialLinks().forEach((type, link) -> socialLinkElements.add(generateSocialElement(type, link)));
 
         String fileString = Main.readStringResource("/site/index.html")
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%title%%", info.getTitle())
                 .replaceAll("%%welcomer%%", info.getWelcomer())
-                .replaceAll("%%aboutEntries%%", "<div class=\"entries\">"+String.join("",
+                .replaceAll("%%aboutEntries%%", "<div class=\"entries\">" + String.join("",
                         Arrays.asList(
-                                generateAboutEntry("birth","Age","",true),
-                                generateAboutEntry("language","Native Language",info.getNativeLanguage().name(),false),
-                                generateAboutEntry("language","Known Languages",String.join(", ",info.getKnownLanguages().stream().map(Locale::name).toList()),false)
+                                generateAboutEntry("birth", "Age", "", true),
+                                generateAboutEntry("language", "Native Language", info.getNativeLanguage().name(), false),
+                                generateAboutEntry("language", "Known Languages", String.join(", ", info.getKnownLanguages().stream().map(Locale::name).toList()), false)
                         )
-                )+"</div>")
-                .replaceAll("%%socialElements%%",String.join("",socialLinkElements));
+                ) + "</div>")
+                .replaceAll("%%socialElements%%", String.join("", socialLinkElements));
 
         writeFile(binPath + "\\index.html", fileString);
 
         System.out.println("Generated file: index.html");
     }
 
-    private String generateAboutEntry(String icon,String title,String alt,boolean age){
+    private String generateAboutEntry(String icon, String title, String alt, boolean age) {
         String templateEntry = """
                 <div class="entry">
                                 <div>
@@ -57,13 +57,13 @@ public class FileGenerator implements Generator {
                                 </div>
                 </div>""";
 
-        return templateEntry.replaceAll("%%title%%",title)
-                .replaceAll("%%icon%%",icon)
-                .replaceAll("%%i%%",age?"id=\"age\"":"")
-                .replaceAll("%%alt%%",alt);
+        return templateEntry.replaceAll("%%title%%", title)
+                .replaceAll("%%icon%%", icon)
+                .replaceAll("%%i%%", age ? "id=\"age\"" : "")
+                .replaceAll("%%alt%%", alt);
     }
 
-    private String generateSocialElement(SocialLinkType type, String link){
+    private String generateSocialElement(SocialLinkType type, String link) {
         String templateElement = """
                 <a target="_blank" href="%%link%%">
                       <div class="social-icon icon-%%icon%%">
@@ -71,13 +71,13 @@ public class FileGenerator implements Generator {
                       </div>
                 </a>
                 """;
-        return templateElement.replaceAll("%%link%%",link).replaceAll("%%icon%%",type.getId());
+        return templateElement.replaceAll("%%link%%", link).replaceAll("%%icon%%", type.getId());
     }
 
-    public void generateExperienceFile(GeneralInfo generalInfo, ExperienceInfo experienceInfo)throws IOException{
+    public void generateExperienceFile(GeneralInfo generalInfo, ExperienceInfo experienceInfo) throws IOException {
         ExperiencePageGenerator generator = new ExperiencePageGenerator(binPath);
 
-        generator.generate(generalInfo,experienceInfo);
+        generator.generate(generalInfo, experienceInfo);
     }
 
     public void generateStyleFiles(GeneralInfo info) throws IOException {
@@ -107,8 +107,8 @@ public class FileGenerator implements Generator {
                   }
                   
                 """);
-        info.getSocialLinks().forEach((type,link) -> generatedSelections.add("""
-                
+        info.getSocialLinks().forEach((type, link) -> generatedSelections.add("""
+                                
                 .icon-%%i%% {
                     background-color: %%n%%;
                 }
@@ -116,11 +116,11 @@ public class FileGenerator implements Generator {
                 .icon-%%i%%:hover {
                     background-color: %%h%%;
                 }
-                """.replaceAll("%%n%%",type.getNormalColor())
-                .replaceAll("%%h%%",type.getHighlightColor())
-                .replaceAll("%%i%%",type.getId())));
+                """.replaceAll("%%n%%", type.getNormalColor())
+                .replaceAll("%%h%%", type.getHighlightColor())
+                .replaceAll("%%i%%", type.getId())));
 
-        writeFile(binPath+"\\style\\social_icons.css",String.join("\n",generatedSelections));
+        writeFile(binPath + "\\style\\social_icons.css", String.join("\n", generatedSelections));
         System.out.println("Generated file: style/social_icons.css");
 
         System.out.println("Generates all non-static style files");
@@ -129,8 +129,8 @@ public class FileGenerator implements Generator {
     public void generateScriptFiles(GeneralInfo info) throws IOException {
         System.out.println("Generating script files");
 
-        String string = Main.readStringResource("/site/age_calculator.js").replaceAll("%%byear%%",info.getBirthDate().getYear()+"");
-        writeFile(binPath+"\\age_calculator.js",string);
+        String string = Main.readStringResource("/site/age_calculator.js").replaceAll("%%byear%%", info.getBirthDate().getYear() + "");
+        writeFile(binPath + "\\age_calculator.js", string);
 
         System.out.println("Generates script files");
     }
@@ -160,9 +160,9 @@ public class FileGenerator implements Generator {
         System.out.println("Generated file: bio.html");
     }
 
-    public void generateEducationFile(GeneralInfo info, EducationInfo educationInfo)throws IOException{
+    public void generateEducationFile(GeneralInfo info, EducationInfo educationInfo) throws IOException {
         EducationPageGenerator generator = new EducationPageGenerator(binPath);
-        generator.generate(info,educationInfo);
+        generator.generate(info, educationInfo);
     }
 
     public void copyIcons(GeneralInfo generalInfo) throws IOException {
@@ -171,21 +171,21 @@ public class FileGenerator implements Generator {
         Files.createDirectory(Path.of(binPath, "images", "icon"));
 
         copyIcon("external_site", "external");
-        copyIcon("clock","clock");
-        copyIcon("location","location");
-        copyIcon("university","university");
-        copyIcon("briefcase","briefcase");
-        copyIcon("language","language");
-        copyIcon("birth","birth");
-        copyIcon("scale","scale");
-        copyIcon("tag","tag");
+        copyIcon("clock", "clock");
+        copyIcon("location", "location");
+        copyIcon("university", "university");
+        copyIcon("briefcase", "briefcase");
+        copyIcon("language", "language");
+        copyIcon("birth", "birth");
+        copyIcon("scale", "scale");
+        copyIcon("tag", "tag");
         for (SocialLinkType type : generalInfo.getSocialLinks().keySet()) {
-            copyIcon("social/"+type.getId(),"social\\"+type.getId());
+            copyIcon("social/" + type.getId(), "social\\" + type.getId());
         }
 
-        Files.copy(Path.of(Main.getMainPath().toString(),"data","profile.png"),Path.of(binPath,"images","profile.png"));
+        Files.copy(Path.of(Main.getMainPath().toString(), "data", "profile.png"), Path.of(binPath, "images", "profile.png"));
 
-        writeFile(binPath+"\\images\\icon\\credit_note.txt","Every icon used here is from heroicons.com");
+        writeFile(binPath + "\\images\\icon\\credit_note.txt", "Every icon used here is from heroicons.com");
 
 
         System.out.println("Copied icons");
@@ -198,21 +198,21 @@ public class FileGenerator implements Generator {
         System.out.println("Copied icon: " + resourceName);
     }
 
-    public void generateProjectsPage(GeneralInfo generalInfo,List<Project> projects) throws Exception{
+    public void generateProjectsPage(GeneralInfo generalInfo, List<Project> projects) throws Exception {
         System.out.println("Generating projects page");
         ProjectPageGenerator generator = new ProjectPageGenerator(binPath);
 
-        generator.generateMainPage(generalInfo,projects);
-        generator.generateSinglePages(generalInfo,projects);
+        generator.generateMainPage(generalInfo, projects);
+        generator.generateSinglePages(generalInfo, projects);
         System.out.println("Generated projects page");
     }
 
-    public void copyLibraries() throws IOException{
+    public void copyLibraries() throws IOException {
         System.out.println("Copying library files");
 
-        copyStringResource("/site/lib/marked.js","\\lib\\marked.js",binPath);
-        copyStringResource("/site/lib/prism.js","\\lib\\prism.js",binPath);
-        copyStringResource("/site/lib/prism.css","\\lib\\prism.css",binPath);
+        copyStringResource("/site/lib/marked.js", "\\lib\\marked.js", binPath);
+        copyStringResource("/site/lib/prism.js", "\\lib\\prism.js", binPath);
+        copyStringResource("/site/lib/prism.css", "\\lib\\prism.css", binPath);
 
         System.out.println("Copied library files");
     }

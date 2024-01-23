@@ -10,7 +10,7 @@ import dev.efekos.pg.util.DateHelper;
 
 import java.util.regex.Pattern;
 
-public class FullDate implements JsonSchema,Comparable<FullDate> {
+public class FullDate implements JsonSchema, Comparable<FullDate> {
     private Integer day;
     private Integer month;
     private Integer year;
@@ -79,13 +79,13 @@ public class FullDate implements JsonSchema,Comparable<FullDate> {
     public void readJson(JsonElement element, DataGrabberContext context) {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
 
-        if(element.isJsonObject())parseObject(checker,element.getAsJsonObject());
+        if (element.isJsonObject()) parseObject(checker, element.getAsJsonObject());
         else parseString(element.getAsString());
     }
 
     private void parseString(String date) {
 
-        if(!STRING_DATE_PATTERN.matcher(date).matches()) throw new JsonParseException("Invalid date");
+        if (!STRING_DATE_PATTERN.matcher(date).matches()) throw new JsonParseException("Invalid date");
 
         String[] members = date.split("-");
 
@@ -96,6 +96,7 @@ public class FullDate implements JsonSchema,Comparable<FullDate> {
         this.minute = Integer.parseInt(members[4]);
         this.second = Integer.parseInt(members[5]);
     }
+
     private final Pattern STRING_DATE_PATTERN = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}-[0-9]{2}-[0-9]{2}");
 
     private void parseObject(DataTypeChecker checker, JsonObject object) {
@@ -123,11 +124,11 @@ public class FullDate implements JsonSchema,Comparable<FullDate> {
         int minc = minute.compareTo(other.minute);
         int secc = second.compareTo(other.second);
 
-        if(yearc==0){
-            if(monthc==0){
-                if(dayc==0){
-                    if(hourc==0){
-                        if(minc==0){
+        if (yearc == 0) {
+            if (monthc == 0) {
+                if (dayc == 0) {
+                    if (hourc == 0) {
+                        if (minc == 0) {
                             return secc;
                         } else return minc;
                     } else return hourc;
@@ -138,6 +139,6 @@ public class FullDate implements JsonSchema,Comparable<FullDate> {
 
     @Override
     public String toString() {
-        return hour+":"+minute+":"+second+", "+day+" of "+DateHelper.monthToString(month)+", "+year;
+        return hour + ":" + minute + ":" + second + ", " + day + " of " + DateHelper.monthToString(month) + ", " + year;
     }
 }
