@@ -3,6 +3,7 @@ package dev.efekos.pg.output;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.data.schema.Project;
+import dev.efekos.pg.data.schema.ProjectGalleryImage;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
@@ -18,7 +19,24 @@ public class ProjectPageGenerator implements Generator {
         this.binPath = binPath;
     }
 
-    private void generateScript(Project project) throws IOException {
+    private void generateScripts(Project project) throws IOException {
+        generateReadmeFinder(project);
+        generateGalleryModals(project);
+    }
+
+    private void generateGalleryModals(Project project) throws IOException{
+        List<String> codeblocks = new ArrayList<>();
+        String template = Main.readStringResource("/site/gallery_modal_template.js");
+
+        project.getGalleryImages().forEach(image -> {
+            String generated = template.replaceAll("%%imid%%",image.getId());
+            codeblocks.add(generated);
+        });
+
+        writeFile(binPath+"\\projects\\"+project.getId()+"\\gallery_modals.js",String.join("\n\n",codeblocks));
+    }
+
+    private void generateReadmeFinder(Project project) throws IOException {
         System.out.println("Generating file: projects/" + project.getId() + "/readme_finder.js");
         String readmeFinder = Main.readStringResource("/site/project_readme_finder.js")
                 .replaceAll("%%link%%", project.getReadmeFile());
@@ -68,12 +86,40 @@ public class ProjectPageGenerator implements Generator {
 
         writeFile(mainDirectory + "\\changelog.html", changelog);
 
+        //gallery.html
+        String gallery = Main.readStringResource("/site/project_gallery.html")
+                .replaceAll("%%name%%",info.getName())
+                .replaceAll("%%prname%%",project.getDisplayName())
+                .replaceAll("%%tags%%",tags)
+                .replaceAll("%%prid%%",project.getId())
+                .replaceAll("%%images%%",generateGalleryImageElements(project));
+
+        writeFile(mainDirectory+"\\gallery.html",gallery);
 
         //assets
         Path assetsDirectory = Path.of(mainDataDirectory.toString(), "assets");
         FileUtils.copyDirectory(assetsDirectory.toFile(), Path.of(mainDirectory.toString(), "assets").toFile());
 
-        generateScript(project);
+        generateScripts(project);
+    }
+
+    private String generateGalleryImageElements(Project project)  throws IOException{
+        List<ProjectGalleryImage> images = project.getGalleryImages().stream().toList();
+        String template = Main.readStringResource("/site/project_gallery_image_template.html");
+
+        List<String> generatedElements = new ArrayList<>();
+
+        for (ProjectGalleryImage image : images) {
+            String generated = template
+                    .replaceAll("%%impath%%", image.getFile())
+                    .replaceAll("%%imid%%", image.getId())
+                    .replaceAll("%%imname%%", image.getName())
+                    .replaceAll("%%imdescription%%", image.getDescription());
+
+            generatedElements.add(generated);
+        }
+
+        return String.join("\n\n",generatedElements);
     }
 
     public void generateSinglePages(GeneralInfo info, List<Project> projects) throws IOException {
