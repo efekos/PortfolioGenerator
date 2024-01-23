@@ -107,6 +107,7 @@ public class ProjectPageGenerator implements Generator {
         }
 
         String file = Main.readStringResource("/site/projects.html")
+                .replaceAll("%%name%%",generalInfo.getName())
                 .replaceAll("%%elements%%",String.join("",elements));
 
         writeFile(binPath+"\\projects.html",file);
