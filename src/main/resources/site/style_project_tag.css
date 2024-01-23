@@ -4,4 +4,6 @@
     border: rgb(%%tcolor%%) solid 0.1rem;
     border-radius: 2rem;
     padding: 0.5rem 1rem;
+    display: inline-block;
+    margin: 0.25rem;
 }
