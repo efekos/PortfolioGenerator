@@ -31,9 +31,9 @@ public class ProjectGalleryImage implements JsonSchema{
         this.description = object.get("description").getAsString();
         Path fullImagePath = Path.of(
                 context.getDataPath(), // MAINPATH\data
-                context.getCurrentFile().replaceAll("/", "\\").replace("\\gallery.json", ""), //MAINPATH\data\projects\PRID
+                context.getCurrentFile().replaceAll("/", "\\\\").replace("\\gallery.json", ""), //MAINPATH\data\projects\PRID
                 "assets", // MAINPATH\data\projects\PRID\assets
-                object.get("file").getAsString().replaceAll("/", "\\") // MAINPATH\data\projects\PRID\assets\FILEPATH
+                object.get("file").getAsString().replaceAll("/", "\\\\") // MAINPATH\data\projects\PRID\assets\FILEPATH
         );
         if(!Files.exists(fullImagePath)) throw new JsonParseException(new FileNotFoundException(fullImagePath.toString()));
         if(Files.isDirectory(fullImagePath)) throw new JsonParseException("Expected a file, found directory at '"+fullImagePath+"'");
