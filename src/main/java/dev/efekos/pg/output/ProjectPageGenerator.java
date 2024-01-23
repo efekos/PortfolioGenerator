@@ -37,10 +37,13 @@ public class ProjectPageGenerator implements Generator {
 
         mainDirectory.toFile().mkdirs();
 
+        String tags = String.join("",project.getTags().stream().map(s -> "<div class=\"project-tag-"+s+"\">"+s+"</div>").toList());
+
         //index.html
         String html = Main.readStringResource("/site/project.html")
                 .replace("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
+                .replaceAll("%%tags%%",tags)
                 .replaceAll("%%prid%%", project.getId());
 
         writeFile(mainDirectory + "\\index.html", html);
@@ -51,6 +54,7 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%prid%%", project.getId())
                 .replaceAll("%%prlicense%%", project.getLicense())
+                .replaceAll("%%tags%%",tags)
                 .replaceAll("%%prflicense%%", project.getFullLicense());
 
         writeFile(mainDirectory + "\\license.html", license);
@@ -59,6 +63,7 @@ public class ProjectPageGenerator implements Generator {
         String changelog = Main.readStringResource("/site/project_changelog.html")
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
+                .replaceAll("%%tags%%",tags)
                 .replaceAll("%%prid%%", project.getId());
 
         writeFile(mainDirectory + "\\changelog.html", changelog);
