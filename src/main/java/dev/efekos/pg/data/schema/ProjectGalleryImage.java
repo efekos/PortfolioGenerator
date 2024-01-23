@@ -7,6 +7,10 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 
+import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class ProjectGalleryImage implements JsonSchema{
     private String name;
     private String description;
@@ -25,7 +29,15 @@ public class ProjectGalleryImage implements JsonSchema{
 
         this.name = object.get("name").getAsString();
         this.description = object.get("description").getAsString();
-        System.out.println(context.getCurrentFile());
+        Path fullImagePath = Path.of(
+                context.getDataPath(), // MAINPATH\data
+                context.getCurrentFile().replaceAll("/", "\\").replace("\\gallery.json", ""), //MAINPATH\data\projects\PRID
+                "assets", // MAINPATH\data\projects\PRID\assets
+                object.get("file").getAsString().replaceAll("/", "\\") // MAINPATH\data\projects\PRID\assets\FILEPATH
+        );
+        if(!Files.exists(fullImagePath)) throw new JsonParseException(new FileNotFoundException(fullImagePath.toString()));
+        if(Files.isDirectory(fullImagePath)) throw new JsonParseException("Expected a file, found directory at '"+fullImagePath+"'");
+        this.file = fullImagePath.toString();
     }
 
     public ProjectGalleryImage() {
