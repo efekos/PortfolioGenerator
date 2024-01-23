@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>%%name%% - %%prname%%</title>
+    <link rel="stylesheet" href="../../style/main_style.css">
+    <link rel="stylesheet" href="../../style/projects.css">
+    <link rel="stylesheet" href="../../lib/prism.css">
+    <link rel="icon" href="../../images/projects/%%prid%%/icon.png">
+    <script src="../../lib/marked.js"></script>
+</head>
+
+<body>
+
+<div class="horizontal-list">
+    <div>
+        <img src="../../images/projects/%%prid%%/icon.png" alt="Project Icon" width="128"/>
+    </div>
+    <div>
+        <h1>%%prname%%</h1>
+    </div>
+</div>
+
+<nav>
+    <ul class="nav">
+        <li><a href="./index.html">Description</a></li>
+        <li><a href="./gallery.html">Gallery</a></li>
+        <li id="selected"><a href="./changelog.html">Changelog</a></li>
+        <li><a href="./versions.html">Versions</a></li>
+        <li><a href="./license.html">License</a></li>
+        <li><a href="../../projects.html">Back</a></li>
+    </ul>
+</nav>
+
+<br><br>
+
+<h2>Changelog</h2>
+<div id="changelog" class="markdown">
+</div>
+
+<script src="../../lib/prism.js"></script>
+<script src="./changelog_finder.js"></script>
+</body>
+
+</html>

@@ -22,10 +22,14 @@ public class ProjectPageGenerator implements Generator {
 
     private void generateScript(Project project) throws IOException{
         System.out.println("Generating file: projects/"+project.getId()+"/readme_finder.js");
-        String file = Main.readStringResource("/site/project_readme_finder.js")
+        String readmeFinder = Main.readStringResource("/site/project_readme_finder.js")
                 .replaceAll("%%link%%",project.getReadmeFile());
+        writeFile(binPath+"\\projects\\"+project.getId()+"\\readme_finder.js",readmeFinder);
 
-        writeFile(binPath+"\\projects\\"+project.getId()+"\\readme_finder.js",file);
+        String file = Main.readStringResource("/site/project_changelog_finder.js")
+                .replaceAll("%%link%%",project.getChangeLogFile());
+        writeFile(binPath+"\\projects\\"+project.getId()+"\\changelog_finder.js",file);
+
         System.out.println("Generated file: projects/"+project.getId()+"/readme_finder.js");
     }
 
@@ -52,6 +56,15 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%prflicense%%",project.getFullLicense());
 
         writeFile(mainDirectory+"\\license.html",license);
+
+        //changelog.html
+        String changelog = Main.readStringResource("/site/project_changelog.html")
+                .replaceAll("%%name%%",info.getName())
+                .replaceAll("%%prname%%",project.getDisplayName())
+                .replaceAll("%%prid%%",project.getId());
+
+        writeFile(mainDirectory+"\\changelog.html",changelog);
+
 
         //assets
         Path assetsDirectory = Path.of(mainDataDirectory.toString(), "assets");
