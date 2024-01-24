@@ -93,46 +93,11 @@ public class FileGenerator implements Generator {
 
         System.out.println("Generating non-static style files");
 
-        System.out.println("Generating file: style/social_icons.css");
-        List<String> generatedSelections = new ArrayList<>();
-        generatedSelections.add("""
-                .social-icon {
-                      padding: 1rem;
-                      border-radius: 10rem;
-                      will-change: background-color;
-                      transition: background-color 200ms;
-                      background-color: #404040;
-                      width: 1.5rem;
-                      height: 1.5rem;
-                      display: inline-block;
-                  }
-                  
-                """);
-        info.getSocialLinks().forEach((type, link) -> generatedSelections.add("""
-                                
-                .icon-%%i%% {
-                    background-color: %%n%%;
-                }
-                                    
-                .icon-%%i%%:hover {
-                    background-color: %%h%%;
-                }
-                """.replaceAll("%%n%%", type.getNormalColor())
-                .replaceAll("%%h%%", type.getHighlightColor())
-                .replaceAll("%%i%%", type.getId())));
+        StyleFileGenerator generator = new StyleFileGenerator(binPath);
 
-        writeFile(binPath + "\\style\\social_icons.css", String.join("\n", generatedSelections));
-        System.out.println("Generated file: style/social_icons.css");
-
-        System.out.println("Generating file: style/project_tags.css");
-        List<String> generatedSelectors = new ArrayList<>();
-        String template = Main.readStringResource("/site/style_project_tag.css");
-        tagColorInfo.getColors().forEach((key, color) -> {
-            generatedSelectors.add(template.replaceAll("%%tcolor%%",color).replaceAll("%%tname%%",key));
-        });
-
-        writeFile(binPath+"\\style\\project_tags.css",String.join("\n",generatedSelectors));
-        System.out.println("Generated file: style/project_tags.css");
+        generator.generateProjectTags(tagColorInfo);
+        generator.generateSocialIcons(info);
+        generator.generateProjectVersions();
 
         System.out.println("Generates all non-static style files");
     }
