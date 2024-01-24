@@ -64,7 +64,7 @@ fetch(url).then(res => {
 
 
         elementt.innerHTML = versions.join("\n\n");
-    }).then(()=>{
-        Prism.highlightAll();
     });
-});
+}).then(()=>{
+    Prism.highlightAll();
+});;
