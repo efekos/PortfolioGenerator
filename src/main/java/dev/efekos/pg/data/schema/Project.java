@@ -28,6 +28,7 @@ public class Project implements JsonSchema {
     private String fullLicense; //nijson
     private DayDate release;
     private ProjectGalleryImageList galleryImages;
+    private VersionInfo versionInfo;
 
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
@@ -45,8 +46,10 @@ public class Project implements JsonSchema {
         checker.searchExceptions(object, "version", RequiredDataType.STRING);
         checker.searchExceptions(object, "license", RequiredDataType.STRING);
         checker.searchExceptions(object, "readme_link", RequiredDataType.STRING);
+        checker.searchExceptions(object,"version_info",RequiredDataType.OBJECT);
 
 
+        // display name,main website, changelog file, summary, version, license, readme file
         this.displayName = object.get("display_name").getAsString();
         this.mainWebsite = object.get("main_website").getAsString();
         this.changeLogFile = object.get("change_log").getAsString();
@@ -55,11 +58,13 @@ public class Project implements JsonSchema {
         this.license = object.get("license").getAsString();
         this.readmeFile = object.get("readme_link").getAsString();
 
+        // release date
         if (!object.has("release"))
             throw new JsonSyntaxException("'release' required in file '" + context.getCurrentFile() + "'");
         this.release = new DayDate(0, 0, 0);
         release.readJson(object.get("release"), context);
 
+        // links
         JsonObject linksObject = object.get("links").getAsJsonObject();
         linksObject.asMap().forEach((key, link) -> {
             if (!ProjectLinkType.isValidId(key)) throw new JsonParseException("Unknown link id '" + key + "'");
@@ -70,10 +75,25 @@ public class Project implements JsonSchema {
             this.links.put(id, link.getAsString());
         });
 
+        // tags
         tags.clear();
         for (JsonElement jsonElement : object.get("tags").getAsJsonArray()) {
             tags.add(jsonElement.getAsString());
         }
+
+        // vesion info
+        JsonElement versionInfoElement = object.get("version_info");
+        VersionInfo info = new VersionInfo();
+        info.readJson(versionInfoElement,context);
+        this.versionInfo = info;
+    }
+
+    public VersionInfo getVersionInfo() {
+        return versionInfo;
+    }
+
+    public void setVersionInfo(VersionInfo versionInfo) {
+        this.versionInfo = versionInfo;
     }
 
     public ProjectGalleryImageList getGalleryImages() {
