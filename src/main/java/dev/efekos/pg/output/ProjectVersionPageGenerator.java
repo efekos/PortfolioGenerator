@@ -49,10 +49,10 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/project_version_markdown_file_finder.js") // A file named with FIVE words? That's the spirit!
+                String script = Main.readStringResource("/site/project_versions_markdown_file_finder.js") // A file named with FIVE words? That's the spirit!
                         .replaceAll("%%link%%", versionInfo.getFile());
 
-                writeFile(binPath+"\\projects\\"+project.getId()+"\\version_finder.js",script);
+                writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
             }
             default -> System.out.println("[DEVELOPER WARNING] Not implemented version info type found: '"+versionInfo.getType()+"'");
         }
