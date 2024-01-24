@@ -96,6 +96,9 @@ public class ProjectPageGenerator implements Generator {
 
         writeFile(mainDirectory+"\\gallery.html",gallery);
 
+        //versions.html
+        writeFile(mainDirectory+"\\versions.html",new ProjectVersionPageGenerator(info,project,tags,binPath).generate());
+
         //assets
         Path assetsDirectory = Path.of(mainDataDirectory.toString(), "assets");
         FileUtils.copyDirectory(assetsDirectory.toFile(), Path.of(mainDirectory.toString(), "assets").toFile());

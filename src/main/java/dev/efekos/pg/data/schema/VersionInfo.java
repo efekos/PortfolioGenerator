@@ -10,12 +10,13 @@ import dev.efekos.pg.data.type.RequiredDataType;
 import dev.efekos.pg.data.type.VersionInfoType;
 import dev.efekos.pg.data.type.VersionType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VersionInfo implements JsonSchema{
 
     private VersionInfoType type;
-    private List<Version> versions;
+    private List<Version> versions = new ArrayList<>();
     private String file;
 
     @Override
