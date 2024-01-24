@@ -19,11 +19,10 @@ const months = [
     "December"
 ];
 
-fetch(url).then(res => {
+
+fetch(url,{headers:{'User-Agent':"efekos/PortfolioGenerator/1.0.0"}}).then(res=>{
     return res.json();
 }).then(res => {
-    console.log(res);
-
     res.forEach(element => {
 
         let vrt = {id: "release", name: "Release"};
@@ -37,7 +36,7 @@ fetch(url).then(res => {
 
         switch (element.version_type){
             case "release": vrt = {id:"release",name: "Release"};break;
-            case "beta": vrt = {id:"beta",name: "Alpha"};break;
+            case "beta": vrt = {id:"beta",name: "Beta"};break;
             case "alpha": vrt = {id:"alpha",name: "Alpha"};break;
         }
 
