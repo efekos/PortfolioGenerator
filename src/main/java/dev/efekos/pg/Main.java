@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Date;
@@ -130,6 +131,6 @@ public class Main {
      */
     public static String readStringResource(String path) throws IOException {
         InputStream stream = Main.class.getResource(path).openStream();
-        return new String(stream.readAllBytes());
+        return new String(stream.readAllBytes(), StandardCharsets.UTF_8);
     }
 }
