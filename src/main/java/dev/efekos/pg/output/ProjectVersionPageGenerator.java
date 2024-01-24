@@ -54,6 +54,17 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
             }
+            case github_releases -> {
+                scripts.add("<script src=\"./versions_finder.js\"></script>");
+                elements.add("<div id=\"releases\">");
+
+                System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
+
+                String script = Main.readStringResource("/site/project_versions_grl_finder.js")
+                        .replaceAll("%%repo%%", versionInfo.getFile());
+
+                writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
+            }
             default -> System.out.println("[DEVELOPER WARNING] Not implemented version info type found: '"+versionInfo.getType()+"'");
         }
 
