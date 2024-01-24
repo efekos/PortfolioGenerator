@@ -25,6 +25,10 @@
     border: 0.1rem #151515 solid;
 }
 
+.entry-placeholder {
+    background: linear-gradient(0deg, #101010 0%,#303030 100%);
+}
+
 .entry:hover {
     background-color: #252525;
 }

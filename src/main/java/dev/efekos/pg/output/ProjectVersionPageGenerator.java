@@ -56,7 +56,17 @@ public class ProjectVersionPageGenerator implements Generator{
             }
             case github_releases -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
-                elements.add("<div id=\"releases\">");
+                elements.add("""
+
+                        <div id="releases">
+                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
+                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
+                            <div class="entry entry-placeholder" style="min-height: 3rem;"></div>
+                            <div class="entry entry-placeholder" style="min-height: 4rem;"></div>
+                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
+                            <div class="entry entry-placeholder" style="min-height: 4.5rem;"></div>
+                        </div>
+                        """);
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
