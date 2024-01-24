@@ -31,7 +31,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
         switch (versionInfo.getType()){
             case object -> {
-                String template = Main.readStringResource("/site/project_version_entry.html");
+                String template = Main.readStringResource("/site/project_version_entry.html",true);
 
                 for (Version version : versionInfo.getVersions()) {
                     elements.add(

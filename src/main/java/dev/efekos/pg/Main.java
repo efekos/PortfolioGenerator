@@ -5,11 +5,13 @@ import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.output.FileGenerator;
 import dev.efekos.pg.util.LocaleHelper;
 import dev.efekos.pg.util.WorkContext;
+import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -129,8 +131,13 @@ public class Main {
      * @return A file if found as {@link String}
      * @throws IOException If {@link URL#openStream()} method fails.
      */
-    public static String readStringResource(String path) throws IOException {
+    public static String readStringResource(String path,boolean useUtf8) throws IOException {
         InputStream stream = Main.class.getResource(path).openStream();
-        return new String(stream.readAllBytes(), StandardCharsets.UTF_8);
+        return new String(stream.readAllBytes(),useUtf8?StandardCharsets.UTF_8:Charset.defaultCharset());
+    }
+
+
+    public static String readStringResource(String path) throws IOException {
+        return readStringResource(path,false);
     }
 }

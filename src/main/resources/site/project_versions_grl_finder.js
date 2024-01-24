@@ -42,7 +42,7 @@ fetch(url).then(res => {
             `
             <div class="entry">
                 <div>
-                    <span class="title version-tag ${vrt.id}">● ${vrt.name}</span>
+                    <span class="title version-tag ${vrt.id}">&#x25CF; ${vrt.name}</span>
                     <span class="title">${element.tag_name}</span>
                 </div>
                 <div>
@@ -57,5 +57,7 @@ fetch(url).then(res => {
 
 
         elementt.innerHTML = versions.join("\n\n");
+    }).then(()=>{
+        Prism.highlightAll();
     });
 });
