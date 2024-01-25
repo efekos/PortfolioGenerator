@@ -36,7 +36,6 @@ a {
 }
 
 .btn {
-    padding: 2rem;
     font-size: 1.5rem;
     border-radius: 1rem;
     color: white;
@@ -45,8 +44,7 @@ a {
     will-change: filter;
     transition: filter 1.5s;
     cursor: pointer;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding: 2rem 3rem;
     border: 0;
 }
 
@@ -103,8 +101,6 @@ br {
 
 code:not([class]) {
     background-color: rgb(52, 59, 65);
-    padding: 0.1rem;
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
+    padding: 0.1rem 0.2rem;
     border-radius: 0.5rem;
 }
