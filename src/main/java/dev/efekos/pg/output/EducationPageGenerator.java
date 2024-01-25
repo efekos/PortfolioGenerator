@@ -44,7 +44,7 @@ public class EducationPageGenerator implements Generator {
     }
 
     private void generateFile(GeneralInfo generalInfo, EducationInfo info) throws IOException {
-        String file = Main.readStringResource("/site/education.html")
+        String file = Main.readStringResource("/site/html/education.html")
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%name%%", generalInfo.getName());
 

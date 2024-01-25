@@ -83,11 +83,11 @@ public class FileGenerator implements Generator {
     public void generateStyleFiles(GeneralInfo info,TagColorInfo tagColorInfo) throws IOException {
         System.out.println("Copying static style files");
 
-        copyStringResource("/site/style.css", "\\style\\main_style.css", binPath);
-        copyStringResource("/site/style_certificates.css", "\\style\\certificates.css", binPath);
-        copyStringResource("/site/style_education.css", "\\style\\education.css", binPath);
-        copyStringResource("/site/style_projects.css", "\\style\\projects.css", binPath);
-        copyStringResource("/site/style_gallery_modals.css", "\\style\\gallery_modals.css", binPath);
+        copyStringResource("/site/style/style.css", "\\style\\main_style.css", binPath);
+        copyStringResource("/site/style/style_certificates.css", "\\style\\certificates.css", binPath);
+        copyStringResource("/site/style/style_education.css", "\\style\\education.css", binPath);
+        copyStringResource("/site/style/style_projects.css", "\\style\\projects.css", binPath);
+        copyStringResource("/site/style/style_gallery_modals.css", "\\style\\gallery_modals.css", binPath);
 
         System.out.println("Copied all static style files");
 
@@ -105,7 +105,7 @@ public class FileGenerator implements Generator {
     public void generateScriptFiles(GeneralInfo info) throws IOException {
         System.out.println("Generating script files");
 
-        String string = Main.readStringResource("/site/age_calculator.js").replaceAll("%%byear%%", info.getBirthDate().getYear() + "");
+        String string = Main.readStringResource("/site/script/age_calculator.js").replaceAll("%%byear%%", info.getBirthDate().getYear() + "");
         writeFile(binPath + "\\age_calculator.js", string);
 
         System.out.println("Generates script files");
@@ -128,7 +128,7 @@ public class FileGenerator implements Generator {
 
 
         String bio = info.getBio();
-        String bioFile = Main.readStringResource("/site/bio.html").replaceAll("%%bio%%", bio);
+        String bioFile = Main.readStringResource("/site/html/bio.html").replaceAll("%%bio%%", bio);
 
         writeFile(binPath + "\\bio.html", bioFile);
 

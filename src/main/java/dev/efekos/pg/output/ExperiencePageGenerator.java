@@ -59,7 +59,7 @@ public class ExperiencePageGenerator implements Generator {
     }
 
     private void generateFile(GeneralInfo generalInfo, ExperienceInfo info) throws IOException {
-        String file = Main.readStringResource("/site/experience.html")
+        String file = Main.readStringResource("/site/html/experience.html")
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%cc%%", currentJobElement)
                 .replaceAll("%%ch%%", !currentJobElement.equals("") ? "<h2>Job History</h2><br>" : "")

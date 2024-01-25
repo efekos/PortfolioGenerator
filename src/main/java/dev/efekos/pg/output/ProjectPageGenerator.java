@@ -26,7 +26,7 @@ public class ProjectPageGenerator implements Generator {
 
     private void generateGalleryModals(Project project) throws IOException{
         List<String> codeblocks = new ArrayList<>();
-        String template = Main.readStringResource("/site/gallery_modal_template.js");
+        String template = Main.readStringResource("/site/script/gallery_modal_template.js");
 
         project.getGalleryImages().forEach(image -> {
             String generated = template.replaceAll("%%imid%%",image.getId());
@@ -38,11 +38,11 @@ public class ProjectPageGenerator implements Generator {
 
     private void generateReadmeFinder(Project project) throws IOException {
         System.out.println("Generating file: projects/" + project.getId() + "/readme_finder.js");
-        String readmeFinder = Main.readStringResource("/site/project_readme_finder.js")
+        String readmeFinder = Main.readStringResource("/site/script/project_readme_finder.js")
                 .replaceAll("%%link%%", project.getReadmeFile());
         writeFile(binPath + "\\projects\\" + project.getId() + "\\readme_finder.js", readmeFinder);
 
-        String file = Main.readStringResource("/site/project_changelog_finder.js")
+        String file = Main.readStringResource("/site/script/project_changelog_finder.js")
                 .replaceAll("%%link%%", project.getChangeLogFile());
         writeFile(binPath + "\\projects\\" + project.getId() + "\\changelog_finder.js", file);
 
@@ -58,7 +58,7 @@ public class ProjectPageGenerator implements Generator {
         String tags = String.join("",project.getTags().stream().map(s -> "<div class=\"project-tag-"+s+"\">"+s+"</div>").toList());
 
         //index.html
-        String html = Main.readStringResource("/site/project.html")
+        String html = Main.readStringResource("/site/html/project.html")
                 .replace("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
@@ -67,7 +67,7 @@ public class ProjectPageGenerator implements Generator {
         writeFile(mainDirectory + "\\index.html", html);
 
         //license.html
-        String license = Main.readStringResource("/site/project_license.html")
+        String license = Main.readStringResource("/site/html/project_license.html")
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%prid%%", project.getId())
@@ -78,7 +78,7 @@ public class ProjectPageGenerator implements Generator {
         writeFile(mainDirectory + "\\license.html", license);
 
         //changelog.html
-        String changelog = Main.readStringResource("/site/project_changelog.html")
+        String changelog = Main.readStringResource("/site/html/project_changelog.html")
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
@@ -87,7 +87,7 @@ public class ProjectPageGenerator implements Generator {
         writeFile(mainDirectory + "\\changelog.html", changelog);
 
         //gallery.html
-        String gallery = Main.readStringResource("/site/project_gallery.html")
+        String gallery = Main.readStringResource("/site/html/project_gallery.html")
                 .replaceAll("%%name%%",info.getName())
                 .replaceAll("%%prname%%",project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
@@ -108,7 +108,7 @@ public class ProjectPageGenerator implements Generator {
 
     private String generateGalleryImageElements(Project project)  throws IOException{
         List<ProjectGalleryImage> images = project.getGalleryImages().stream().toList();
-        String template = Main.readStringResource("/site/project_gallery_image_template.html");
+        String template = Main.readStringResource("/site/html/project_gallery_image_template.html");
 
         List<String> generatedElements = new ArrayList<>();
 
@@ -145,7 +145,7 @@ public class ProjectPageGenerator implements Generator {
         System.out.println("Generating file: projects.html");
         List<String> elements = new ArrayList<>();
 
-        String elementTemplate = Main.readStringResource("/site/projects_element_template.html");
+        String elementTemplate = Main.readStringResource("/site/html/projects_element_template.html");
         for (Project project : projects) {
             String element = elementTemplate
                     .replaceAll("%%prname%%", project.getDisplayName())
@@ -159,7 +159,7 @@ public class ProjectPageGenerator implements Generator {
             elements.add(element);
         }
 
-        String file = Main.readStringResource("/site/projects.html")
+        String file = Main.readStringResource("/site/html/projects.html")
                 .replaceAll("%%name%%", generalInfo.getName())
                 .replaceAll("%%elements%%", String.join("", elements));
 

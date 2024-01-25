@@ -3,7 +3,6 @@ package dev.efekos.pg.output;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.data.schema.TagColorInfo;
-import dev.efekos.pg.data.type.VersionInfoType;
 import dev.efekos.pg.data.type.VersionType;
 
 import java.io.IOException;
@@ -55,7 +54,7 @@ public class StyleFileGenerator implements Generator{
     public void generateProjectTags(TagColorInfo tagColorInfo) throws IOException {
         System.out.println("Generating file: style/project_tags.css");
         List<String> generatedSelectors = new ArrayList<>();
-        String template = Main.readStringResource("/site/style_project_tag.css");
+        String template = Main.readStringResource("/site/style/style_project_tag.css");
         tagColorInfo.getColors().forEach((key, color) -> {
             generatedSelectors.add(template.replaceAll("%%tcolor%%",color).replaceAll("%%tname%%",key));
         });

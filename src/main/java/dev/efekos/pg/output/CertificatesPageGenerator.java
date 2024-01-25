@@ -26,7 +26,7 @@ public class CertificatesPageGenerator implements Generator {
 
         List<String> elementList = certificates.stream().map(certificate -> "<a href=\"./certificate/" + makeIdForLink(certificate.getDisplay().getTitle()) + ".html\"><img class=\"certificate-image-small\" src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\" alt=\"" + certificate.getDisplay().getTitle() + "\" />").toList();
 
-        String fileString = Main.readStringResource("/site/certificates.html")
+        String fileString = Main.readStringResource("/site/html/certificates.html")
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%title%%", info.getTitle())
                 .replaceAll("%%images%%", String.join("\n", elementList));
@@ -54,7 +54,7 @@ public class CertificatesPageGenerator implements Generator {
 
     public void generateSinglePages(GeneralInfo info, List<Certificate> certificates) throws IOException {
         System.out.println("Generating single certificate files");
-        String resourceFile = Main.readStringResource("/site/single_certificate.html");
+        String resourceFile = Main.readStringResource("/site/html/single_certificate.html");
 
         Files.createDirectory(Path.of(binPath, "certificate"));
 

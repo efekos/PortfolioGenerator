@@ -31,7 +31,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
         switch (versionInfo.getType()){
             case object -> {
-                String template = Main.readStringResource("/site/project_version_entry.html",true);
+                String template = Main.readStringResource("/site/html/project_version_entry.html",true);
 
                 for (Version version : versionInfo.getVersions()) {
                     elements.add(
@@ -50,7 +50,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/project_versions_markdown_file_finder.js") // A file named with FIVE words? That's the spirit!
+                String script = Main.readStringResource("/site/script/project_versions_markdown_file_finder.js") // A file named with FIVE words? That's the spirit!
                         .replaceAll("%%link%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
@@ -79,7 +79,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/project_versions_grl_finder.js")
+                String script = Main.readStringResource("/site/script/project_versions_grl_finder.js")
                         .replaceAll("%%repo%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
@@ -100,7 +100,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/project_versions_mrl_finder.js")
+                String script = Main.readStringResource("/site/script/project_versions_mrl_finder.js")
                         .replaceAll("%%id%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
@@ -121,7 +121,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/project_versions_json_finder.js")
+                String script = Main.readStringResource("/site/script/project_versions_json_finder.js")
                         .replaceAll("%%link%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
@@ -150,7 +150,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/project_versions_spig_finder.js")
+                String script = Main.readStringResource("/site/script/project_versions_spig_finder.js")
                         .replaceAll("%%id%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
@@ -158,7 +158,7 @@ public class ProjectVersionPageGenerator implements Generator{
             default -> System.out.println("[DEVELOPER WARNING] Not implemented version info type found: '"+versionInfo.getType()+"'");
         }
 
-        return Main.readStringResource("/site/project_versions.html")
+        return Main.readStringResource("/site/html/project_versions.html")
                 .replaceAll("%%name%%",generalInfo.getName())
                 .replaceAll("%%prname%%",project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
