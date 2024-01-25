@@ -137,7 +137,11 @@ public class Main {
     }
 
 
-    public static String readStringResource(String path) throws IOException {
-        return readStringResource(path,false);
+    public static String readStringResource(String path) {
+        try {
+            return readStringResource(path,false);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -17,7 +17,7 @@ public class ExperiencePageGenerator implements Generator {
         this.binPath = binPath;
     }
 
-    private final String EDUCATION_ENTRY_ELEMENT = Main.readStringResource("/site/html/template/education_entry.html");
+    private final String EXPERIENCE_ENTRY_ELEMENT = Main.readStringResource("/site/html/template/experience_entry.html");
 
     private final String CURRENT_JOB_ELEMENT = Main.readStringResource("/site/html/template/current_job.html");
 
@@ -48,7 +48,7 @@ public class ExperiencePageGenerator implements Generator {
         elementsGenerated.clear();
         for (ExperienceEntry entry : entries) {
             if (entry.isCurrentJob()) continue;
-            String element = EDUCATION_ENTRY_ELEMENT.replaceAll("%%pcompany%%", entry.getCompany())
+            String element = EXPERIENCE_ENTRY_ELEMENT.replaceAll("%%pcompany%%", entry.getCompany())
                     .replaceAll("%%ppos%%", entry.getPosition())
                     .replaceAll("%%pstart%%", entry.getFrom().toString())
                     .replaceAll("%%pend%%", entry.getTo().toString());

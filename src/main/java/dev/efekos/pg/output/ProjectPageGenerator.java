@@ -106,7 +106,7 @@ public class ProjectPageGenerator implements Generator {
         generateScripts(project);
     }
 
-    private String generateGalleryImageElements(Project project)  throws IOException{
+    private String generateGalleryImageElements(Project project){
         List<ProjectGalleryImage> images = project.getGalleryImages().stream().toList();
         String template = Main.readStringResource("/site/html/template/project_gallery_image_template.html");
 
@@ -141,7 +141,7 @@ public class ProjectPageGenerator implements Generator {
         System.out.println("Copied project icons");
     }
 
-    public void generateMainPage(GeneralInfo generalInfo, List<Project> projects) throws Exception {
+    public void generateMainPage(GeneralInfo generalInfo, List<Project> projects) throws IOException {
         System.out.println("Generating file: projects.html");
         List<String> elements = new ArrayList<>();
 

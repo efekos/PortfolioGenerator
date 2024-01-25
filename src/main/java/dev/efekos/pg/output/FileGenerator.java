@@ -50,8 +50,8 @@ public class FileGenerator implements Generator {
         System.out.println("Generated file: index.html");
     }
 
-    private String generateAboutEntry(String icon, String title, String alt, boolean age) throws IOException{
-        String templateEntry = Main.readStringResource("/site/html/template/social_icon.html");
+    private String generateAboutEntry(String icon, String title, String alt, boolean age){
+        String templateEntry = Main.readStringResource("/site/html/template/about_entry.html");
 
         return templateEntry.replaceAll("%%title%%", title)
                 .replaceAll("%%icon%%", icon)
