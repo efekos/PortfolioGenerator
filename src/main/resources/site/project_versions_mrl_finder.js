@@ -27,12 +27,13 @@ fetch(url,{headers:{'User-Agent':"efekos/PortfolioGenerator/1.0.0"}}).then(res=>
 
         let vrt = {id: "release", name: "Release"};
         const name = element.name.toLowerCase();
-        if(name.includes("pre release")) vrt = {id:"pre_release",name: "Pre-Release"}
-        if(name.includes("beta")) vrt = {id:"beta",name:"Beta"}
-        if(name.includes("alpha")) vrt = {id:"alpha",name:"Alpha"}
-        if(name.includes("prototype")) vrt = {id:"prototype",name:"Prototype"}
-        if(name.includes("release candidate")) vrt = {id:"rc",name:"Release Candidate"}
-        if(name.includes("snapshot")) vrt = {id:"snapshot",name:"Snapshot"}
+        const tagName = element.version_number.toLowerCase();
+        if (name.includes("pre release")||tagName.includes("pre release")) vrt = { id: "pre_release", name: "Pre-Release" };
+        if (name.includes("beta")||tagName.includes("beta")) vrt = { id: "beta", name: "Beta" };
+        if (name.includes("alpha")||tagName.includes("alpha")) vrt = { id: "alpha", name: "Alpha" };
+        if (name.includes("prototype")||tagName.includes("prototype")) vrt = { id: "prototype", name: "Prototype" };
+        if (name.includes("release candidate")||tagName.includes("release candidate")) vrt = { id: "rc", name: "Release Candidate" };
+        if (name.includes("snapshot")||tagName.includes("snapshot")) vrt = { id: "snapshot", name: "Snapshot" };
 
         switch (element.version_type){
             case "release": vrt = {id:"release",name: "Release"};break;
