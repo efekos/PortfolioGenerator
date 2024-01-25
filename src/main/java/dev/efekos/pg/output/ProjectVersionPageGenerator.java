@@ -43,7 +43,7 @@ public class ProjectVersionPageGenerator implements Generator{
                     );
                 }
             }
-            case markdown_file -> {
+            case markdown -> {
                 elements.add("<div class=\"markdown\" id=\"versions\"></div>");
                 scripts.add("<script src=\"./versions_finder.js\" ></script>");
 
