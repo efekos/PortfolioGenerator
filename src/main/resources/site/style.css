@@ -99,3 +99,11 @@ a {
 br {
     user-select: none;
 }
+
+code:not([class]) {
+    background-color: rgb(52, 59, 65);
+    padding: 0.1rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-radius: 0.5rem;
+}
