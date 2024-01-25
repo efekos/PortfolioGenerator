@@ -24,7 +24,13 @@ public class FileGenerator implements Generator {
         System.out.println("Generating file: index.html");
 
         List<String> socialLinkElements = new ArrayList<>();
-        info.getSocialLinks().forEach((type, link) -> socialLinkElements.add(generateSocialElement(type, link)));
+        info.getSocialLinks().forEach((type, link) -> {
+            try {
+                socialLinkElements.add(generateSocialElement(type, link));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         String fileString = Main.readStringResource("/site/index.html")
                 .replaceAll("%%name%%", info.getName())
@@ -44,18 +50,8 @@ public class FileGenerator implements Generator {
         System.out.println("Generated file: index.html");
     }
 
-    private String generateAboutEntry(String icon, String title, String alt, boolean age) {
-        String templateEntry = """
-                <div class="entry">
-                                <div>
-                                    <img src="images/icon/%%icon%%.svg" alt="Icon" class="social-icon" width="24" />
-                                </div>
-                                <div>
-                                    <span class="title">%%title%%</span><br>
-                                    <span class="alt" %%i%%>%%alt%%
-                                    </span>
-                                </div>
-                </div>""";
+    private String generateAboutEntry(String icon, String title, String alt, boolean age) throws IOException{
+        String templateEntry = Main.readStringResource("/site/html/template/social_icon.html");
 
         return templateEntry.replaceAll("%%title%%", title)
                 .replaceAll("%%icon%%", icon)
@@ -63,14 +59,8 @@ public class FileGenerator implements Generator {
                 .replaceAll("%%alt%%", alt);
     }
 
-    private String generateSocialElement(SocialLinkType type, String link) {
-        String templateElement = """
-                <a target="_blank" href="%%link%%">
-                      <div class="social-icon icon-%%icon%%">
-                            <img src="images/icon/social/%%icon%%.svg" alt="Icon" width="24">
-                      </div>
-                </a>
-                """;
+    private String generateSocialElement(SocialLinkType type, String link) throws IOException{
+        String templateElement = Main.readStringResource("/site/html/template/social_icon.html");
         return templateElement.replaceAll("%%link%%", link).replaceAll("%%icon%%", type.getId());
     }
 

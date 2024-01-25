@@ -1,0 +1,7 @@
+.icon-%%i%% {
+    background-color: %%n%%;
+}
+
+.icon-%%i%%:hover {
+               background-color: %%h%%;
+           }

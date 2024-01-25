@@ -34,18 +34,12 @@ public class StyleFileGenerator implements Generator{
                   }
                   
                 """);
-        info.getSocialLinks().forEach((type, link) -> generatedSelections.add("""
-                                
-                .icon-%%i%% {
-                    background-color: %%n%%;
-                }
-                                    
-                .icon-%%i%%:hover {
-                    background-color: %%h%%;
-                }
-                """.replaceAll("%%n%%", type.getNormalColor())
-                .replaceAll("%%h%%", type.getHighlightColor())
-                .replaceAll("%%i%%", type.getId())));
+        info.getSocialLinks().forEach((type, link) -> generatedSelections.add(
+                        Main.readStringResource("/site/style/template/social_icon.css")
+                        .replaceAll("%%n%%", type.getNormalColor())
+                        .replaceAll("%%h%%", type.getHighlightColor())
+                        .replaceAll("%%i%%", type.getId()))
+        );
 
         writeFile(binPath + "\\style\\social_icons.css", String.join("\n", generatedSelections));
         System.out.println("Generated file: style/social_icons.css");
@@ -54,10 +48,8 @@ public class StyleFileGenerator implements Generator{
     public void generateProjectTags(TagColorInfo tagColorInfo) throws IOException {
         System.out.println("Generating file: style/project_tags.css");
         List<String> generatedSelectors = new ArrayList<>();
-        String template = Main.readStringResource("/site/style/style_project_tag.css");
-        tagColorInfo.getColors().forEach((key, color) -> {
-            generatedSelectors.add(template.replaceAll("%%tcolor%%",color).replaceAll("%%tname%%",key));
-        });
+        String template = Main.readStringResource("/site/style/template/style_project_tag.css");
+        tagColorInfo.getColors().forEach((key, color) -> generatedSelectors.add(template.replaceAll("%%tcolor%%",color).replaceAll("%%tname%%",key)));
 
         writeFile(binPath+"\\style\\project_tags.css",String.join("\n",generatedSelectors));
         System.out.println("Generated file: style/project_tags.css");
@@ -74,13 +66,8 @@ public class StyleFileGenerator implements Generator{
                 }
                 """);
 
-        String template = """
-                
-                .version-tag.%%vrtid%% {
-                    color: %%vrtcolor%%
-                }
-                
-                """;
+        String template = Main.readStringResource("/site/style/template/version_tag.css");
+
         for (VersionType type : VersionType.values()) {
             generatedSelectors.add(template.replaceAll("%%vrtid%%",type.getId()).replaceAll("%%vrtcolor%%",type.getColor()));
         }

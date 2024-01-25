@@ -17,39 +17,9 @@ public class ExperiencePageGenerator implements Generator {
         this.binPath = binPath;
     }
 
-    private final String EDUCATION_ENTRY_ELEMENT =
-            """
-                            <li>
-                                <div class="entry">
-                                    <div>
-                                        <img src="./images/icon/briefcase.svg" alt="Briefcase" width="25" class="icon" />
-                                    </div>
-                                    <div>
-                                        <span class="title">%%pcompany%%</span>
-                                    </div>
-                                    <div>
-                                        <img src="./images/icon/briefcase.svg" width="20" class="type-text"/><span class="alt">%%ppos%%</span><br>
-                                        <img src="./images/icon/clock.svg" width="20" class="type-text"/><span class="alt">%%pstart%% - %%pend%%</span>
-                                    </div>
-                                </div>
-                            </li>\
-                    """;
+    private final String EDUCATION_ENTRY_ELEMENT = Main.readStringResource("/site/html/template/education_entry.html");
 
-    private final String CURRENT_JOB_ELEMENT =
-            """    
-                                <div class="entry">
-                                    <div>
-                                        <img src="./images/icon/briefcase.svg" alt="Briefcase" width="25" class="icon" />
-                                    </div>
-                                    <div>
-                                        <span class="title">%%pcompany%%</span>
-                                    </div>
-                                    <div style=\"text-align:left;\">
-                                        <img src="./images/icon/briefcase.svg" width="20" class="type-text"/><span class="alt">%%ppos%%</span><br>
-                                        <img src="./images/icon/clock.svg" width="20" class="type-text"/><span class="alt">%%pstart%%</span>
-                                    </div>
-                                </div>
-                    """;
+    private final String CURRENT_JOB_ELEMENT = Main.readStringResource("/site/html/template/current_job.html");
 
     public void generate(GeneralInfo generalInfo, ExperienceInfo info) throws IOException {
         System.out.println("Generating file: experience.html");

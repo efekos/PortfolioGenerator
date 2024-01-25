@@ -16,6 +16,9 @@ public class ProjectVersionPageGenerator implements Generator{
     private final String tags;
     private final String binPath;
 
+    private static final String PAGINATION_ELEMENT = Main.readStringResource("/site/html/template/pagination_buttons.html");
+    private static final String PLACEHOLDERED_RELEASES_ELEMENT = Main.readStringResource("/site/html/template/project_releases.html");
+
     public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project,String tags,String binPath) {
         this.generalInfo = generalInfo;
         this.project = project;
@@ -31,7 +34,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
         switch (versionInfo.getType()){
             case object -> {
-                String template = Main.readStringResource("/site/html/project_version_entry.html",true);
+                String template = Main.readStringResource("/site/html/template/project_version_entry.html",true);
 
                 for (Version version : versionInfo.getVersions()) {
                     elements.add(
@@ -57,25 +60,8 @@ public class ProjectVersionPageGenerator implements Generator{
             }
             case github_releases -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
-                elements.add("""
-                            <button onclick="refreshPage(firstPage)" id="firstBtn">First</button>
-                            <button onclick="refreshPage(prevPage)" id="prevBtn">Prev</button>
-                            <span id="cur"></span>
-                            <button onclick="refreshPage(nextPage)" id="nextBtn">Next</button>
-                            <button onclick="refreshPage(lastPage)" id="lastBtn">Last</button>
-                            """);
-
-                elements.add("""
-
-                        <div id="releases">
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 3rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 4rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 4.5rem;"></div>
-                        </div>
-                        """);
+                elements.add(PAGINATION_ELEMENT);
+                elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
@@ -86,17 +72,7 @@ public class ProjectVersionPageGenerator implements Generator{
             }
             case modrinth_versions -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
-                elements.add("""
-
-                        <div id="releases">
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 3rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 4rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 4.5rem;"></div>
-                        </div>
-                        """);
+                elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
@@ -107,17 +83,7 @@ public class ProjectVersionPageGenerator implements Generator{
             }
             case json -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
-                elements.add("""
-
-                        <div id="releases">
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 3rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 4rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 4.5rem;"></div>
-                        </div>
-                        """);
+                elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
@@ -129,24 +95,8 @@ public class ProjectVersionPageGenerator implements Generator{
             }
             case spigotmc_versions -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
-                elements.add("""
-                            <button onclick="refreshPage(firstPage)" id="firstBtn">First</button>
-                            <button onclick="refreshPage(prevPage)" id="prevBtn">Prev</button>
-                            <span id="cur"></span>
-                            <button onclick="refreshPage(nextPage)" id="nextBtn">Next</button>
-                            <button onclick="refreshPage(lastPage)" id="lastBtn">Last</button>
-                            """);
-                elements.add("""
-
-                        <div id="releases">
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 3rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 4rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
-                            <div class="entry entry-placeholder" style="min-height: 4.5rem;"></div>
-                        </div>
-                        """);
+                elements.add(PAGINATION_ELEMENT);
+                elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
