@@ -110,3 +110,14 @@ pre[class*="language-"] {
 .nav>li>a{
     color: white;
 }
+
+.btn-pagination {
+    padding: 1rem;
+    background-color: rgb(33, 35, 37);
+}
+
+.btn-pagination:disabled {
+    background-color: rgb(23, 25, 27);
+    color: rgb(235,235,235);
+    cursor: default;
+}
