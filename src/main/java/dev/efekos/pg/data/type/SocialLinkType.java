@@ -24,6 +24,9 @@ public enum SocialLinkType {
     PATREON("patreon", "rgb(89, 74, 67)", "rgb(125, 103, 92)"),
     BUY_ME_A_COFFEE("buy_me_a_coffee", "rgb(110, 103, 26)", "rgb(133, 124, 32)"),
     KOFI("kofi", "rgb(110, 41, 49)", "rgb(135, 53, 62)"),
+    LINKEDIN("linkedin","rgb(35, 79, 110)","rgb(52, 114, 158)"),
+    FIVERR("fiverr","rgb(31, 126, 49)","rgb(53, 172, 76)"),
+    BIONLUK("bionluk","#5e222d","#803341"),
     YOUTUBE("youtube", "rgb(128, 12, 12)", "rgb(148, 32, 32)");
 
     private final String id;
