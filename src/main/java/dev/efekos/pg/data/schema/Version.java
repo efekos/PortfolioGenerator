@@ -39,8 +39,20 @@ public class Version implements JsonSchema{
         
         // version, release date
         this.version = object.get("version").getAsString();
+        if(object.has("link")) this.link = object.get("link").getAsString();
+        else this.link = null;
         this.releaseDate = new DayDate(0,0,0);
         releaseDate.readJson(object.get("release_date"),context);
+    }
+
+    private String link;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public Version(DayDate releaseDate, String version, VersionType type) {

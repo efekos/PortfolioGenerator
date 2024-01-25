@@ -48,6 +48,11 @@ fetch(url).then(res => {
                 <div>
                     <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${date.getDate()} of ${months[date.getMonth()]}, ${date.getFullYear()}</span>
                 </div>
+                ${element.link ? `
+                 <div>
+                    <a href="${element.link}" target="_blank"><button class="btn btn-download">See More</button></a>
+                </div>
+                `:""}
             </div>
             `
         );

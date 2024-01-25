@@ -39,6 +39,7 @@ public class ProjectVersionPageGenerator implements Generator{
                             .replaceAll("%%vrtname%%",version.getType().getDisplay())
                             .replaceAll("%%vrtag%%",version.getVersion())
                             .replaceAll("%%vrdate%%",version.getReleaseDate().toString())
+                                    .replaceAll("%%btn%%", version.getLink()!=null? "<div><a href=\""+version.getLink()+"\" target=\"_blank\"><button class=\"btn btn-download\">See More</button></a></div>":"")
                     );
                 }
             }
