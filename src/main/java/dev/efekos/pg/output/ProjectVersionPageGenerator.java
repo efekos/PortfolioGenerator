@@ -130,6 +130,13 @@ public class ProjectVersionPageGenerator implements Generator{
             case spigotmc_versions -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add("""
+                            <button onclick="refreshPage(firstPage)" id="firstBtn">First</button>
+                            <button onclick="refreshPage(prevPage)" id="prevBtn">Prev</button>
+                            <span id="cur"></span>
+                            <button onclick="refreshPage(nextPage)" id="nextBtn">Next</button>
+                            <button onclick="refreshPage(lastPage)" id="lastBtn">Last</button>
+                            """);
+                elements.add("""
 
                         <div id="releases">
                             <div class="entry entry-placeholder" style="min-height: 5rem;"></div>
