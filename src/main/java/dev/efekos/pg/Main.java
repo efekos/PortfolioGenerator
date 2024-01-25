@@ -59,7 +59,7 @@ public class Main {
         FileGenerator generator = new FileGenerator(context.binPath);
 
         // generating
-        generator.generateIndexFile(context.generalInfo);
+        generator.generateIndexFile(context);
         generator.generateCertificatesFile(context.generalInfo, context.certificates);
         generator.generateBioFile(context.generalInfo);
         generator.generateScriptFiles(context.generalInfo);

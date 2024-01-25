@@ -4,6 +4,7 @@ import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.data.type.SocialLinkType;
 import dev.efekos.pg.util.Locale;
+import dev.efekos.pg.util.WorkContext;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,7 +21,8 @@ public class FileGenerator implements Generator {
         this.binPath = binPath;
     }
 
-    public void generateIndexFile(GeneralInfo info) throws IOException {
+    public void generateIndexFile(WorkContext context) throws IOException {
+        GeneralInfo info = context.generalInfo;
         System.out.println("Generating file: index.html");
 
         List<String> socialLinkElements = new ArrayList<>();
@@ -40,7 +42,10 @@ public class FileGenerator implements Generator {
                         Arrays.asList(
                                 generateAboutEntry("birth", "Age", "", true),
                                 generateAboutEntry("language", "Native Language", info.getNativeLanguage().name(), false),
-                                generateAboutEntry("language", "Known Languages", String.join(", ", info.getKnownLanguages().stream().map(Locale::name).toList()), false)
+                                generateAboutEntry("language", "Known Languages", String.join(", ", info.getKnownLanguages().stream().map(Locale::name).toList()), false),
+                                generateAboutEntry("university","Certificates Earned",context.certificates.size()+"",false),
+                                generateAboutEntry("project","Projects Made",context.projects.size()+"",false),
+                                generateAboutEntry("briefcase","Jobs Worked",context.experienceInfo.getEntries().size()+"",false)
                         )
                 ) + "</div>")
                 .replaceAll("%%socialElements%%", String.join("", socialLinkElements));
@@ -145,6 +150,7 @@ public class FileGenerator implements Generator {
         copyIcon("birth", "birth");
         copyIcon("scale", "scale");
         copyIcon("tag", "tag");
+        copyIcon("project","project");
         for (SocialLinkType type : generalInfo.getSocialLinks().keySet()) {
             copyIcon("social/" + type.getId(), "social\\" + type.getId());
         }
