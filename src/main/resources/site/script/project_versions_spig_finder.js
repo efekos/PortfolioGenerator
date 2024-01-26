@@ -96,7 +96,7 @@ function refreshPage(page) {
                     <span class="title">${element.title}</span>
                 </div>
                 <div>
-                    <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${date.getDate()} of ${months[date.getMonth()]}, ${date.getFullYear()}</span>
+                    <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${months[date.getMonth()]} ${date.getDate()}${getThing(date.getDate())}, ${date.getFullYear()}</span>
                 </div>
                 <div>
                     <a href="https://www.spigotmc.org/resources/%%id%%/update?update=${element.id}" target="_blank"><button class="btn btn-download">See More<img src="../../images/icon/external.svg" width="24" /></button></a>
@@ -113,3 +113,15 @@ function refreshPage(page) {
 }
 
 refreshPage(1);
+
+
+function getThing(day) {
+    if(typeof day !== "number") throw new TypeError("day must be number");
+
+    const stringDay = day+"";
+
+    if(stringDay.endsWith("1")) return "st";
+    if(stringDay.endsWith("2")) return "nd";
+    if(stringDay.endsWith("3")) return "rd";
+    return "th";
+}

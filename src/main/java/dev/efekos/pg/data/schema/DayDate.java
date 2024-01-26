@@ -157,6 +157,6 @@ public class DayDate implements JsonSchema, Comparable<DayDate> {
 
     @Override
     public String toString() {
-        return day + " of " + DateHelper.monthToString(month) + ", " + year;
+        return DateHelper.monthToString(month)+" "+day+DateHelper.getThing(day) + ", " + year;
     }
 }

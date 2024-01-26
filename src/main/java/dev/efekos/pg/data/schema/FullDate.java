@@ -155,6 +155,6 @@ public class FullDate implements JsonSchema, Comparable<FullDate> {
 
     @Override
     public String toString() {
-        return hour + ":" + minute + ":" + second + ", " + day + " of " + DateHelper.monthToString(month) + ", " + year;
+        return hour + ":" + minute + ":" + second + ", " + DateHelper.monthToString(month) + " " + day+DateHelper.getThing(day) + ", " + year;
     }
 }

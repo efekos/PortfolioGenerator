@@ -34,4 +34,12 @@ public class DateHelper {
             case 12 -> "December";
         };
     }
+
+    public static String getThing(int day){
+        String stringDay = day + "";
+        if(stringDay.endsWith("1"))return "st";
+        if(stringDay.endsWith("2"))return "nd";
+        if(stringDay.endsWith("3"))return "rd";
+        return "th";
+    }
 }

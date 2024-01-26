@@ -62,7 +62,7 @@ fetch(url).then(res => {
                     <span class="title">${element.version}</span>
                 </div>
                 <div>
-                    <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${date.getDate()} of ${months[date.getMonth()]}, ${date.getFullYear()}</span>
+                    <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${months[date.getMonth()]} ${date.getDate()}${getThing(date.getDate())}, ${date.getFullYear()}</span>
                 </div>
                 ${element.link ? `
                  <div>
@@ -79,3 +79,15 @@ fetch(url).then(res => {
 }).then(()=>{
     Prism.highlightAll();
 });
+
+
+function getThing(day) {
+    if(typeof day !== "number") throw new TypeError("day must be number");
+
+    const stringDay = day+"";
+
+    if(stringDay.endsWith("1")) return "st";
+    if(stringDay.endsWith("2")) return "nd";
+    if(stringDay.endsWith("3")) return "rd";
+    return "th";
+}

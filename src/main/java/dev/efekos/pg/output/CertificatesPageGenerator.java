@@ -91,7 +91,7 @@ public class CertificatesPageGenerator implements Generator {
                     .replaceAll("%%name%%", info.getName())
                     .replaceAll("%%cname%%", certificate.getDisplay().getTitle())
                     .replaceAll("%%cdescription%%", certificate.getDisplay().getDescription())
-                    .replaceAll("%%cdate%%", makeDateString(certificate))
+                    .replaceAll("%%cdate%%", certificate.getWhen().toString())
                     .replaceAll("%%cipath%%", imagePath.replaceAll("\\\\", "/"))
                     .replaceAll("%cbuttons%", String.join("", imageButtonElements));
 
@@ -105,9 +105,5 @@ public class CertificatesPageGenerator implements Generator {
     private static String makeFileButton(String imageType, String imagePath) {
 
         return "<a href=\"../images/certificate/" + imagePath + "\" target=\"_blank\"><button class=\"btn btn-download\">" + imageType.toUpperCase(Locale.ROOT) + " <img src=\"../images/icon/external.svg\" width=\"24\"/></button></a>";
-    }
-
-    private static String makeDateString(Certificate certificate) {
-        return certificate.getWhen().getDay() + " of " + DateHelper.monthToString(certificate.getWhen().getMonth()) + ", " + certificate.getWhen().getYear();
     }
 }
