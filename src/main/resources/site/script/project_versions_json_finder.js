@@ -66,7 +66,7 @@ fetch(url).then(res => {
                 </div>
                 ${element.link ? `
                  <div>
-                    <a href="${element.link}" target="_blank"><button class="btn btn-download">See More</button></a>
+                    <a href="${element.link}" target="_blank"><button class="btn btn-download">See More<img src="../../images/icon/external.svg" width="24"/></button></a>
                 </div>
                 `:""}
             </div>

@@ -131,6 +131,8 @@ public class ProjectVersionPageGenerator implements Generator{
                 .replaceAll("%%prname%%",project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
                 .replaceAll("%%links%%",links)
+                .replaceAll("%%prsummary%%",project.getSummary())
+                .replaceAll("%%prmainwebsite%%",project.getMainWebsite())
                 .replaceAll("%%prid%%",project.getId())
                 .replaceAll("%%scripts%%",String.join("\n",scripts))
                 .replaceAll("%%mainElement%%",String.join("\n\n",elements));

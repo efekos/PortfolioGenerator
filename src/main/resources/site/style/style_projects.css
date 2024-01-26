@@ -148,3 +148,12 @@ pre[class*="language-"] {
     margin-bottom: 0.2rem;
     margin-right: 0.25rem;
 }
+
+.text-summary {
+    margin: 0 1rem 0 0;
+    color: #888888;
+}
+
+.text-no-margin {
+    margin: 0;
+}

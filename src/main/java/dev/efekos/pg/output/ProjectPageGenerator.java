@@ -81,7 +81,9 @@ public class ProjectPageGenerator implements Generator {
                 .replace("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
+                .replaceAll("%%prmainwebsite%%",project.getMainWebsite())
                 .replaceAll("%%links%%",links)
+                .replaceAll("%%prsummary%%",project.getSummary())
                 .replaceAll("%%prid%%", project.getId());
 
         writeFile(mainDirectory + "\\index.html", html);
@@ -93,7 +95,9 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%prid%%", project.getId())
                 .replaceAll("%%prlicense%%", project.getLicense())
                 .replaceAll("%%tags%%",tags)
+                .replaceAll("%%prsummary%%",project.getSummary())
                 .replaceAll("%%links%%",links)
+                .replaceAll("%%prmainwebsite%%",project.getMainWebsite())
                 .replaceAll("%%prflicense%%", project.getFullLicense());
 
         writeFile(mainDirectory + "\\license.html", license);
@@ -104,6 +108,8 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
                 .replaceAll("%%links%%",links)
+                .replaceAll("%%prmainwebsite%%",project.getMainWebsite())
+                .replaceAll("%%prsummary%%",project.getSummary())
                 .replaceAll("%%prid%%", project.getId());
 
         writeFile(mainDirectory + "\\changelog.html", changelog);
@@ -113,7 +119,9 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%name%%",info.getName())
                 .replaceAll("%%prname%%",project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
+                .replaceAll("%%prsummary%%",project.getSummary())
                 .replaceAll("%%links%%",links)
+                .replaceAll("%%prmainwebsite%%",project.getMainWebsite())
                 .replaceAll("%%prid%%",project.getId())
                 .replaceAll("%%images%%",generateGalleryImageElements(project));
 

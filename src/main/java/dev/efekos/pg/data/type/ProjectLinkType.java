@@ -25,8 +25,7 @@ public enum ProjectLinkType {
     SUPPORT("support", "Support"),
     WIKI("wiki", "Wiki"),
     DOCUMENTATION("doc", "Documentation"),
-    GUIDE("guide", "Guide"),
-    WEBSITE("main", "Official Website");
+    GUIDE("guide", "Guide");
     private final String id;
     private final String display;
 

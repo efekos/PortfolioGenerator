@@ -135,7 +135,7 @@ function refreshPage(page) {
                         <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${date.getDate()} of ${months[date.getMonth()]}, ${date.getFullYear()}</span>
                     </div>
                     <div>
-                        <a href="${element.html_url}" target="_blank"><button class="btn btn-download">See</button></a>
+                        <a href="${element.html_url}" target="_blank"><button class="btn btn-download">See More<img src="../../images/icon/external.svg" width="24"/></button></a>
                     </div>
                 </div>
                 `
