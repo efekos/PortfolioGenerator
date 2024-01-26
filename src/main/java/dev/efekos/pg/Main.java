@@ -24,6 +24,8 @@ public class Main {
      */
     private static String MAIN_PATH;
 
+    public static String FOOTER_ELEMENT;
+
     /**
      * Returns a main path.
      *
@@ -37,6 +39,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         LocaleHelper.loadLocales();
+        FOOTER_ELEMENT = readStringResource("/site/html/template/footer.html");
         MAIN_PATH = System.getProperty("user.dir");
         System.out.println("Hello World!");
 

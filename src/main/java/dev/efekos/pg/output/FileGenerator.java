@@ -34,7 +34,7 @@ public class FileGenerator implements Generator {
             }
         });
 
-        String fileString = Main.readStringResource("/site/index.html")
+        String fileString = Main.readStringResource("/site/html/index.html")
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%title%%", info.getTitle())
                 .replaceAll("%%welcomer%%", info.getWelcomer())

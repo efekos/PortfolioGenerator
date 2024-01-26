@@ -45,7 +45,7 @@ public interface Generator {
 
         FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
 
-        writer.write(content);
+        writer.write(content.replaceAll("%%footer%%",Main.FOOTER_ELEMENT));
         writer.flush();
         writer.close();
     }

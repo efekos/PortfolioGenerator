@@ -104,3 +104,8 @@ code:not([class]) {
     padding: 0.1rem 0.2rem;
     border-radius: 0.5rem;
 }
+
+footer {
+    margin-top: 30rem;
+    min-height: 15rem;
+}
