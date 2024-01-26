@@ -34,12 +34,14 @@ public class ProjectVersionPageGenerator implements Generator{
 
     private static final String PAGINATION_ELEMENT = Main.readStringResource("/site/html/template/pagination_buttons.html");
     private static final String PLACEHOLDERED_RELEASES_ELEMENT = Main.readStringResource("/site/html/template/project_releases.html");
+    private final String links;
 
-    public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project,String tags,String binPath) {
+    public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project,String tags,String binPath,String links) {
         this.generalInfo = generalInfo;
         this.project = project;
         this.tags = tags;
         this.binPath = binPath;
+        this.links = links;
     }
 
     public String generate() throws IOException {
@@ -128,6 +130,7 @@ public class ProjectVersionPageGenerator implements Generator{
                 .replaceAll("%%name%%",generalInfo.getName())
                 .replaceAll("%%prname%%",project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
+                .replaceAll("%%links%%",links)
                 .replaceAll("%%prid%%",project.getId())
                 .replaceAll("%%scripts%%",String.join("\n",scripts))
                 .replaceAll("%%mainElement%%",String.join("\n\n",elements));

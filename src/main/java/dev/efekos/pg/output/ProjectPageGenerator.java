@@ -120,7 +120,7 @@ public class ProjectPageGenerator implements Generator {
         writeFile(mainDirectory+"\\gallery.html",gallery);
 
         //versions.html
-        writeFile(mainDirectory+"\\versions.html",new ProjectVersionPageGenerator(info,project,tags,binPath).generate());
+        writeFile(mainDirectory+"\\versions.html",new ProjectVersionPageGenerator(info,project,tags,binPath,links).generate());
 
         //assets
         Path assetsDirectory = Path.of(mainDataDirectory.toString(), "assets");
@@ -134,7 +134,7 @@ public class ProjectPageGenerator implements Generator {
 
         links.forEach((projectLinkType, s) -> {
 
-            elementsGenerated.add("<a href=\"%%link%%\" class=\"project-link\" ><img src=\"../../images/icon/link/%%id%%.svg\" alt=\"%%display%% Icon\" width=\"24\" class=\"project-link-icon\">%%display%%</a><br>"
+            elementsGenerated.add("<a target=\"_blank\" href=\"%%link%%\" class=\"project-link\" ><img src=\"../../images/icon/link/%%id%%.svg\" alt=\"%%display%% Icon\" width=\"24\" class=\"project-link-icon\">%%display%%</a>"
                     .replaceAll("%%link%%",s)
                     .replaceAll("%%display%%",projectLinkType.getDisplay())
                     .replaceAll("%%id%%",projectLinkType.getId())
