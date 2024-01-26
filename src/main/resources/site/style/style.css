@@ -125,3 +125,27 @@ footer {
     margin-top: 30rem;
     min-height: 15rem;
 }
+
+
+.search-bar {
+    background-color: #1a1b1d;
+    border-radius: 3rem;
+    max-width: 25rem;
+}
+
+.search-bar-input {
+    background-color: transparent;
+    color: white;
+    margin-left: 1rem;
+    border: 0;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    margin-top: 0.4rem;
+    padding: 1rem;
+    vertical-align: middle;
+    width: 80%;
+}
+
+.search-bar-input:focus {
+    outline: none;
+}

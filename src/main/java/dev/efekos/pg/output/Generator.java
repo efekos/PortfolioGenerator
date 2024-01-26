@@ -41,12 +41,12 @@ public interface Generator {
     default void copyStringResource(String resourceLocation, String outputLocation, String binPath) throws IOException {
         System.out.println("Copying file: " + resourceLocation);
 
-        String fileString = Main.readStringResource(resourceLocation);
+        String fileString = Main.readStringResource(resourceLocation,true);
         File file = new File(binPath + outputLocation);
         file.getParentFile().mkdirs();
         file.createNewFile();
 
-        FileWriter writer = new FileWriter(file);
+        FileWriter writer = new FileWriter(file,StandardCharsets.UTF_8);
         writer.write(fileString);
         writer.flush();
         writer.close();

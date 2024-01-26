@@ -116,8 +116,12 @@ public class FileGenerator implements Generator {
     public void generateScriptFiles(GeneralInfo info) throws IOException {
         System.out.println("Generating script files");
 
+        // age_calculator.js
         String string = Main.readStringResource("/site/script/age_calculator.js").replaceAll("%%byear%%", info.getBirthDate().getYear() + "");
         writeFile(binPath + "\\age_calculator.js", string);
+
+        // project_serach.js
+        copyStringResource("/site/script/projects_search.js","\\projects_search.js",binPath);
 
         System.out.println("Generates script files");
     }
