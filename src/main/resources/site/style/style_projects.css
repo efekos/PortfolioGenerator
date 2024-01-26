@@ -137,3 +137,14 @@ pre[class*="language-"] {
     color: rgb(235,235,235);
     cursor: default;
 }
+
+.project-link {
+    color: #999999;
+    text-decoration: underline;
+}
+
+.project-link-icon {
+    vertical-align: middle;
+    margin-bottom: 0.2rem;
+    margin-right: 0.25rem;
+}

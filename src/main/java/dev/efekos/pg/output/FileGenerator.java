@@ -167,6 +167,15 @@ public class FileGenerator implements Generator {
         copyIcon("scale", "scale");
         copyIcon("tag", "tag");
         copyIcon("project","project");
+
+        copyIcon("project_link/doc","link\\doc");
+        copyIcon("project_link/guide","link\\guide");
+        copyIcon("project_link/issues","link\\issues");
+        copyIcon("project_link/main","link\\main");
+        copyIcon("project_link/source","link\\source");
+        copyIcon("project_link/support","link\\support");
+        copyIcon("project_link/wiki","link\\wiki");
+
         for (SocialLinkType type : generalInfo.getSocialLinks().keySet()) {
             copyIcon("social/" + type.getId(), "social\\" + type.getId());
         }

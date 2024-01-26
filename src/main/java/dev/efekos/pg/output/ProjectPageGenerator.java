@@ -20,6 +20,7 @@ import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.data.schema.Project;
 import dev.efekos.pg.data.schema.ProjectGalleryImage;
+import dev.efekos.pg.data.type.ProjectLinkType;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ProjectPageGenerator implements Generator {
     private final String binPath;
@@ -72,12 +74,14 @@ public class ProjectPageGenerator implements Generator {
         mainDirectory.toFile().mkdirs();
 
         String tags = String.join("",project.getTags().stream().map(s -> "<div class=\"project-tag-"+s+"\">"+s+"</div>").toList());
+        String links = String.join("<br>",generateLinkElements(project.getLinks()));
 
         //index.html
         String html = Main.readStringResource("/site/html/project.html")
                 .replace("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
+                .replaceAll("%%links%%",links)
                 .replaceAll("%%prid%%", project.getId());
 
         writeFile(mainDirectory + "\\index.html", html);
@@ -89,6 +93,7 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%prid%%", project.getId())
                 .replaceAll("%%prlicense%%", project.getLicense())
                 .replaceAll("%%tags%%",tags)
+                .replaceAll("%%links%%",links)
                 .replaceAll("%%prflicense%%", project.getFullLicense());
 
         writeFile(mainDirectory + "\\license.html", license);
@@ -98,6 +103,7 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
+                .replaceAll("%%links%%",links)
                 .replaceAll("%%prid%%", project.getId());
 
         writeFile(mainDirectory + "\\changelog.html", changelog);
@@ -107,6 +113,7 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%name%%",info.getName())
                 .replaceAll("%%prname%%",project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
+                .replaceAll("%%links%%",links)
                 .replaceAll("%%prid%%",project.getId())
                 .replaceAll("%%images%%",generateGalleryImageElements(project));
 
@@ -120,6 +127,22 @@ public class ProjectPageGenerator implements Generator {
         FileUtils.copyDirectory(assetsDirectory.toFile(), Path.of(mainDirectory.toString(), "assets").toFile());
 
         generateScripts(project);
+    }
+
+    private List<String> generateLinkElements(Map<ProjectLinkType, String> links) {
+        List<String> elementsGenerated = new ArrayList<>();
+
+        links.forEach((projectLinkType, s) -> {
+
+            elementsGenerated.add("<a href=\"%%link%%\" class=\"project-link\" ><img src=\"../../images/icon/link/%%id%%.svg\" alt=\"%%display%% Icon\" width=\"24\" class=\"project-link-icon\">%%display%%</a><br>"
+                    .replaceAll("%%link%%",s)
+                    .replaceAll("%%display%%",projectLinkType.getDisplay())
+                    .replaceAll("%%id%%",projectLinkType.getId())
+            );
+
+        });
+
+        return elementsGenerated;
     }
 
     private String generateGalleryImageElements(Project project){

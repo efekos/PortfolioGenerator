@@ -157,7 +157,7 @@ public class Main {
 
     public static String readStringResource(String path) {
         try {
-            return readStringResource(path,false);
+            return readStringResource(path,true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
