@@ -23,7 +23,6 @@ public enum ProjectLinkType {
     ISSUES("issues", "Issue Tracker"),
     SOURCE("source", "Source"),
     SUPPORT("support", "Support"),
-    DONATE("donate", "Donate"),
     WIKI("wiki", "Wiki"),
     DOCUMENTATION("doc", "Documentation"),
     GUIDE("guide", "Guide"),
