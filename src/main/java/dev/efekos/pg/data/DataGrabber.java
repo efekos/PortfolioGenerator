@@ -30,6 +30,7 @@ import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Used for making data grab process look clean in {@link dev.efekos.pg.Main}. Contains methods to grab different kinds of data from json files.
@@ -53,7 +54,7 @@ public class DataGrabber {
      */
     public DataGrabber(String mainPath) {
         this.mainPath = mainPath + "\\data";
-        this.context = new DataGrabberContext(mainPath + "\\data", this.mainPath);
+        this.context = new DataGrabberContext(mainPath + "\\data");
     }
 
     /**
@@ -146,6 +147,7 @@ public class DataGrabber {
         ArrayList<Certificate> certificates = new ArrayList<>();
 
 
+        assert files != null;
         for (File file : files) {
             context.setCurrentFile(file.getPath().replace(mainPath, ""));
 
@@ -174,7 +176,7 @@ public class DataGrabber {
 
 
         List<Project> projects = new ArrayList<>();
-        for (File dir : projectsDir.listFiles()) {
+        for (File dir : Objects.requireNonNull(projectsDir.listFiles())) {
             if (!Files.isDirectory(dir.toPath())) throw new NotDirectoryException(dir.getAbsolutePath());
 
             // log

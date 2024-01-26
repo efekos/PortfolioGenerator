@@ -51,7 +51,7 @@ public class CertificatesPageGenerator implements Generator {
         System.out.println("Generated file: certificates.html");
     }
 
-    public void copyImages(GeneralInfo info, List<Certificate> certificates) throws IOException {
+    public void copyImages(List<Certificate> certificates) throws IOException {
         System.out.println("Copying certificate images");
         for (Certificate certificate : certificates) {
             for (String value : certificate.getImages().values()) {
@@ -60,9 +60,10 @@ public class CertificatesPageGenerator implements Generator {
 
                 String imagePath = value.replace(Main.getMainPath() + "\\data\\certificates", "");
                 String certificatesFolderPath = binPath + "\\images\\certificate";
-                Files.createDirectories(Path.of(certificatesFolderPath, imagePath).getParent());
+                Path path = Path.of(certificatesFolderPath, imagePath);
+                Files.createDirectories(path.getParent());
 
-                Files.copy(valuePath, Path.of(certificatesFolderPath, imagePath));
+                Files.copy(valuePath, path);
             }
         }
         System.out.println("Copied certificate images");
@@ -80,12 +81,10 @@ public class CertificatesPageGenerator implements Generator {
 
             List<String> imageButtonElements = new ArrayList<>();
 
-            certificate.getImages().forEach((type, path) -> {
-                imageButtonElements.add(makeFileButton(type,
-                        path.replace(Main.getMainPath() + "\\data\\certificates\\", "")
-                                .replaceAll("\\\\", "/")
-                ));
-            });
+            certificate.getImages().forEach((type, path) -> imageButtonElements.add(makeFileButton(type,
+                    path.replace(Main.getMainPath() + "\\data\\certificates\\", "")
+                            .replaceAll("\\\\", "/")
+            )));
 
 
             String certificateFile = resourceFile

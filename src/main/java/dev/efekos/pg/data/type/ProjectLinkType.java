@@ -17,6 +17,7 @@
 package dev.efekos.pg.data.type;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum ProjectLinkType {
     ISSUES("issues", "Issue Tracker"),
@@ -43,11 +44,7 @@ public enum ProjectLinkType {
         return display;
     }
 
-    public static ProjectLinkType findById(String id) {
-        return Arrays.stream(values()).filter(socialLinkType -> socialLinkType.id.equals(id)).findFirst().get();
-    }
-
-    public static boolean isValidId(String id) {
-        return Arrays.stream(values()).anyMatch(socialLinkType -> socialLinkType.id.equals(id));
+    public static Optional<ProjectLinkType> findById(String id) {
+        return Arrays.stream(values()).filter(socialLinkType -> socialLinkType.id.equals(id)).findFirst();
     }
 }

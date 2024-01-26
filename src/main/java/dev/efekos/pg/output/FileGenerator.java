@@ -128,7 +128,7 @@ public class FileGenerator implements Generator {
         CertificatesPageGenerator generator = new CertificatesPageGenerator(binPath);
 
         generator.generateActualFile(info, certificates);
-        generator.copyImages(info, certificates);
+        generator.copyImages(certificates);
         generator.generateSinglePages(info, certificates);
 
         System.out.println("Generated certificate pages");

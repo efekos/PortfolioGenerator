@@ -24,7 +24,7 @@ import dev.efekos.pg.Main;
 
 public class DataTypeChecker {
 
-    private String currentFile;
+    private final String currentFile;
 
     public DataTypeChecker(String currentFile) {
         this.currentFile = currentFile;
@@ -36,10 +36,6 @@ public class DataTypeChecker {
 
     public String getCurrentFile() {
         return currentFile;
-    }
-
-    public void setCurrentFile(String currentFile) {
-        this.currentFile = currentFile;
     }
 
     public void searchExceptions(JsonObject object, String requiredKey, RequiredDataType type) throws JsonParseException {

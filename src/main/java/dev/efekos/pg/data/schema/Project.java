@@ -25,10 +25,7 @@ import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.ProjectLinkType;
 import dev.efekos.pg.data.type.RequiredDataType;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Project implements JsonSchema {
     private String id; // nijson
@@ -83,12 +80,11 @@ public class Project implements JsonSchema {
         // links
         JsonObject linksObject = object.get("links").getAsJsonObject();
         linksObject.asMap().forEach((key, link) -> {
-            if (!ProjectLinkType.isValidId(key)) throw new JsonParseException("Unknown link id '" + key + "'");
+            Optional<ProjectLinkType> id = ProjectLinkType.findById(key);
+            if(id.isEmpty()) throw new JsonParseException("Unknown link id '"+key+"'");
 
-            ProjectLinkType id = ProjectLinkType.findById(key);
-
-            if (this.links.containsKey(id)) throw new JsonParseException("Link id '" + key + "' used more than once");
-            this.links.put(id, link.getAsString());
+            if (this.links.containsKey(id.get())) throw new JsonParseException("Link id '" + key + "' used more than once");
+            this.links.put(id.get(), link.getAsString());
         });
 
         // tags

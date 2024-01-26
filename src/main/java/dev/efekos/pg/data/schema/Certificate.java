@@ -47,7 +47,7 @@ public class Certificate implements JsonSchema {
 
         // type
         Optional<CertificateType> type = Arrays.stream(CertificateType.values()).filter(t -> t.getId().equalsIgnoreCase(object.get("type").getAsString())).findFirst();
-        if (!type.isPresent())
+        if (type.isEmpty())
             throw new JsonParseException("Unknown certificate type '" + object.get("type").getAsString() + "'");
 
         setCertificateType(type.get());

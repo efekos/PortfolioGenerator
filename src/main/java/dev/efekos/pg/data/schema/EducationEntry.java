@@ -59,7 +59,7 @@ public class EducationEntry implements JsonSchema {
         // type
         String iconString = object.get("type").getAsString();
         Optional<EducationEntryType> entryIcon = Arrays.stream(EducationEntryType.values()).filter(educationEntryType -> educationEntryType.getId().equals(iconString)).findFirst();
-        if (!entryIcon.isPresent())
+        if (entryIcon.isEmpty())
             throw new JsonParseException("Unknown education entry type type '" + iconString + "' in file '" + context.getCurrentFile() + "'");
         this.type = entryIcon.get();
 

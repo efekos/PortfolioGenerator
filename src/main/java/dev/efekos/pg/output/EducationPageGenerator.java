@@ -38,11 +38,11 @@ public class EducationPageGenerator implements Generator {
     public void generate(GeneralInfo generalInfo, EducationInfo info) throws IOException {
         System.out.println("Generating file: education.html");
         generateElements(info);
-        generateFile(generalInfo, info);
+        generateFile(generalInfo);
         System.out.println("Generated file: education.html");
     }
 
-    private void generateFile(GeneralInfo generalInfo, EducationInfo info) throws IOException {
+    private void generateFile(GeneralInfo generalInfo) throws IOException {
         String file = Main.readStringResource("/site/html/education.html")
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%name%%", generalInfo.getName());

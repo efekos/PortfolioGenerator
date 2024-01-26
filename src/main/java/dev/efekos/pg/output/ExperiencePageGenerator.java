@@ -40,15 +40,15 @@ public class ExperiencePageGenerator implements Generator {
     public void generate(GeneralInfo generalInfo, ExperienceInfo info) throws IOException {
         System.out.println("Generating file: experience.html");
         generateElements(info);
-        generateFile(generalInfo, info);
+        generateFile(generalInfo);
         System.out.println("Generated file: experience.html");
     }
 
-    private void generateFile(GeneralInfo generalInfo, ExperienceInfo info) throws IOException {
+    private void generateFile(GeneralInfo generalInfo) throws IOException {
         String file = Main.readStringResource("/site/html/experience.html")
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%cc%%", currentJobElement)
-                .replaceAll("%%ch%%", !currentJobElement.equals("") ? "<h2>Job History</h2><br>" : "")
+                .replaceAll("%%ch%%", !currentJobElement.isEmpty() ? "<h2>Job History</h2><br>" : "")
                 .replaceAll("%%name%%", generalInfo.getName());
 
         writeFile(binPath + "\\experience.html", file);

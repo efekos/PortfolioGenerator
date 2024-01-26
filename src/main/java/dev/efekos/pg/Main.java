@@ -21,7 +21,6 @@ import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.output.FileGenerator;
 import dev.efekos.pg.util.LocaleHelper;
 import dev.efekos.pg.util.WorkContext;
-import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;

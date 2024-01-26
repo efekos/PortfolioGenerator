@@ -16,7 +16,10 @@
 
 package dev.efekos.pg.data.type;
 
+import com.google.gson.JsonParseException;
+
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum SocialLinkType {
     CURSEFORGE("curseforge", "rgb(59, 41, 29)", "rgb(73, 50, 35)"),
@@ -68,7 +71,9 @@ public enum SocialLinkType {
     }
 
     public static SocialLinkType findById(String id) {
-        return Arrays.stream(values()).filter(socialLinkType -> socialLinkType.id.equals(id)).findFirst().get();
+        Optional<SocialLinkType> type = Arrays.stream(values()).filter(socialLinkType -> socialLinkType.id.equals(id)).findFirst();
+        if(type.isEmpty()) throw new JsonParseException("Unknown social link type '"+id+"'");
+        return type.get();
     }
 
     public static boolean isValidId(String id) {

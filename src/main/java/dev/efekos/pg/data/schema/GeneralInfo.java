@@ -107,7 +107,7 @@ public class GeneralInfo implements JsonSchema {
 
         // native_language
         this.nativeLanguage = object.get("native_language").getAsString();
-        if (!LocaleHelper.isValid(this.nativeLanguage))
+        if (LocaleHelper.isNotValid(this.nativeLanguage))
             throw new JsonParseException("Unknown native language code '" + this.nativeLanguage + "'");
 
         // known_languages
@@ -117,14 +117,14 @@ public class GeneralInfo implements JsonSchema {
             this.knownLanguages = object
                     .get("known_languages")
                     .getAsJsonArray().asList()
-                    .stream().map(jsonElement -> jsonElement.getAsString())
+                    .stream().map(JsonElement::getAsString)
                     .toList();
 
         } catch (Exception e) {
             this.knownLanguages = new ArrayList<>();
         }
         for (String knownLanguage : this.knownLanguages) {
-            if (!LocaleHelper.isValid(knownLanguage))
+            if (LocaleHelper.isNotValid(knownLanguage))
                 throw new JsonParseException("Unknown known language code '" + knownLanguage + "'");
         }
 

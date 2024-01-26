@@ -20,14 +20,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dev.efekos.pg.Main;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LocaleHelper {
     private static final Map<String, Locale> localeList = new HashMap<>();
 
-    public static void loadLocales() throws IOException {
+    public static void loadLocales() {
         System.out.println("Loading locales...");
         String jsonString = Main.readStringResource("/valid_locales.json");
         JsonObject element = JsonParser.parseString(jsonString).getAsJsonObject();
@@ -47,7 +46,7 @@ public class LocaleHelper {
         return localeList.getOrDefault(code, localeList.get("en"));
     }
 
-    public static boolean isValid(String code) {
-        return localeList.containsKey(code);
+    public static boolean isNotValid(String code) {
+        return !localeList.containsKey(code);
     }
 }
