@@ -142,9 +142,8 @@ public class Main {
         System.out.println("Data grab process ended successfully in " + difference + "s");
         System.out.println("------------");
 
-        //TODO: checkboxlar stillenecek
-        //TODO: timeline
-        //TODO: contact page
+        //TODO: şemalar
+        //TODO: documentation
     }
 
 
