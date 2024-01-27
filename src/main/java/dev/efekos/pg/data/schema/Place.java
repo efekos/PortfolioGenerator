@@ -16,7 +16,6 @@
 
 package dev.efekos.pg.data.schema;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -24,72 +23,61 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
-public class ContactInfo implements JsonSchema{
-    private String email;
-    private String number;
-    private boolean includeSocials;
-    private List<Place> places = new ArrayList<>();
-
+public class Place implements JsonSchema{
+    private String displayName;
+    private String website;
+    private String mapsLink;
+    private String address;
 
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
         checker.expectObject(element);
+
         JsonObject object = element.getAsJsonObject();
 
-        checker.searchExceptions(object,"email", RequiredDataType.STRING);
-        checker.searchExceptions(object,"number",RequiredDataType.STRING);
-        checker.searchExceptions(object,"socials",RequiredDataType.BOOLEAN);
-        checker.searchExceptions(object,"places",RequiredDataType.ARRAY);
+        checker.searchExceptions(object,"maps", RequiredDataType.STRING);
+        checker.searchExceptions(object,"display", RequiredDataType.STRING);
+        checker.searchExceptions(object,"address", RequiredDataType.STRING);
 
-        this.email = object.get("email").getAsString();
-        this.number = object.get("number").getAsString();
-        this.includeSocials = object.get("socials").getAsBoolean();
+        if(object.has("website")) this.website = object.get("website").getAsString();
 
-        this.places.clear();
-        JsonArray array = object.getAsJsonArray("places");
-        for (JsonElement placeElement : array) {
-            Place place = new Place();
-            place.readJson(placeElement,context);
-            this.places.add(place);
-        }
+        this.mapsLink = object.get("maps").getAsString();
+        this.address = object.get("address").getAsString();
+        this.displayName = object.get("display").getAsString();
     }
 
-    public List<Place> getPlaces() {
-        return places;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setPlaces(List<Place> places) {
-        this.places = places;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public boolean isIncludeSocials() {
-        return includeSocials;
+    public String getWebsite() {
+        return Objects.isNull(website)?"": "<span class=\"alt\">"+website+"</span>";
     }
 
-    public void setIncludeSocials(boolean includeSocials) {
-        this.includeSocials = includeSocials;
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
-    public ContactInfo() {
+    public String getMapsLink() {
+        return mapsLink;
     }
 
-    public String getEmail() {
-        return email;
+    public void setMapsLink(String mapsLink) {
+        this.mapsLink = mapsLink;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getAddress() {
+        return address;
     }
 
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

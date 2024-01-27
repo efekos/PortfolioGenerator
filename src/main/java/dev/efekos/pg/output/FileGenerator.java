@@ -87,18 +87,29 @@ public class FileGenerator implements Generator {
 
         if(contactInfo.isIncludeSocials()){
             file = file.replaceAll(
-                    "%social%", """
+                    "%%social%%", """
                             <h2>You can use my social media accounts as well</h2>
                             %%socialElements%%
                             """
             );
-        }
+        } else file = file.replaceAll("%%social%%","");
 
         writeFile(binPath+"\\contact.html",file
                 .replaceAll("%%name%%",generalInfo.getName())
                 .replaceAll("%%mail%%",contactInfo.getEmail())
                 .replaceAll("%%phone%%",contactInfo.getNumber())
+                .replaceAll("%%places%%",String.join("\n",contactInfo.getPlaces().stream().map(this::generatePlaceEntry).toList()))
                 .replaceAll("%%socialElements%%",String.join("",socialLinkElements)));
+    }
+
+    private String generatePlaceEntry(Place place){
+        String file = Main.readStringResource("/site/html/template/place_entry.html");
+
+        return file
+                .replaceAll("%%plmaps%%",place.getMapsLink())
+                .replaceAll("%%plwebsite%%",place.getWebsite())
+                .replaceAll("%%pldisplay%%",place.getDisplayName())
+                .replaceAll("%%pladdress%%",place.getAddress());
     }
 
     private String generateAboutEntry(String icon, String title, String alt, boolean age){
@@ -152,6 +163,7 @@ public class FileGenerator implements Generator {
 
         // project_serach.js
         copyStringResource("/site/script/projects_search.js","\\projects_search.js",binPath);
+        copyStringResource("/site/script/expandable_entries.js","\\expandable_entries.js",binPath);
 
         System.out.println("Generates script files");
     }
@@ -203,6 +215,8 @@ public class FileGenerator implements Generator {
         copyIcon("project","project");
         copyIcon("phone","phone");
         copyIcon("letter","letter");
+        copyIcon("expanded","expanded");
+        copyIcon("unexpanded","unexpanded");
 
         copyIcon("project_link/doc","link\\doc");
         copyIcon("project_link/guide","link\\guide");

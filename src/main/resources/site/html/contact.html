@@ -61,13 +61,15 @@
 
     %%footer%%
     <style>
+
+
         .entry {
             background-color: #202020;
             border-radius: 1rem;
             padding: 1.2rem;
             margin: 0.5rem;
             will-change: background-color;
-            transition: background-color 200ms;
+            transition: background-color 250ms;
         }
 
         .entries > .entry {
@@ -99,7 +101,22 @@
             padding: 1rem;
             border-radius: 100rem;
         }
+
+        .entry-toggleable:active {
+            background-color: #dfdfdf;
+        }
+
+        .entry-toggleable {
+            position: relative;
+        }
+
+        .entry-expand-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
     </style>
+    <script src="./expandable_entries.js"></script>
 </div>
 </body>
 </html>
