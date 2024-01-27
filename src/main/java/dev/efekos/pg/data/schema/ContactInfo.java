@@ -26,6 +26,7 @@ import dev.efekos.pg.data.type.RequiredDataType;
 public class ContactInfo implements JsonSchema{
     private String email;
     private String number;
+    private boolean includeSocials;
 
 
     @Override
@@ -36,9 +37,19 @@ public class ContactInfo implements JsonSchema{
 
         checker.searchExceptions(object,"email", RequiredDataType.STRING);
         checker.searchExceptions(object,"number",RequiredDataType.STRING);
+        checker.searchExceptions(object,"socials",RequiredDataType.BOOLEAN);
 
         this.email = object.get("email").getAsString();
         this.number = object.get("number").getAsString();
+        this.includeSocials = object.get("socials").getAsBoolean();
+    }
+
+    public boolean isIncludeSocials() {
+        return includeSocials;
+    }
+
+    public void setIncludeSocials(boolean includeSocials) {
+        this.includeSocials = includeSocials;
     }
 
     public ContactInfo() {

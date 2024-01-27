@@ -85,7 +85,19 @@ public class FileGenerator implements Generator {
 
         String file = Main.readStringResource("/site/html/contact.html");
 
+        if(contactInfo.isIncludeSocials()){
+            file = file.replaceAll(
+                    "%social%", """
+                            <h2>You can use my social media accounts as well</h2>
+                            %%socialElements%%
+                            """
+            );
+        }
+
         writeFile(binPath+"\\contact.html",file
+                .replaceAll("%%name%%",generalInfo.getName())
+                .replaceAll("%%mail%%",contactInfo.getEmail())
+                .replaceAll("%%phone%%",contactInfo.getNumber())
                 .replaceAll("%%socialElements%%",String.join("",socialLinkElements)));
     }
 
