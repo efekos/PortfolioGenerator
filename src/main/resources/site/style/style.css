@@ -146,6 +146,10 @@ footer {
     width: 80%;
 }
 
+.btn {
+    user-select: none;
+}
+
 .search-bar-input:focus {
     outline: none;
 }
