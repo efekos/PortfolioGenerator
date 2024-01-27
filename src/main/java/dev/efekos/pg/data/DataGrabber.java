@@ -215,4 +215,15 @@ public class DataGrabber {
         System.out.println("Grabbed directory: projects");
         return projects;
     }
+
+    public ContactInfo grabContactInfo() throws IOException {
+        System.out.println("Grabbing file: contact.json");
+
+        JsonElement element = JsonParser.parseString(readFile(mainPath + "\\contact.json"));
+        ContactInfo contactInfo = new ContactInfo();
+        context.setCurrentFile("contact.json");
+        contactInfo.readJson(element,context);
+
+        return contactInfo;
+    }
 }

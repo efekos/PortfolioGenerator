@@ -85,11 +85,11 @@ public class Main {
         generator.generateExperienceFile(context.generalInfo, context.experienceInfo);
         generator.generateStyleFiles(context.generalInfo,context.tagColorInfo);
         generator.generateProjectsPage(context.generalInfo, context.projects);
+        generator.generateContactPage(context.generalInfo,context.contactInfo);
         generator.copyLibraries();
 
         // copying
         generator.copyIcons(context.generalInfo);
-
 
         long time2 = new Date().getTime();
         float difference = (float) (time2 - time) / 1000;
@@ -127,6 +127,7 @@ public class Main {
         List<Certificate> certificates = grabber.grabCertificates();
         List<Project> projects = grabber.grabProjects();
         TagColorInfo grabTagColorInfo = grabber.grabTagColorInfo();
+        ContactInfo contactInfo = grabber.grabContactInfo();
 
         context.generalInfo = generalInfo;
         context.educationInfo = educationInfo;
@@ -134,11 +135,16 @@ public class Main {
         context.certificates = certificates;
         context.projects = projects;
         context.tagColorInfo = grabTagColorInfo;
+        context.contactInfo = contactInfo;
 
         long time2 = new Date().getTime();
         float difference = (float) (time2 - time) / 1000;
         System.out.println("Data grab process ended successfully in " + difference + "s");
         System.out.println("------------");
+
+        //TODO: checkboxlar stillenecek
+        //TODO: timeline
+        //TODO: contact page
     }
 
 

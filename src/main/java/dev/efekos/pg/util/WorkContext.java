@@ -25,6 +25,7 @@ public class WorkContext {
     public GeneralInfo generalInfo;
     public ExperienceInfo experienceInfo;
     public String binPath;
+    public ContactInfo contactInfo;
     public List<Certificate> certificates;
     public List<Project> projects;
     public TagColorInfo tagColorInfo;

@@ -61,7 +61,9 @@ public class FileGenerator implements Generator {
                                 generateAboutEntry("language", "Known Languages", String.join(", ", info.getKnownLanguages().stream().map(Locale::name).toList()), false),
                                 generateAboutEntry("university","Certificates Earned",context.certificates.size()+"",false),
                                 generateAboutEntry("project","Projects Made",context.projects.size()+"",false),
-                                generateAboutEntry("briefcase","Jobs Worked",context.experienceInfo.getEntries().size()+"",false)
+                                generateAboutEntry("briefcase","Jobs Worked",context.experienceInfo.getEntries().size()+"",false),
+                                generateAboutEntry("letter","Email Address",context.contactInfo.getEmail(),false),
+                                generateAboutEntry("phone","Phone Number",context.contactInfo.getNumber(),false)
                         )
                 ) + "</div>")
                 .replaceAll("%%socialElements%%", String.join("", socialLinkElements));
@@ -69,6 +71,22 @@ public class FileGenerator implements Generator {
         writeFile(binPath + "\\index.html", fileString);
 
         System.out.println("Generated file: index.html");
+    }
+
+    public void generateContactPage(GeneralInfo generalInfo,ContactInfo contactInfo) throws IOException{
+        List<String> socialLinkElements = new ArrayList<>();
+        generalInfo.getSocialLinks().forEach((type, link) -> {
+            try {
+                socialLinkElements.add(generateSocialElement(type, link));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        String file = Main.readStringResource("/site/html/contact.html");
+
+        writeFile(binPath+"\\contact.html",file
+                .replaceAll("%%socialElements%%",String.join("",socialLinkElements)));
     }
 
     private String generateAboutEntry(String icon, String title, String alt, boolean age){
@@ -171,6 +189,8 @@ public class FileGenerator implements Generator {
         copyIcon("scale", "scale");
         copyIcon("tag", "tag");
         copyIcon("project","project");
+        copyIcon("phone","phone");
+        copyIcon("letter","letter");
 
         copyIcon("project_link/doc","link\\doc");
         copyIcon("project_link/guide","link\\guide");
