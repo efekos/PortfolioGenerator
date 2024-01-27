@@ -141,9 +141,6 @@ public class Main {
         float difference = (float) (time2 - time) / 1000;
         System.out.println("Data grab process ended successfully in " + difference + "s");
         System.out.println("------------");
-
-        //TODO: şemalar
-        //TODO: documentation
     }
 
 
