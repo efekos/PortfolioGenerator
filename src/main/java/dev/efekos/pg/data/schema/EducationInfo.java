@@ -21,16 +21,29 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import dev.efekos.pg.data.DataGrabberContext;
+import dev.efekos.pg.data.timeline.TimelineEvent;
+import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.EducationEntryType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EducationInfo implements JsonSchema {
+public class EducationInfo implements JsonSchema, TimelineEventSource {
     private List<EducationEntry> entries;
 
     public EducationInfo() {
+    }
+
+    @Override
+    public List<TimelineEvent> getEvents() {
+        List<TimelineEvent> events = new ArrayList<>();
+
+        for (EducationEntry entry : entries) {
+            events.addAll(entry.getEvents());
+        }
+
+        return events;
     }
 
     public List<EducationEntry> getEntries() {

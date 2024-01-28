@@ -20,15 +20,31 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
+import dev.efekos.pg.data.timeline.JobEndEvent;
+import dev.efekos.pg.data.timeline.JobStartEvent;
+import dev.efekos.pg.data.timeline.TimelineEvent;
+import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 
-public class ExperienceEntry implements JsonSchema {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ExperienceEntry implements JsonSchema, TimelineEventSource {
     private String company;
     private String position;
     private MonthDate from;
     private MonthDate to;
     private boolean currentJob;
+
+    @Override
+    public List<TimelineEvent> getEvents() {
+        ArrayList<TimelineEvent> list = new ArrayList<>();
+        list.add(new JobStartEvent(company,position,from));
+        if(!currentJob) list.add(new JobEndEvent(company,to));
+
+        return list;
+    }
 
     public ExperienceEntry() {
 

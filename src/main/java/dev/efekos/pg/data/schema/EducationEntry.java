@@ -20,19 +20,32 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
+import dev.efekos.pg.data.timeline.EducationEndEvent;
+import dev.efekos.pg.data.timeline.EducationStartEvent;
+import dev.efekos.pg.data.timeline.TimelineEvent;
+import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.EducationEntryType;
 import dev.efekos.pg.data.type.RequiredDataType;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
-public class EducationEntry implements JsonSchema {
+public class EducationEntry implements JsonSchema, TimelineEventSource {
     private EducationEntryType type;
     private String title;
     private MonthDate start;
     private MonthDate until;
     private String location;
+
+    @Override
+    public List<TimelineEvent> getEvents() {
+        return Arrays.asList(
+                new EducationStartEvent(title,start),
+                new EducationEndEvent(until,title,type)
+        );
+    }
 
     public EducationEntry(EducationEntryType type, String title, MonthDate start, MonthDate until, String location) {
         this.type = type;

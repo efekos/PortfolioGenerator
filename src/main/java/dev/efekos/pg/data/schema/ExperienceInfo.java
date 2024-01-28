@@ -21,15 +21,28 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import dev.efekos.pg.data.DataGrabberContext;
+import dev.efekos.pg.data.timeline.TimelineEvent;
+import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExperienceInfo implements JsonSchema {
+public class ExperienceInfo implements JsonSchema, TimelineEventSource {
 
     private List<ExperienceEntry> entries;
     private ExperienceEntry currentJob = null;
+
+    @Override
+    public List<TimelineEvent> getEvents() {
+        ArrayList<TimelineEvent> list = new ArrayList<>();
+
+        for (ExperienceEntry entry : entries) {
+            list.addAll(entry.getEvents());
+        }
+
+        return list;
+    }
 
     public ExperienceInfo(List<ExperienceEntry> entries) {
         this.entries = entries;

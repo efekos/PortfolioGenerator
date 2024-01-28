@@ -20,18 +20,18 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
+import dev.efekos.pg.data.timeline.BirthEvent;
+import dev.efekos.pg.data.timeline.TimelineEvent;
+import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 import dev.efekos.pg.data.type.SocialLinkType;
 import dev.efekos.pg.util.Locale;
 import dev.efekos.pg.util.LocaleHelper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class GeneralInfo implements JsonSchema {
+public class GeneralInfo implements JsonSchema, TimelineEventSource {
     private String name;
     private DayDate birthDate;
     private String title;
@@ -45,6 +45,11 @@ public class GeneralInfo implements JsonSchema {
         this.name = name;
         this.birthDate = birthDate;
         this.title = title;
+    }
+
+    @Override
+    public List<TimelineEvent> getEvents() {
+        return List.of(new BirthEvent(birthDate));
     }
 
     public Locale getNativeLanguage() {

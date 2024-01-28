@@ -22,18 +22,28 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.DataGrabberContext;
+import dev.efekos.pg.data.timeline.AchieveCertificateEvent;
+import dev.efekos.pg.data.timeline.TimelineEvent;
+import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.CertificateType;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 
 import java.util.*;
 
-public class Certificate implements JsonSchema {
+public class Certificate implements JsonSchema, TimelineEventSource {
     private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList("png", "jpg", "jpeg", "pdf");
     private Map<String, String> images;
     private DayDate when;
     private CertificateType certificateType;
     private CertificateDisplay display;
+
+    @Override
+    public List<TimelineEvent> getEvents() {
+        return Arrays.asList(
+                new AchieveCertificateEvent(when,display.getTitle())
+        );
+    }
 
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {

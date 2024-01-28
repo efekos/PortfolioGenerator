@@ -21,13 +21,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import dev.efekos.pg.data.DataGrabberContext;
+import dev.efekos.pg.data.timeline.ProjectReleaseEvent;
+import dev.efekos.pg.data.timeline.TimelineEvent;
+import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.ProjectLinkType;
 import dev.efekos.pg.data.type.RequiredDataType;
 
 import java.util.*;
 
-public class Project implements JsonSchema {
+public class Project implements JsonSchema, TimelineEventSource {
     private String id; // not in json
     private String displayName;
     private Map<ProjectLinkType, String> links = new HashMap<>();
@@ -42,6 +45,11 @@ public class Project implements JsonSchema {
     private DayDate release;
     private ProjectGalleryImageList galleryImages;
     private VersionInfo versionInfo;
+
+    @Override
+    public List<TimelineEvent> getEvents() {
+        return List.of(new ProjectReleaseEvent(displayName,release));
+    }
 
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
