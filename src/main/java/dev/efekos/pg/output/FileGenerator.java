@@ -57,7 +57,7 @@ public class FileGenerator implements Generator {
         timeline.sort(Comparator.comparing(TimelineEvent::getDate));
 
         for (TimelineEvent event : timeline) {
-            timelineElements.add(generateAboutEntry(event.getIcon(), event.getTitle(), event.getTime(), false));
+            timelineElements.add("<li>"+generateAboutEntry(event.getIcon(), event.getTitle(), event.getTime(), false)+"</li>");
         }
 
         String fileString = Main.readStringResource("/site/html/index.html")
@@ -76,7 +76,7 @@ public class FileGenerator implements Generator {
                                 generateAboutEntry("phone","Phone Number",context.contactInfo.getNumber(),false)
                         )
                 ) + "</div>")
-                .replaceAll("%%timeline%%",String.join("<br>",timelineElements))
+                .replaceAll("%%timeline%%",String.join("",timelineElements))
                 .replaceAll("%%socialElements%%", String.join("", socialLinkElements));
 
         writeFile(binPath + "\\index.html", fileString);
