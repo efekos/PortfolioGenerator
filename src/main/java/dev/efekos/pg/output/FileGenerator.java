@@ -20,7 +20,7 @@ import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.data.type.SocialLinkType;
 import dev.efekos.pg.util.Locale;
-import dev.efekos.pg.util.WorkContext;
+import dev.efekos.pg.process.ProcessContext;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -37,7 +37,7 @@ public class FileGenerator implements Generator {
         this.binPath = binPath;
     }
 
-    public void generateIndexFile(WorkContext context) throws IOException {
+    public void generateIndexFile(ProcessContext context) throws IOException {
         GeneralInfo info = context.generalInfo;
         System.out.println("Generating file: index.html");
 

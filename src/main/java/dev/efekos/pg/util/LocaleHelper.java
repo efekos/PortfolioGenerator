@@ -34,6 +34,7 @@ public class LocaleHelper {
         localeList.clear();
 
         element.asMap().forEach((code, value) -> {
+            System.out.println("Loading locale code: "+code);
             JsonObject object = value.getAsJsonObject();
             String name = object.get("name").getAsString();
             String nativeName = object.get("nativeName").getAsString();

@@ -19,8 +19,10 @@ package dev.efekos.pg;
 import dev.efekos.pg.data.DataGrabber;
 import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.output.FileGenerator;
+import dev.efekos.pg.process.*;
+import dev.efekos.pg.process.Process;
+import dev.efekos.pg.util.ConsoleColors;
 import dev.efekos.pg.util.LocaleHelper;
-import dev.efekos.pg.util.WorkContext;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
@@ -30,6 +32,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -51,99 +54,68 @@ public class Main {
         return Path.of(MAIN_PATH);
     }
 
-    private static final WorkContext context = new WorkContext();
+    private static final ProcessContext context = new ProcessContext();
+
+    private static final List<Process> processList = Arrays.asList(
+            new LoadLocalesProcess(),
+            new SetupBinFolderProcess(),
+            new GrabDataProcess(),
+            new GenerateFileProcess()
+    );
+
+    private static boolean isDebug;
 
     public static void main(String[] args) throws Exception {
-        LocaleHelper.loadLocales();
+        isDebug = Arrays.asList(args).contains("--debug");
         FOOTER_ELEMENT = readStringResource("/site/html/template/footer.html");
         MAIN_PATH = System.getProperty("user.dir");
         System.out.println("Hello World!");
 
         long time = new Date().getTime();
 
-        startDataGrabProcess(); // read files
-        startBinRefreshProcess(); // clear bin folder
-        startFileGenerateProcess(); // generate files
+        for (int i = 0; i < processList.size(); i++) {
+            Process process = processList.get(i);
+            runProcess(process);
+        }
+
 
         long time2 = new Date().getTime();
 
         float seconds = (float) (time2 - time) / 1000;
 
-        System.out.println("Done in " + seconds + "s! output has been saved to " + context.binPath);
+        System.out.println(ConsoleColors.GREEN+"Done in " + seconds + "s! output has been saved to " + context.binPath);
     }
 
-    private static void startFileGenerateProcess() throws Exception {
-        System.out.println("Starting file generate process");
+
+    private static void runProcess(Process process){
         long time = new Date().getTime();
-        FileGenerator generator = new FileGenerator(context.binPath);
+        System.out.println("----------------------------------------");
+        System.out.println("Starting '"+process.getName()+"' process");
+        System.out.println("----------------------------------------");
 
-        // generating
-        generator.generateIndexFile(context);
-        generator.generateCertificatesFile(context.generalInfo, context.certificates);
-        generator.generateBioFile(context.generalInfo);
-        generator.generateScriptFiles(context.generalInfo);
-        generator.generateEducationFile(context.generalInfo, context.educationInfo);
-        generator.generateExperienceFile(context.generalInfo, context.experienceInfo);
-        generator.generateStyleFiles(context.generalInfo,context.tagColorInfo);
-        generator.generateProjectsPage(context.generalInfo, context.projects);
-        generator.generateContactPage(context.generalInfo,context.contactInfo);
-        generator.copyLibraries();
+        try {
+            process.init(context);
 
-        // copying
-        generator.copyIcons(context.generalInfo);
-
-        long time2 = new Date().getTime();
-        float difference = (float) (time2 - time) / 1000;
-        System.out.println("File generate process ended successfully in " + difference + "s");
-        System.out.println("------------");
+            long time2 = new Date().getTime();
+            float seconds = (float) (time2-time)/1000;
+            System.out.println("----------------------------------------");
+            System.out.println("Process '"+process.getName()+"' finished successfully in "+seconds+"s");
+            System.out.println("----------------------------------------");
+        } catch (Exception e){
+            if(isDebug) e.printStackTrace();
+            else {
+                System.out.println("----------------------------------------");
+                System.out.println(ConsoleColors.RED+"[PROCESS FAIL] "+ConsoleColors.RESET+e.getClass().getSimpleName()+": "+e.getMessage());
+                System.out.println("----------------------------------------");
+                System.out.println("Process '"+process.getName()+"' failed.");
+                System.out.println("If you are a contributor, run with --debug to");
+                System.out.println("see the stack trace. If you are a normal user,");
+                System.out.println("Open an issue on github.");
+                System.out.println("----------------------------------------");
+            }
+            System.exit(-1);
+        }
     }
-
-    private static void startBinRefreshProcess() throws IOException {
-        System.out.println("Starting refresh bin process");
-        long time = new Date().getTime();
-
-        String binPathString = MAIN_PATH + "\\bin";
-        Path binPath = Path.of(binPathString);
-        FileUtils.deleteDirectory(binPath.toFile());
-
-        Files.createDirectory(binPath);
-
-        context.binPath = binPathString;
-
-        long time2 = new Date().getTime();
-        float difference = (float) (time2 - time) / 1000;
-        System.out.println("Bin refresh process ended successfully in " + difference + "s");
-        System.out.println("------------");
-    }
-
-    private static void startDataGrabProcess() throws IOException {
-        System.out.println("Starting data grab process");
-        long time = new Date().getTime();
-
-        DataGrabber grabber = new DataGrabber(MAIN_PATH);
-
-        GeneralInfo generalInfo = grabber.grabGeneralInfo();
-        EducationInfo educationInfo = grabber.grabEducationInfo();
-        ExperienceInfo info = grabber.grabExperienceInfo();
-        List<Certificate> certificates = grabber.grabCertificates();
-        List<Project> projects = grabber.grabProjects();
-        TagColorInfo grabTagColorInfo = grabber.grabTagColorInfo();
-        ContactInfo contactInfo = grabber.grabContactInfo();
-
-        context.generalInfo = generalInfo;
-        context.educationInfo = educationInfo;
-        context.experienceInfo = info;
-        context.certificates = certificates;
-        context.projects = projects;
-        context.tagColorInfo = grabTagColorInfo;
-        context.contactInfo = contactInfo;
-
-        long time2 = new Date().getTime();
-        float difference = (float) (time2 - time) / 1000;
-        System.out.println("Data grab process ended successfully in " + difference + "s");
-        System.out.println("------------");
-    }
-
 
     /**
      * Reads a resource from the resources folder, and returns it as a {@link String}.

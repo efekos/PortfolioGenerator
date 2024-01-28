@@ -14,19 +14,30 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package dev.efekos.pg.util;
+package dev.efekos.pg.process;
 
-import dev.efekos.pg.data.schema.*;
+import dev.efekos.pg.Main;
+import org.apache.commons.io.FileUtils;
 
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
-public class WorkContext {
-    public EducationInfo educationInfo;
-    public GeneralInfo generalInfo;
-    public ExperienceInfo experienceInfo;
-    public String binPath;
-    public ContactInfo contactInfo;
-    public List<Certificate> certificates;
-    public List<Project> projects;
-    public TagColorInfo tagColorInfo;
+public class SetupBinFolderProcess implements Process{
+    @Override
+    public String getName() {
+        return "Setup Bin Folder";
+    }
+
+    @Override
+    public void init(ProcessContext context) throws Exception {
+        Path binPath = Path.of(Main.getMainPath().toString(),"bin");
+
+        System.out.println("Deleting directory");
+        FileUtils.deleteDirectory(binPath.toFile());
+
+        System.out.println("Creating new directory");
+        Files.createDirectory(binPath);
+
+        context.binPath = binPath.toString();
+    }
 }
