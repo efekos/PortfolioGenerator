@@ -31,7 +31,7 @@
     %%welcomer%%
 
     <br/><br/><br/>
-    <div style="text-align: center">
+    <div class="center">
         <a href="certificates.html">
             <button class="btn btn-blue">Certificates</button>
         </a>
@@ -59,7 +59,7 @@
 
         %%aboutEntries%%
 
-        <h1>Timeline</h1>
+        <h1 id="timeline">Timeline</h1>
     </div>
 
     <ul style="list-style: none">
@@ -67,8 +67,12 @@
     </ul>
 
     %%footer%%
-
+    <a href="#timeline" class="top btn btn-blue">Back to Top <img width="24" src="./images/icon/top.svg" style="vertical-align: middle"></a>
     <style>
+        .center {
+            text-align: center;
+        }
+
         .entry {
             background-color: #202020;
             border-radius: 1rem;
@@ -95,10 +99,12 @@
             margin-left: 0.5rem;
             color: #707070;
             font-size: 1.34rem;
+            text-align: left;
         }
 
         .title {
             margin-left: 0.5rem;
+            text-align: left;
         }
 
 
