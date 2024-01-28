@@ -173,8 +173,10 @@ public class FileGenerator implements Generator {
         Main.LOGGER.info("Generating script files");
 
         // age_calculator.js
+        Main.DEBUG_LOGGER.info("Generating file: age_calculator.js");
         String string = Main.readStringResource("/site/script/age_calculator.js").replaceAll("%%byear%%", info.getBirthDate().getYear() + "");
         writeFile(binPath + "\\age_calculator.js", string);
+        Main.DEBUG_LOGGER.success("Generated file: age_calculator.js");
 
         // project_search.js
         copyStringResource("/site/script/projects_search.js","\\projects_search.js",binPath);
@@ -256,10 +258,10 @@ public class FileGenerator implements Generator {
     }
 
     private void copyIcon(String resourceName, String binName) throws IOException {
-        Main.LOGGER.info("Copying icon: " + resourceName);
+        Main.DEBUG_LOGGER.info("Copying icon: " + resourceName);
         String string = Main.readStringResource("/site/icon/" + resourceName + ".svg");
         writeFile(binPath + "\\images\\icon\\" + binName + ".svg", string);
-        Main.LOGGER.success("Copied icon: " + resourceName);
+        Main.DEBUG_LOGGER.success("Copied icon: " + resourceName);
     }
 
     public void generateProjectsPage(GeneralInfo generalInfo, List<Project> projects) throws Exception {

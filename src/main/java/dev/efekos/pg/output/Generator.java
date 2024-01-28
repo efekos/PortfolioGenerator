@@ -39,7 +39,7 @@ public interface Generator {
     }
 
     default void copyStringResource(String resourceLocation, String outputLocation, String binPath) throws IOException {
-        Main.LOGGER.info("Copying file: " + outputLocation.replaceAll("\\\\","/"));
+        Main.DEBUG_LOGGER.info("Copying resource: " + resourceLocation);
 
         String fileString = Main.readStringResource(resourceLocation,true);
         File file = new File(binPath + outputLocation);
@@ -51,12 +51,12 @@ public interface Generator {
         writer.flush();
         writer.close();
 
-        Main.LOGGER.success("Copied file: " + outputLocation.replaceAll("\\\\","/"));
+        Main.DEBUG_LOGGER.success("Copied resource: " + resourceLocation+" to "+outputLocation.replaceAll("\\\\","/"));
     }
 
     default void writeFile(String path, String content) throws IOException {
         String logPath = path.replaceAll("/", "\\").replace(Main.getMainPath().toString(), "").replaceAll("\\\\", "/");
-        Main.LOGGER.info("Writing file: ", logPath);
+        Main.DEBUG_LOGGER.info("Writing file: ", logPath);
         File file = new File(path);
         file.getParentFile().mkdirs();
         file.createNewFile();
@@ -66,6 +66,6 @@ public interface Generator {
         writer.write(content.replaceAll("%%footer%%",Main.FOOTER_ELEMENT));
         writer.flush();
         writer.close();
-        Main.LOGGER.success("Wrote file: ",logPath);
+        Main.DEBUG_LOGGER.success("Wrote file: ",logPath);
     }
 }

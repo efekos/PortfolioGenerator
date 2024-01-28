@@ -34,13 +34,16 @@ public class LocaleHelper {
         localeList.clear();
 
         element.asMap().forEach((code, value) -> {
-            Main.LOGGER.info("Loading locale code: "+code);
+            Main.DEBUG_LOGGER.info("Loading locale code: "+code);
             JsonObject object = value.getAsJsonObject();
             String name = object.get("name").getAsString();
             String nativeName = object.get("nativeName").getAsString();
 
             localeList.put(code, new Locale(code, name, nativeName));
         });
+
+        Main.DEBUG_LOGGER.info("Final locale code count: "+localeList.size());
+        Main.LOGGER.success("Loaded locales");
     }
 
     public static Locale getLocale(String code) {

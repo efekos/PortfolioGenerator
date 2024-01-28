@@ -84,11 +84,11 @@ public class DataGrabber {
     private String readFile(String p) throws IOException {
         Path path = Path.of(p);
         String logPath = p.replaceAll("/", "\\").replace(mainPath + "\\", "").replaceAll("\\\\", "/");
-        Main.LOGGER.info("Reading file: ", logPath);
+        Main.DEBUG_LOGGER.info("Reading file: ", logPath);
 
         if (!Files.exists(path)) throw new FileNotFoundException("'" + path.getFileName().toFile() + "' file missing.");
         String file = Files.readString(path);
-        Main.LOGGER.success("Read file: ",logPath);
+        Main.DEBUG_LOGGER.success("Read file: ",logPath);
         return file;
     }
 
@@ -109,7 +109,7 @@ public class DataGrabber {
 
     public String grabMarkdownFile(String fileName) throws IOException {
         String file = readFile(mainPath + "\\" + fileName + ".md");
-        Main.LOGGER.info("Reading markdown: ",fileName.replaceAll("\\\\", "/"));
+        Main.DEBUG_LOGGER.info("Reading markdown: ",fileName.replaceAll("\\\\", "/"));
 
         return Utilities.markdownToHtml(file);
     }

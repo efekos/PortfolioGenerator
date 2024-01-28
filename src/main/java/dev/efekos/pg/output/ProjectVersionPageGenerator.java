@@ -53,6 +53,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
         switch (versionInfo.getType()){
             case OBJECT -> {
+                Main.DEBUG_LOGGER.info("Generating version entry elements for project: ",project.getId());
                 String template = Main.readStringResource("/site/html/template/project_version_entry.html",true);
 
                 for (Version version : versionInfo.getVersions()) {
@@ -64,69 +65,70 @@ public class ProjectVersionPageGenerator implements Generator{
                                     .replaceAll("%%btn%%", version.getLink()!=null? "<div><a href=\""+version.getLink()+"\" target=\"_blank\"><button class=\"btn btn-download\">See More</button></a></div>":"")
                     );
                 }
+                Main.DEBUG_LOGGER.success("Generated version entry elements for project: ",project.getId());
             }
             case MARKDOWN -> {
                 elements.add("<div class=\"markdown\" id=\"versions\"></div>");
                 scripts.add("<script src=\"./versions_finder.js\" ></script>");
 
 
-                Main.LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
+                Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
                 String script = Main.readStringResource("/site/script/project_versions_markdown_file_finder.js") // A file named with FIVE words? That's the spirit!
                         .replaceAll("%%link%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
-                Main.LOGGER.success("Generated file: projects/",project.getId(),"/versions_finder.js");
+                Main.DEBUG_LOGGER.success("Generated file: projects/",project.getId(),"/versions_finder.js");
             }
             case GITHUB_RELEASES -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PAGINATION_ELEMENT);
                 elements.add(PROJECT_RELEASES_TEMPLATE);
 
-                Main.LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
+                Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
                 String script = Main.readStringResource("/site/script/project_versions_grl_finder.js")
                         .replaceAll("%%repo%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
-                Main.LOGGER.success("Generated file: projects/",project.getId(),"/versions_finder.js");
+                Main.DEBUG_LOGGER.success("Generated file: projects/",project.getId(),"/versions_finder.js");
             }
             case MODRINTH_VERSIONS -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PROJECT_RELEASES_TEMPLATE);
 
-                Main.LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
+                Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
                 String script = Main.readStringResource("/site/script/project_versions_mrl_finder.js")
                         .replaceAll("%%id%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
-                Main.LOGGER.success("Generated file: projects",project.getId(),"/versions_finder.js");
+                Main.DEBUG_LOGGER.success("Generated file: projects",project.getId(),"/versions_finder.js");
             }
             case JSON -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PROJECT_RELEASES_TEMPLATE);
 
-                Main.LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
+                Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
                 String script = Main.readStringResource("/site/script/project_versions_json_finder.js")
                         .replaceAll("%%link%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
-                Main.LOGGER.success("Generated file: projects",project.getId(),"/versions_finder.js");
+                Main.DEBUG_LOGGER.success("Generated file: projects",project.getId(),"/versions_finder.js");
             }
             case SPIGOTMC_VERSIONS -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PAGINATION_ELEMENT);
                 elements.add(PROJECT_RELEASES_TEMPLATE);
 
-                Main.LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
+                Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
                 String script = Main.readStringResource("/site/script/project_versions_spig_finder.js")
                         .replaceAll("%%id%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
-                Main.LOGGER.success("Generated file: projects",project.getId(),"/versions_finder.js");
+                Main.DEBUG_LOGGER.success("Generated file: projects",project.getId(),"/versions_finder.js");
             }
             default -> Main.LOGGER.devWarn(" Not implemented version info type found: '",versionInfo.getType().toString(),"'");
         }

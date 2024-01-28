@@ -20,6 +20,7 @@ import com.google.gson.JsonParseException;
 import dev.efekos.pg.process.Process;
 import dev.efekos.pg.process.*;
 import dev.efekos.pg.util.ConsoleColors;
+import dev.efekos.pg.util.DebugLogger;
 import dev.efekos.pg.util.Logger;
 
 import java.io.FileNotFoundException;
@@ -43,6 +44,7 @@ public class Main {
     public static String FOOTER_ELEMENT;
 
     public static final Logger LOGGER = new Logger();
+    public static final DebugLogger DEBUG_LOGGER = new DebugLogger();
 
     /**
      * Returns a main path.
@@ -67,6 +69,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         isDebug = Arrays.asList(args).contains("--debug");
+        DEBUG_LOGGER.setEnabled(isDebug);
         FOOTER_ELEMENT = readStringResource("/site/html/template/footer.html");
         MAIN_PATH = System.getProperty("user.dir");
         System.out.println("Hello World!");

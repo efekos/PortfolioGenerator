@@ -53,7 +53,9 @@ public class CertificatesPageGenerator implements Generator {
     public void copyImages(List<Certificate> certificates) throws IOException {
         Main.LOGGER.info("Copying certificate images");
         for (Certificate certificate : certificates) {
+            Main.DEBUG_LOGGER.info("Copying certificate images of certificate: ",certificate.getDisplay().getTitle());
             for (String value : certificate.getImages().values()) {
+                Main.DEBUG_LOGGER.info("Copying certificate image: ",value);
                 Path valuePath = Path.of(value);
                 if (!Files.exists(valuePath)) throw new FileNotFoundException(value);
 
@@ -63,7 +65,9 @@ public class CertificatesPageGenerator implements Generator {
                 Files.createDirectories(path.getParent());
 
                 Files.copy(valuePath, path);
+                Main.DEBUG_LOGGER.success("Copied certificate image: ",value);
             }
+            Main.DEBUG_LOGGER.success("Copied certificate images of certificate: ",certificate.getDisplay().getTitle());
         }
         Main.LOGGER.success("Copied certificate images");
     }
@@ -75,7 +79,7 @@ public class CertificatesPageGenerator implements Generator {
         Files.createDirectory(Path.of(binPath, "certificate"));
 
         for (Certificate certificate : certificates) {
-            Main.LOGGER.info("Generating file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
+            Main.DEBUG_LOGGER.info("Generating file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
             String imagePath = certificate.getDisplay().getImage().replace(Main.getMainPath() + "\\data\\certificates", "");
 
             List<String> imageButtonElements = new ArrayList<>();
@@ -96,7 +100,7 @@ public class CertificatesPageGenerator implements Generator {
 
             String outputPath = binPath + "\\certificate\\" + makeId(certificate.getDisplay().getTitle()) + ".html";
             writeFile(outputPath, certificateFile);
-            Main.LOGGER.info("Generated file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
+            Main.DEBUG_LOGGER.success("Generated file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
         }
         Main.LOGGER.success("Generated single certificate files");
     }

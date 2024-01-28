@@ -45,6 +45,7 @@ public class ExperiencePageGenerator implements Generator {
     }
 
     private void generateFile(GeneralInfo generalInfo) throws IOException {
+        Main.DEBUG_LOGGER.info("Generating file");
         String file = Main.readStringResource("/site/html/experience.html")
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%cc%%", currentJobElement)
@@ -52,12 +53,14 @@ public class ExperiencePageGenerator implements Generator {
                 .replaceAll("%%name%%", generalInfo.getName());
 
         writeFile(binPath + "\\experience.html", file);
+        Main.DEBUG_LOGGER.success("Generated file");
     }
 
     private final List<String> elementsGenerated = new ArrayList<>();
     private String currentJobElement = "";
 
     private void generateElements(ExperienceInfo info) {
+        Main.DEBUG_LOGGER.info("Generating elements");
         List<ExperienceEntry> entries = info.getEntries();
         entries.sort(Comparator.comparing(ExperienceEntry::getFrom));
 
@@ -81,5 +84,6 @@ public class ExperiencePageGenerator implements Generator {
 
             currentJobElement = "<br><h2>Current Job</h2><br>" + element + "<br><br>";
         }
+        Main.DEBUG_LOGGER.success("Generated elements");
     }
 }

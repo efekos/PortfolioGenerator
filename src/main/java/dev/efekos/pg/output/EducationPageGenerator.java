@@ -43,16 +43,19 @@ public class EducationPageGenerator implements Generator {
     }
 
     private void generateFile(GeneralInfo generalInfo) throws IOException {
+        Main.DEBUG_LOGGER.info("Generating file");
         String file = Main.readStringResource("/site/html/education.html")
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%name%%", generalInfo.getName());
 
         writeFile(binPath + "\\education.html", file);
+        Main.DEBUG_LOGGER.success("Generated file");
     }
 
     private final List<String> elementsGenerated = new ArrayList<>();
 
     private void generateElements(EducationInfo info) {
+        Main.DEBUG_LOGGER.info("Generating elements");
         List<EducationEntry> entries = info.getEntries();
         entries.sort(Comparator.comparing(EducationEntry::getStart));
 
@@ -66,5 +69,6 @@ public class EducationPageGenerator implements Generator {
 
             elementsGenerated.add(element);
         }
+        Main.DEBUG_LOGGER.success("Generated elements");
     }
 }

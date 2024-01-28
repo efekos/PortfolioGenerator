@@ -35,18 +35,20 @@ public class CollectTimelineEventsProcess implements Process{
 
         List<TimelineEvent> collectedEvents = new ArrayList<>();
 
+        Main.LOGGER.info("Starting search");
         for (Object o : everything) {
-            Main.LOGGER.info("Looking for a "+o.getClass().getName());
+            Main.DEBUG_LOGGER.info("Searching a "+o.getClass().getName());
             if(o instanceof TimelineEventSource source){
-                Main.LOGGER.success("Found a TimelineEventSource");
+                Main.DEBUG_LOGGER.success("Found a source");
                 collectedEvents.addAll(source.getEvents());
             } else if (o instanceof List<?> list){
-                Main.LOGGER.success("Found a TimelineEventSource in "+list.getClass().getName());
                 if(list.get(0) instanceof TimelineEventSource){
+                    Main.DEBUG_LOGGER.success("Found a source list");
                     list.forEach(source -> collectedEvents.addAll(((TimelineEventSource) source).getEvents()));
                 }
             }
         }
+        Main.LOGGER.success("Finished search with ",collectedEvents.size()+" events found");
 
         context.collectedTimeline = collectedEvents;
     }
