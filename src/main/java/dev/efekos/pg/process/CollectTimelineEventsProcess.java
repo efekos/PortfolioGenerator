@@ -16,24 +16,37 @@
 
 package dev.efekos.pg.process;
 
-import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.data.timeline.TimelineEvent;
+import dev.efekos.pg.data.timeline.TimelineEventSource;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProcessContext {
-    public EducationInfo educationInfo;
-    public GeneralInfo generalInfo;
-    public ExperienceInfo experienceInfo;
-    public String binPath;
-    public ContactInfo contactInfo;
-    public List<Certificate> certificates;
-    public List<Project> projects;
-    public TagColorInfo tagColorInfo;
-    public List<TimelineEvent> collectedTimeline;
+public class CollectTimelineEventsProcess implements Process{
+    @Override
+    public String getName() {
+        return "Collect Timeline Events";
+    }
 
-    public List<Object> getEverything(){
-        return Arrays.asList(educationInfo,generalInfo,experienceInfo,contactInfo,certificates,projects,tagColorInfo,binPath);
+    @Override
+    public void init(ProcessContext context) throws Exception {
+        List<Object> everything = context.getEverything();
+
+        List<TimelineEvent> collectedEvents = new ArrayList<>();
+
+        for (Object o : everything) {
+            System.out.println("Looking for a "+o.getClass().getName());
+            if(o instanceof TimelineEventSource source){
+                System.out.println("Found a TimelineEventSource");
+                collectedEvents.addAll(source.getEvents());
+            } else if (o instanceof List<?> list){
+                System.out.println("Found a TimelineEventSource in "+list.getClass().getName());
+                if(list.get(0) instanceof TimelineEventSource source){
+                    collectedEvents.addAll(source.getEvents());
+                }
+            }
+        }
+
+        context.collectedTimeline = collectedEvents;
     }
 }
