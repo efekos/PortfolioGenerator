@@ -16,11 +16,13 @@
 
 package dev.efekos.pg;
 
+import com.google.gson.JsonParseException;
 import dev.efekos.pg.process.Process;
 import dev.efekos.pg.process.*;
 import dev.efekos.pg.util.ConsoleColors;
 import dev.efekos.pg.util.Logger;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -85,30 +87,41 @@ public class Main {
 
     private static void runProcess(Process process){
         long time = new Date().getTime();
-        System.out.println(LOGGER.getDate()+ConsoleColors.BLUE+"----------------------------------------");
-        System.out.println(LOGGER.getDate()+ConsoleColors.BLUE+"[PROCESS INFO] "+ConsoleColors.RESET+"Starting '"+process.getName()+"' process");
-        System.out.println(LOGGER.getDate()+ConsoleColors.BLUE+"----------------------------------------"+ConsoleColors.RESET);
+        LOGGER.plain(ConsoleColors.BLUE+"----------------------------------------");
+        LOGGER.plain(ConsoleColors.BLUE+"[PROCESS INFO] "+ConsoleColors.RESET+"Starting '"+process.getName()+"' process");
+        LOGGER.plain(ConsoleColors.BLUE+"----------------------------------------"+ConsoleColors.RESET);
 
         try {
             process.init(context);
 
             long time2 = new Date().getTime();
             float seconds = (float) (time2-time)/1000;
-            System.out.println(LOGGER.getDate()+ConsoleColors.GREEN+"----------------------------------------");
-            System.out.println(LOGGER.getDate()+ConsoleColors.GREEN+"[PROCESS SUCCESS] "+ConsoleColors.RESET+"Process '"+process.getName()+"' finished successfully in "+seconds+"s");
-            System.out.println(LOGGER.getDate()+ConsoleColors.GREEN+"----------------------------------------"+ConsoleColors.RESET);
+            LOGGER.plain(ConsoleColors.GREEN+"----------------------------------------");
+            LOGGER.plain(ConsoleColors.GREEN+"[PROCESS SUCCESS] "+ConsoleColors.RESET+"Process '"+process.getName()+"' finished successfully in "+seconds+"s");
+            LOGGER.plain(ConsoleColors.GREEN+"----------------------------------------"+ConsoleColors.RESET);
+        } catch (JsonParseException | FileNotFoundException e){
+            // error is likely a json syntax error that USER made.
+
+            LOGGER.plain(ConsoleColors.RED_BRIGHT+"---------------------------------");
+            LOGGER.error(e.getClass().getSimpleName(),": ",e.getMessage());
+            LOGGER.info("This is probably an error because of your fault. Fix the problem");
+            LOGGER.info("and try again.");
+            LOGGER.plain(ConsoleColors.RED_BRIGHT+"---------------------------------");
+            if(isDebug)e.printStackTrace();
+
+            System.exit(1);
         } catch (Exception e){
             if(isDebug) e.printStackTrace();
             else {
-                System.out.println(LOGGER.getDate()+ConsoleColors.RED+"----------------------------------------");
-                System.out.println(LOGGER.getDate()+ConsoleColors.RED+"[PROCESS FAIL] "+ConsoleColors.RESET+e.getClass().getSimpleName()+": "+e.getMessage());
-                System.out.println(LOGGER.getDate()+ConsoleColors.RED+"----------------------------------------"+ConsoleColors.RESET);
+                LOGGER.plain(ConsoleColors.RED+"----------------------------------------");
+                LOGGER.plain(ConsoleColors.RED+"[PROCESS FAIL] "+ConsoleColors.RESET+e.getClass().getSimpleName()+": "+e.getMessage());
+                LOGGER.plain(ConsoleColors.RED+"----------------------------------------"+ConsoleColors.RESET);
                 LOGGER.info("Process '"+process.getName()+"' failed.");
                 LOGGER.info("If you are a contributor, run with ",ConsoleColors.BLACK_BRIGHT+"--debug"+ConsoleColors.RESET," to");
                 LOGGER.info("see the stack trace instead of this message.");
                 LOGGER.info("If you are a normal user, Open an issue on github.");
                 LOGGER.info("https://github.com/efekos/PortfolioGenerator/issues");
-                System.out.println(LOGGER.getDate()+ConsoleColors.RED+"----------------------------------------"+ConsoleColors.RESET);
+                LOGGER.plain(ConsoleColors.RED+"----------------------------------------"+ConsoleColors.RESET);
             }
             System.exit(-1);
         }
