@@ -28,6 +28,7 @@ import dev.efekos.pg.data.type.VersionType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class VersionInfo implements JsonSchema{
 
@@ -45,12 +46,12 @@ public class VersionInfo implements JsonSchema{
         checker.searchExceptions(object,"type", RequiredDataType.STRING);
 
         try {
-            this.type = VersionInfoType.valueOf(object.get("type").getAsString());
+            this.type = VersionInfoType.valueOf(object.get("type").getAsString().toUpperCase(Locale.ENGLISH));
         } catch (IllegalArgumentException e) {
             throw new JsonParseException("Unknown version info type '"+object.get("type").getAsString()+"'");
         }
 
-        if (type == VersionInfoType.object) {
+        if (type == VersionInfoType.OBJECT) {
             checker.searchExceptions(object, "value", RequiredDataType.ARRAY);
 
             JsonArray linkArray = object.getAsJsonArray("value");

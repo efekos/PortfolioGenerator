@@ -51,7 +51,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
 
         switch (versionInfo.getType()){
-            case object -> {
+            case OBJECT -> {
                 String template = Main.readStringResource("/site/html/template/project_version_entry.html",true);
 
                 for (Version version : versionInfo.getVersions()) {
@@ -64,7 +64,7 @@ public class ProjectVersionPageGenerator implements Generator{
                     );
                 }
             }
-            case markdown -> {
+            case MARKDOWN -> {
                 elements.add("<div class=\"markdown\" id=\"versions\"></div>");
                 scripts.add("<script src=\"./versions_finder.js\" ></script>");
 
@@ -76,7 +76,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
             }
-            case github_releases -> {
+            case GITHUB_RELEASES -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PAGINATION_ELEMENT);
                 elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
@@ -88,7 +88,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
             }
-            case modrinth_versions -> {
+            case MODRINTH_VERSIONS -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
 
@@ -99,7 +99,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
             }
-            case json -> {
+            case JSON -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
 
@@ -111,7 +111,7 @@ public class ProjectVersionPageGenerator implements Generator{
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
 
             }
-            case spigotmc_versions -> {
+            case SPIGOTMC_VERSIONS -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PAGINATION_ELEMENT);
                 elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
