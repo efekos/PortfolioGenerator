@@ -29,8 +29,13 @@ public class AchieveCertificateEvent implements TimelineEvent{
     }
 
     @Override
+    public String getIcon() {
+        return "university";
+    }
+
+    @Override
     public String getTitle() {
-        return "Achieved Certificate \""+certificateName+"\"";
+        return "Achieved "+certificateName;
     }
 
     @Override

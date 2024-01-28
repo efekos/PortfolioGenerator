@@ -22,4 +22,5 @@ public interface TimelineEvent {
     String getTitle();
     String getTime();
     Date getDate();
+    String getIcon();
 }

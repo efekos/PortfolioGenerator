@@ -17,32 +17,18 @@
 package dev.efekos.pg.data.timeline;
 
 import dev.efekos.pg.data.schema.Date;
-import dev.efekos.pg.data.schema.MonthDate;
-import dev.efekos.pg.data.type.EducationEntryType;
+import dev.efekos.pg.data.schema.DayDate;
 
-public class EducationEndEvent implements TimelineEvent{
-    private final MonthDate when;
-    private final String name;
-    private final EducationEntryType type;
+public class BirthEvent implements TimelineEvent{
+    private final DayDate when;
 
-    public EducationEndEvent(MonthDate when, String name, EducationEntryType type) {
+    public BirthEvent(DayDate when) {
         this.when = when;
-        this.name = name;
-        this.type = type;
-    }
-
-    @Override
-    public String getIcon() {
-        return "university";
     }
 
     @Override
     public String getTitle() {
-        return switch (type){
-            case COURSE -> "Finished "+name+" Course";
-            case DEGREE -> "Earned "+name+" Degree";
-            case SCHOOL,UNIVERSITY -> "Graduated from "+name;
-        };
+        return "Born";
     }
 
     @Override
@@ -53,5 +39,10 @@ public class EducationEndEvent implements TimelineEvent{
     @Override
     public Date getDate() {
         return when;
+    }
+
+    @Override
+    public String getIcon() {
+        return "birth";
     }
 }

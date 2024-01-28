@@ -30,6 +30,11 @@ public class JobStartEvent implements TimelineEvent{
         this.when = when;
     }
 
+    @Override
+    public String getIcon() {
+        return "briefcase";
+    }
+
     public String getTitle() {
         return "Started Working at "+ company +" as a "+ pos;
     }

@@ -28,6 +28,11 @@ public class JobEndEvent implements TimelineEvent{
         this.when = when;
     }
 
+    @Override
+    public String getIcon() {
+        return "briefcase";
+    }
+
     public String getTitle() {
         return "Stopped Working at "+ company;
     }

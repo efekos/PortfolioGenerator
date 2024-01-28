@@ -29,6 +29,11 @@ public class ProjectReleaseEvent implements TimelineEvent{
     }
 
     @Override
+    public String getIcon() {
+        return "project_link/source";
+    }
+
+    @Override
     public String getTitle() {
         return "Released "+projectName;
     }
