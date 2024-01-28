@@ -17,14 +17,10 @@
 package dev.efekos.pg.util;
 
 import java.time.LocalTime;
-import java.time.temporal.ChronoField;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class Logger {
     public void plain(String... text){
-        System.out.println(ConsoleColors.RESET+String.join("",text));
+        System.out.println(getDate()+ConsoleColors.RESET+String.join("",text));
     }
 
     public void info(String... text){
@@ -33,6 +29,10 @@ public class Logger {
 
     public void success(String... text){
         System.out.println(getDate()+ConsoleColors.GREEN_BRIGHT+"[SUCCESS] "+ConsoleColors.RESET+String.join("",text));
+    }
+
+    public void error(String... text){
+        System.out.println(getDate()+ConsoleColors.RED_BRIGHT+"[ERROR] "+ConsoleColors.RESET+String.join("",text));
     }
 
     public void warn(String... text){
