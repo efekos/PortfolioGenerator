@@ -1,0 +1,65 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type":"object",
+    "title": "Contact Information",
+    "description": "Some basic information for people to contact with you",
+    "properties": {
+        "number":{
+            "type":"string",
+            "title": "Phone Number",
+            "description": "Your business or personal phone number that people can use to reach you out.",
+            "examples": [
+                "+90 496 492 9468"
+            ]
+        },
+        "email":{
+            "type":"string",
+            "title": "Email Address",
+            "description": "Your email address that people can send an email to reach you out.",
+            "examples": [
+                "business@company.com",
+                "johndoe43@gmail.com",
+                "mydxeacc@hotmail.com"
+            ]
+        },
+        "socials":{
+            "type":"boolean",
+            "title": "Add Socials",
+            "description": "If set to true, your social accounts provided earlier will be included at contact page."
+        },
+        "places":{
+            "type":"array",
+            "title": "Psyhical Places",
+            "description": "An array of the psyhical places people can go to reach you out.",
+            "items": {
+                "type":"object",
+                "title": "Psyhical Place",
+                "description": "One of the psyhical places people can go to reach you out.",
+                "properties": {
+                    "display":{
+                        "type":"string",
+                        "title": "Display Text",
+                        "description": "The name of this place."
+                    },
+                    "maps":{
+                        "type":"string",
+                        "title": "Google Maps Link",
+                        "description": "A link that leads to your place in google maps."
+                    },
+                    "address":{
+                        "type":"string",
+                        "title": "Place Address",
+                        "description": "Full address of the place you can copy from Google Maps or write yourself."
+                    },
+                    "website":{
+                        "type":"string",
+                        "title": "Place Website",
+                        "description": "Official website of the place if it exists."
+                    }
+                },
+                "required": ["display","maps","address"]
+            }
+        }
+    },
+    "required": ["number","email","places","socials"]
+}
