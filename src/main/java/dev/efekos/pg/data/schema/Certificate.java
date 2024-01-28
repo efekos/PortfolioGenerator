@@ -40,8 +40,8 @@ public class Certificate implements JsonSchema, TimelineEventSource {
 
     @Override
     public List<TimelineEvent> getEvents() {
-        return Arrays.asList(
-                new AchieveCertificateEvent(when,display.getTitle())
+        return List.of(
+                new AchieveCertificateEvent(when, display.getTitle(), certificateType)
         );
     }
 
@@ -114,10 +114,6 @@ public class Certificate implements JsonSchema, TimelineEventSource {
 
     public void setWhen(DayDate when) {
         this.when = when;
-    }
-
-    public CertificateType getCertificateType() {
-        return certificateType;
     }
 
     public void setCertificateType(CertificateType certificateType) {

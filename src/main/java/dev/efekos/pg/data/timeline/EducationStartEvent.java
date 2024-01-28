@@ -18,19 +18,26 @@ package dev.efekos.pg.data.timeline;
 
 import dev.efekos.pg.data.schema.Date;
 import dev.efekos.pg.data.schema.MonthDate;
+import dev.efekos.pg.data.type.EducationEntryType;
 
 public class EducationStartEvent implements TimelineEvent{
     private final String name;
     private final MonthDate when;
+    private final EducationEntryType entryType;
 
-    public EducationStartEvent(String name, MonthDate when) {
+    public EducationStartEvent(String name, MonthDate when, EducationEntryType entryType) {
         this.name = name;
         this.when = when;
+        this.entryType = entryType;
     }
 
     @Override
     public String getIcon() {
-        return "university";
+        return switch (entryType){
+            case UNIVERSITY -> "university";
+            case SCHOOL -> "school";
+            default -> "university";
+        };
     }
 
     @Override

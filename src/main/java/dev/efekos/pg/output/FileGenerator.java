@@ -228,6 +228,7 @@ public class FileGenerator implements Generator {
         copyIcon("letter","letter");
         copyIcon("expanded","expanded");
         copyIcon("unexpanded","unexpanded");
+        copyIcon("school","school");
 
         copyIcon("project_link/doc","link\\doc");
         copyIcon("project_link/guide","link\\guide");

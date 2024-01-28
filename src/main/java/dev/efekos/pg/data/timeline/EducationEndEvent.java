@@ -33,7 +33,11 @@ public class EducationEndEvent implements TimelineEvent{
 
     @Override
     public String getIcon() {
-        return "university";
+        return switch (type){
+        case UNIVERSITY -> "university";
+        case SCHOOL -> "school";
+        default -> "university";
+        };
     }
 
     @Override

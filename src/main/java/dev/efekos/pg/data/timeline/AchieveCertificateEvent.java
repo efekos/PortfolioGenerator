@@ -18,19 +18,26 @@ package dev.efekos.pg.data.timeline;
 
 import dev.efekos.pg.data.schema.Date;
 import dev.efekos.pg.data.schema.DayDate;
+import dev.efekos.pg.data.type.CertificateType;
 
 public class AchieveCertificateEvent implements TimelineEvent{
     private final DayDate when;
     private final String certificateName;
+    private final CertificateType type;
 
-    public AchieveCertificateEvent(DayDate when, String certificateName) {
+    public AchieveCertificateEvent(DayDate when, String certificateName, CertificateType type) {
         this.when = when;
         this.certificateName = certificateName;
+        this.type = type;
     }
 
     @Override
     public String getIcon() {
-        return "university";
+        return switch (type){
+            case SCHOOL -> "school";
+            default -> "university";
+            case PROJECT -> "link/source";
+        };
     }
 
     @Override

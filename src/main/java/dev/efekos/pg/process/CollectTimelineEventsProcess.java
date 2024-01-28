@@ -41,8 +41,8 @@ public class CollectTimelineEventsProcess implements Process{
                 collectedEvents.addAll(source.getEvents());
             } else if (o instanceof List<?> list){
                 System.out.println("Found a TimelineEventSource in "+list.getClass().getName());
-                if(list.get(0) instanceof TimelineEventSource source){
-                    collectedEvents.addAll(source.getEvents());
+                if(list.get(0) instanceof TimelineEventSource){
+                    list.forEach(source -> collectedEvents.addAll(((TimelineEventSource) source).getEvents()));
                 }
             }
         }
