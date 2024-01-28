@@ -19,6 +19,7 @@ package dev.efekos.pg.data;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.util.Utilities;
 
@@ -65,7 +66,7 @@ public class DataGrabber {
      */
     public GeneralInfo grabGeneralInfo() throws IOException {
         context.setCurrentFile("general.json");
-        System.out.println("Grabbing file: general.json");
+        Main.LOGGER.info("Grabbing file: general.json");
 
         String file = readFile(mainPath + "\\general.json");
         JsonElement element = JsonParser.parseString(file);
@@ -76,19 +77,24 @@ public class DataGrabber {
         generalInfo.setWelcomer(grabMarkdownFile("welcomer"));
         generalInfo.setBio(grabMarkdownFile("bio"));
 
+        Main.LOGGER.success("Grabbed file: general.json");
         return generalInfo;
     }
 
     private String readFile(String p) throws IOException {
         Path path = Path.of(p);
-        System.out.println("Reading file: " + path.getFileName());
+        String logPath = p.replaceAll("/", "\\").replace(mainPath + "\\", "").replaceAll("\\\\", "/");
+        Main.LOGGER.info("Reading file: ", logPath);
 
         if (!Files.exists(path)) throw new FileNotFoundException("'" + path.getFileName().toFile() + "' file missing.");
-        return Files.readString(path);
+        String file = Files.readString(path);
+        Main.LOGGER.success("Read file: ",logPath);
+        return file;
     }
 
     public TagColorInfo grabTagColorInfo() throws IOException{
         String path = mainPath + "\\tag_colors.json";
+        Main.LOGGER.info("Grabbing file: tag_colors.json");
 
         String file = readFile(path);
         JsonElement element = JsonParser.parseString(file);
@@ -96,13 +102,14 @@ public class DataGrabber {
         TagColorInfo info = new TagColorInfo();
         context.setCurrentFile("tag_colors.json");
         info.readJson(element,context);
+        Main.LOGGER.success("Grabbed file: tag_colors.json");
         return info;
     }
 
 
     public String grabMarkdownFile(String fileName) throws IOException {
         String file = readFile(mainPath + "\\" + fileName + ".md");
-        System.out.println("Reading markdown: " + fileName.replaceAll("\\\\", "/"));
+        Main.LOGGER.info("Reading markdown: ",fileName.replaceAll("\\\\", "/"));
 
         return Utilities.markdownToHtml(file);
     }
@@ -110,19 +117,20 @@ public class DataGrabber {
 
     public EducationInfo grabEducationInfo() throws IOException {
         context.setCurrentFile("education.json");
-        System.out.println("Grabbing file: education.json");
+        Main.LOGGER.info("Grabbing file: education.json");
 
         String file = readFile(mainPath + "\\education.json");
         JsonElement element = JsonParser.parseString(file);
 
         EducationInfo info = new EducationInfo();
         info.readJson(element, context);
+        Main.LOGGER.success("Grabbed file: education.json");
         return info;
     }
 
     public ExperienceInfo grabExperienceInfo() throws IOException {
         context.setCurrentFile("experience.json");
-        System.out.println("Grabbing file: experience.json");
+        Main.LOGGER.info("Grabbing file: experience.json");
 
 
         String file = readFile(mainPath + "\\experience.json");
@@ -130,11 +138,12 @@ public class DataGrabber {
 
         ExperienceInfo info = new ExperienceInfo(new ArrayList<>());
         info.readJson(element, context);
+        Main.LOGGER.success("Grabbed file: experience.json");
         return info;
     }
 
     public List<Certificate> grabCertificates() throws IOException {
-        System.out.println("Grabbing directory: certificates");
+        Main.LOGGER.info("Grabbing directory: certificates");
         String dirPathString = mainPath + "\\certificates";
         Path dirPath = Path.of(dirPathString);
 
@@ -161,11 +170,12 @@ public class DataGrabber {
             certificates.add(certificate);
         }
 
+        Main.LOGGER.success("Grabbed directory: certificates");
         return certificates;
     }
 
     public List<Project> grabProjects() throws IOException {
-        System.out.println("Grabbing directory: projects");
+        Main.LOGGER.info("Grabbing directory: projects");
         String dirPathString = mainPath + "\\projects";
         Path dirPath = Path.of(dirPathString);
 
@@ -181,7 +191,7 @@ public class DataGrabber {
 
             // log
             context.setCurrentFile(dir.getPath().replace(mainPath, ""));
-            System.out.println("Grabbing directory: projects/" + dir.toPath().getFileName().toString());
+            Main.LOGGER.info("Grabbing directory: projects/" + dir.toPath().getFileName().toString());
 
             // main json
             String mainJson = readFile(dir.getPath() + "\\main.json");
@@ -209,21 +219,22 @@ public class DataGrabber {
                 throw new FileNotFoundException(assetsPath.toString());
 
             projects.add(project);
-            System.out.println("Grabbed directory: projects/" + project.getId());
+            Main.LOGGER.success("Grabbed directory: projects/" + project.getId());
         }
 
-        System.out.println("Grabbed directory: projects");
+        Main.LOGGER.success("Grabbed directory: projects");
         return projects;
     }
 
     public ContactInfo grabContactInfo() throws IOException {
-        System.out.println("Grabbing file: contact.json");
+        Main.LOGGER.info("Grabbing file: contact.json");
 
         JsonElement element = JsonParser.parseString(readFile(mainPath + "\\contact.json"));
         ContactInfo contactInfo = new ContactInfo();
         context.setCurrentFile("contact.json");
         contactInfo.readJson(element,context);
 
+        Main.LOGGER.success("Grabbed file: contact.json");
         return contactInfo;
     }
 }

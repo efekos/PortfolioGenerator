@@ -38,10 +38,10 @@ public class ExperiencePageGenerator implements Generator {
     private final String CURRENT_JOB_ELEMENT = Main.readStringResource("/site/html/template/current_job.html");
 
     public void generate(GeneralInfo generalInfo, ExperienceInfo info) throws IOException {
-        System.out.println("Generating file: experience.html");
+        Main.LOGGER.info("Generating file: experience.html");
         generateElements(info);
         generateFile(generalInfo);
-        System.out.println("Generated file: experience.html");
+        Main.LOGGER.success("Generated file: experience.html");
     }
 
     private void generateFile(GeneralInfo generalInfo) throws IOException {

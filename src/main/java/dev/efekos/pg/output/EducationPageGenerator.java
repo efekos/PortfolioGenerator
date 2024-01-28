@@ -36,10 +36,10 @@ public class EducationPageGenerator implements Generator {
     private final String EDUCATION_ENTRY_ELEMENT = Main.readStringResource("/site/html/template/education_entry.html");
 
     public void generate(GeneralInfo generalInfo, EducationInfo info) throws IOException {
-        System.out.println("Generating file: education.html");
+        Main.LOGGER.info("Generating file: education.html");
         generateElements(info);
         generateFile(generalInfo);
-        System.out.println("Generated file: education.html");
+        Main.LOGGER.success("Generated file: education.html");
     }
 
     private void generateFile(GeneralInfo generalInfo) throws IOException {

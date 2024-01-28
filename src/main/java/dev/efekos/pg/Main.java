@@ -16,21 +16,16 @@
 
 package dev.efekos.pg;
 
-import dev.efekos.pg.data.DataGrabber;
-import dev.efekos.pg.data.schema.*;
-import dev.efekos.pg.output.FileGenerator;
-import dev.efekos.pg.process.*;
 import dev.efekos.pg.process.Process;
+import dev.efekos.pg.process.*;
 import dev.efekos.pg.util.ConsoleColors;
-import dev.efekos.pg.util.LocaleHelper;
-import org.apache.commons.io.FileUtils;
+import dev.efekos.pg.util.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Date;
@@ -44,6 +39,8 @@ public class Main {
     private static String MAIN_PATH;
 
     public static String FOOTER_ELEMENT;
+
+    public static final Logger LOGGER = new Logger();
 
     /**
      * Returns a main path.
@@ -74,11 +71,9 @@ public class Main {
 
         long time = new Date().getTime();
 
-        for (int i = 0; i < processList.size(); i++) {
-            Process process = processList.get(i);
+        for (Process process : processList) {
             runProcess(process);
         }
-
 
         long time2 = new Date().getTime();
 
@@ -90,29 +85,30 @@ public class Main {
 
     private static void runProcess(Process process){
         long time = new Date().getTime();
-        System.out.println("----------------------------------------");
-        System.out.println("Starting '"+process.getName()+"' process");
-        System.out.println("----------------------------------------");
+        System.out.println(LOGGER.getDate()+ConsoleColors.BLUE+"----------------------------------------");
+        System.out.println(LOGGER.getDate()+ConsoleColors.BLUE+"[PROCESS INFO] "+ConsoleColors.RESET+"Starting '"+process.getName()+"' process");
+        System.out.println(LOGGER.getDate()+ConsoleColors.BLUE+"----------------------------------------"+ConsoleColors.RESET);
 
         try {
             process.init(context);
 
             long time2 = new Date().getTime();
             float seconds = (float) (time2-time)/1000;
-            System.out.println("----------------------------------------");
-            System.out.println("Process '"+process.getName()+"' finished successfully in "+seconds+"s");
-            System.out.println("----------------------------------------");
+            System.out.println(LOGGER.getDate()+ConsoleColors.GREEN+"----------------------------------------");
+            System.out.println(LOGGER.getDate()+ConsoleColors.GREEN+"[PROCESS SUCCESS] "+ConsoleColors.RESET+"Process '"+process.getName()+"' finished successfully in "+seconds+"s");
+            System.out.println(LOGGER.getDate()+ConsoleColors.GREEN+"----------------------------------------"+ConsoleColors.RESET);
         } catch (Exception e){
             if(isDebug) e.printStackTrace();
             else {
-                System.out.println("----------------------------------------");
-                System.out.println(ConsoleColors.RED+"[PROCESS FAIL] "+ConsoleColors.RESET+e.getClass().getSimpleName()+": "+e.getMessage());
-                System.out.println("----------------------------------------");
-                System.out.println("Process '"+process.getName()+"' failed.");
-                System.out.println("If you are a contributor, run with --debug to");
-                System.out.println("see the stack trace. If you are a normal user,");
-                System.out.println("Open an issue on github.");
-                System.out.println("----------------------------------------");
+                System.out.println(LOGGER.getDate()+ConsoleColors.RED+"----------------------------------------");
+                System.out.println(LOGGER.getDate()+ConsoleColors.RED+"[PROCESS FAIL] "+ConsoleColors.RESET+e.getClass().getSimpleName()+": "+e.getMessage());
+                System.out.println(LOGGER.getDate()+ConsoleColors.RED+"----------------------------------------"+ConsoleColors.RESET);
+                LOGGER.info("Process '"+process.getName()+"' failed.");
+                LOGGER.info("If you are a contributor, run with ",ConsoleColors.BLACK_BRIGHT+"--debug"+ConsoleColors.RESET," to");
+                LOGGER.info("see the stack trace instead of this message.");
+                LOGGER.info("If you are a normal user, Open an issue on github.");
+                LOGGER.info("https://github.com/efekos/PortfolioGenerator/issues");
+                System.out.println(LOGGER.getDate()+ConsoleColors.RED+"----------------------------------------"+ConsoleColors.RESET);
             }
             System.exit(-1);
         }

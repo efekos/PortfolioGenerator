@@ -19,6 +19,7 @@ package dev.efekos.pg.data.schema;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import dev.efekos.pg.Main;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.timeline.BirthEvent;
 import dev.efekos.pg.data.timeline.TimelineEvent;
@@ -126,7 +127,7 @@ public class GeneralInfo implements JsonSchema, TimelineEventSource {
         }
 
         if (!this.knownLanguages.contains(this.nativeLanguage)) {
-            System.out.println("[WARNING] Known languages doesn't contain native language, automatically adding native language into known languages");
+            Main.LOGGER.warn("Known languages doesn't contain native language, automatically adding native language into known languages");
             knownLanguages.add(nativeLanguage);
         }
 

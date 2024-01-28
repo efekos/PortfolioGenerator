@@ -32,11 +32,13 @@ public class SetupBinFolderProcess implements Process{
     public void init(ProcessContext context) throws Exception {
         Path binPath = Path.of(Main.getMainPath().toString(),"bin");
 
-        System.out.println("Deleting directory");
+        Main.LOGGER.info("Deleting bin directory");
         FileUtils.deleteDirectory(binPath.toFile());
+        Main.LOGGER.success("Deleted bin directory");
 
-        System.out.println("Creating new directory");
+        Main.LOGGER.info("Creating new bin directory");
         Files.createDirectory(binPath);
+        Main.LOGGER.success("Created new bin directory");
 
         context.binPath = binPath.toString();
     }

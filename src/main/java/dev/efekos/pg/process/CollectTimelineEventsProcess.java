@@ -16,6 +16,7 @@
 
 package dev.efekos.pg.process;
 
+import dev.efekos.pg.Main;
 import dev.efekos.pg.data.timeline.TimelineEvent;
 import dev.efekos.pg.data.timeline.TimelineEventSource;
 
@@ -35,12 +36,12 @@ public class CollectTimelineEventsProcess implements Process{
         List<TimelineEvent> collectedEvents = new ArrayList<>();
 
         for (Object o : everything) {
-            System.out.println("Looking for a "+o.getClass().getName());
+            Main.LOGGER.info("Looking for a "+o.getClass().getName());
             if(o instanceof TimelineEventSource source){
-                System.out.println("Found a TimelineEventSource");
+                Main.LOGGER.success("Found a TimelineEventSource");
                 collectedEvents.addAll(source.getEvents());
             } else if (o instanceof List<?> list){
-                System.out.println("Found a TimelineEventSource in "+list.getClass().getName());
+                Main.LOGGER.success("Found a TimelineEventSource in "+list.getClass().getName());
                 if(list.get(0) instanceof TimelineEventSource){
                     list.forEach(source -> collectedEvents.addAll(((TimelineEventSource) source).getEvents()));
                 }

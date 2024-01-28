@@ -37,7 +37,7 @@ public class CertificatesPageGenerator implements Generator {
     }
 
     public void generateActualFile(GeneralInfo info, List<Certificate> certificates) throws IOException {
-        System.out.println("Generating file: certificates.html");
+        Main.LOGGER.info("Generating file: certificates.html");
 
         List<String> elementList = certificates.stream().map(certificate -> "<a href=\"./certificate/" + makeIdForLink(certificate.getDisplay().getTitle()) + ".html\"><img class=\"certificate-image-small\" src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\" alt=\"" + certificate.getDisplay().getTitle() + "\" />").toList();
 
@@ -47,11 +47,11 @@ public class CertificatesPageGenerator implements Generator {
                 .replaceAll("%%images%%", String.join("\n", elementList));
 
         writeFile(binPath + "\\certificates.html", fileString);
-        System.out.println("Generated file: certificates.html");
+        Main.LOGGER.success("Generated file: certificates.html");
     }
 
     public void copyImages(List<Certificate> certificates) throws IOException {
-        System.out.println("Copying certificate images");
+        Main.LOGGER.info("Copying certificate images");
         for (Certificate certificate : certificates) {
             for (String value : certificate.getImages().values()) {
                 Path valuePath = Path.of(value);
@@ -65,17 +65,17 @@ public class CertificatesPageGenerator implements Generator {
                 Files.copy(valuePath, path);
             }
         }
-        System.out.println("Copied certificate images");
+        Main.LOGGER.success("Copied certificate images");
     }
 
     public void generateSinglePages(GeneralInfo info, List<Certificate> certificates) throws IOException {
-        System.out.println("Generating single certificate files");
+        Main.LOGGER.info("Generating single certificate files");
         String resourceFile = Main.readStringResource("/site/html/single_certificate.html");
 
         Files.createDirectory(Path.of(binPath, "certificate"));
 
         for (Certificate certificate : certificates) {
-            System.out.println("Generating file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
+            Main.LOGGER.info("Generating file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
             String imagePath = certificate.getDisplay().getImage().replace(Main.getMainPath() + "\\data\\certificates", "");
 
             List<String> imageButtonElements = new ArrayList<>();
@@ -96,9 +96,9 @@ public class CertificatesPageGenerator implements Generator {
 
             String outputPath = binPath + "\\certificate\\" + makeId(certificate.getDisplay().getTitle()) + ".html";
             writeFile(outputPath, certificateFile);
-            System.out.println("Generated file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
+            Main.LOGGER.info("Generated file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
         }
-        System.out.println("Generated single certificate files");
+        Main.LOGGER.success("Generated single certificate files");
     }
 
     private static String makeFileButton(String imageType, String imagePath) {

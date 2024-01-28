@@ -16,38 +16,37 @@
 
 package dev.efekos.pg.util;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import dev.efekos.pg.Main;
+import java.time.LocalTime;
+import java.time.temporal.ChronoField;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class LocaleHelper {
-    private static final Map<String, Locale> localeList = new HashMap<>();
-
-    public static void loadLocales() {
-        Main.LOGGER.info("Loading locales...");
-        String jsonString = Main.readStringResource("/valid_locales.json");
-        JsonObject element = JsonParser.parseString(jsonString).getAsJsonObject();
-
-        localeList.clear();
-
-        element.asMap().forEach((code, value) -> {
-            Main.LOGGER.info("Loading locale code: "+code);
-            JsonObject object = value.getAsJsonObject();
-            String name = object.get("name").getAsString();
-            String nativeName = object.get("nativeName").getAsString();
-
-            localeList.put(code, new Locale(code, name, nativeName));
-        });
+public class Logger {
+    public void plain(String... text){
+        System.out.println(ConsoleColors.RESET+String.join("",text));
     }
 
-    public static Locale getLocale(String code) {
-        return localeList.getOrDefault(code, localeList.get("en"));
+    public void info(String... text){
+        System.out.println(getDate()+ConsoleColors.BLUE_BRIGHT+"[INFO] "+ConsoleColors.RESET+String.join("",text));
     }
 
-    public static boolean isNotValid(String code) {
-        return !localeList.containsKey(code);
+    public void success(String... text){
+        System.out.println(getDate()+ConsoleColors.GREEN_BRIGHT+"[SUCCESS] "+ConsoleColors.RESET+String.join("",text));
+    }
+
+    public void warn(String... text){
+        System.out.println(getDate()+ConsoleColors.YELLOW_BRIGHT+"[WARNING] "+ConsoleColors.RESET+String.join("",text));
+    }
+
+
+    public void devWarn(String... text){
+        System.out.println(getDate()+ConsoleColors.YELLOW+"[DEVELOPER WARNING] "+ConsoleColors.RESET+String.join("",text));
+    }
+
+    public String getDate(){
+        LocalTime now = LocalTime.now();
+
+        return ConsoleColors.BLUE+"["+now.getHour()+":"+now.getMinute()+":"+now.getSecond()+"] ";
     }
 }

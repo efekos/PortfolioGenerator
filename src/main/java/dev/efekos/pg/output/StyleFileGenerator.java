@@ -35,7 +35,7 @@ public class StyleFileGenerator implements Generator{
     }
 
     public void generateSocialIcons(GeneralInfo info) throws IOException {
-        System.out.println("Generating file: style/social_icons.css");
+        Main.LOGGER.info("Generating file: style/social_icons.css");
         List<String> generatedSelections = new ArrayList<>();
         generatedSelections.add("""
                 .social-icon {
@@ -58,21 +58,21 @@ public class StyleFileGenerator implements Generator{
         );
 
         writeFile(binPath + "\\style\\social_icons.css", String.join("\n", generatedSelections));
-        System.out.println("Generated file: style/social_icons.css");
+        Main.LOGGER.success("Generated file: style/social_icons.css");
     }
 
     public void generateProjectTags(TagColorInfo tagColorInfo) throws IOException {
-        System.out.println("Generating file: style/project_tags.css");
+        Main.LOGGER.info("Generating file: style/project_tags.css");
         List<String> generatedSelectors = new ArrayList<>();
         String template = Main.readStringResource("/site/style/template/style_project_tag.css");
         tagColorInfo.getColors().forEach((key, color) -> generatedSelectors.add(template.replaceAll("%%tcolor%%",color).replaceAll("%%tname%%",key)));
 
         writeFile(binPath+"\\style\\project_tags.css",String.join("\n",generatedSelectors));
-        System.out.println("Generated file: style/project_tags.css");
+        Main.LOGGER.success("Generated file: style/project_tags.css");
     }
 
     public void generateProjectVersions() throws IOException{
-        System.out.println("Generating file: style/versions.css");
+        Main.LOGGER.info("Generating file: style/versions.css");
 
         List<String> generatedSelectors = new ArrayList<>();
 
@@ -89,6 +89,6 @@ public class StyleFileGenerator implements Generator{
         }
 
         writeFile(binPath+"\\style\\versions.css",String.join("\n\n",generatedSelectors));
-        System.out.println("Generated file: style/versions.css");
+        Main.LOGGER.success("Generated file: style/versions.css");
     }
 }
