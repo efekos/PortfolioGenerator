@@ -18,6 +18,7 @@ package dev.efekos.pg.output;
 
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.*;
+import dev.efekos.pg.data.timeline.TimelineEvent;
 import dev.efekos.pg.data.type.SocialLinkType;
 import dev.efekos.pg.util.Locale;
 import dev.efekos.pg.process.ProcessContext;
@@ -27,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class FileGenerator implements Generator {
@@ -50,6 +52,14 @@ public class FileGenerator implements Generator {
             }
         });
 
+        List<String> timelineElements = new ArrayList<>();
+        List<TimelineEvent> timeline = context.collectedTimeline;
+        timeline.sort(Comparator.comparing(TimelineEvent::getDate));
+
+        for (TimelineEvent event : timeline) {
+            timelineElements.add(generateAboutEntry(event.getIcon(), event.getTitle(), event.getTime(), false));
+        }
+
         String fileString = Main.readStringResource("/site/html/index.html")
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%title%%", info.getTitle())
@@ -66,6 +76,7 @@ public class FileGenerator implements Generator {
                                 generateAboutEntry("phone","Phone Number",context.contactInfo.getNumber(),false)
                         )
                 ) + "</div>")
+                .replaceAll("%%timeline%%",String.join("<br>",timelineElements))
                 .replaceAll("%%socialElements%%", String.join("", socialLinkElements));
 
         writeFile(binPath + "\\index.html", fileString);
