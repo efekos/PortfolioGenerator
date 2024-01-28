@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 /**
  * Represents a date that just needs a day, year, and month.
  */
-public class DayDate implements JsonSchema, Comparable<DayDate> {
+public class DayDate implements JsonSchema,Date {
     /**
      * Day of the date. Will be day of the month (such as 2nd July, but not Tuesday)
      */
@@ -143,10 +143,21 @@ public class DayDate implements JsonSchema, Comparable<DayDate> {
     }
 
     @Override
-    public int compareTo(DayDate other) {
-        int yearCompared = year.compareTo(other.year);
-        int monthCompared = month.compareTo(other.month);
-        int dayCompared = day.compareTo(other.day);
+    public int compareTo(Date other) {
+        int yearCompared;
+        int monthCompared;
+        int dayCompared;
+
+        if(other instanceof DayDate dayDate){
+            yearCompared = year.compareTo(dayDate.year);
+            monthCompared = month.compareTo(dayDate.month);
+            dayCompared = day.compareTo(dayDate.day);
+        } else {
+            MonthDate monthDate = (MonthDate) other;
+            yearCompared = year.compareTo(monthDate.getYear());
+            monthCompared = month.compareTo(monthDate.getMonth());
+            dayCompared = day.compareTo(0);
+        }
 
         if (yearCompared == 0) {
             if (monthCompared == 0) {

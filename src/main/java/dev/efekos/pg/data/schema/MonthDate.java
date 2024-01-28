@@ -26,7 +26,7 @@ import dev.efekos.pg.util.DateHelper;
 
 import java.util.regex.Pattern;
 
-public class MonthDate implements JsonSchema, Comparable<MonthDate> {
+public class MonthDate implements JsonSchema, Date {
     private Integer month;
     private Integer year;
 
@@ -80,16 +80,28 @@ public class MonthDate implements JsonSchema, Comparable<MonthDate> {
     private final Pattern STRING_DATE_PATTERN = Pattern.compile("[0-9]{4}-[0-9]{2}");
 
     @Override
-    public int compareTo(MonthDate other) {
+    public int compareTo(Date other) {
         // Compare years first
-        int yearComparison = this.year.compareTo(other.year);
+        int yearCompared;
+        int monthCompared;
+        int dayCompared;
 
-        // If years are the same, compare months
-        if (yearComparison == 0) {
-            return this.month.compareTo(other.month);
+        if (other instanceof DayDate dayDate) {
+            yearCompared = year.compareTo(dayDate.getYear());
+            monthCompared = month.compareTo(dayDate.getMonth());
+            dayCompared = dayDate.getDay();
         } else {
-            return yearComparison;
+            MonthDate monthDate = (MonthDate) other;
+            yearCompared = year.compareTo(monthDate.year);
+            monthCompared = month.compareTo(monthDate.month);
+            dayCompared = 0;
         }
+
+        if (yearCompared == 0) {
+            if (monthCompared == 0) {
+                return dayCompared;
+            } else return monthCompared;
+        } else return yearCompared;
     }
 
     @Override
