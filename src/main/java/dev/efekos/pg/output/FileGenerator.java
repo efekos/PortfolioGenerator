@@ -161,7 +161,7 @@ public class FileGenerator implements Generator {
         String string = Main.readStringResource("/site/script/age_calculator.js").replaceAll("%%byear%%", info.getBirthDate().getYear() + "");
         writeFile(binPath + "\\age_calculator.js", string);
 
-        // project_serach.js
+        // project_search.js
         copyStringResource("/site/script/projects_search.js","\\projects_search.js",binPath);
         copyStringResource("/site/script/expandable_entries.js","\\expandable_entries.js",binPath);
 

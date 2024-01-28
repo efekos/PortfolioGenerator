@@ -32,6 +32,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Main {
     /**
@@ -152,7 +153,7 @@ public class Main {
      * @throws IOException If {@link URL#openStream()} method fails.
      */
     public static String readStringResource(String path,boolean useUtf8) throws IOException {
-        InputStream stream = Main.class.getResource(path).openStream();
+        InputStream stream = Objects.requireNonNull(Main.class.getResource(path)).openStream();
         return new String(stream.readAllBytes(),useUtf8?StandardCharsets.UTF_8:Charset.defaultCharset());
     }
 

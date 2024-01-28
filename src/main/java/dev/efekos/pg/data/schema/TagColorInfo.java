@@ -38,8 +38,4 @@ public class TagColorInfo implements JsonSchema{
     public Map<String, String> getColors() {
         return colors;
     }
-
-    public String getColor(String key){
-        return colors.getOrDefault(key,"#FFFFFF");
-    }
 }

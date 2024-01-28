@@ -30,10 +30,6 @@ import java.util.List;
 public class EducationInfo implements JsonSchema {
     private List<EducationEntry> entries;
 
-    public EducationInfo(List<EducationEntry> entries) {
-        this.entries = entries;
-    }
-
     public EducationInfo() {
     }
 

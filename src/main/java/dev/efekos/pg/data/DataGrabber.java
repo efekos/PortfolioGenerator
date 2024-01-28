@@ -143,7 +143,7 @@ public class DataGrabber {
 
         File dir = new File(dirPathString);
 
-        File[] files = dir.listFiles((drir, name) -> name.endsWith(".json"));
+        File[] files = dir.listFiles((dir2, name) -> name.endsWith(".json"));
         ArrayList<Certificate> certificates = new ArrayList<>();
 
 

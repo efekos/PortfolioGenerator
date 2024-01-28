@@ -30,23 +30,12 @@ public class ExperienceEntry implements JsonSchema {
     private MonthDate to;
     private boolean currentJob;
 
-    public ExperienceEntry(String company, String position, MonthDate from, MonthDate to) {
-        this.company = company;
-        this.position = position;
-        this.from = from;
-        this.to = to;
-    }
-
     public ExperienceEntry() {
 
     }
 
     public String getCompany() {
         return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
     }
 
     public String getPosition() {
@@ -75,10 +64,6 @@ public class ExperienceEntry implements JsonSchema {
 
     public boolean isCurrentJob() {
         return currentJob;
-    }
-
-    public void setCurrentJob(boolean currentJob) {
-        this.currentJob = currentJob;
     }
 
     @Override

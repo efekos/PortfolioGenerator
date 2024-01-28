@@ -140,15 +140,11 @@ public class ProjectPageGenerator implements Generator {
     private List<String> generateLinkElements(Map<ProjectLinkType, String> links) {
         List<String> elementsGenerated = new ArrayList<>();
 
-        links.forEach((projectLinkType, s) -> {
-
-            elementsGenerated.add("<a target=\"_blank\" href=\"%%link%%\" class=\"project-link\" ><img src=\"../../images/icon/link/%%id%%.svg\" alt=\"%%display%% Icon\" width=\"24\" class=\"project-link-icon\">%%display%%</a>"
-                    .replaceAll("%%link%%",s)
-                    .replaceAll("%%display%%",projectLinkType.getDisplay())
-                    .replaceAll("%%id%%",projectLinkType.getId())
-            );
-
-        });
+        links.forEach((projectLinkType, s) -> elementsGenerated.add("<a target=\"_blank\" href=\"%%link%%\" class=\"project-link\" ><img src=\"../../images/icon/link/%%id%%.svg\" alt=\"%%display%% Icon\" width=\"24\" class=\"project-link-icon\">%%display%%</a>"
+                .replaceAll("%%link%%",s)
+                .replaceAll("%%display%%",projectLinkType.getDisplay())
+                .replaceAll("%%id%%",projectLinkType.getId())
+        ));
 
         return elementsGenerated;
     }

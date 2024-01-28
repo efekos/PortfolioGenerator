@@ -33,7 +33,7 @@ public class ProjectVersionPageGenerator implements Generator{
     private final String binPath;
 
     private static final String PAGINATION_ELEMENT = Main.readStringResource("/site/html/template/pagination_buttons.html");
-    private static final String PLACEHOLDERED_RELEASES_ELEMENT = Main.readStringResource("/site/html/template/project_releases.html");
+    private static final String PROJECT_RELEASES_TEMPLATE = Main.readStringResource("/site/html/template/project_releases.html");
     private final String links;
 
     public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project,String tags,String binPath,String links) {
@@ -79,7 +79,7 @@ public class ProjectVersionPageGenerator implements Generator{
             case GITHUB_RELEASES -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PAGINATION_ELEMENT);
-                elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
+                elements.add(PROJECT_RELEASES_TEMPLATE);
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
@@ -90,7 +90,7 @@ public class ProjectVersionPageGenerator implements Generator{
             }
             case MODRINTH_VERSIONS -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
-                elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
+                elements.add(PROJECT_RELEASES_TEMPLATE);
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
@@ -101,7 +101,7 @@ public class ProjectVersionPageGenerator implements Generator{
             }
             case JSON -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
-                elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
+                elements.add(PROJECT_RELEASES_TEMPLATE);
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
@@ -114,7 +114,7 @@ public class ProjectVersionPageGenerator implements Generator{
             case SPIGOTMC_VERSIONS -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PAGINATION_ELEMENT);
-                elements.add(PLACEHOLDERED_RELEASES_ELEMENT);
+                elements.add(PROJECT_RELEASES_TEMPLATE);
 
                 System.out.println("Generating file: projects/"+project.getId()+"/versions_finder.js");
 

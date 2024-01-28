@@ -39,7 +39,7 @@ public class GeneralInfo implements JsonSchema {
     private List<String> knownLanguages;
     private String welcomer;
     private String bio;
-    private Map<SocialLinkType, String> socialLinks = new HashMap<>();
+    private final Map<SocialLinkType, String> socialLinks = new HashMap<>();
 
     public GeneralInfo(String name, DayDate birthDate, String title) {
         this.name = name;
@@ -51,16 +51,8 @@ public class GeneralInfo implements JsonSchema {
         return LocaleHelper.getLocale(nativeLanguage);
     }
 
-    public void setNativeLanguage(Locale nativeLanguage) {
-        this.nativeLanguage = nativeLanguage.code();
-    }
-
     public List<Locale> getKnownLanguages() {
         return knownLanguages.stream().map(LocaleHelper::getLocale).toList();
-    }
-
-    public void setKnownLanguages(List<Locale> knownLanguages) {
-        this.knownLanguages = knownLanguages.stream().map(Locale::code).toList();
     }
 
     public String getWelcomer() {
@@ -146,16 +138,8 @@ public class GeneralInfo implements JsonSchema {
         });
     }
 
-    public void setNativeLanguage(String nativeLanguage) {
-        this.nativeLanguage = nativeLanguage;
-    }
-
     public Map<SocialLinkType, String> getSocialLinks() {
         return socialLinks;
-    }
-
-    public void setSocialLinks(Map<SocialLinkType, String> socialLinks) {
-        this.socialLinks = socialLinks;
     }
 
     public void setName(String name) {
@@ -164,10 +148,6 @@ public class GeneralInfo implements JsonSchema {
 
     public DayDate getBirthDate() {
         return birthDate;
-    }
-
-    public void setBirthDate(DayDate birthDate) {
-        this.birthDate = birthDate;
     }
 
     public String getTitle() {

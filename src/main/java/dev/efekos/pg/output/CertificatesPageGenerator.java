@@ -19,7 +19,6 @@ package dev.efekos.pg.output;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.GeneralInfo;
-import dev.efekos.pg.util.DateHelper;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -55,7 +54,7 @@ public class CertificatesPageGenerator implements Generator {
         System.out.println("Copying certificate images");
         for (Certificate certificate : certificates) {
             for (String value : certificate.getImages().values()) {
-                Path valuePath = Path.of(value); // data daki dosya
+                Path valuePath = Path.of(value);
                 if (!Files.exists(valuePath)) throw new FileNotFoundException(value);
 
                 String imagePath = value.replace(Main.getMainPath() + "\\data\\certificates", "");

@@ -144,15 +144,15 @@ public class DayDate implements JsonSchema, Comparable<DayDate> {
 
     @Override
     public int compareTo(DayDate other) {
-        int yearc = year.compareTo(other.year);
-        int monthc = month.compareTo(other.month);
-        int dayc = day.compareTo(other.day);
+        int yearCompared = year.compareTo(other.year);
+        int monthCompared = month.compareTo(other.month);
+        int dayCompared = day.compareTo(other.day);
 
-        if (yearc == 0) {
-            if (monthc == 0) {
-                return dayc;
-            } else return monthc;
-        } else return yearc;
+        if (yearCompared == 0) {
+            if (monthCompared == 0) {
+                return dayCompared;
+            } else return monthCompared;
+        } else return yearCompared;
     }
 
     @Override

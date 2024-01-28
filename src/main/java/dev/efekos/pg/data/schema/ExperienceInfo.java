@@ -47,12 +47,6 @@ public class ExperienceInfo implements JsonSchema {
         return currentJob;
     }
 
-    public void setCurrentJob(ExperienceEntry currentJob) {
-        if (!currentJob.isCurrentJob())
-            throw new RuntimeException("Is your brain okay dude you are literally passing in a non current job entry into fucking set current job method");
-        this.currentJob = currentJob;
-    }
-
     public boolean hasCurrentJob() {
         return currentJob != null;
     }

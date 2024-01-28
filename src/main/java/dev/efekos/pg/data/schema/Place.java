@@ -53,10 +53,6 @@ public class Place implements JsonSchema{
         return displayName;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
     public String getWebsite() {
         return Objects.isNull(website)?"": "<span class=\"alt\">"+website+"</span>";
     }
@@ -67,10 +63,6 @@ public class Place implements JsonSchema{
 
     public String getMapsLink() {
         return mapsLink;
-    }
-
-    public void setMapsLink(String mapsLink) {
-        this.mapsLink = mapsLink;
     }
 
     public String getAddress() {

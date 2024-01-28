@@ -81,10 +81,6 @@ public class Version implements JsonSchema{
         return releaseDate;
     }
 
-    public void setReleaseDate(DayDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     public String getVersion() {
         return version;
     }

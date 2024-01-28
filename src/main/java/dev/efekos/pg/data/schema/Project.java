@@ -28,17 +28,17 @@ import dev.efekos.pg.data.type.RequiredDataType;
 import java.util.*;
 
 public class Project implements JsonSchema {
-    private String id; // nijson
+    private String id; // not in json
     private String displayName;
     private Map<ProjectLinkType, String> links = new HashMap<>();
     private String mainWebsite;
     private String changeLogFile;
     private List<String> tags = new ArrayList<>();
-    private String readmeFile; // nijson
+    private String readmeFile; // not in json
     private String summary;
     private String version;
     private String license;
-    private String fullLicense; //nijson
+    private String fullLicense; // not in json
     private DayDate release;
     private ProjectGalleryImageList galleryImages;
     private VersionInfo versionInfo;
@@ -93,7 +93,7 @@ public class Project implements JsonSchema {
             tags.add(jsonElement.getAsString());
         }
 
-        // vesion info
+        // version info
         JsonElement versionInfoElement = object.get("version_info");
         VersionInfo info = new VersionInfo();
         info.readJson(versionInfoElement,context);
@@ -102,10 +102,6 @@ public class Project implements JsonSchema {
 
     public VersionInfo getVersionInfo() {
         return versionInfo;
-    }
-
-    public void setVersionInfo(VersionInfo versionInfo) {
-        this.versionInfo = versionInfo;
     }
 
     public ProjectGalleryImageList getGalleryImages() {
@@ -152,10 +148,6 @@ public class Project implements JsonSchema {
         return displayName;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
     public Map<ProjectLinkType, String> getLinks() {
         return links;
     }
@@ -176,16 +168,8 @@ public class Project implements JsonSchema {
         this.fullLicense = fullLicense;
     }
 
-    public void setMainWebsite(String mainWebsite) {
-        this.mainWebsite = mainWebsite;
-    }
-
     public String getChangeLogFile() {
         return changeLogFile;
-    }
-
-    public void setChangeLogFile(String changeLogFile) {
-        this.changeLogFile = changeLogFile;
     }
 
     public List<String> getTags() {
@@ -198,10 +182,6 @@ public class Project implements JsonSchema {
 
     public String getReadmeFile() {
         return readmeFile;
-    }
-
-    public void setReadmeFile(String readmeFile) {
-        this.readmeFile = readmeFile;
     }
 
     public String getLicense() {

@@ -70,10 +70,6 @@ public class ContactInfo implements JsonSchema{
         return includeSocials;
     }
 
-    public void setIncludeSocials(boolean includeSocials) {
-        this.includeSocials = includeSocials;
-    }
-
     public ContactInfo() {
     }
 
