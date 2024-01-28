@@ -102,11 +102,13 @@ public class Main {
         } catch (JsonParseException | FileNotFoundException e){
             // error is likely a json syntax error that USER made.
 
-            LOGGER.plain(ConsoleColors.RED_BRIGHT+"---------------------------------");
+            LOGGER.plain(ConsoleColors.RED_BRIGHT+"----------------------------------------");
             LOGGER.error(e.getClass().getSimpleName(),": ",e.getMessage());
-            LOGGER.info("This is probably an error because of your fault. Fix the problem");
-            LOGGER.info("and try again.");
-            LOGGER.plain(ConsoleColors.RED_BRIGHT+"---------------------------------");
+            LOGGER.plain(ConsoleColors.RED_BRIGHT+"----------------------------------------");
+            LOGGER.info("This error may be due to an issue with the provided JSON data or file.");
+            LOGGER.info("Check the syntax and try again. If the same issue still occurs, even");
+            LOGGER.info("though the syntax is correct. Open an issue about it.");
+            LOGGER.plain(ConsoleColors.RED_BRIGHT+"----------------------------------------");
             if(isDebug)e.printStackTrace();
 
             System.exit(1);
