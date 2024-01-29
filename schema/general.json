@@ -85,7 +85,8 @@
                 "facebook":{"type":"string","description": "A link to your Facebook account."},
                 "tiktok":{"type":"string","description": "A link to your TikTok account."},
                 "reddit":{"type":"string","description": "A link to your Reddit account."},
-                "kofi":{"type":"string","description": "A link to your Ko-fi account."}
+                "kofi":{"type":"string","description": "A link to your Ko-fi account."},
+                "snapchat":{"type":"string","description": "A link to your Snapchat account."}
             }
         }
     },

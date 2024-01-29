@@ -46,6 +46,7 @@ public enum SocialLinkType {
     LINKEDIN("linkedin","rgb(35, 79, 110)","rgb(52, 114, 158)"),
     FIVERR("fiverr","rgb(31, 126, 49)","rgb(53, 172, 76)"),
     BIONLUK("bionluk","#5e222d","#803341"),
+    SNAPCHAT("snapchat","#706f34","#96953f"),
     YOUTUBE("youtube", "rgb(128, 12, 12)", "rgb(148, 32, 32)");
 
     private final String id;
