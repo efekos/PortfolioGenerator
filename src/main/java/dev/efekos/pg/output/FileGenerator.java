@@ -236,6 +236,8 @@ public class FileGenerator implements Generator {
         copyIcon("unexpanded","unexpanded");
         copyIcon("school","school");
         copyIcon("top","top");
+        copyIcon("degree","degree");
+        copyIcon("book_open","book");
 
         copyIcon("project_link/doc","link\\doc");
         copyIcon("project_link/guide","link\\guide");
@@ -251,7 +253,7 @@ public class FileGenerator implements Generator {
 
         Files.copy(Path.of(Main.getMainPath().toString(), "data", "profile.png"), Path.of(binPath, "images", "profile.png"));
 
-        writeFile(binPath + "\\images\\icon\\credit_note.txt", "Every icon used here is from heroicons.com");
+        writeFile(binPath + "\\images\\icon\\credit_note.txt", "Every icon that doesn't contain a copyright is from heroicons.com (not including 'social' folder).");
 
 
         Main.LOGGER.success("Copied icons");

@@ -35,8 +35,10 @@ public class AchieveCertificateEvent implements TimelineEvent{
     public String getIcon() {
         return switch (type){
             case SCHOOL -> "school";
-            default -> "university";
+            case UNIVERSITY -> "university";
             case PROJECT -> "link/source";
+            case DEGREE -> "degree";
+            case COURSE -> "book";
         };
     }
 
