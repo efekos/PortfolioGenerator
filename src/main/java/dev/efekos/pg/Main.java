@@ -140,6 +140,7 @@ public class Main {
      * @throws IOException If {@link URL#openStream()} method fails.
      */
     public static String readStringResource(String path,boolean useUtf8) throws IOException {
+        DEBUG_LOGGER.info("Reading resource: ",path);
         InputStream stream = Objects.requireNonNull(Main.class.getResource(path)).openStream();
         return new String(stream.readAllBytes(),useUtf8?StandardCharsets.UTF_8:Charset.defaultCharset());
     }
