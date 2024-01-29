@@ -68,7 +68,8 @@ public class Main {
     private static boolean isDebug;
 
     public static void main(String[] args) throws Exception {
-        isDebug = Arrays.asList(args).contains("--debug");
+        List<String> list = Arrays.asList(args);
+        isDebug = list.contains("--debug");
         DEBUG_LOGGER.setEnabled(isDebug);
         FOOTER_ELEMENT = readStringResource("/site/html/template/footer.html");
         MAIN_PATH = System.getProperty("user.dir");
@@ -84,7 +85,9 @@ public class Main {
 
         float seconds = (float) (time2 - time) / 1000;
 
-        System.out.println(ConsoleColors.GREEN+"Done in " + seconds + "s! output has been saved to " + context.binPath);
+        LOGGER.success("Done in " + seconds + "s! output has been saved to " + context.binPath);
+        LOGGER.success("Press enter to exit...");
+        System.in.read();
     }
 
 
