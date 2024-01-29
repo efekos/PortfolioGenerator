@@ -36,7 +36,8 @@ public class EducationEndEvent implements TimelineEvent{
         return switch (type){
         case UNIVERSITY -> "university";
         case SCHOOL -> "school";
-        default -> "university";
+        case COURSE -> "book";
+        case DEGREE -> "degree";
         };
     }
 

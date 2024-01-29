@@ -1,36 +1,11 @@
-<!--
-  - Copyright 2024 efekos
-  -
-  - Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-  - documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
-  - rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-  - persons to whom the Software is furnished to do so, subject to the following conditions:
-  -
-  - The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  -
-  - THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-  - WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-  - COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-  - OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  -->
-
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55.91791"
-     height="52.32654" viewBox="0,0,55.91791,52.32654">
-    <g transform="translate(-212.04104,-160.73516)">
-        <g data-paper-data="{&quot;isPaintingLayer&quot;:true}" fill="none" fill-rule="nonzero" stroke="#999999"
-           stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-           style="mix-blend-mode: normal">
-            <path d="M246.25682,198.01484h-32.96577v-36.02967h53.41791v36.02967h-8.82831" stroke-width="2.5"
-                  stroke-linecap="butt" />
-            <path
-                    d="M244.10627,190.06994c0,-4.1162 3.33684,-7.45303 7.45304,-7.45303c4.1162,0 7.45304,3.33684 7.45304,7.45304c0,4.1162 -3.33684,7.45304 -7.45303,7.45304c-4.1162,0 -7.45303,-3.33684 -7.45303,-7.45303z"
-                    stroke-width="2.5px" stroke-linecap="butt" />
-            <path
-                    d="M246.4142,195.51249c0,0 -0.28358,16.17549 0,16.29921c1.03235,0.45038 5.44893,-7.61497 5.59669,-7.60344c0.29542,0.02303 4.53613,7.38968 4.64863,7.21281c0.30234,-0.47535 0.11149,-15.90515 0.11149,-15.90515"
-                    stroke-width="2.5px" stroke-linecap="round" />
-            <path d="M224.17329,168.5547h31.65341" stroke-width="3px" stroke-linecap="round" />
-            <path d="M224.1733,173.29377h31.65341" stroke-width="3px" stroke-linecap="round" />
-            <path d="M224.17329,178.47992h31.65341" stroke-width="3px" stroke-linecap="round" />
-        </g>
-    </g>
+<!-- its a modified version of file-->
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19 12.646V10.0984C19 8.28944 17.489 6.82298 15.625 6.82298H14.125C13.5037 6.82298 13 6.33416 13 5.73117V4.27543C13 2.46646 11.489 1 9.625 1H7.75M13 19.9247H5.125C4.50368 19.9247 4 19.4359 4 18.8329V2.09181C4 1.48882 4.50368 1 5.125 1H10C14.9706 1 19 4.91055 19 9.73447V18.9247C19 19.477 18.5523 19.9247 18 19.9247V19.9247" stroke="#999999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7 16.528H10.5" stroke="#999999" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M7 13.6165L10 13.6165" stroke="#999999" stroke-width="1.5" stroke-linecap="round"/>
+    <ellipse cx="15.5" cy="14.1017" rx="3.5" ry="3.39674" stroke="#999999" stroke-width="1.5"/>
+    <path d="M13 16.528V22.3509" stroke="#999999" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M18 16.528V22.3509" stroke="#999999" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M15.5 20.4099L18 22.5413" stroke="#999999" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M15.5 20.4099L13 22.3509" stroke="#999999" stroke-width="1.5" stroke-linecap="round"/>
 </svg>
