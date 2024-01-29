@@ -86,8 +86,10 @@ public class Main {
         float seconds = (float) (time2 - time) / 1000;
 
         LOGGER.success("Done in " + seconds + "s! output has been saved to " + context.binPath);
-        LOGGER.success("Press enter to exit...");
-        System.in.read();
+        if(!list.contains("--auto")){
+            LOGGER.success("Press enter to exit...");
+            System.in.read();
+        }
     }
 
 
