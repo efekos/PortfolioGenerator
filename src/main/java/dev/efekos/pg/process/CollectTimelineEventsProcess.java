@@ -20,7 +20,10 @@ import dev.efekos.pg.Main;
 import dev.efekos.pg.data.timeline.TimelineEvent;
 import dev.efekos.pg.data.timeline.TimelineEventSource;
 
+import javax.naming.Name;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CollectTimelineEventsProcess implements Process{
@@ -29,25 +32,41 @@ public class CollectTimelineEventsProcess implements Process{
         return "Collect Timeline Events";
     }
 
+    private static final List<String> EXCLUDED_FIELDS = Arrays.asList("collectedTimeline");
+
     @Override
     public void init(ProcessContext context) throws Exception {
-        List<Object> everything = context.getEverything();
-
         List<TimelineEvent> collectedEvents = new ArrayList<>();
 
         Main.LOGGER.info("Starting search");
-        for (Object o : everything) {
-            Main.DEBUG_LOGGER.info("Searching a "+o.getClass().getName());
-            if(o instanceof TimelineEventSource source){
-                Main.DEBUG_LOGGER.success("Found a source");
-                collectedEvents.addAll(source.getEvents());
-            } else if (o instanceof List<?> list){
-                if(list.get(0) instanceof TimelineEventSource){
-                    Main.DEBUG_LOGGER.success("Found a source list");
-                    list.forEach(source -> collectedEvents.addAll(((TimelineEventSource) source).getEvents()));
-                }
+
+        Main.DEBUG_LOGGER.info("Getting fields");
+        Field[] fields = context.getClass().getFields();
+
+        for (Field field : Arrays.asList(fields)) {
+
+            Main.DEBUG_LOGGER.info("Searching field: ProcessContext."+field.getName());
+            if(EXCLUDED_FIELDS.contains(field.getName())) {
+                Main.DEBUG_LOGGER.error("Field is excluded. Skipping");
+                continue;
             }
+
+            Object o = field.get(context);
+
+            if(o instanceof TimelineEventSource source){
+                Main.DEBUG_LOGGER.success("Found a TimelineEventSource: "+field.getName());
+                Main.DEBUG_LOGGER.success("Collecting events on ",field.getName());
+                collectedEvents.addAll(source.getEvents());
+            } else if (o instanceof List<?> list && list.get(0) instanceof TimelineEventSource){
+                Main.DEBUG_LOGGER.success("Found a list of TimelineEventSource: "+field.getName());
+                Main.DEBUG_LOGGER.success("Collecting events on ",field.getName());
+
+                list.forEach(o1 -> collectedEvents.addAll(((TimelineEventSource) o1).getEvents()));
+            }
+
         }
+
+
         Main.LOGGER.success("Finished search with ",collectedEvents.size()+" events found");
 
         context.collectedTimeline = collectedEvents;

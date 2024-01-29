@@ -32,8 +32,4 @@ public class ProcessContext {
     public List<Project> projects;
     public TagColorInfo tagColorInfo;
     public List<TimelineEvent> collectedTimeline;
-
-    public List<Object> getEverything(){
-        return Arrays.asList(educationInfo,generalInfo,experienceInfo,contactInfo,certificates,projects,tagColorInfo,binPath);
-    }
 }
