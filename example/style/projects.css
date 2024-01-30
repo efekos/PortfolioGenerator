@@ -1,0 +1,159 @@
+/*
+ * Copyright 2024 efekos
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+ * documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+ * persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+@import "./project_tags.css";
+@import "./gallery_modals.css";
+@import "./versions.css";
+
+.glow-white {
+    filter: drop-shadow(0 0 1rem white);
+}
+
+.mainList {
+    list-style: none;
+}
+
+.mainList>li {
+    border-left:0.7rem #252525 dotted;
+    padding-left: 1rem;
+}
+
+.entry {
+    background-color: #202020;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    will-change: background-color;
+    transition: background-color 200ms;
+    border: 0.1rem #151515 solid;
+}
+
+.entry-placeholder {
+    background: linear-gradient(0deg, #101010 0%,#303030 100%);
+}
+
+.entry:hover {
+    background-color: #252525;
+}
+
+.entry>div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.alt {
+    font-size: 1rem;
+    color: #707070;
+    font-weight: 750;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.title {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.icon {
+    padding: 0;
+    background-color: transparent;
+    border-radius: 1rem;
+}
+
+.icon-text {
+    height: 100%;
+    vertical-align: middle;
+    margin-right: 0.1rem;
+}
+
+.hidden {
+    color: transparent;
+    background-color: #252525;
+}
+
+.markdown {
+    padding: 1rem;
+    border: #4d5153 solid 0.15rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+}
+
+.nav {
+    list-style: none;
+    vertical-align: middle;
+    background-color: #232627;
+    text-align: left;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.nav>li {
+    display: inline-block;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    padding: 0.5rem;
+    user-select: none;
+}
+
+.nav>li#selected {
+    border-bottom: #0080ff 0.25rem solid;
+}
+
+pre[class*="language-"] {
+    padding: 1rem;
+    border: #4d5153 0.1rem solid;
+    border-radius: 0.15rem;
+}
+
+.horizontal-list div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.nav>li>a{
+    color: white;
+}
+
+.btn-pagination {
+    padding: 1rem;
+    background-color: rgb(33, 35, 37);
+}
+
+.btn-pagination:disabled {
+    background-color: rgb(23, 25, 27);
+    color: rgb(235,235,235);
+    cursor: default;
+}
+
+.project-link {
+    color: #999999;
+    text-decoration: underline;
+}
+
+.project-link-icon {
+    vertical-align: middle;
+    margin-bottom: 0.2rem;
+    margin-right: 0.25rem;
+}
+
+.text-summary {
+    margin: 0 1rem 0 0;
+    color: #888888;
+}
+
+.text-no-margin {
+    margin: 0;
+}

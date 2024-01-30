@@ -1,0 +1,166 @@
+/*
+ * Copyright 2024 efekos
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+ * documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+ * persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+@import "./social_icons.css";
+
+body {
+    background-color: #03080E;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 3rem;
+    font-size: 1.5rem;
+}
+
+h1#name {
+    font-family: Fredoka, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #4C9EFF;
+    font-size: 5rem;
+    text-align: center;
+    filter: drop-shadow(0rem 0rem 16rem #4C9EFF);
+    will-change: filter;
+    transition: filter 200ms;
+    user-select: none;
+    margin-bottom: 1rem;
+}
+
+h1#name:hover {
+    filter: drop-shadow(0rem 0rem 2rem #4C9EFF);
+}
+
+h2#title {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #4cbdff;
+}
+
+.btn {
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    color: white;
+    font-family: Lato, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 650;
+    will-change: filter;
+    transition: filter 1.5s;
+    cursor: pointer;
+    padding: 2rem 3rem;
+    border: 0;
+}
+
+.btn-blue {
+    background: linear-gradient(180deg, #00E8FF 0%, #0066FF 100%);
+}
+
+.btn-blue:hover{
+    filter: drop-shadow(0rem 0rem 16rem #00E8FF);
+}
+
+
+.btn-green {
+    background: linear-gradient(180deg, #52ff3b 0%, #04520b 100%);
+}
+
+.btn-green:hover {
+    filter: drop-shadow(0rem 0rem 16rem #52ff3b);
+}
+
+.btn-red {
+    background: linear-gradient(180deg, #FAFF00 0%, #ff0000 100%);
+}
+
+.btn-red:hover {
+    filter: drop-shadow(0rem 0rem 16rem #FAFF00);
+}
+
+
+.btn-orange {
+    background: linear-gradient(180deg, #FF7A00 0%, #ff0000 100%);
+}
+
+.btn-orange:hover {
+    filter: drop-shadow(0rem 0rem 16rem #FF7A00);
+}
+
+.btn-download {
+    color: #363636;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: rgb(238, 238, 238);
+    will-change: background-color;
+    transition: background-color 200ms;
+}
+
+.btn-download:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+br {
+    user-select: none;
+}
+
+code:not([class]) {
+    background-color: rgb(52, 59, 65);
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.5rem;
+}
+
+footer {
+    margin-top: 30rem;
+    min-height: 15rem;
+}
+
+
+.search-bar {
+    background-color: #1a1b1d;
+    border-radius: 3rem;
+    max-width: 25rem;
+}
+
+.search-bar-input {
+    background-color: transparent;
+    color: white;
+    margin-left: 1rem;
+    border: 0;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    margin-top: 0.4rem;
+    padding: 1rem;
+    vertical-align: middle;
+    width: 80%;
+}
+
+.btn {
+    user-select: none;
+}
+
+.search-bar-input:focus {
+    outline: none;
+}
+
+
+.top {
+    --offset: 50px;
+
+    position: sticky;
+    bottom: 20px;
+    margin-right: 10px;
+    place-self: end;
+    margin-top: calc(250vh + var(--offset));
+}
