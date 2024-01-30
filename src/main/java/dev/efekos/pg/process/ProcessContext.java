@@ -18,9 +18,7 @@ package dev.efekos.pg.process;
 
 import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.data.timeline.TimelineEvent;
-import dev.efekos.pg.resource.ResourceManager;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ProcessContext {
@@ -33,5 +31,4 @@ public class ProcessContext {
     public List<Project> projects;
     public TagColorInfo tagColorInfo;
     public List<TimelineEvent> collectedTimeline;
-    public ResourceManager resourceManager;
 }

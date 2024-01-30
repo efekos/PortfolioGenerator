@@ -21,7 +21,8 @@ import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.data.schema.Project;
 import dev.efekos.pg.data.schema.Version;
 import dev.efekos.pg.data.schema.VersionInfo;
-import dev.efekos.pg.util.ConsoleColors;
+import dev.efekos.pg.resource.ResourceManager;
+import dev.efekos.pg.resource.Resources;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,8 +34,8 @@ public class ProjectVersionPageGenerator implements Generator{
     private final String tags;
     private final String binPath;
 
-    private static final String PAGINATION_ELEMENT = Main.readStringResource("/site/html/template/pagination_buttons.html");
-    private static final String PROJECT_RELEASES_TEMPLATE = Main.readStringResource("/site/html/template/project_releases.html");
+    private static final String PAGINATION_ELEMENT = ResourceManager.getResource(Resources.HTML_PAGINATION_BUTTONS);
+    private static final String PROJECT_RELEASES_TEMPLATE = ResourceManager.getResource(Resources.HTML_PROJECT_RELEASES_ELEMENT);
     private final String links;
 
     public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project,String tags,String binPath,String links) {
@@ -54,7 +55,7 @@ public class ProjectVersionPageGenerator implements Generator{
         switch (versionInfo.getType()){
             case OBJECT -> {
                 Main.DEBUG_LOGGER.info("Generating version entry elements for project: ",project.getId());
-                String template = Main.readStringResource("/site/html/template/project_version_entry.html",true);
+                String template = ResourceManager.getResource(Resources.HTML_PROJECT_VERSION_ENTRY_TEMPLATE);
 
                 for (Version version : versionInfo.getVersions()) {
                     elements.add(
@@ -74,7 +75,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/script/project_versions_markdown_file_finder.js") // A file named with FIVE words? That's the spirit!
+                String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_MARKDOWN_FINDER)
                         .replaceAll("%%link%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
@@ -87,7 +88,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/script/project_versions_grl_finder.js")
+                String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_GITHUB_RELEASE_FINDER)
                         .replaceAll("%%repo%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
@@ -99,7 +100,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/script/project_versions_mrl_finder.js")
+                String script = ResourceManager.getResource(Resources.SCRIPT_MODRINTH_RELEASE_FINDER)
                         .replaceAll("%%id%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
@@ -111,7 +112,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/script/project_versions_json_finder.js")
+                String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_JSON_FINDER)
                         .replaceAll("%%link%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
@@ -124,7 +125,7 @@ public class ProjectVersionPageGenerator implements Generator{
 
                 Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
 
-                String script = Main.readStringResource("/site/script/project_versions_spig_finder.js")
+                String script = ResourceManager.getResource(Resources.SCRIPT_SPIGOT_UPDATE_FINDER)
                         .replaceAll("%%id%%", versionInfo.getFile());
 
                 writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
@@ -133,7 +134,7 @@ public class ProjectVersionPageGenerator implements Generator{
             default -> Main.LOGGER.devWarn(" Not implemented version info type found: '",versionInfo.getType().toString(),"'");
         }
 
-        return Main.readStringResource("/site/html/project_versions.html")
+        return ResourceManager.getResource(Resources.HTML_PROJECT_VERSIONS_PAGE)
                 .replaceAll("%%name%%",generalInfo.getName())
                 .replaceAll("%%prname%%",project.getDisplayName())
                 .replaceAll("%%tags%%",tags)

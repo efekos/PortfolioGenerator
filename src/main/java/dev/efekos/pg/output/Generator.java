@@ -17,6 +17,9 @@
 package dev.efekos.pg.output;
 
 import dev.efekos.pg.Main;
+import dev.efekos.pg.resource.Resource;
+import dev.efekos.pg.resource.ResourceManager;
+import dev.efekos.pg.resource.Resources;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -38,10 +41,10 @@ public interface Generator {
                 .toLowerCase(Locale.ROOT);
     }
 
-    default void copyStringResource(String resourceLocation, String outputLocation, String binPath) throws IOException {
-        Main.DEBUG_LOGGER.info("Copying resource: " + resourceLocation);
+    default void copyResource(Resource resource, String outputLocation, String binPath) throws IOException {
+        Main.DEBUG_LOGGER.info("Copying resource: " + resource.getPathName());
 
-        String fileString = Main.readStringResource(resourceLocation,true);
+        String fileString = ResourceManager.getResource(resource);
         File file = new File(binPath + outputLocation);
         file.getParentFile().mkdirs();
         file.createNewFile();
@@ -51,7 +54,7 @@ public interface Generator {
         writer.flush();
         writer.close();
 
-        Main.DEBUG_LOGGER.success("Copied resource: " + resourceLocation+" to "+outputLocation.replaceAll("\\\\","/"));
+        Main.DEBUG_LOGGER.success("Copied resource: " + resource.getPathName()+" to "+outputLocation.replaceAll("\\\\","/"));
     }
 
     default void writeFile(String path, String content) throws IOException {
@@ -63,7 +66,7 @@ public interface Generator {
 
         FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
 
-        writer.write(content.replaceAll("%%footer%%",Main.FOOTER_ELEMENT));
+        writer.write(content.replaceAll("%%footer%%",ResourceManager.getResource(Resources.HTML_FOOTER)));
         writer.flush();
         writer.close();
         Main.DEBUG_LOGGER.success("Wrote file: ",logPath);

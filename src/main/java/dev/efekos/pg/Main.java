@@ -41,8 +41,6 @@ public class Main {
      */
     private static String MAIN_PATH;
 
-    public static String FOOTER_ELEMENT;
-
     public static final Logger LOGGER = new Logger();
     public static final DebugLogger DEBUG_LOGGER = new DebugLogger();
 
@@ -72,7 +70,6 @@ public class Main {
         List<String> list = Arrays.asList(args);
         isDebug = list.contains("--debug");
         DEBUG_LOGGER.setEnabled(isDebug);
-        FOOTER_ELEMENT = readStringResource("/site/html/template/footer.html");
         MAIN_PATH = System.getProperty("user.dir");
         System.out.println("Hello World!");
 

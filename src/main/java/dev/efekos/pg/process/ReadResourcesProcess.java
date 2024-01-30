@@ -16,7 +16,6 @@
 
 package dev.efekos.pg.process;
 
-import dev.efekos.pg.Main;
 import dev.efekos.pg.resource.ResourceManager;
 
 public class ReadResourcesProcess implements Process {
@@ -27,10 +26,6 @@ public class ReadResourcesProcess implements Process {
 
     @Override
     public void init(ProcessContext context) throws Exception {
-        Main.LOGGER.info("Creating resource manager");
-        ResourceManager manager = new ResourceManager();
-        manager.init();
-
-        context.resourceManager = manager;
+        new ResourceManager().init();
     }
 }

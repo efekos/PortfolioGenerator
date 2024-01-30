@@ -20,6 +20,8 @@ import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.EducationEntry;
 import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
+import dev.efekos.pg.resource.ResourceManager;
+import dev.efekos.pg.resource.Resources;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,8 +35,6 @@ public class EducationPageGenerator implements Generator {
         this.binPath = binPath;
     }
 
-    private final String EDUCATION_ENTRY_ELEMENT = Main.readStringResource("/site/html/template/education_entry.html");
-
     public void generate(GeneralInfo generalInfo, EducationInfo info) throws IOException {
         Main.LOGGER.info("Generating file: education.html");
         generateElements(info);
@@ -44,7 +44,7 @@ public class EducationPageGenerator implements Generator {
 
     private void generateFile(GeneralInfo generalInfo) throws IOException {
         Main.DEBUG_LOGGER.info("Generating file");
-        String file = Main.readStringResource("/site/html/education.html")
+        String file = ResourceManager.getResource(Resources.HTML_EDUCATION_PAGE)
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%name%%", generalInfo.getName());
 
@@ -61,7 +61,7 @@ public class EducationPageGenerator implements Generator {
 
         elementsGenerated.clear();
         for (EducationEntry entry : entries) {
-            String element = EDUCATION_ENTRY_ELEMENT.replaceAll("%%pname%%", entry.getTitle())
+            String element = ResourceManager.getResource(Resources.HTML_EDUCATION_ENTRY_TEMPLATE).replaceAll("%%pname%%", entry.getTitle())
                     .replaceAll("%%ptype%%", entry.getType().getDisplay())
                     .replaceAll("%%plocation%%", entry.getLocation())
                     .replaceAll("%%pstart%%", entry.getStart().toString())

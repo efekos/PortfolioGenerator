@@ -21,7 +21,7 @@ import dev.efekos.pg.Main;
 import java.util.HashMap;
 
 public class ResourceManager {
-    private final HashMap<Resource,String> resourceMap = new HashMap<>();
+    private static final HashMap<Resource,String> resourceMap = new HashMap<>();
 
     public void init(){
         Main.LOGGER.info("Loading resources");
@@ -72,7 +72,7 @@ public class ResourceManager {
         resourceMap.put(resource,s);
     }
 
-    public String getResource(Resource resource){
+    public static String getResource(Resource resource){
         return resourceMap.get(resource);
     }
 }

@@ -20,6 +20,8 @@ import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.ExperienceEntry;
 import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
+import dev.efekos.pg.resource.ResourceManager;
+import dev.efekos.pg.resource.Resources;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,10 +35,6 @@ public class ExperiencePageGenerator implements Generator {
         this.binPath = binPath;
     }
 
-    private final String EXPERIENCE_ENTRY_ELEMENT = Main.readStringResource("/site/html/template/experience_entry.html");
-
-    private final String CURRENT_JOB_ELEMENT = Main.readStringResource("/site/html/template/current_job.html");
-
     public void generate(GeneralInfo generalInfo, ExperienceInfo info) throws IOException {
         Main.LOGGER.info("Generating file: experience.html");
         generateElements(info);
@@ -46,7 +44,7 @@ public class ExperiencePageGenerator implements Generator {
 
     private void generateFile(GeneralInfo generalInfo) throws IOException {
         Main.DEBUG_LOGGER.info("Generating file");
-        String file = Main.readStringResource("/site/html/experience.html")
+        String file = ResourceManager.getResource(Resources.HTML_EXPERIENCE_PAGE)
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%cc%%", currentJobElement)
                 .replaceAll("%%ch%%", !currentJobElement.isEmpty() ? "<h2>Job History</h2><br>" : "")
@@ -67,7 +65,7 @@ public class ExperiencePageGenerator implements Generator {
         elementsGenerated.clear();
         for (ExperienceEntry entry : entries) {
             if (entry.isCurrentJob()) continue;
-            String element = EXPERIENCE_ENTRY_ELEMENT.replaceAll("%%pcompany%%", entry.getCompany())
+            String element = ResourceManager.getResource(Resources.HTML_EXPERIENCE_ENTRY_TEMPLATE).replaceAll("%%pcompany%%", entry.getCompany())
                     .replaceAll("%%ppos%%", entry.getPosition())
                     .replaceAll("%%pstart%%", entry.getFrom().toString())
                     .replaceAll("%%pend%%", entry.getTo().toString());
@@ -77,7 +75,7 @@ public class ExperiencePageGenerator implements Generator {
 
         if (info.hasCurrentJob()) {
             ExperienceEntry entry = info.getCurrentJob();
-            String element = CURRENT_JOB_ELEMENT.replaceAll("%%pcompany%%", entry.getCompany())
+            String element = ResourceManager.getResource(Resources.HTML_CURRENT_JOB_TEMPLATE).replaceAll("%%pcompany%%", entry.getCompany())
                     .replaceAll("%%ppos%%", entry.getPosition())
                     .replaceAll("%%pstart%%", entry.getFrom().toString())
                     .replaceAll("%%pend%%", entry.getTo().toString());

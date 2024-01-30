@@ -19,6 +19,8 @@ package dev.efekos.pg.output;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.GeneralInfo;
+import dev.efekos.pg.resource.ResourceManager;
+import dev.efekos.pg.resource.Resources;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -41,7 +43,7 @@ public class CertificatesPageGenerator implements Generator {
 
         List<String> elementList = certificates.stream().map(certificate -> "<a href=\"./certificate/" + makeIdForLink(certificate.getDisplay().getTitle()) + ".html\"><img class=\"certificate-image-small\" src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\" alt=\"" + certificate.getDisplay().getTitle() + "\" />").toList();
 
-        String fileString = Main.readStringResource("/site/html/certificates.html")
+        String fileString = ResourceManager.getResource(Resources.HTML_CERTIFICATES_PAGE)
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%title%%", info.getTitle())
                 .replaceAll("%%images%%", String.join("\n", elementList));
@@ -74,7 +76,7 @@ public class CertificatesPageGenerator implements Generator {
 
     public void generateSinglePages(GeneralInfo info, List<Certificate> certificates) throws IOException {
         Main.LOGGER.info("Generating single certificate files");
-        String resourceFile = Main.readStringResource("/site/html/single_certificate.html");
+        String resourceFile = ResourceManager.getResource(Resources.HTML_SINGLE_CERTIFICATE);
 
         Files.createDirectory(Path.of(binPath, "certificate"));
 

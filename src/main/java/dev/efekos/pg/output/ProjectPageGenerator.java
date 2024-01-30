@@ -21,12 +21,13 @@ import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.data.schema.Project;
 import dev.efekos.pg.data.schema.ProjectGalleryImage;
 import dev.efekos.pg.data.type.ProjectLinkType;
+import dev.efekos.pg.resource.ResourceManager;
+import dev.efekos.pg.resource.Resources;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +49,7 @@ public class ProjectPageGenerator implements Generator {
     private void generateGalleryModals(Project project) throws IOException{
         Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId()+"/gallery_modals.js");
         List<String> codeblocks = new ArrayList<>();
-        String template = Main.readStringResource("/site/script/gallery_modal_template.js");
+        String template = ResourceManager.getResource(Resources.SCRIPT_GALLERY_MODAL_TEMPLATE);
 
         project.getGalleryImages().forEach(image -> {
             String generated = template.replaceAll("%%imid%%",image.getId());
@@ -61,11 +62,11 @@ public class ProjectPageGenerator implements Generator {
 
     private void generateReadmeFinder(Project project) throws IOException {
         Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/readme_finder.js");
-        String readmeFinder = Main.readStringResource("/site/script/project_readme_finder.js")
+        String readmeFinder = ResourceManager.getResource(Resources.SCRIPT_README_FINDER)
                 .replaceAll("%%link%%", project.getReadmeFile());
         writeFile(binPath + "\\projects\\" + project.getId() + "\\readme_finder.js", readmeFinder);
 
-        String file = Main.readStringResource("/site/script/project_changelog_finder.js")
+        String file = ResourceManager.getResource(Resources.SCRIPT_CHANGELOG_FINDER)
                 .replaceAll("%%link%%", project.getChangeLogFile());
         writeFile(binPath + "\\projects\\" + project.getId() + "\\changelog_finder.js", file);
 
@@ -84,7 +85,7 @@ public class ProjectPageGenerator implements Generator {
 
         //index.html
         Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId(),"/index.html");
-        String html = Main.readStringResource("/site/html/project.html")
+        String html = ResourceManager.getResource(Resources.HTML_PROJECT_PAGE)
                 .replace("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
@@ -98,7 +99,7 @@ public class ProjectPageGenerator implements Generator {
 
         //license.html
         Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId(),"/license.html");
-        String license = Main.readStringResource("/site/html/project_license.html")
+        String license = ResourceManager.getResource(Resources.HTML_PROJECT_LICENSE_PAGE)
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%prid%%", project.getId())
@@ -114,7 +115,7 @@ public class ProjectPageGenerator implements Generator {
 
         //changelog.html
         Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId(),"/changelog.html");
-        String changelog = Main.readStringResource("/site/html/project_changelog.html")
+        String changelog = ResourceManager.getResource(Resources.HTML_PROJECT_CHANGELOG_PAGE)
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
@@ -128,7 +129,7 @@ public class ProjectPageGenerator implements Generator {
 
         //gallery.html
         Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId(),"/gallery.html");
-        String gallery = Main.readStringResource("/site/html/project_gallery.html")
+        String gallery = ResourceManager.getResource(Resources.HTML_PROJECT_GALLERY_PAGE)
                 .replaceAll("%%name%%",info.getName())
                 .replaceAll("%%prname%%",project.getDisplayName())
                 .replaceAll("%%tags%%",tags)
@@ -169,7 +170,7 @@ public class ProjectPageGenerator implements Generator {
     private String generateGalleryImageElements(Project project){
         Main.DEBUG_LOGGER.info("Generating gallery image elements for project: ",project.getId());
         List<ProjectGalleryImage> images = project.getGalleryImages().stream().toList();
-        String template = Main.readStringResource("/site/html/template/project_gallery_image_template.html");
+        String template = ResourceManager.getResource(Resources.HTML_PROJECT_GALLERY_IMAGE_TEMPLATE);
 
         List<String> generatedElements = new ArrayList<>();
 
@@ -209,7 +210,7 @@ public class ProjectPageGenerator implements Generator {
         Main.LOGGER.info("Generating file: projects.html");
         List<String> elements = new ArrayList<>();
 
-        String elementTemplate = Main.readStringResource("/site/html/template/projects_element_template.html");
+        String elementTemplate = ResourceManager.getResource(Resources.HTML_PROJECT_ENTRY_TEMPLATE);
         for (Project project : projects) {
             String element = elementTemplate
                     .replaceAll("%%prname%%", project.getDisplayName())
@@ -223,7 +224,7 @@ public class ProjectPageGenerator implements Generator {
             elements.add(element);
         }
 
-        String file = Main.readStringResource("/site/html/projects.html")
+        String file = ResourceManager.getResource(Resources.HTML_PROJECTS_PAGE)
                 .replaceAll("%%name%%", generalInfo.getName())
                 .replaceAll("%%elements%%", String.join("", elements));
 

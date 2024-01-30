@@ -20,16 +20,16 @@ import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.data.timeline.TimelineEvent;
 import dev.efekos.pg.data.type.SocialLinkType;
-import dev.efekos.pg.util.Locale;
 import dev.efekos.pg.process.ProcessContext;
+import dev.efekos.pg.resource.Resource;
+import dev.efekos.pg.resource.ResourceManager;
+import dev.efekos.pg.resource.Resources;
+import dev.efekos.pg.util.Locale;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class FileGenerator implements Generator {
 
@@ -60,7 +60,7 @@ public class FileGenerator implements Generator {
             timelineElements.add("<li>"+generateAboutEntry(event.getIcon(), event.getTitle(), event.getTime(), false)+"</li>");
         }
 
-        String fileString = Main.readStringResource("/site/html/index.html")
+        String fileString = ResourceManager.getResource(Resources.HTML_INDEX_PAGE)
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%title%%", info.getTitle())
                 .replaceAll("%%welcomer%%", info.getWelcomer())
@@ -96,7 +96,7 @@ public class FileGenerator implements Generator {
             }
         });
 
-        String file = Main.readStringResource("/site/html/contact.html");
+        String file = ResourceManager.getResource(Resources.HTML_CONTACT_PAGE);
 
         if(contactInfo.isIncludeSocials()){
             file = file.replaceAll(
@@ -118,7 +118,7 @@ public class FileGenerator implements Generator {
     }
 
     private String generatePlaceEntry(Place place){
-        String file = Main.readStringResource("/site/html/template/place_entry.html");
+        String file = ResourceManager.getResource(Resources.HTML_PLACE_ENTRY_TEMPLATE);
 
         return file
                 .replaceAll("%%plmaps%%",place.getMapsLink())
@@ -128,7 +128,7 @@ public class FileGenerator implements Generator {
     }
 
     private String generateAboutEntry(String icon, String title, String alt, boolean age){
-        String templateEntry = Main.readStringResource("/site/html/template/about_entry.html");
+        String templateEntry = ResourceManager.getResource(Resources.HTML_ABOUT_ENTRY_TEMPLATE);
 
         return templateEntry.replaceAll("%%title%%", title)
                 .replaceAll("%%icon%%", icon)
@@ -137,7 +137,7 @@ public class FileGenerator implements Generator {
     }
 
     private String generateSocialElement(SocialLinkType type, String link) throws IOException{
-        String templateElement = Main.readStringResource("/site/html/template/social_icon.html");
+        String templateElement = ResourceManager.getResource(Resources.HTML_SOCIAL_ICON_TEMPLATE);
         return templateElement.replaceAll("%%link%%", link).replaceAll("%%icon%%", type.getId());
     }
 
@@ -150,11 +150,11 @@ public class FileGenerator implements Generator {
     public void generateStyleFiles(GeneralInfo info,TagColorInfo tagColorInfo) throws IOException {
         Main.LOGGER.info("Copying static style files");
 
-        copyStringResource("/site/style/style.css", "\\style\\main_style.css", binPath);
-        copyStringResource("/site/style/style_certificates.css", "\\style\\certificates.css", binPath);
-        copyStringResource("/site/style/style_education.css", "\\style\\education.css", binPath);
-        copyStringResource("/site/style/style_projects.css", "\\style\\projects.css", binPath);
-        copyStringResource("/site/style/style_gallery_modals.css", "\\style\\gallery_modals.css", binPath);
+        copyResource(Resources.STYLE_MAIN, "\\style\\main_style.css", binPath);
+        copyResource(Resources.STYLE_CERTIFICATES, "\\style\\certificates.css", binPath);
+        copyResource(Resources.STYLE_EDUCATION, "\\style\\education.css", binPath);
+        copyResource(Resources.STYLE_PROJECTS, "\\style\\projects.css", binPath);
+        copyResource(Resources.STYLE_GALLERY_MODALS, "\\style\\gallery_modals.css", binPath);
 
         Main.LOGGER.success("Copied all static style files");
 
@@ -174,13 +174,13 @@ public class FileGenerator implements Generator {
 
         // age_calculator.js
         Main.DEBUG_LOGGER.info("Generating file: age_calculator.js");
-        String string = Main.readStringResource("/site/script/age_calculator.js").replaceAll("%%byear%%", info.getBirthDate().getYear() + "");
+        String string = ResourceManager.getResource(Resources.SCRIPT_AGE_CALCULATOR).replaceAll("%%byear%%", info.getBirthDate().getYear() + "");
         writeFile(binPath + "\\age_calculator.js", string);
         Main.DEBUG_LOGGER.success("Generated file: age_calculator.js");
 
         // project_search.js
-        copyStringResource("/site/script/projects_search.js","\\projects_search.js",binPath);
-        copyStringResource("/site/script/expandable_entries.js","\\expandable_entries.js",binPath);
+        copyResource(Resources.SCRIPT_PROJECT_SEARCH,"\\projects_search.js",binPath);
+        copyResource(Resources.SCRIPT_EXPAND_ENTRIES,"\\expandable_entries.js",binPath);
 
         Main.LOGGER.success("Generates script files");
     }
@@ -202,7 +202,7 @@ public class FileGenerator implements Generator {
 
 
         String bio = info.getBio();
-        String bioFile = Main.readStringResource("/site/html/bio.html").replaceAll("%%bio%%", bio);
+        String bioFile = ResourceManager.getResource(Resources.HTML_BIO_PAGE).replaceAll("%%bio%%", bio);
 
         writeFile(binPath + "\\bio.html", bioFile);
 
@@ -261,7 +261,10 @@ public class FileGenerator implements Generator {
 
     private void copyIcon(String resourceName, String binName) throws IOException {
         Main.DEBUG_LOGGER.info("Copying icon: " + resourceName);
-        String string = Main.readStringResource("/site/icon/" + resourceName + ".svg");
+        Optional<Resource> optional = Resources.all().stream().filter(resource -> resource.getPathName().equals("/site/icon/" + resourceName + ".svg")).findFirst();
+        if(optional.isEmpty()) throw new MissingResourceException("Missing icon","dev.efekos.pg.Main","/site/icon/" + resourceName + ".svg");
+
+        String string = ResourceManager.getResource(optional.get());
         writeFile(binPath + "\\images\\icon\\" + binName + ".svg", string);
         Main.DEBUG_LOGGER.success("Copied icon: " + resourceName);
     }
@@ -278,9 +281,9 @@ public class FileGenerator implements Generator {
     public void copyLibraries() throws IOException {
         Main.LOGGER.info("Copying library files");
 
-        copyStringResource("/site/lib/marked.js", "\\lib\\marked.js", binPath);
-        copyStringResource("/site/lib/prism.js", "\\lib\\prism.js", binPath);
-        copyStringResource("/site/lib/prism.css", "\\lib\\prism.css", binPath);
+        copyResource(Resources.SCRIPT_LIBRARY_MARKED, "\\lib\\marked.js", binPath);
+        copyResource(Resources.SCRIPT_LIBRARY_PRISM, "\\lib\\prism.js", binPath);
+        copyResource(Resources.STYLE_LIBRARY_PRISM, "\\lib\\prism.css", binPath);
 
         Main.LOGGER.success("Copied library files");
     }
