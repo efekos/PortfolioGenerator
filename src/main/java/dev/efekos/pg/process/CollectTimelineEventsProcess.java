@@ -57,7 +57,7 @@ public class CollectTimelineEventsProcess implements Process{
                 Main.DEBUG_LOGGER.success("Found a TimelineEventSource: "+field.getName());
                 Main.DEBUG_LOGGER.success("Collecting events on ",field.getName());
                 collectedEvents.addAll(source.getEvents());
-            } else if (o instanceof List<?> list && list.get(0) instanceof TimelineEventSource){
+            } else if (o instanceof List<?> list && list.size()>0 && list.get(0) instanceof TimelineEventSource){
                 Main.DEBUG_LOGGER.success("Found a list of TimelineEventSource: "+field.getName());
                 Main.DEBUG_LOGGER.success("Collecting events on ",field.getName());
 
