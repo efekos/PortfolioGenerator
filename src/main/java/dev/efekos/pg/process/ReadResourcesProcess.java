@@ -16,22 +16,21 @@
 
 package dev.efekos.pg.process;
 
-import dev.efekos.pg.data.schema.*;
-import dev.efekos.pg.data.timeline.TimelineEvent;
+import dev.efekos.pg.Main;
 import dev.efekos.pg.resource.ResourceManager;
 
-import java.util.Arrays;
-import java.util.List;
+public class ReadResourcesProcess implements Process {
+    @Override
+    public String getName() {
+        return "Load Resources";
+    }
 
-public class ProcessContext {
-    public EducationInfo educationInfo;
-    public GeneralInfo generalInfo;
-    public ExperienceInfo experienceInfo;
-    public String binPath;
-    public ContactInfo contactInfo;
-    public List<Certificate> certificates;
-    public List<Project> projects;
-    public TagColorInfo tagColorInfo;
-    public List<TimelineEvent> collectedTimeline;
-    public ResourceManager resourceManager;
+    @Override
+    public void init(ProcessContext context) throws Exception {
+        Main.LOGGER.info("Creating resource manager");
+        ResourceManager manager = new ResourceManager();
+        manager.init();
+
+        context.resourceManager = manager;
+    }
 }

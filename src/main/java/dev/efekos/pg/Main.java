@@ -58,6 +58,7 @@ public class Main {
     private static final ProcessContext context = new ProcessContext();
 
     private static final List<Process> processList = Arrays.asList(
+            new ReadResourcesProcess(),
             new LoadLocalesProcess(),
             new SetupBinFolderProcess(),
             new GrabDataProcess(),

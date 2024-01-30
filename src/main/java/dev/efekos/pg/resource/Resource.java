@@ -14,24 +14,27 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package dev.efekos.pg.process;
+package dev.efekos.pg.resource;
 
-import dev.efekos.pg.data.schema.*;
-import dev.efekos.pg.data.timeline.TimelineEvent;
-import dev.efekos.pg.resource.ResourceManager;
+public class Resource {
+    private final String pathName;
+    private final boolean removeCopyright;
 
-import java.util.Arrays;
-import java.util.List;
+    public String getPathName(){
+        return pathName;
+    }
 
-public class ProcessContext {
-    public EducationInfo educationInfo;
-    public GeneralInfo generalInfo;
-    public ExperienceInfo experienceInfo;
-    public String binPath;
-    public ContactInfo contactInfo;
-    public List<Certificate> certificates;
-    public List<Project> projects;
-    public TagColorInfo tagColorInfo;
-    public List<TimelineEvent> collectedTimeline;
-    public ResourceManager resourceManager;
+    public boolean shouldRemoveCopyright(){
+        return removeCopyright;
+    }
+
+    public Resource(String pathName) {
+        this.pathName = pathName;
+        this.removeCopyright = false;
+    }
+
+    public Resource(String pathName, boolean removeCopyright) {
+        this.pathName = pathName;
+        this.removeCopyright = removeCopyright;
+    }
 }
