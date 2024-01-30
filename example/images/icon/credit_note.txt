@@ -1,1 +1,0 @@
-Every icon that doesn't contain a copyright is from heroicons.com (not including 'social' folder).
