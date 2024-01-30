@@ -26,18 +26,18 @@
             ]
         },
         "birth": {
-            "$ref": "./day_date.json",
+            "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
             "description": "Your birth date."
         },
         "native_language": {
-            "$ref": "./locale.json",
+            "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/locale.json",
             "description": "Code of your native language."
         },
         "known_languages": {
             "type": "array",
             "description": "List of the languages you know. Include your native language.",
             "items": {
-                "$ref": "./locale.json",
+                "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/locale.json",
                 "description": "One of the languages you know."
             },
             "examples": [

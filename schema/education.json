@@ -31,12 +31,12 @@
                 ]
             },
             "start":{
-                "$ref": "./components/month_date.json",
+                "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/month_date.json",
                 "title": "Start Month",
                 "description": "Month that you started going to this place."
             },
             "until":{
-                "$ref": "./components/month_date.json",
+                "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/month_date.json",
                 "title": "End Month",
                 "description": "Month that you stopped going/graduated from this place."
             },

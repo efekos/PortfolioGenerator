@@ -24,11 +24,11 @@
                 "maxLength": 64
             },
             "from":{
-                "$ref": "./components/month_date.json",
+                "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/month_date.json",
                 "description": "The month that you started working on that job."
             },
             "to":{
-                "$ref": "./components/month_date.json",
+                "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/month_date.json",
                 "description": "The month that you started working on that job."
             },
             "current_job":{

@@ -100,7 +100,7 @@
             ]
         },
         "release":{
-            "$ref": "./components/day_date.json",
+            "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
             "title": "Relase date",
             "description": "The day that this project was released."
         },
@@ -162,7 +162,7 @@
                                         ]
                                     },
                                     "release_date":{
-                                        "$ref": "./components/day_date.json",
+                                        "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
                                         "title": "Version Release Date",
                                         "description": "Day that this version was released."
                                     }

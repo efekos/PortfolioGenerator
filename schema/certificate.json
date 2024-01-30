@@ -58,7 +58,7 @@
             "description": "Paths to your certificate in different image formats. Every key will be presented as a download button in the certificate page."
         },
         "when": {
-            "$ref": "./components/day_date.json",
+            "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
             "title": "Achieve Time",
             "description": "The day that you got this certificate."
         },
