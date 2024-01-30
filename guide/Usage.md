@@ -36,6 +36,6 @@ When you run the program, there are three different scenarios that can happen.
 that are mostly thrown because of wrong syntax or missing files.
 * `[PROCESS FAIL]` - One of the processes fail with an unexpected exception.
 
-You can run the program using `java -jar` command. Note that you must have a JRE installed to do that.
+You can run the program using `java -jar` command.
 
 When you run the program, the program will generate the website under a `bin` folder.
