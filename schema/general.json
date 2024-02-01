@@ -68,6 +68,7 @@
                 "youtube":{"type":"string","description": "A link to your Youtube account."},
                 "modrinth":{"type":"string","description": "A link to your Modrinth account."},
                 "curseforge":{"type":"string","description": "A link to your Curseforge account."},
+                "discord":{"type":"string","description": "A link to your Discord server."},
                 "instagram":{"type":"string","description": "A link to your Instagram account."},
                 "twitch":{"type":"string","description": "A link to your Twitch account."},
                 "steam":{"type":"string","description": "A link to your Steam account."},
@@ -86,7 +87,8 @@
                 "tiktok":{"type":"string","description": "A link to your TikTok account."},
                 "reddit":{"type":"string","description": "A link to your Reddit account."},
                 "kofi":{"type":"string","description": "A link to your Ko-fi account."},
-                "snapchat":{"type":"string","description": "A link to your Snapchat account."}
+                "snapchat":{"type":"string","description": "A link to your Snapchat account."},
+                "kick":{"type":"string","description": "A link to your Kick account."}
             }
         }
     },
