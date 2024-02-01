@@ -22,7 +22,7 @@ import dev.efekos.pg.data.schema.*;
 
 import java.util.List;
 
-public class GrabDataProcess implements Process{
+public class GrabDataProcess implements Process {
     @Override
     public String getName() {
         return "Read Files";

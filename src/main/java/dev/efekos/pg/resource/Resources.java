@@ -103,7 +103,7 @@ public class Resources {
     public static final Resource STYLE_LIBRARY_PRISM = new Resource("/site/lib/prism.css");
     public static final Resource SCRIPT_AGE_CALCULATOR = new Resource("/site/script/age_calculator.js");
     public static final Resource SCRIPT_EXPAND_ENTRIES = new Resource("/site/script/expandable_entries.js");
-    public static final Resource SCRIPT_GALLERY_MODAL_TEMPLATE = new Resource("/site/script/gallery_modal_template.js",true);
+    public static final Resource SCRIPT_GALLERY_MODAL_TEMPLATE = new Resource("/site/script/gallery_modal_template.js", true);
     public static final Resource SCRIPT_CHANGELOG_FINDER = new Resource("/site/script/project_changelog_finder.js");
     public static final Resource SCRIPT_README_FINDER = new Resource("/site/script/project_readme_finder.js");
     public static final Resource SCRIPT_VERSIONS_GITHUB_RELEASE_FINDER = new Resource("/site/script/project_versions_grl_finder.js");
@@ -112,9 +112,9 @@ public class Resources {
     public static final Resource SCRIPT_MODRINTH_RELEASE_FINDER = new Resource("/site/script/project_versions_mrl_finder.js");
     public static final Resource SCRIPT_SPIGOT_UPDATE_FINDER = new Resource("/site/script/project_versions_spig_finder.js");
     public static final Resource SCRIPT_PROJECT_SEARCH = new Resource("/site/script/projects_search.js");
-    public static final Resource STYLE_SOCIAL_ICON_TEMPLATE = new Resource("/site/style/template/social_icon.css",true);
-    public static final Resource STYLE_PROJECT_TAG_TEMPLATE = new Resource("/site/style/template/style_project_tag.css",true);
-    public static final Resource STYLE_PROJECT_VERSION_TAG_TEMPLATE = new Resource("/site/style/template/version_tag.css",true);
+    public static final Resource STYLE_SOCIAL_ICON_TEMPLATE = new Resource("/site/style/template/social_icon.css", true);
+    public static final Resource STYLE_PROJECT_TAG_TEMPLATE = new Resource("/site/style/template/style_project_tag.css", true);
+    public static final Resource STYLE_PROJECT_VERSION_TAG_TEMPLATE = new Resource("/site/style/template/version_tag.css", true);
     public static final Resource STYLE_MAIN = new Resource("/site/style/style.css");
     public static final Resource STYLE_CERTIFICATES = new Resource("/site/style/style_certificates.css");
     public static final Resource STYLE_EDUCATION = new Resource("/site/style/style_education.css");
@@ -123,15 +123,17 @@ public class Resources {
     public static final Resource JSON_VALID_LOCALES = new Resource("/valid_locales.json");
 
     private static final List<Resource> list = new ArrayList<>();
-    public static List<Resource> all(){
-        if(!list.isEmpty())return list;
+
+    public static List<Resource> all() {
+        if (!list.isEmpty()) return list;
         Field[] fields = Resources.class.getFields();
 
         for (Field field : fields) {
             try {
                 Resource resource = (Resource) field.get(null);
                 list.add(resource);
-            } catch (IllegalAccessException ignored) {}
+            } catch (IllegalAccessException ignored) {
+            }
         }
 
         return list;

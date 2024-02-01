@@ -68,7 +68,7 @@ a {
     background: linear-gradient(180deg, #00E8FF 0%, #0066FF 100%);
 }
 
-.btn-blue:hover{
+.btn-blue:hover {
     filter: drop-shadow(0rem 0rem 16rem #00E8FF);
 }
 

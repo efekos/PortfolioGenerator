@@ -40,24 +40,24 @@ public class ProjectPageGenerator implements Generator {
     }
 
     private void generateScripts(Project project) throws IOException {
-        Main.LOGGER.info("Generating scripts for project: ",project.getId());
+        Main.LOGGER.info("Generating scripts for project: ", project.getId());
         generateReadmeFinder(project);
         generateGalleryModals(project);
-        Main.LOGGER.success("Generated scripts for project: ",project.getId());
+        Main.LOGGER.success("Generated scripts for project: ", project.getId());
     }
 
-    private void generateGalleryModals(Project project) throws IOException{
-        Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId()+"/gallery_modals.js");
+    private void generateGalleryModals(Project project) throws IOException {
+        Main.DEBUG_LOGGER.info("Generating file: projects/", project.getId() + "/gallery_modals.js");
         List<String> codeblocks = new ArrayList<>();
         String template = ResourceManager.getResource(Resources.SCRIPT_GALLERY_MODAL_TEMPLATE);
 
         project.getGalleryImages().forEach(image -> {
-            String generated = template.replaceAll("%%imid%%",image.getId());
+            String generated = template.replaceAll("%%imid%%", image.getId());
             codeblocks.add(generated);
         });
 
-        writeFile(binPath+"\\projects\\"+project.getId()+"\\gallery_modals.js",String.join("\n\n",codeblocks));
-        Main.DEBUG_LOGGER.success("Generated file: projects/",project.getId()+"/gallery_modals.js");
+        writeFile(binPath + "\\projects\\" + project.getId() + "\\gallery_modals.js", String.join("\n\n", codeblocks));
+        Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId() + "/gallery_modals.js");
     }
 
     private void generateReadmeFinder(Project project) throws IOException {
@@ -78,97 +78,97 @@ public class ProjectPageGenerator implements Generator {
         Path mainDataDirectory = Path.of(Main.getMainPath().toString(), "data", "projects", project.getId());
 
         mainDirectory.toFile().mkdirs();
-        Main.LOGGER.info("Generating directory: projects/",project.getId());
+        Main.LOGGER.info("Generating directory: projects/", project.getId());
 
-        String tags = String.join("",project.getTags().stream().map(s -> "<div class=\"project-tag-"+s+"\">"+s+"</div>").toList());
-        String links = String.join("<br>",generateLinkElements(project.getLinks()));
+        String tags = String.join("", project.getTags().stream().map(s -> "<div class=\"project-tag-" + s + "\">" + s + "</div>").toList());
+        String links = String.join("<br>", generateLinkElements(project.getLinks()));
 
         //index.html
-        Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId(),"/index.html");
+        Main.DEBUG_LOGGER.info("Generating file: projects/", project.getId(), "/index.html");
         String html = ResourceManager.getResource(Resources.HTML_PROJECT_PAGE)
                 .replace("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
-                .replaceAll("%%tags%%",tags)
-                .replaceAll("%%prmainwebsite%%",project.getMainWebsite())
-                .replaceAll("%%links%%",links)
-                .replaceAll("%%prsummary%%",project.getSummary())
+                .replaceAll("%%tags%%", tags)
+                .replaceAll("%%prmainwebsite%%", project.getMainWebsite())
+                .replaceAll("%%links%%", links)
+                .replaceAll("%%prsummary%%", project.getSummary())
                 .replaceAll("%%prid%%", project.getId());
 
         writeFile(mainDirectory + "\\index.html", html);
-        Main.DEBUG_LOGGER.success("Generated file: projects/",project.getId(),"/index.html");
+        Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/index.html");
 
         //license.html
-        Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId(),"/license.html");
+        Main.DEBUG_LOGGER.info("Generating file: projects/", project.getId(), "/license.html");
         String license = ResourceManager.getResource(Resources.HTML_PROJECT_LICENSE_PAGE)
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%prid%%", project.getId())
                 .replaceAll("%%prlicense%%", project.getLicense())
-                .replaceAll("%%tags%%",tags)
-                .replaceAll("%%prsummary%%",project.getSummary())
-                .replaceAll("%%links%%",links)
-                .replaceAll("%%prmainwebsite%%",project.getMainWebsite())
+                .replaceAll("%%tags%%", tags)
+                .replaceAll("%%prsummary%%", project.getSummary())
+                .replaceAll("%%links%%", links)
+                .replaceAll("%%prmainwebsite%%", project.getMainWebsite())
                 .replaceAll("%%prflicense%%", project.getFullLicense());
 
         writeFile(mainDirectory + "\\license.html", license);
-        Main.DEBUG_LOGGER.success("Generated file: projects/",project.getId(),"/license.html");
+        Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/license.html");
 
         //changelog.html
-        Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId(),"/changelog.html");
+        Main.DEBUG_LOGGER.info("Generating file: projects/", project.getId(), "/changelog.html");
         String changelog = ResourceManager.getResource(Resources.HTML_PROJECT_CHANGELOG_PAGE)
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
-                .replaceAll("%%tags%%",tags)
-                .replaceAll("%%links%%",links)
-                .replaceAll("%%prmainwebsite%%",project.getMainWebsite())
-                .replaceAll("%%prsummary%%",project.getSummary())
+                .replaceAll("%%tags%%", tags)
+                .replaceAll("%%links%%", links)
+                .replaceAll("%%prmainwebsite%%", project.getMainWebsite())
+                .replaceAll("%%prsummary%%", project.getSummary())
                 .replaceAll("%%prid%%", project.getId());
 
         writeFile(mainDirectory + "\\changelog.html", changelog);
-        Main.DEBUG_LOGGER.success("Generated file: projects/",project.getId(),"/changelog.html");
+        Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/changelog.html");
 
         //gallery.html
-        Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId(),"/gallery.html");
+        Main.DEBUG_LOGGER.info("Generating file: projects/", project.getId(), "/gallery.html");
         String gallery = ResourceManager.getResource(Resources.HTML_PROJECT_GALLERY_PAGE)
-                .replaceAll("%%name%%",info.getName())
-                .replaceAll("%%prname%%",project.getDisplayName())
-                .replaceAll("%%tags%%",tags)
-                .replaceAll("%%prsummary%%",project.getSummary())
-                .replaceAll("%%links%%",links)
-                .replaceAll("%%prmainwebsite%%",project.getMainWebsite())
-                .replaceAll("%%prid%%",project.getId())
-                .replaceAll("%%images%%",generateGalleryImageElements(project));
+                .replaceAll("%%name%%", info.getName())
+                .replaceAll("%%prname%%", project.getDisplayName())
+                .replaceAll("%%tags%%", tags)
+                .replaceAll("%%prsummary%%", project.getSummary())
+                .replaceAll("%%links%%", links)
+                .replaceAll("%%prmainwebsite%%", project.getMainWebsite())
+                .replaceAll("%%prid%%", project.getId())
+                .replaceAll("%%images%%", generateGalleryImageElements(project));
 
-        writeFile(mainDirectory+"\\gallery.html",gallery);
-        Main.DEBUG_LOGGER.success("Generated file: projects/",project.getId(),"/gallery.html");
+        writeFile(mainDirectory + "\\gallery.html", gallery);
+        Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/gallery.html");
 
         //versions.html
-        Main.DEBUG_LOGGER.info("Generating file: projects/",project.getId(),"/versions.html");
-        writeFile(mainDirectory+"\\versions.html",new ProjectVersionPageGenerator(info,project,tags,binPath,links).generate());
-        Main.DEBUG_LOGGER.success("Generated file: projects/",project.getId(),"/versions.html");
+        Main.DEBUG_LOGGER.info("Generating file: projects/", project.getId(), "/versions.html");
+        writeFile(mainDirectory + "\\versions.html", new ProjectVersionPageGenerator(info, project, tags, binPath, links).generate());
+        Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/versions.html");
 
         //assets
         Path assetsDirectory = Path.of(mainDataDirectory.toString(), "assets");
         FileUtils.copyDirectory(assetsDirectory.toFile(), Path.of(mainDirectory.toString(), "assets").toFile());
 
         generateScripts(project);
-        Main.LOGGER.success("Generated directory: projects/",project.getId());
+        Main.LOGGER.success("Generated directory: projects/", project.getId());
     }
 
     private List<String> generateLinkElements(Map<ProjectLinkType, String> links) {
         List<String> elementsGenerated = new ArrayList<>();
 
         links.forEach((projectLinkType, s) -> elementsGenerated.add("<a target=\"_blank\" href=\"%%link%%\" class=\"project-link\" ><img src=\"../../images/icon/link/%%id%%.svg\" alt=\"%%display%% Icon\" width=\"24\" class=\"project-link-icon\">%%display%%</a>"
-                .replaceAll("%%link%%",s)
-                .replaceAll("%%display%%",projectLinkType.getDisplay())
-                .replaceAll("%%id%%",projectLinkType.getId())
+                .replaceAll("%%link%%", s)
+                .replaceAll("%%display%%", projectLinkType.getDisplay())
+                .replaceAll("%%id%%", projectLinkType.getId())
         ));
 
         return elementsGenerated;
     }
 
-    private String generateGalleryImageElements(Project project){
-        Main.DEBUG_LOGGER.info("Generating gallery image elements for project: ",project.getId());
+    private String generateGalleryImageElements(Project project) {
+        Main.DEBUG_LOGGER.info("Generating gallery image elements for project: ", project.getId());
         List<ProjectGalleryImage> images = project.getGalleryImages().stream().toList();
         String template = ResourceManager.getResource(Resources.HTML_PROJECT_GALLERY_IMAGE_TEMPLATE);
 
@@ -184,8 +184,8 @@ public class ProjectPageGenerator implements Generator {
             generatedElements.add(generated);
         }
 
-        Main.DEBUG_LOGGER.success("Generated gallery image elements for project: ",project.getId());
-        return String.join("\n\n",generatedElements);
+        Main.DEBUG_LOGGER.success("Generated gallery image elements for project: ", project.getId());
+        return String.join("\n\n", generatedElements);
     }
 
     public void generateSinglePages(GeneralInfo info, List<Project> projects) throws IOException {
@@ -219,7 +219,7 @@ public class ProjectPageGenerator implements Generator {
                     .replaceAll("%%prsummary%%", project.getSummary())
                     .replaceAll("%%prlicense%%", project.getLicense())
                     .replaceAll("%%name%%", generalInfo.getName())
-                    .replaceAll("%%tags%%",String.join("",project.getTags().stream().map(s -> "<div class=\"project-tag-"+s+"\">"+s+"</div>").toList()))
+                    .replaceAll("%%tags%%", String.join("", project.getTags().stream().map(s -> "<div class=\"project-tag-" + s + "\">" + s + "</div>").toList()))
                     .replaceAll("%%prcreatedate%%", project.getRelease().toString());
             elements.add(element);
         }

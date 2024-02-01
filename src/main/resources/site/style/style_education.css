@@ -22,8 +22,8 @@
     list-style: none;
 }
 
-.mainList>li {
-    border-left:0.7rem #252525 dotted;
+.mainList > li {
+    border-left: 0.7rem #252525 dotted;
     padding-left: 1rem;
 }
 
@@ -41,7 +41,7 @@
     background-color: #252525;
 }
 
-.entry>div {
+.entry > div {
     display: inline-block;
     vertical-align: middle;
 }

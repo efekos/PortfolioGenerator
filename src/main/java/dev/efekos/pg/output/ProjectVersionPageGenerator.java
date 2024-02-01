@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectVersionPageGenerator implements Generator{
+public class ProjectVersionPageGenerator implements Generator {
     private final GeneralInfo generalInfo;
     private final Project project;
     private final String tags;
@@ -38,7 +38,7 @@ public class ProjectVersionPageGenerator implements Generator{
     private static final String PROJECT_RELEASES_TEMPLATE = ResourceManager.getResource(Resources.HTML_PROJECT_RELEASES_ELEMENT);
     private final String links;
 
-    public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project,String tags,String binPath,String links) {
+    public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project, String tags, String binPath, String links) {
         this.generalInfo = generalInfo;
         this.project = project;
         this.tags = tags;
@@ -52,97 +52,98 @@ public class ProjectVersionPageGenerator implements Generator{
         List<String> scripts = new ArrayList<>();
 
 
-        switch (versionInfo.getType()){
+        switch (versionInfo.getType()) {
             case OBJECT -> {
-                Main.DEBUG_LOGGER.info("Generating version entry elements for project: ",project.getId());
+                Main.DEBUG_LOGGER.info("Generating version entry elements for project: ", project.getId());
                 String template = ResourceManager.getResource(Resources.HTML_PROJECT_VERSION_ENTRY_TEMPLATE);
 
                 for (Version version : versionInfo.getVersions()) {
                     elements.add(
-                            template.replaceAll("%%vrtid%%",version.getType().getId())
-                                    .replaceAll("%%vrtname%%",version.getType().getDisplay())
-                                    .replaceAll("%%vrtag%%",version.getVersion())
-                                    .replaceAll("%%vrdate%%",version.getReleaseDate().toString())
-                                    .replaceAll("%%btn%%", version.getLink()!=null? "<div><a href=\""+version.getLink()+"\" target=\"_blank\"><button class=\"btn btn-download\">See More</button></a></div>":"")
+                            template.replaceAll("%%vrtid%%", version.getType().getId())
+                                    .replaceAll("%%vrtname%%", version.getType().getDisplay())
+                                    .replaceAll("%%vrtag%%", version.getVersion())
+                                    .replaceAll("%%vrdate%%", version.getReleaseDate().toString())
+                                    .replaceAll("%%btn%%", version.getLink() != null ? "<div><a href=\"" + version.getLink() + "\" target=\"_blank\"><button class=\"btn btn-download\">See More</button></a></div>" : "")
                     );
                 }
-                Main.DEBUG_LOGGER.success("Generated version entry elements for project: ",project.getId());
+                Main.DEBUG_LOGGER.success("Generated version entry elements for project: ", project.getId());
             }
             case MARKDOWN -> {
                 elements.add("<div class=\"markdown\" id=\"versions\"></div>");
                 scripts.add("<script src=\"./versions_finder.js\" ></script>");
 
 
-                Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
+                Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/versions_finder.js");
 
                 String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_MARKDOWN_FINDER)
                         .replaceAll("%%link%%", versionInfo.getFile());
 
-                writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
-                Main.DEBUG_LOGGER.success("Generated file: projects/",project.getId(),"/versions_finder.js");
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script);
+                Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/versions_finder.js");
             }
             case GITHUB_RELEASES -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PAGINATION_ELEMENT);
                 elements.add(PROJECT_RELEASES_TEMPLATE);
 
-                Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
+                Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/versions_finder.js");
 
                 String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_GITHUB_RELEASE_FINDER)
                         .replaceAll("%%repo%%", versionInfo.getFile());
 
-                writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
-                Main.DEBUG_LOGGER.success("Generated file: projects/",project.getId(),"/versions_finder.js");
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script);
+                Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/versions_finder.js");
             }
             case MODRINTH_VERSIONS -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PROJECT_RELEASES_TEMPLATE);
 
-                Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
+                Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/versions_finder.js");
 
                 String script = ResourceManager.getResource(Resources.SCRIPT_MODRINTH_RELEASE_FINDER)
                         .replaceAll("%%id%%", versionInfo.getFile());
 
-                writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
-                Main.DEBUG_LOGGER.success("Generated file: projects",project.getId(),"/versions_finder.js");
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script);
+                Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
             }
             case JSON -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PROJECT_RELEASES_TEMPLATE);
 
-                Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
+                Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/versions_finder.js");
 
                 String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_JSON_FINDER)
                         .replaceAll("%%link%%", versionInfo.getFile());
 
-                writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
-                Main.DEBUG_LOGGER.success("Generated file: projects",project.getId(),"/versions_finder.js");
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script);
+                Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
             }
             case SPIGOTMC_VERSIONS -> {
                 scripts.add("<script src=\"./versions_finder.js\"></script>");
                 elements.add(PAGINATION_ELEMENT);
                 elements.add(PROJECT_RELEASES_TEMPLATE);
 
-                Main.DEBUG_LOGGER.info("Generating file: projects/"+project.getId()+"/versions_finder.js");
+                Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/versions_finder.js");
 
                 String script = ResourceManager.getResource(Resources.SCRIPT_SPIGOT_UPDATE_FINDER)
                         .replaceAll("%%id%%", versionInfo.getFile());
 
-                writeFile(binPath+"\\projects\\"+project.getId()+"\\versions_finder.js",script);
-                Main.DEBUG_LOGGER.success("Generated file: projects",project.getId(),"/versions_finder.js");
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script);
+                Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
             }
-            default -> Main.LOGGER.devWarn(" Not implemented version info type found: '",versionInfo.getType().toString(),"'");
+            default ->
+                    Main.LOGGER.devWarn(" Not implemented version info type found: '", versionInfo.getType().toString(), "'");
         }
 
         return ResourceManager.getResource(Resources.HTML_PROJECT_VERSIONS_PAGE)
-                .replaceAll("%%name%%",generalInfo.getName())
-                .replaceAll("%%prname%%",project.getDisplayName())
-                .replaceAll("%%tags%%",tags)
-                .replaceAll("%%links%%",links)
-                .replaceAll("%%prsummary%%",project.getSummary())
-                .replaceAll("%%prmainwebsite%%",project.getMainWebsite())
-                .replaceAll("%%prid%%",project.getId())
-                .replaceAll("%%scripts%%",String.join("\n",scripts))
-                .replaceAll("%%mainElement%%",String.join("\n\n",elements));
+                .replaceAll("%%name%%", generalInfo.getName())
+                .replaceAll("%%prname%%", project.getDisplayName())
+                .replaceAll("%%tags%%", tags)
+                .replaceAll("%%links%%", links)
+                .replaceAll("%%prsummary%%", project.getSummary())
+                .replaceAll("%%prmainwebsite%%", project.getMainWebsite())
+                .replaceAll("%%prid%%", project.getId())
+                .replaceAll("%%scripts%%", String.join("\n", scripts))
+                .replaceAll("%%mainElement%%", String.join("\n\n", elements));
     }
 }

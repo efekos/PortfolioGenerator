@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StyleFileGenerator implements Generator{
+public class StyleFileGenerator implements Generator {
 
     private final String binPath;
 
@@ -53,7 +53,7 @@ public class StyleFileGenerator implements Generator{
                   
                 """);
         info.getSocialLinks().forEach((type, link) -> generatedSelections.add(
-                        ResourceManager.getResource(Resources.STYLE_SOCIAL_ICON_TEMPLATE)
+                ResourceManager.getResource(Resources.STYLE_SOCIAL_ICON_TEMPLATE)
                         .replaceAll("%%n%%", type.getNormalColor())
                         .replaceAll("%%h%%", type.getHighlightColor())
                         .replaceAll("%%i%%", type.getId()))
@@ -67,13 +67,13 @@ public class StyleFileGenerator implements Generator{
         Main.DEBUG_LOGGER.info("Generating file: style/project_tags.css");
         List<String> generatedSelectors = new ArrayList<>();
         String template = ResourceManager.getResource(Resources.STYLE_PROJECT_TAG_TEMPLATE);
-        tagColorInfo.getColors().forEach((key, color) -> generatedSelectors.add(template.replaceAll("%%tcolor%%",color).replaceAll("%%tname%%",key)));
+        tagColorInfo.getColors().forEach((key, color) -> generatedSelectors.add(template.replaceAll("%%tcolor%%", color).replaceAll("%%tname%%", key)));
 
-        writeFile(binPath+"\\style\\project_tags.css",String.join("\n",generatedSelectors));
+        writeFile(binPath + "\\style\\project_tags.css", String.join("\n", generatedSelectors));
         Main.DEBUG_LOGGER.success("Generated file: style/project_tags.css");
     }
 
-    public void generateProjectVersions() throws IOException{
+    public void generateProjectVersions() throws IOException {
         Main.DEBUG_LOGGER.info("Generating file: style/versions.css");
 
         List<String> generatedSelectors = new ArrayList<>();
@@ -87,10 +87,10 @@ public class StyleFileGenerator implements Generator{
         String template = ResourceManager.getResource(Resources.STYLE_PROJECT_VERSION_TAG_TEMPLATE);
 
         for (VersionType type : VersionType.values()) {
-            generatedSelectors.add(template.replaceAll("%%vrtid%%",type.getId()).replaceAll("%%vrtcolor%%",type.getColor()));
+            generatedSelectors.add(template.replaceAll("%%vrtid%%", type.getId()).replaceAll("%%vrtcolor%%", type.getColor()));
         }
 
-        writeFile(binPath+"\\style\\versions.css",String.join("\n\n",generatedSelectors));
+        writeFile(binPath + "\\style\\versions.css", String.join("\n\n", generatedSelectors));
         Main.DEBUG_LOGGER.success("Generated file: style/versions.css");
     }
 }

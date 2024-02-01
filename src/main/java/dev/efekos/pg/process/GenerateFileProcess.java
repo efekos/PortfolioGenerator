@@ -18,7 +18,7 @@ package dev.efekos.pg.process;
 
 import dev.efekos.pg.output.FileGenerator;
 
-public class GenerateFileProcess implements Process{
+public class GenerateFileProcess implements Process {
     @Override
     public String getName() {
         return "Generate Files";
@@ -35,9 +35,9 @@ public class GenerateFileProcess implements Process{
         generator.generateScriptFiles(context.generalInfo);
         generator.generateEducationFile(context.generalInfo, context.educationInfo);
         generator.generateExperienceFile(context.generalInfo, context.experienceInfo);
-        generator.generateStyleFiles(context.generalInfo,context.tagColorInfo);
+        generator.generateStyleFiles(context.generalInfo, context.tagColorInfo);
         generator.generateProjectsPage(context.generalInfo, context.projects);
-        generator.generateContactPage(context.generalInfo,context.contactInfo);
+        generator.generateContactPage(context.generalInfo, context.contactInfo);
         generator.copyLibraries();
 
         // copying

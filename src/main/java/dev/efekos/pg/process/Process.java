@@ -18,5 +18,6 @@ package dev.efekos.pg.process;
 
 public interface Process {
     String getName();
+
     void init(ProcessContext context) throws Exception;
 }

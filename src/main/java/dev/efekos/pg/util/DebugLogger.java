@@ -32,44 +32,39 @@ public class DebugLogger {
         this.enabled = enabled;
     }
 
-    public void plain(String... text){
-        if(!enabled)return;
-        System.out.println(getDate()+getDebug()+ConsoleColors.RESET+String.join("",text));
+    public void info(String... text) {
+        if (!enabled) return;
+        System.out.println(getDate() + getDebug() + ConsoleColors.BLUE_BRIGHT + "[INFO] " + ConsoleColors.RESET + String.join("", text));
     }
 
-    public void info(String... text){
-        if(!enabled)return;
-        System.out.println(getDate()+getDebug()+ConsoleColors.BLUE_BRIGHT+"[INFO] "+ConsoleColors.RESET+String.join("",text));
+    private String getDebug() {
+        return ConsoleColors.YELLOW_BRIGHT + "[DEBUG] ";
     }
 
-    private String getDebug(){
-        return ConsoleColors.YELLOW_BRIGHT+"[DEBUG] ";
+    public void success(String... text) {
+        if (!enabled) return;
+        System.out.println(getDate() + getDebug() + ConsoleColors.GREEN_BRIGHT + "[SUCCESS] " + ConsoleColors.RESET + String.join("", text));
     }
 
-    public void success(String... text){
-        if(!enabled)return;
-        System.out.println(getDate()+getDebug()+ConsoleColors.GREEN_BRIGHT+"[SUCCESS] "+ConsoleColors.RESET+String.join("",text));
+    public void error(String... text) {
+        if (!enabled) return;
+        System.out.println(getDate() + getDebug() + ConsoleColors.RED_BRIGHT + "[ERROR] " + ConsoleColors.RESET + String.join("", text));
     }
 
-    public void error(String... text){
-        if(!enabled)return;
-        System.out.println(getDate()+getDebug()+ConsoleColors.RED_BRIGHT+"[ERROR] "+ConsoleColors.RESET+String.join("",text));
-    }
-
-    public void warn(String... text){
-        if(!enabled)return;
-        System.out.println(getDate()+getDebug()+ConsoleColors.YELLOW_BRIGHT+"[WARNING] "+ConsoleColors.RESET+String.join("",text));
+    public void warn(String... text) {
+        if (!enabled) return;
+        System.out.println(getDate() + getDebug() + ConsoleColors.YELLOW_BRIGHT + "[WARNING] " + ConsoleColors.RESET + String.join("", text));
     }
 
 
-    public void devWarn(String... text){
-        if(!enabled)return;
-        System.out.println(getDate()+getDebug()+ConsoleColors.YELLOW+"[DEVELOPER WARNING] "+ConsoleColors.RESET+String.join("",text));
+    public void devWarn(String... text) {
+        if (!enabled) return;
+        System.out.println(getDate() + getDebug() + ConsoleColors.YELLOW + "[DEVELOPER WARNING] " + ConsoleColors.RESET + String.join("", text));
     }
 
-    public String getDate(){
+    public String getDate() {
         LocalTime now = LocalTime.now();
 
-        return ConsoleColors.BLUE+"["+now.getHour()+":"+now.getMinute()+":"+now.getSecond()+"] ";
+        return ConsoleColors.BLUE + "[" + now.getHour() + ":" + now.getMinute() + ":" + now.getSecond() + "] ";
     }
 }

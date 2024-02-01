@@ -57,7 +57,7 @@ public class FileGenerator implements Generator {
         timeline.sort(Comparator.comparing(TimelineEvent::getDate));
 
         for (TimelineEvent event : timeline) {
-            timelineElements.add("<li>"+generateAboutEntry(event.getIcon(), event.getTitle(), event.getTime(), false)+"</li>");
+            timelineElements.add("<li>" + generateAboutEntry(event.getIcon(), event.getTitle(), event.getTime(), false) + "</li>");
         }
 
         String fileString = ResourceManager.getResource(Resources.HTML_INDEX_PAGE)
@@ -69,14 +69,14 @@ public class FileGenerator implements Generator {
                                 generateAboutEntry("birth", "Age", "", true),
                                 generateAboutEntry("language", "Native Language", info.getNativeLanguage().name(), false),
                                 generateAboutEntry("language", "Known Languages", String.join(", ", info.getKnownLanguages().stream().map(Locale::name).toList()), false),
-                                generateAboutEntry("university","Certificates Earned",context.certificates.size()+"",false),
-                                generateAboutEntry("project","Projects Made",context.projects.size()+"",false),
-                                generateAboutEntry("briefcase","Jobs Worked",context.experienceInfo.getEntries().size()+"",false),
-                                generateAboutEntry("letter","Email Address",context.contactInfo.getEmail(),false),
-                                generateAboutEntry("phone","Phone Number",context.contactInfo.getNumber(),false)
+                                generateAboutEntry("university", "Certificates Earned", context.certificates.size() + "", false),
+                                generateAboutEntry("project", "Projects Made", context.projects.size() + "", false),
+                                generateAboutEntry("briefcase", "Jobs Worked", context.experienceInfo.getEntries().size() + "", false),
+                                generateAboutEntry("letter", "Email Address", context.contactInfo.getEmail(), false),
+                                generateAboutEntry("phone", "Phone Number", context.contactInfo.getNumber(), false)
                         )
                 ) + "</div>")
-                .replaceAll("%%timeline%%",String.join("",timelineElements))
+                .replaceAll("%%timeline%%", String.join("", timelineElements))
                 .replaceAll("%%socialElements%%", String.join("", socialLinkElements));
 
         writeFile(binPath + "\\index.html", fileString);
@@ -84,7 +84,7 @@ public class FileGenerator implements Generator {
         Main.LOGGER.success("Generated file: index.html");
     }
 
-    public void generateContactPage(GeneralInfo generalInfo,ContactInfo contactInfo) throws IOException{
+    public void generateContactPage(GeneralInfo generalInfo, ContactInfo contactInfo) throws IOException {
         Main.LOGGER.info("Generating file: contact.html");
 
         List<String> socialLinkElements = new ArrayList<>();
@@ -98,36 +98,36 @@ public class FileGenerator implements Generator {
 
         String file = ResourceManager.getResource(Resources.HTML_CONTACT_PAGE);
 
-        if(contactInfo.isIncludeSocials()){
+        if (contactInfo.isIncludeSocials()) {
             file = file.replaceAll(
                     "%%social%%", """
                             <h2>You can use my social media accounts as well</h2>
                             %%socialElements%%
                             """
             );
-        } else file = file.replaceAll("%%social%%","");
+        } else file = file.replaceAll("%%social%%", "");
 
-        writeFile(binPath+"\\contact.html",file
-                .replaceAll("%%name%%",generalInfo.getName())
-                .replaceAll("%%mail%%",contactInfo.getEmail())
-                .replaceAll("%%phone%%",contactInfo.getNumber())
-                .replaceAll("%%places%%",String.join("\n",contactInfo.getPlaces().stream().map(this::generatePlaceEntry).toList()))
-                .replaceAll("%%socialElements%%",String.join("",socialLinkElements)));
+        writeFile(binPath + "\\contact.html", file
+                .replaceAll("%%name%%", generalInfo.getName())
+                .replaceAll("%%mail%%", contactInfo.getEmail())
+                .replaceAll("%%phone%%", contactInfo.getNumber())
+                .replaceAll("%%places%%", String.join("\n", contactInfo.getPlaces().stream().map(this::generatePlaceEntry).toList()))
+                .replaceAll("%%socialElements%%", String.join("", socialLinkElements)));
 
         Main.LOGGER.success("Generated file: contact.html");
     }
 
-    private String generatePlaceEntry(Place place){
+    private String generatePlaceEntry(Place place) {
         String file = ResourceManager.getResource(Resources.HTML_PLACE_ENTRY_TEMPLATE);
 
         return file
-                .replaceAll("%%plmaps%%",place.getMapsLink())
-                .replaceAll("%%plwebsite%%",place.getWebsite())
-                .replaceAll("%%pldisplay%%",place.getDisplayName())
-                .replaceAll("%%pladdress%%",place.getAddress());
+                .replaceAll("%%plmaps%%", place.getMapsLink())
+                .replaceAll("%%plwebsite%%", place.getWebsite())
+                .replaceAll("%%pldisplay%%", place.getDisplayName())
+                .replaceAll("%%pladdress%%", place.getAddress());
     }
 
-    private String generateAboutEntry(String icon, String title, String alt, boolean age){
+    private String generateAboutEntry(String icon, String title, String alt, boolean age) {
         String templateEntry = ResourceManager.getResource(Resources.HTML_ABOUT_ENTRY_TEMPLATE);
 
         return templateEntry.replaceAll("%%title%%", title)
@@ -136,7 +136,7 @@ public class FileGenerator implements Generator {
                 .replaceAll("%%alt%%", alt);
     }
 
-    private String generateSocialElement(SocialLinkType type, String link) throws IOException{
+    private String generateSocialElement(SocialLinkType type, String link) throws IOException {
         String templateElement = ResourceManager.getResource(Resources.HTML_SOCIAL_ICON_TEMPLATE);
         return templateElement.replaceAll("%%link%%", link).replaceAll("%%icon%%", type.getId());
     }
@@ -147,7 +147,7 @@ public class FileGenerator implements Generator {
         generator.generate(generalInfo, experienceInfo);
     }
 
-    public void generateStyleFiles(GeneralInfo info,TagColorInfo tagColorInfo) throws IOException {
+    public void generateStyleFiles(GeneralInfo info, TagColorInfo tagColorInfo) throws IOException {
         Main.LOGGER.info("Copying static style files");
 
         copyResource(Resources.STYLE_MAIN, "\\style\\main_style.css", binPath);
@@ -179,8 +179,8 @@ public class FileGenerator implements Generator {
         Main.DEBUG_LOGGER.success("Generated file: age_calculator.js");
 
         // project_search.js
-        copyResource(Resources.SCRIPT_PROJECT_SEARCH,"\\projects_search.js",binPath);
-        copyResource(Resources.SCRIPT_EXPAND_ENTRIES,"\\expandable_entries.js",binPath);
+        copyResource(Resources.SCRIPT_PROJECT_SEARCH, "\\projects_search.js", binPath);
+        copyResource(Resources.SCRIPT_EXPAND_ENTRIES, "\\expandable_entries.js", binPath);
 
         Main.LOGGER.success("Generates script files");
     }
@@ -229,23 +229,23 @@ public class FileGenerator implements Generator {
         copyIcon("birth", "birth");
         copyIcon("scale", "scale");
         copyIcon("tag", "tag");
-        copyIcon("project","project");
-        copyIcon("phone","phone");
-        copyIcon("letter","letter");
-        copyIcon("expanded","expanded");
-        copyIcon("unexpanded","unexpanded");
-        copyIcon("school","school");
-        copyIcon("top","top");
-        copyIcon("degree","degree");
-        copyIcon("book_open","book");
+        copyIcon("project", "project");
+        copyIcon("phone", "phone");
+        copyIcon("letter", "letter");
+        copyIcon("expanded", "expanded");
+        copyIcon("unexpanded", "unexpanded");
+        copyIcon("school", "school");
+        copyIcon("top", "top");
+        copyIcon("degree", "degree");
+        copyIcon("book_open", "book");
 
-        copyIcon("project_link/doc","link\\doc");
-        copyIcon("project_link/guide","link\\guide");
-        copyIcon("project_link/issues","link\\issues");
-        copyIcon("project_link/main","link\\main");
-        copyIcon("project_link/source","link\\source");
-        copyIcon("project_link/support","link\\support");
-        copyIcon("project_link/wiki","link\\wiki");
+        copyIcon("project_link/doc", "link\\doc");
+        copyIcon("project_link/guide", "link\\guide");
+        copyIcon("project_link/issues", "link\\issues");
+        copyIcon("project_link/main", "link\\main");
+        copyIcon("project_link/source", "link\\source");
+        copyIcon("project_link/support", "link\\support");
+        copyIcon("project_link/wiki", "link\\wiki");
 
         for (SocialLinkType type : generalInfo.getSocialLinks().keySet()) {
             copyIcon("social/" + type.getId(), "social\\" + type.getId());
@@ -262,7 +262,8 @@ public class FileGenerator implements Generator {
     private void copyIcon(String resourceName, String binName) throws IOException {
         Main.DEBUG_LOGGER.info("Copying icon: " + resourceName);
         Optional<Resource> optional = Resources.all().stream().filter(resource -> resource.getPathName().equals("/site/icon/" + resourceName + ".svg")).findFirst();
-        if(optional.isEmpty()) throw new MissingResourceException("Missing icon","dev.efekos.pg.Main","/site/icon/" + resourceName + ".svg");
+        if (optional.isEmpty())
+            throw new MissingResourceException("Missing icon", "dev.efekos.pg.Main", "/site/icon/" + resourceName + ".svg");
 
         String string = ResourceManager.getResource(optional.get());
         writeFile(binPath + "\\images\\icon\\" + binName + ".svg", string);

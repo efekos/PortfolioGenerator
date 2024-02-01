@@ -35,11 +35,11 @@ public class DateHelper {
         };
     }
 
-    public static String getThing(int day){
+    public static String getThing(int day) {
         String stringDay = day + "";
-        if(stringDay.endsWith("1"))return "st";
-        if(stringDay.endsWith("2"))return "nd";
-        if(stringDay.endsWith("3"))return "rd";
+        if (stringDay.endsWith("1")) return "st";
+        if (stringDay.endsWith("2")) return "nd";
+        if (stringDay.endsWith("3")) return "rd";
         return "th";
     }
 }

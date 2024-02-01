@@ -20,11 +20,11 @@ public class Resource {
     private final String pathName;
     private final boolean removeCopyright;
 
-    public String getPathName(){
+    public String getPathName() {
         return pathName;
     }
 
-    public boolean shouldRemoveCopyright(){
+    public boolean shouldRemoveCopyright() {
         return removeCopyright;
     }
 

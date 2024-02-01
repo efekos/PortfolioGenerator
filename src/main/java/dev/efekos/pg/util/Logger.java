@@ -19,34 +19,34 @@ package dev.efekos.pg.util;
 import java.time.LocalTime;
 
 public class Logger {
-    public void plain(String... text){
-        System.out.println(getDate()+ConsoleColors.RESET+String.join("",text));
+    public void plain(String... text) {
+        System.out.println(getDate() + ConsoleColors.RESET + String.join("", text));
     }
 
-    public void info(String... text){
-        System.out.println(getDate()+ConsoleColors.BLUE_BRIGHT+"[INFO] "+ConsoleColors.RESET+String.join("",text));
+    public void info(String... text) {
+        System.out.println(getDate() + ConsoleColors.BLUE_BRIGHT + "[INFO] " + ConsoleColors.RESET + String.join("", text));
     }
 
-    public void success(String... text){
-        System.out.println(getDate()+ConsoleColors.GREEN_BRIGHT+"[SUCCESS] "+ConsoleColors.RESET+String.join("",text));
+    public void success(String... text) {
+        System.out.println(getDate() + ConsoleColors.GREEN_BRIGHT + "[SUCCESS] " + ConsoleColors.RESET + String.join("", text));
     }
 
-    public void error(String... text){
-        System.out.println(getDate()+ConsoleColors.RED_BRIGHT+"[ERROR] "+ConsoleColors.RESET+String.join("",text));
+    public void error(String... text) {
+        System.out.println(getDate() + ConsoleColors.RED_BRIGHT + "[ERROR] " + ConsoleColors.RESET + String.join("", text));
     }
 
-    public void warn(String... text){
-        System.out.println(getDate()+ConsoleColors.YELLOW_BRIGHT+"[WARNING] "+ConsoleColors.RESET+String.join("",text));
+    public void warn(String... text) {
+        System.out.println(getDate() + ConsoleColors.YELLOW_BRIGHT + "[WARNING] " + ConsoleColors.RESET + String.join("", text));
     }
 
 
-    public void devWarn(String... text){
-        System.out.println(getDate()+ConsoleColors.YELLOW+"[DEVELOPER WARNING] "+ConsoleColors.RESET+String.join("",text));
+    public void devWarn(String... text) {
+        System.out.println(getDate() + ConsoleColors.YELLOW + "[DEVELOPER WARNING] " + ConsoleColors.RESET + String.join("", text));
     }
 
-    public String getDate(){
+    public String getDate() {
         LocalTime now = LocalTime.now();
 
-        return ConsoleColors.BLUE+"["+now.getHour()+":"+now.getMinute()+":"+now.getSecond()+"] ";
+        return ConsoleColors.BLUE + "[" + now.getHour() + ":" + now.getMinute() + ":" + now.getSecond() + "] ";
     }
 }

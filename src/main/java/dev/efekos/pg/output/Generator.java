@@ -49,12 +49,12 @@ public interface Generator {
         file.getParentFile().mkdirs();
         file.createNewFile();
 
-        FileWriter writer = new FileWriter(file,StandardCharsets.UTF_8);
+        FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
         writer.write(fileString);
         writer.flush();
         writer.close();
 
-        Main.DEBUG_LOGGER.success("Copied resource: " + resource.getPathName()+" to "+outputLocation.replaceAll("\\\\","/"));
+        Main.DEBUG_LOGGER.success("Copied resource: " + resource.getPathName() + " to " + outputLocation.replaceAll("\\\\", "/"));
     }
 
     default void writeFile(String path, String content) throws IOException {
@@ -66,9 +66,9 @@ public interface Generator {
 
         FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
 
-        writer.write(content.replaceAll("%%footer%%",ResourceManager.getResource(Resources.HTML_FOOTER)));
+        writer.write(content.replaceAll("%%footer%%", ResourceManager.getResource(Resources.HTML_FOOTER)));
         writer.flush();
         writer.close();
-        Main.DEBUG_LOGGER.success("Wrote file: ",logPath);
+        Main.DEBUG_LOGGER.success("Wrote file: ", logPath);
     }
 }

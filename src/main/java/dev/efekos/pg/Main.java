@@ -84,52 +84,52 @@ public class Main {
         float seconds = (float) (time2 - time) / 1000;
 
         LOGGER.success("Done in " + seconds + "s! output has been saved to " + context.binPath);
-        if(!list.contains("--auto")){
+        if (!list.contains("--auto")) {
             LOGGER.success("Press enter to exit...");
             System.in.read();
         }
     }
 
 
-    private static void runProcess(Process process){
+    private static void runProcess(Process process) {
         long time = new Date().getTime();
-        LOGGER.plain(ConsoleColors.BLUE+"----------------------------------------");
-        LOGGER.plain(ConsoleColors.BLUE+"[PROCESS INFO] "+ConsoleColors.RESET+"Starting '"+process.getName()+"' process");
-        LOGGER.plain(ConsoleColors.BLUE+"----------------------------------------"+ConsoleColors.RESET);
+        LOGGER.plain(ConsoleColors.BLUE + "----------------------------------------");
+        LOGGER.plain(ConsoleColors.BLUE + "[PROCESS INFO] " + ConsoleColors.RESET + "Starting '" + process.getName() + "' process");
+        LOGGER.plain(ConsoleColors.BLUE + "----------------------------------------" + ConsoleColors.RESET);
 
         try {
             process.init(context);
 
             long time2 = new Date().getTime();
-            float seconds = (float) (time2-time)/1000;
-            LOGGER.plain(ConsoleColors.GREEN+"----------------------------------------");
-            LOGGER.plain(ConsoleColors.GREEN+"[PROCESS SUCCESS] "+ConsoleColors.RESET+"Process '"+process.getName()+"' finished successfully in "+seconds+"s");
-            LOGGER.plain(ConsoleColors.GREEN+"----------------------------------------"+ConsoleColors.RESET);
-        } catch (JsonParseException | FileNotFoundException e){
+            float seconds = (float) (time2 - time) / 1000;
+            LOGGER.plain(ConsoleColors.GREEN + "----------------------------------------");
+            LOGGER.plain(ConsoleColors.GREEN + "[PROCESS SUCCESS] " + ConsoleColors.RESET + "Process '" + process.getName() + "' finished successfully in " + seconds + "s");
+            LOGGER.plain(ConsoleColors.GREEN + "----------------------------------------" + ConsoleColors.RESET);
+        } catch (JsonParseException | FileNotFoundException e) {
             // error is likely a json syntax error that USER made.
 
-            LOGGER.plain(ConsoleColors.RED_BRIGHT+"----------------------------------------");
-            LOGGER.error(e.getClass().getSimpleName(),": ",e.getMessage());
-            LOGGER.plain(ConsoleColors.RED_BRIGHT+"----------------------------------------");
+            LOGGER.plain(ConsoleColors.RED_BRIGHT + "----------------------------------------");
+            LOGGER.error(e.getClass().getSimpleName(), ": ", e.getMessage());
+            LOGGER.plain(ConsoleColors.RED_BRIGHT + "----------------------------------------");
             LOGGER.info("This error may be due to an issue with the provided JSON data or file.");
             LOGGER.info("Check the syntax and try again. If the same issue still occurs, even");
             LOGGER.info("though the syntax is correct. Open an issue about it.");
-            LOGGER.plain(ConsoleColors.RED_BRIGHT+"----------------------------------------");
-            if(isDebug)e.printStackTrace();
+            LOGGER.plain(ConsoleColors.RED_BRIGHT + "----------------------------------------");
+            if (isDebug) e.printStackTrace();
 
             System.exit(1);
-        } catch (Exception e){
-            if(isDebug) e.printStackTrace();
+        } catch (Exception e) {
+            if (isDebug) e.printStackTrace();
             else {
-                LOGGER.plain(ConsoleColors.RED+"----------------------------------------");
-                LOGGER.plain(ConsoleColors.RED+"[PROCESS FAIL] "+ConsoleColors.RESET+e.getClass().getSimpleName()+": "+e.getMessage());
-                LOGGER.plain(ConsoleColors.RED+"----------------------------------------"+ConsoleColors.RESET);
-                LOGGER.info("Process '"+process.getName()+"' failed.");
-                LOGGER.info("If you are a contributor, run with ",ConsoleColors.BLACK_BRIGHT+"--debug"+ConsoleColors.RESET," to");
+                LOGGER.plain(ConsoleColors.RED + "----------------------------------------");
+                LOGGER.plain(ConsoleColors.RED + "[PROCESS FAIL] " + ConsoleColors.RESET + e.getClass().getSimpleName() + ": " + e.getMessage());
+                LOGGER.plain(ConsoleColors.RED + "----------------------------------------" + ConsoleColors.RESET);
+                LOGGER.info("Process '" + process.getName() + "' failed.");
+                LOGGER.info("If you are a contributor, run with ", ConsoleColors.BLACK_BRIGHT + "--debug" + ConsoleColors.RESET, " to");
                 LOGGER.info("see the stack trace instead of this message.");
                 LOGGER.info("If you are a normal user, Open an issue on github.");
                 LOGGER.info("https://github.com/efekos/PortfolioGenerator/issues");
-                LOGGER.plain(ConsoleColors.RED+"----------------------------------------"+ConsoleColors.RESET);
+                LOGGER.plain(ConsoleColors.RED + "----------------------------------------" + ConsoleColors.RESET);
             }
             System.exit(-1);
         }
@@ -142,16 +142,16 @@ public class Main {
      * @return A file if found as {@link String}
      * @throws IOException If {@link URL#openStream()} method fails.
      */
-    public static String readStringResource(String path,boolean useUtf8) throws IOException {
-        DEBUG_LOGGER.info("Reading resource: ",path);
+    public static String readStringResource(String path, boolean useUtf8) throws IOException {
+        DEBUG_LOGGER.info("Reading resource: ", path);
         InputStream stream = Objects.requireNonNull(Main.class.getResource(path)).openStream();
-        return new String(stream.readAllBytes(),useUtf8?StandardCharsets.UTF_8:Charset.defaultCharset());
+        return new String(stream.readAllBytes(), useUtf8 ? StandardCharsets.UTF_8 : Charset.defaultCharset());
     }
 
 
     public static String readStringResource(String path) {
         try {
-            return readStringResource(path,true);
+            return readStringResource(path, true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

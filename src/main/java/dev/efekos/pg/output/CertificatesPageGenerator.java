@@ -55,9 +55,9 @@ public class CertificatesPageGenerator implements Generator {
     public void copyImages(List<Certificate> certificates) throws IOException {
         Main.LOGGER.info("Copying certificate images");
         for (Certificate certificate : certificates) {
-            Main.DEBUG_LOGGER.info("Copying certificate images of certificate: ",certificate.getDisplay().getTitle());
+            Main.DEBUG_LOGGER.info("Copying certificate images of certificate: ", certificate.getDisplay().getTitle());
             for (String value : certificate.getImages().values()) {
-                Main.DEBUG_LOGGER.info("Copying certificate image: ",value);
+                Main.DEBUG_LOGGER.info("Copying certificate image: ", value);
                 Path valuePath = Path.of(value);
                 if (!Files.exists(valuePath)) throw new FileNotFoundException(value);
 
@@ -67,9 +67,9 @@ public class CertificatesPageGenerator implements Generator {
                 Files.createDirectories(path.getParent());
 
                 Files.copy(valuePath, path);
-                Main.DEBUG_LOGGER.success("Copied certificate image: ",value);
+                Main.DEBUG_LOGGER.success("Copied certificate image: ", value);
             }
-            Main.DEBUG_LOGGER.success("Copied certificate images of certificate: ",certificate.getDisplay().getTitle());
+            Main.DEBUG_LOGGER.success("Copied certificate images of certificate: ", certificate.getDisplay().getTitle());
         }
         Main.LOGGER.success("Copied certificate images");
     }

@@ -18,7 +18,7 @@ package dev.efekos.pg.process;
 
 import dev.efekos.pg.util.LocaleHelper;
 
-public class LoadLocalesProcess implements Process{
+public class LoadLocalesProcess implements Process {
     @Override
     public String getName() {
         return "Load Locales";
