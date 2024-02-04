@@ -49,6 +49,7 @@ public enum SocialLinkType {
     SNAPCHAT("snapchat","#706f34","#96953f"),
     KICK("kick","#287d15","#359c1e"),
     QUORA("quora","#6b2e2e","#a35656"),
+    PINTEREST("pinterest","rgb(153, 54, 54)","#bf4d4d"),
     YOUTUBE("youtube", "rgb(128, 12, 12)", "rgb(148, 32, 32)");
 
     private final String id;
