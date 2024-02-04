@@ -88,7 +88,8 @@
                 "reddit":{"type":"string","description": "A link to your Reddit account."},
                 "kofi":{"type":"string","description": "A link to your Ko-fi account."},
                 "snapchat":{"type":"string","description": "A link to your Snapchat account."},
-                "kick":{"type":"string","description": "A link to your Kick account."}
+                "kick":{"type":"string","description": "A link to your Kick account."},
+                "quora":{"type":"string","description": "A link to your Quora account."}
             }
         }
     },
