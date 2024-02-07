@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Color Theme",
+  "description": "Color theme of the entire website.",
+  "required": [
+    "general",
+    "buttons",
+    "markdown",
+    "entry",
+    "projects"
+  ],
+  "properties": {
+    "general": {
+      "type": "object",
+      "required": [
+        "backgroundColor",
+        "textColor",
+        "font",
+        "nameFont",
+        "nameColor",
+        "titleFont",
+        "linkColor"
+      ],
+      "properties": {
+        "backgroundColor": {
+          "title": "Background Color",
+          "description": "Main background color that will be used at every page of the website.",
+          "default": "#03080E",
+          "$ref": "./color.json"
+        },
+        "textColor": {
+          "title": "Text Color",
+          "description": "Main text color that will be used at every page of the website.",
+          "default": "white",
+          "$ref": "./color.json"
+        },
+        "font": {
+          "title": "Font",
+          "description": "Main font family that will be used at every page of the website.",
+          "default": ["Segoe UI","Tahoma","Geneva","Verdana","sans-serif"],
+          "type":"array",
+          "items": {
+            "type":"string"
+          },
+          "maxItems": 16
+        },
+        "nameColor": {
+          "title": "Name Color",
+          "description": "Color of you name seen at the main page.",
+          "default": "#4C9EFF",
+          "$ref": "./color.json"
+        },
+        "nameFont":{
+          "title": "Name Font",
+          "description": "Font of your name seen at the main page. Default font family is added after this font.",
+          "type":"string"
+        },
+        "titleFont": {
+          "title": "Title Font",
+          "description": "Font of your title seen at the main page.",
+          "default": ["Franklin Gothic Medium","Arial Narrow","Arial","sans-serif"],
+          "type":"array",
+          "items": {
+            "type":"string"
+          },
+          "maxItems": 16
+        }
+      }
+    },
+    "$comment": [
+      "TODO buttons",
+      "TODO projects",
+      "TODO entry",
+      "TODO markdown"
+    ]
+  }
+}
