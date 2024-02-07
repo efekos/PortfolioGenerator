@@ -121,6 +121,8 @@ public class Resources {
     public static final Resource STYLE_GALLERY_MODALS = new Resource("/site/style/style_gallery_modals.css");
     public static final Resource STYLE_PROJECTS = new Resource("/site/style/style_projects.css");
     public static final Resource JSON_VALID_LOCALES = new Resource("/valid_locales.json");
+    public static final Resource JSON_CSS_COLOR_NAMES = new Resource("/css_color_names.json");
+    public static final Resource JSON_DEFAULT_COLOR_THEME = new Resource("/site/default_color_theme.json");
 
     private static final List<Resource> list = new ArrayList<>();
 
