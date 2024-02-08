@@ -31,4 +31,5 @@ public class ProcessContext {
     public List<Project> projects;
     public TagColorInfo tagColorInfo;
     public List<TimelineEvent> collectedTimeline;
+    public String dataPath;
 }
