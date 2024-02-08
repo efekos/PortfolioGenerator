@@ -1,78 +1,426 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "title": "Color Theme",
   "description": "Color theme of the entire website.",
+  "properties": {
+    "general": {
+      "type": "object",
+      "description": "General colors that will be used across the website or at the main page.",
+      "additionalProperties": false,
+      "properties": {
+        "backgroundColor": {
+          "$ref":"./color.json",
+          "description": "Main background color to be used across the website.",
+          "default": "#03080E"
+        },
+        "textColor": {
+          "$ref":"./color.json",
+          "description": "Main text color to use across the website",
+          "default": "#03080E"
+        },
+        "font": {
+          "type": "array",
+          "description": "Main font family to use across the website",
+          "default": [
+            "Segoe UI",
+            "Tahoma",
+            "Geneva",
+            "Verdana",
+            "sans-serif"
+          ],
+          "maxItems": 16,
+          "items": {
+            "type":"string"
+          }
+        },
+        "nameColor": {
+          "$ref":"./color.json",
+          "description": "Color of you name seen at the main page.",
+          "default": "#4C9EFF"
+        },
+        "linkColor": {
+          "$ref":"./color.json",
+          "description": "Color of the links across the website.",
+          "default": "#4C9EFF"
+        },
+        "nameFont": {
+          "type":"string",
+          "description": "Font of your name seen at the main page. Default font family is added after this font.",
+          "default": "Fredoka"
+        },
+        "titleFont": {
+          "type": "array",
+          "description": "Font of your title seen at the main page.",
+          "default": ["Franklin Gothic Medium","Arial Narrow","Arial","sans-serif"],
+          "maxItems": 16,
+          "items": {
+            "type":"string"
+          }
+        }
+      },
+      "required": [
+        "backgroundColor",
+        "textColor",
+        "font",
+        "nameColor",
+        "nameFont",
+        "titleFont"
+      ],
+      "default":{
+        "backgroundColor":"#03080E",
+        "textColor":"white",
+        "font":["Segoe UI","Tahoma","Geneva","Verdana","sans-serif"],
+        "nameFont":"Fredoka",
+        "nameColor":"#4C9EFF",
+        "titleFont":["Franklin Gothic Medium","Arial Narrow","Arial","sans-serif"],
+        "linkColor":"#4cbdff"
+      }
+    },
+    "buttons": {
+      "type": "object",
+      "description": "Button colors.",
+      "additionalProperties": false,
+      "properties": {
+        "blueColor": {
+          "type": "array",
+          "description": "Color gradient to be used in blue buttons. Each element is a color of the gradient.",
+          "default": "[\"#00E8FF\",\"#0066FF\"]",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref":"./color.json"
+          }
+        },
+        "greenColor": {
+          "type": "array",
+          "description": "Color Gradient to be used in green 'Projects' button seen at the main page.",
+          "default": "[\"#52ff3b\",\"#04520b\"]",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref":"./color.json"
+          }
+        },
+        "redColor": {
+          "type": "array",
+          "description": "Color Gradient to be used in red 'Experience' button seen at the main page.",
+          "default": "[\"#FAFF00\",\"#ff0000\"]",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref":"./color.json"
+          }
+        },
+        "orangeColor": {
+          "type": "array",
+          "description": "Color Gradient to be used in orange 'Education' button seen at the main page.",
+          "default": "[\"#FF7A00\",\"#ff0000\"]",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref":"./color.json"
+          }
+        },
+        "downloadBackgroundColor": {
+          "$ref":"./color.json",
+          "description": "Background color of  external website buttons (Certificate image download buttons, 'See More' buttons etc.)",
+          "default": {"r":238,"g":238,"b":238}
+        },
+        "downloadBackgroundHoverColor": {
+          "$ref":"./color.json",
+          "description": "Background color of  external website buttons (Certificate image download buttons, 'See More' buttons etc.) when they are hovered",
+          "default": {"r":200,"g":200,"b":200}
+        },
+        "downloadTextColor": {
+          "$ref":"./color.json",
+          "description": "Text color of  external website buttons (Certificate image download buttons, 'See More' buttons etc.)",
+          "default": "#363636"
+        }
+      },
+      "required": [
+        "blueColor",
+        "greenColor",
+        "redColor",
+        "orangeColor",
+        "downloadBackgroundColor",
+        "downloadBackgroundHoverColor",
+        "downloadTextColor"
+      ],
+      "default":{
+        "blueColor":["#00E8FF","#0066FF"],
+        "greenColor":["#52ff3b","#04520b"],
+        "redColor":["#FAFF00","#ff0000"],
+        "orangeColor":["#FF7A00","#ff0000"],
+        "downloadTextColor":"#363636",
+        "downloadBackgroundColor":{"r":238,"g":238,"b":238},
+        "downloadBackgroundHoverColor":{"r":200,"g":200,"b":200}
+      }
+    },
+    "markdown": {
+      "type": "object",
+      "description": "Markdown specific colors.",
+      "additionalProperties": false,
+      "properties": {
+        "inlineCodeBackgroundColor": {
+          "$ref":"./color.json",
+          "description": "Background color of inline codeblocks.",
+          "default": {"r":52,"g":59,"b":65}
+        },
+        "contentBorderColor": {
+          "$ref":"./color.json",
+          "description": "Border color of markdown content (mostly noticable at project pages).",
+          "default": "#4d5153"
+        },
+        "codeBlockBorderColor": {
+          "$ref":"./color.json",
+          "description": "Border color of codeblocks.",
+          "default": "#4d5153"
+        }
+      },
+      "required": [
+        "inlineCodeBackgroundColor",
+        "contentBorderColor",
+        "codeBlockBorderColor"
+      ],
+      "default":{
+        "inlineCodeBackgroundColor":{"r":52,"g":59,"b":65},
+        "contentBorderColor":"#4d5153",
+        "codeBlockBorderColor":"#4d5153"
+      }
+    },
+    "entry": {
+      "type": "object",
+      "description": "Colors of entries that are used in a lot of different pages.",
+      "additionalProperties": false,
+      "properties": {
+        "backgroundColor": {
+          "$ref":"./color.json",
+          "description": "Background color of entries",
+          "default": "#202020"
+        },
+        "backgroundHoverColor": {
+          "$ref":"./color.json",
+          "description": "Hover background color of entries.",
+          "default": "#252525"
+        },
+        "borderColor": {
+          "$ref":"./color.json",
+          "description": "Border color of entries.",
+          "default": "#151515"
+        },
+        "altTextColor": {
+          "$ref":"./color.json",
+          "description": "Color of the text that isn't the title inside entries.",
+          "default": "#707070"
+        },
+        "iconBackgroundColor": {
+          "$ref":"./color.json",
+          "description": "Background color of icon-circles in entries.",
+          "default": "#404040"
+        },
+        "iconColor": {
+          "$ref":"./color.json",
+          "description": "Icon color of entries. Social media icons are not affected by this.",
+          "default": "#999999"
+        },
+        "placeholderBackgroundColor": {
+          "type": "array",
+          "description": "Color gradient to be used in placeholder entries. Mostly noticable at 'Project Versions' page if you have a slow internet connection.",
+          "default": "[\"#101010\",\"#303030\"]",
+          "items": {
+            "$ref":"./color.json"
+          }
+        }
+      },
+      "required": [
+        "backgroundColor",
+        "backgroundHoverColor",
+        "borderColor",
+        "altTextColor",
+        "iconBackgroundColor",
+        "iconColor",
+        "placeholderBackgroundColor"
+      ],
+      "default":{
+        "backgroundColor":"#202020",
+        "backgroundHoverColor":"#252525",
+        "borderColor":"#151515",
+        "altTextColor":"#707070",
+        "iconBackgroundColor":"#404040",
+        "iconColor":"#999999",
+        "placeholderBackgroundColor":["#101010","#303030"]
+      }
+    },
+    "projects": {
+      "type": "object",
+      "description": "Colors specific to projects page.",
+      "additionalProperties": false,
+      "properties": {
+        "searchBarBackgroundColor": {
+          "$ref":"./color.json",
+          "description": "Background color of the search bar at 'Projects' page.",
+          "default": "#1a1b1d"
+        },
+        "searchBarTextColor": {
+          "$ref":"./color.json",
+          "description": "Text color of the search bar at 'Projects' page.",
+          "default": "white"
+        },
+        "galleryModalBackgroundColor": {
+          "$ref":"./color.json",
+          "description": "Background color of gallery modals",
+          "default": {"r":35,"g":39,"b":43}
+        },
+        "galleryModalHeaderBackgroundColor": {
+          "$ref":"./color.json",
+          "description": "Background color of gallery headers",
+          "default": {"r":25,"g":29,"b":33}
+        },
+        "galleryImageBackgroundColor": {
+          "$ref":"./color.json",
+          "description": "Background color of images in 'Project Gallery' page.",
+          "default": {"r":55,"g":64,"b":73}
+        },
+        "navigationBarColor": {
+          "$ref":"./color.json",
+          "description": "Background color of the navigation bar",
+          "default": "#232627"
+        },
+        "paginationButtonColor": {
+          "$ref":"./color.json",
+          "description": "Background color of the pagination buttons seen at 'Project Versions' page.",
+          "default": {"r":33,"g":35,"b":37}
+        },
+        "paginationDisabledButtonColor": {
+          "$ref":"./color.json",
+          "description": "Background color of disabled pagination buttons seen in 'Project Versions' page.",
+          "default": {"r":23,"g":25,"b":27}
+        },
+        "projectLinkColor": {
+          "$ref":"./color.json",
+          "description": "Text color of project links.",
+          "default": "#999999"
+        },
+        "summaryTextColor": {
+          "$ref":"./color.json",
+          "description": "Text color of the project summary.",
+          "default": "#888888"
+        },
+        "versionTags": {
+          "type": "object",
+          "description": "Text colors of version names",
+          "additionalProperties": false,
+          "properties": {
+            "releaseColor": {
+              "$ref":"./color.json",
+              "description": "Release color.",
+              "default": {"r":99,"g":224,"b":118}
+            },
+            "betaColor": {
+              "$ref":"./color.json",
+              "description": "Beta color",
+              "default": {"r":255,"g":111,"b":0}
+            },
+            "alphaColor": {
+              "$ref":"./color.json",
+              "description": "Alpha color",
+              "default": {"r":255,"g":59,"b":20}
+            },
+            "prototypeColor": {
+              "$ref":"./color.json",
+              "description": "Prototype color.",
+              "default": {"r":64,"g":119,"b":230}
+            },
+            "snapshotColor": {
+              "$ref":"./color.json",
+              "description": "Snapshot color",
+              "default": {"r":245,"g":240,"b":93}
+            },
+            "releaseCandidateColor": {
+              "$ref":"./color.json",
+              "description": "Release Candidate color.",
+              "default": {"r":130,"g":219,"b":94}
+            },
+            "preReleaseColor": {
+              "$ref":"./color.json",
+              "description": "Pre-Release color.",
+              "default": {"r":110,"g":219,"b":66}
+            }
+          },
+          "required": [
+            "releaseColor",
+            "betaColor",
+            "alphaColor",
+            "prototypeColor",
+            "snapshotColor",
+            "releaseCandidateColor",
+            "preReleaseColor"
+          ],
+          "default":{
+            "releaseColor":{"r":99,"g":224,"b":118},
+            "betaColor":{"r":255,"g":111,"b":0},
+            "alphaColor":{"r":255,"g":59,"b":20},
+            "prototypeColor":{"r":64,"g":119,"b":230},
+            "snapshotColor":{"r":245,"g":240,"b":93},
+            "releaseCandidateColor":{"r":130,"g":219,"b":94},
+            "preReleaseColor":{"r":110,"g":219,"b":66}
+          }
+        },
+        "galleryModalFooterBackgroundColor": {
+          "$ref":"./color.json",
+          "description": "Background color of gallery footers.",
+          "default": {"r":25,"g":29,"b":33}
+        },
+        "galleryImageBorderColor": {
+          "$ref":"./color.json",
+          "description": "Border color of gallery images.",
+          "default": {"r":55,"g":64,"b":73}
+        }
+      },
+      "required": [
+        "searchBarBackgroundColor",
+        "searchBarTextColor",
+        "galleryModalBackgroundColor",
+        "galleryModalHeaderBackgroundColor",
+        "galleryImageBackgroundColor",
+        "navigationBarColor",
+        "paginationButtonColor",
+        "paginationDisabledButtonColor",
+        "projectLinkColor",
+        "summaryTextColor",
+        "versionTags",
+        "galleryModalFooterBackgroundColor"
+      ],
+      "default":{
+        "searchBarBackgroundColor":"#1a1b1d",
+        "searchBarTextColor":"white",
+        "galleryModalBackgroundColor":{"r":35,"g":39,"b":43},
+        "galleryModalHeaderBackgroundColor":{"r":25,"g":29,"b":33},
+        "galleryModalFooterBackgroundColor":{"r":25,"g":29,"b":33},
+        "galleryImageBorderColor":{"r":55,"g":64,"b":73},
+        "galleryImageBackgroundColor":{"r":55,"g":64,"b":73},
+        "navigationBarColor":"#232627",
+        "paginationButtonColor":{"r":33,"g":35,"b":37},
+        "paginationDisabledButtonColor":{"r":23,"g":25,"b":27},
+        "projectLinkColor":"#999999",
+        "summaryTextColor":"#888888",
+        "versionTags":{
+          "releaseColor":{"r":99,"g":224,"b":118},
+          "betaColor":{"r":255,"g":111,"b":0},
+          "alphaColor":{"r":255,"g":59,"b":20},
+          "prototypeColor":{"r":64,"g":119,"b":230},
+          "snapshotColor":{"r":245,"g":240,"b":93},
+          "releaseCandidateColor":{"r":130,"g":219,"b":94},
+          "preReleaseColor":{"r":110,"g":219,"b":66}
+        }
+      }
+    }
+  },
   "required": [
     "general",
     "buttons",
     "markdown",
     "entry",
     "projects"
-  ],
-  "properties": {
-    "general": {
-      "type": "object",
-      "required": [
-        "backgroundColor",
-        "textColor",
-        "font",
-        "nameFont",
-        "nameColor",
-        "titleFont",
-        "linkColor"
-      ],
-      "properties": {
-        "backgroundColor": {
-          "title": "Background Color",
-          "description": "Main background color that will be used at every page of the website.",
-          "default": "#03080E",
-          "$ref": "./color.json"
-        },
-        "textColor": {
-          "title": "Text Color",
-          "description": "Main text color that will be used at every page of the website.",
-          "default": "white",
-          "$ref": "./color.json"
-        },
-        "font": {
-          "title": "Font",
-          "description": "Main font family that will be used at every page of the website.",
-          "default": ["Segoe UI","Tahoma","Geneva","Verdana","sans-serif"],
-          "type":"array",
-          "items": {
-            "type":"string"
-          },
-          "maxItems": 16
-        },
-        "nameColor": {
-          "title": "Name Color",
-          "description": "Color of you name seen at the main page.",
-          "default": "#4C9EFF",
-          "$ref": "./color.json"
-        },
-        "nameFont":{
-          "title": "Name Font",
-          "description": "Font of your name seen at the main page. Default font family is added after this font.",
-          "type":"string"
-        },
-        "titleFont": {
-          "title": "Title Font",
-          "description": "Font of your title seen at the main page.",
-          "default": ["Franklin Gothic Medium","Arial Narrow","Arial","sans-serif"],
-          "type":"array",
-          "items": {
-            "type":"string"
-          },
-          "maxItems": 16
-        }
-      }
-    },
-    "$comment": [
-      "TODO buttons",
-      "TODO projects",
-      "TODO entry",
-      "TODO markdown"
-    ]
-  }
+  ]
 }
