@@ -1,118 +1,118 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "Single Certificate File",
-    "description": "A file that represensts one of your certificates.",
-    "required": [
-        "images",
-        "when",
-        "display",
-        "type"
-    ],
-    "properties": {
-        "images": {
-            "type": "object",
-            "properties": {
-                "png": {
-                    "type": "string",
-                    "title": "PNG format",
-                    "description": "Path to your PNG certificate under the 'certificates' folder.",
-                    "examples": [
-                        "images/english_course.png",
-                        "english_course.png",
-                        "images/png/english_course.png"
-                    ]
-                },
-                "pdf": {
-                    "type": "string",
-                    "title": "PDF format",
-                    "description": "Path to your PDF certificate under the 'certificates' folder.",
-                    "examples": [
-                        "images/english_course.pdf",
-                        "english_course.pdf",
-                        "images/pdf/english_course.pdf"
-                    ]
-                },
-                "jpg": {
-                    "type": "string",
-                    "title": "JPG format",
-                    "description": "Path to your JPG certificate under the 'certificates' folder.",
-                    "examples": [
-                        "images/english_course.jpg",
-                        "english_course.jpg",
-                        "images/png/english_course.jpg"
-                    ]
-                },
-                "jpeg": {
-                    "type": "string",
-                    "title": "JPEG format",
-                    "description": "Path to your JPEG certificate under the 'certificates' folder.",
-                    "examples": [
-                        "images/english_course.jpeg",
-                        "english_course.jpeg",
-                        "images/jpeg/english_course.jpeg"
-                    ]
-                }
-            },
-            "title": "Images",
-            "description": "Paths to your certificate in different image formats. Every key will be presented as a download button in the certificate page."
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A file that represensts one of your certificates.",
+  "properties": {
+    "display": {
+      "description": "An object that contains information about how this certificate will be displayed.",
+      "properties": {
+        "description": {
+          "description": "A little description that tells users about how this course was.",
+          "examples": [
+            "It was a basic A2 English course."
+          ],
+          "title": "Certificate Description",
+          "type": "string"
         },
-        "when": {
-            "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
-            "title": "Achieve Time",
-            "description": "The day that you got this certificate."
+        "image": {
+          "description": "The image that will be used as the display image.",
+          "examples": [
+            "images/english_course.png",
+            "english_course.jpg",
+            "images/jpeg/english_course.jpeg"
+          ],
+          "title": "Image Path",
+          "type": "string"
         },
-        "display": {
-            "title": "Display Date",
-            "description": "An object that contains information about how this certificate will be displayed.",
-            "type": "object",
-            "required": [
-                "image",
-                "title",
-                "description"
-            ],
-            "properties": {
-                "image": {
-                    "type": "string",
-                    "title": "Image Path",
-                    "examples": [
-                        "images/english_course.png",
-                        "english_course.jpg",
-                        "images/jpeg/english_course.jpeg"
-                    ],
-                    "description": "The image that will be used as the display image."
-                },
-                "title": {
-                    "type": "string",
-                    "title": "Certificate Title",
-                    "examples": [
-                        "English Course Completion Certificate",
-                        "English Course Completion",
-                        "English Course"
-                    ],
-                    "description": "Name of the certificate."
-                },
-                "description": {
-                    "type": "string",
-                    "title": "Certificate Description",
-                    "examples": [
-                        "It was a basic A2 English course."
-                    ],
-                    "description": "A little description that tells users about how this course was."
-                }
-            }
-        },
-        "type":{
-            "type":"string",
-            "title": "Certificate Type",
-            "description": "How did you get this certificate?",
-            "enum": [
-                "course",
-                "school",
-                "university",
-                "project",
-                "degree"
-            ]
+        "title": {
+          "description": "Name of the certificate.",
+          "examples": [
+            "English Course Completion Certificate",
+            "English Course Completion",
+            "English Course"
+          ],
+          "title": "Certificate Title",
+          "type": "string"
         }
+      },
+      "required": [
+        "image",
+        "title",
+        "description"
+      ],
+      "title": "Display Date",
+      "type": "object"
+    },
+    "images": {
+      "description": "Paths to your certificate in different image formats. Every key will be presented as a download button in the certificate page.",
+      "properties": {
+        "jpeg": {
+          "description": "Path to your JPEG certificate under the 'certificates' folder.",
+          "examples": [
+            "images/english_course.jpeg",
+            "english_course.jpeg",
+            "images/jpeg/english_course.jpeg"
+          ],
+          "title": "JPEG format",
+          "type": "string"
+        },
+        "jpg": {
+          "description": "Path to your JPG certificate under the 'certificates' folder.",
+          "examples": [
+            "images/english_course.jpg",
+            "english_course.jpg",
+            "images/png/english_course.jpg"
+          ],
+          "title": "JPG format",
+          "type": "string"
+        },
+        "pdf": {
+          "description": "Path to your PDF certificate under the 'certificates' folder.",
+          "examples": [
+            "images/english_course.pdf",
+            "english_course.pdf",
+            "images/pdf/english_course.pdf"
+          ],
+          "title": "PDF format",
+          "type": "string"
+        },
+        "png": {
+          "description": "Path to your PNG certificate under the 'certificates' folder.",
+          "examples": [
+            "images/english_course.png",
+            "english_course.png",
+            "images/png/english_course.png"
+          ],
+          "title": "PNG format",
+          "type": "string"
+        }
+      },
+      "title": "Images",
+      "type": "object"
+    },
+    "type": {
+      "description": "How did you get this certificate?",
+      "enum": [
+        "course",
+        "school",
+        "university",
+        "project",
+        "degree"
+      ],
+      "title": "Certificate Type",
+      "type": "string"
+    },
+    "when": {
+      "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
+      "description": "The day that you got this certificate.",
+      "title": "Achieve Time"
     }
+  },
+  "required": [
+    "images",
+    "when",
+    "display",
+    "type"
+  ],
+  "title": "Single Certificate File",
+  "type": "object"
 }

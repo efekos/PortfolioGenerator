@@ -1,42 +1,47 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "array",
-    "items": {
-        "type": "object",
-        "description": "An entry of your experience info.",
-        "properties": {
-            "company": {
-                "description": "Name of the company you worked at.",
-                "maxLength": 32,
-                "examples": [
-                    "Bookong Studios",
-                    "Boblox Carnigation",
-                    "Minkopost"
-                ]
-            },
-            "position":{
-                "description": "What your job title was while working there.",
-                "examples": [
-                    "CEO",
-                    "Sales Manager",
-                    "Customer Support"
-                ],
-                "maxLength": 64
-            },
-            "from":{
-                "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/month_date.json",
-                "description": "The month that you started working on that job."
-            },
-            "to":{
-                "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/month_date.json",
-                "description": "The month that you started working on that job."
-            },
-            "current_job":{
-                "type":"boolean",
-                "default":false,
-                "description": "Set this to true if this entry represents your current job. \"to\" property isn't required when this is true."
-            }
-        },
-        "required": ["company","position","from","current_job"]
-    }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "items": {
+    "description": "An entry of your experience info.",
+    "properties": {
+      "company": {
+        "description": "Name of the company you worked at.",
+        "examples": [
+          "Bookong Studios",
+          "Boblox Carnigation",
+          "Minkopost"
+        ],
+        "maxLength": 32
+      },
+      "current_job": {
+        "default": false,
+        "description": "Set this to true if this entry represents your current job. \"to\" property isn't required when this is true.",
+        "type": "boolean"
+      },
+      "from": {
+        "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/month_date.json",
+        "description": "The month that you started working on that job."
+      },
+      "position": {
+        "description": "What your job title was while working there.",
+        "examples": [
+          "CEO",
+          "Sales Manager",
+          "Customer Support"
+        ],
+        "maxLength": 64
+      },
+      "to": {
+        "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/month_date.json",
+        "description": "The month that you started working on that job."
+      }
+    },
+    "required": [
+      "company",
+      "position",
+      "from",
+      "current_job"
+    ],
+    "type": "object"
+  },
+  "type": "array"
 }

@@ -1,177 +1,186 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "Main Project File",
-    "description": "Main file of a project",
-    "required": [
-        "display_name",
-        "links",
-        "summary",
-        "tags",
-        "main_website",
-        "change_log",
-        "version",
-        "license",
-        "release",
-        "readme_link",
-        "version_info"
-    ],
-    "properties": {
-        "display_name": {
-            "title": "Project Name",
-            "type": "string",
-            "description": "Name of this project."
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Main file of a project",
+  "properties": {
+    "change_log": {
+      "description": "A link to the changelog file of this project that must be a markdown file.",
+      "title": "Changelog",
+      "type": "string"
+    },
+    "display_name": {
+      "description": "Name of this project.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "license": {
+      "default": "MIT",
+      "description": "License that this project has.",
+      "examples": [
+        "MIT",
+        "ISC",
+        "ARR"
+      ],
+      "title": "Project License",
+      "type": "string"
+    },
+    "links": {
+      "description": "An object that contains various links for this project.",
+      "properties": {
+        "doc": {
+          "description": "A link to the official documentation of this project.",
+          "title": "Documentation",
+          "type": "string"
         },
-        "links": {
-            "title": "Project Links",
-            "description": "An object that contains various links for this project.",
-            "type": "object",
-            "properties": {
-                "issues": {
-                    "title": "Issue Tracker",
-                    "description": "A link to the issue tracker of this project.",
-                    "type": "string"
-                },
-                "doc": {
-                    "title": "Documentation",
-                    "description": "A link to the official documentation of this project.",
-                    "type": "string"
-                },
-                "wiki": {
-                    "title": "Wiki",
-                    "description": "A link to the official wiki of this project.",
-                    "type": "string"
-                },
-                "guide": {
-                    "title": "Guide",
-                    "description": "A link to the guide that has tutorials about using this project.",
-                    "type": "string"
-                },
-                "source": {
-                    "title": "Source Code",
-                    "description": "A link to the source code of this project.",
-                    "type": "string"
-                },
-                "support": {
-                    "title": "Support",
-                    "description": "Not to be confused with user/customer support, this is a link that people can support you by donating (such as your patreon or buy me a coffee account).",
-                    "type": "string"
-                }
-            }
+        "guide": {
+          "description": "A link to the guide that has tutorials about using this project.",
+          "title": "Guide",
+          "type": "string"
         },
-        "summary":{
-            "type":"string",
-            "title": "Project Summary",
-            "maxLength": 64,
-            "description": "A basic sectence about what your project is."
+        "issues": {
+          "description": "A link to the issue tracker of this project.",
+          "title": "Issue Tracker",
+          "type": "string"
         },
-        "tags":{
-            "type":"array",
-            "title": "Project Tags",
-            "description": "A list of the tags of this project. You can assign colors to tags in 'tag_colors.json' file.",
-            "items": {
-                "type":"string",
-                "title": "Project Tag",
-                "description": "One of the tags of this project."
-            }
+        "source": {
+          "description": "A link to the source code of this project.",
+          "title": "Source Code",
+          "type": "string"
         },
-        "main_website":{
-            "type":"string",
-            "title": "Main Website",
-            "description": "A link to the main website of this project. You can choose a link from 'links' if it doesn't exist."
+        "support": {
+          "description": "Not to be confused with user/customer support, this is a link that people can support you by donating (such as your patreon or buy me a coffee account).",
+          "title": "Support",
+          "type": "string"
         },
-        "change_log":{
-            "type":"string",
-            "title": "Changelog",
-            "description": "A link to the changelog file of this project that must be a markdown file."
-        },
-        "version":{
-            "type":"string",
-            "title": "Project Version",
-            "description": "Latest version tag of this project."
-        },
-        "license":{
-            "type":"string",
-            "title": "Project License",
-            "description": "License that this project has.",
-            "default":"MIT",
-            "examples": [
-                "MIT","ISC","ARR"
-            ]
-        },
-        "release":{
-            "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
-            "title": "Relase date",
-            "description": "The day that this project was released."
-        },
-        "readme_link":{
-            "title": "README file",
-            "description": "A link to the README.md file of this project that must be a markdown file."
-        },
-        "version_info":{
-            "type":"object",
-            "title": "Version Info",
-            "description": "An object that contains information about how version fetching will be generated",
-            "required": ["type","value"],
-            "properties": {
-                "type":{
-                    "type":"string",
-                    "title": "Version Type",
-                    "description": "How versions will be grabbed. Please note that the 'value' property must be provided according to this value.\n\n\"markdown\": Provide a link to a markdown file.\n\"object\": Provide an array of versions.\n\"json\": Provide a link to a JSON file that has an array of versions.\n\"github_releases\": Provide the name of your repository using 'USERNAME/REPO_NAME' format.\n\"modrinth_versions\": Provide the slug or ID of your Modrinth project.\n\"spigotmc_versions\": Provide the ID of your SpigotMC resource.",
-                    "enum": [
-                        "markdown",
-                        "object",
-                        "json",
-                        "github_releases",
-                        "modrinth_versions",
-                        "spigotmc_versions"
-                    ]
-                },
-                "value":{
-                    "title": "Value",
-                    "description": "The value that you must provide based on the type you provided",
-                    "anyOf": [
-                        {
-                            "type":"string"
-                        },
-                        {
-                            "type":"array",
-                            "items": {
-                                "type":"object",
-                                "required": ["version","type","release_date"],
-                                "title": "Version Object",
-                                "description": "One of the versions of this project.",
-                                "properties": {
-                                    "version":{
-                                        "type":"string",
-                                        "title": "Version Tag",
-                                        "description": "Tag of this version."
-                                    },
-                                    "type":{
-                                        "type":"string",
-                                        "title": "Version Type",
-                                        "description": "Type of this version. This version is normally defined based on the data and names fetcher get from requests, but you have to define it yourself here. (\"rc\" stands for \"Release Candidate\")",
-                                        "enum": [
-                                            "release",
-                                            "beta",
-                                            "alpha",
-                                            "prototype",
-                                            "rc",
-                                            "snapshot",
-                                            "pre_release"
-                                        ]
-                                    },
-                                    "release_date":{
-                                        "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
-                                        "title": "Version Release Date",
-                                        "description": "Day that this version was released."
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                }
-            }
+        "wiki": {
+          "description": "A link to the official wiki of this project.",
+          "title": "Wiki",
+          "type": "string"
         }
+      },
+      "title": "Project Links",
+      "type": "object"
+    },
+    "main_website": {
+      "description": "A link to the main website of this project. You can choose a link from 'links' if it doesn't exist.",
+      "title": "Main Website",
+      "type": "string"
+    },
+    "readme_link": {
+      "description": "A link to the README.md file of this project that must be a markdown file.",
+      "title": "README file"
+    },
+    "release": {
+      "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
+      "description": "The day that this project was released.",
+      "title": "Relase date"
+    },
+    "summary": {
+      "description": "A basic sectence about what your project is.",
+      "maxLength": 64,
+      "title": "Project Summary",
+      "type": "string"
+    },
+    "tags": {
+      "description": "A list of the tags of this project. You can assign colors to tags in 'tag_colors.json' file.",
+      "items": {
+        "description": "One of the tags of this project.",
+        "title": "Project Tag",
+        "type": "string"
+      },
+      "title": "Project Tags",
+      "type": "array"
+    },
+    "version": {
+      "description": "Latest version tag of this project.",
+      "title": "Project Version",
+      "type": "string"
+    },
+    "version_info": {
+      "description": "An object that contains information about how version fetching will be generated",
+      "properties": {
+        "type": {
+          "description": "How versions will be grabbed. Please note that the 'value' property must be provided according to this value.\n\n\"markdown\": Provide a link to a markdown file.\n\"object\": Provide an array of versions.\n\"json\": Provide a link to a JSON file that has an array of versions.\n\"github_releases\": Provide the name of your repository using 'USERNAME/REPO_NAME' format.\n\"modrinth_versions\": Provide the slug or ID of your Modrinth project.\n\"spigotmc_versions\": Provide the ID of your SpigotMC resource.",
+          "enum": [
+            "markdown",
+            "object",
+            "json",
+            "github_releases",
+            "modrinth_versions",
+            "spigotmc_versions"
+          ],
+          "title": "Version Type",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "description": "One of the versions of this project.",
+                "properties": {
+                  "release_date": {
+                    "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
+                    "description": "Day that this version was released.",
+                    "title": "Version Release Date"
+                  },
+                  "type": {
+                    "description": "Type of this version. This version is normally defined based on the data and names fetcher get from requests, but you have to define it yourself here. (\"rc\" stands for \"Release Candidate\")",
+                    "enum": [
+                      "release",
+                      "beta",
+                      "alpha",
+                      "prototype",
+                      "rc",
+                      "snapshot",
+                      "pre_release"
+                    ],
+                    "title": "Version Type",
+                    "type": "string"
+                  },
+                  "version": {
+                    "description": "Tag of this version.",
+                    "title": "Version Tag",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "version",
+                  "type",
+                  "release_date"
+                ],
+                "title": "Version Object",
+                "type": "object"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "The value that you must provide based on the type you provided",
+          "title": "Value"
+        }
+      },
+      "required": [
+        "type",
+        "value"
+      ],
+      "title": "Version Info",
+      "type": "object"
     }
+  },
+  "required": [
+    "display_name",
+    "links",
+    "summary",
+    "tags",
+    "main_website",
+    "change_log",
+    "version",
+    "license",
+    "release",
+    "readme_link",
+    "version_info"
+  ],
+  "title": "Main Project File",
+  "type": "object"
 }

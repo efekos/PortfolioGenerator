@@ -1,101 +1,196 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "general.json",
-    "description": "Main file that is used in every page.",
-    "type": "object",
-    "properties": {
-        "name": {
-            "type": "string",
-            "maxLength": 32,
-            "description": "Your full name or nickname. You can use shortens depending on your liking.",
-            "examples": [
-                "John",
-                "John D.",
-                "cojohnox"
-            ],
-            "title": "Name"
-        },
-        "title": {
-            "type": "string",
-            "maxLength": 64,
-            "description": "Your job title.",
-            "examples": [
-                "Software Engineer",
-                "Marketing Manager",
-                "Sound Designer"
-            ]
-        },
-        "birth": {
-            "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
-            "description": "Your birth date."
-        },
-        "native_language": {
-            "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/locale.json",
-            "description": "Code of your native language."
-        },
-        "known_languages": {
-            "type": "array",
-            "description": "List of the languages you know. Include your native language.",
-            "items": {
-                "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/locale.json",
-                "description": "One of the languages you know."
-            },
-            "examples": [
-                [
-                    "ru",
-                    "tr",
-                    "en"
-                ],
-                [
-                    "ar",
-                    "az",
-                    "af"
-                ],
-                [
-                    "ja",
-                    "no",
-                    "ng"
-                ]
-            ]
-        },
-        "social_links": {
-            "type": "object",
-            "description": "An object that contains all the links to your social media accounts. Use name of the platform as the key, and provide a link to your profile in the value.",
-            "properties": {
-                "x":{"type":"string","description": "A link to your X account. You can use \"twitter\" instead of \"x\" if you want the old logo in the website."},
-                "twitter":{"type":"string","description": "A link to your Twitter account. You can use \"x\" insetad of \"twitter\" if you want the new logo in the website."},
-                "github":{"type":"string","description": "A link to your Github account."},
-                "youtube":{"type":"string","description": "A link to your Youtube account."},
-                "modrinth":{"type":"string","description": "A link to your Modrinth account."},
-                "curseforge":{"type":"string","description": "A link to your Curseforge account."},
-                "discord":{"type":"string","description": "A link to your Discord server."},
-                "instagram":{"type":"string","description": "A link to your Instagram account."},
-                "twitch":{"type":"string","description": "A link to your Twitch account."},
-                "steam":{"type":"string","description": "A link to your Steam account."},
-                "spotify":{"type":"string","description": "A link to your Spotify account."},
-                "threads":{"type":"string","description": "A link to your Threads account."},
-                "npm":{"type":"string","description": "A link to your NPM account."},
-                "stackoverflow":{"type":"string","description": "A link to your Stackoverflow account."},
-                "crowdin":{"type":"string","description": "A link to your Crowdin account."},
-                "vscode_marketplate":{"type":"string","description": "A link to your VSCode Marketplace publisher account."},
-                "patreon":{"type":"string","description": "A link to your Patreon account."},
-                "buy_me_a_coffee":{"type":"string","description": "A link to your Buy Me A Coffee account."},
-                "linkedin":{"type":"string","description": "A link to your LinkedIn account."},
-                "fiverr":{"type":"string","description": "A link to your Fiverr account."},
-                "bionluk":{"type":"string","description": "A link to your Bionluk account."},
-                "facebook":{"type":"string","description": "A link to your Facebook account."},
-                "tiktok":{"type":"string","description": "A link to your TikTok account."},
-                "reddit":{"type":"string","description": "A link to your Reddit account."},
-                "kofi":{"type":"string","description": "A link to your Ko-fi account."},
-                "snapchat":{"type":"string","description": "A link to your Snapchat account."},
-                "kick":{"type":"string","description": "A link to your Kick account."},
-                "quora":{"type":"string","description": "A link to your Quora account."},
-                "pinterest":{"type":"string","description": "A link to your Pinterest account."},
-                "tumblr":{"type":"string","description": "A link to your Tumblr account."}
-            }
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Main file that is used in every page.",
+  "properties": {
+    "birth": {
+      "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/day_date.json",
+      "description": "Your birth date."
     },
-    "required": [
-        "name","title","birth","native_language","known_languages","social_links"
-    ]
+    "known_languages": {
+      "description": "List of the languages you know. Include your native language.",
+      "examples": [
+        [
+          "ru",
+          "tr",
+          "en"
+        ],
+        [
+          "ar",
+          "az",
+          "af"
+        ],
+        [
+          "ja",
+          "no",
+          "ng"
+        ]
+      ],
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/locale.json",
+        "description": "One of the languages you know."
+      },
+      "type": "array"
+    },
+    "name": {
+      "description": "Your full name or nickname. You can use shortens depending on your liking.",
+      "examples": [
+        "John",
+        "John D.",
+        "cojohnox"
+      ],
+      "maxLength": 32,
+      "title": "Name",
+      "type": "string"
+    },
+    "native_language": {
+      "$ref": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/components/locale.json",
+      "description": "Code of your native language."
+    },
+    "social_links": {
+      "description": "An object that contains all the links to your social media accounts. Use name of the platform as the key, and provide a link to your profile in the value.",
+      "properties": {
+        "bionluk": {
+          "description": "A link to your Bionluk account.",
+          "type": "string"
+        },
+        "buy_me_a_coffee": {
+          "description": "A link to your Buy Me A Coffee account.",
+          "type": "string"
+        },
+        "crowdin": {
+          "description": "A link to your Crowdin account.",
+          "type": "string"
+        },
+        "curseforge": {
+          "description": "A link to your Curseforge account.",
+          "type": "string"
+        },
+        "discord": {
+          "description": "A link to your Discord server.",
+          "type": "string"
+        },
+        "facebook": {
+          "description": "A link to your Facebook account.",
+          "type": "string"
+        },
+        "fiverr": {
+          "description": "A link to your Fiverr account.",
+          "type": "string"
+        },
+        "github": {
+          "description": "A link to your Github account.",
+          "type": "string"
+        },
+        "instagram": {
+          "description": "A link to your Instagram account.",
+          "type": "string"
+        },
+        "kick": {
+          "description": "A link to your Kick account.",
+          "type": "string"
+        },
+        "kofi": {
+          "description": "A link to your Ko-fi account.",
+          "type": "string"
+        },
+        "linkedin": {
+          "description": "A link to your LinkedIn account.",
+          "type": "string"
+        },
+        "modrinth": {
+          "description": "A link to your Modrinth account.",
+          "type": "string"
+        },
+        "npm": {
+          "description": "A link to your NPM account.",
+          "type": "string"
+        },
+        "patreon": {
+          "description": "A link to your Patreon account.",
+          "type": "string"
+        },
+        "pinterest": {
+          "description": "A link to your Pinterest account.",
+          "type": "string"
+        },
+        "quora": {
+          "description": "A link to your Quora account.",
+          "type": "string"
+        },
+        "reddit": {
+          "description": "A link to your Reddit account.",
+          "type": "string"
+        },
+        "snapchat": {
+          "description": "A link to your Snapchat account.",
+          "type": "string"
+        },
+        "spotify": {
+          "description": "A link to your Spotify account.",
+          "type": "string"
+        },
+        "stackoverflow": {
+          "description": "A link to your Stackoverflow account.",
+          "type": "string"
+        },
+        "steam": {
+          "description": "A link to your Steam account.",
+          "type": "string"
+        },
+        "threads": {
+          "description": "A link to your Threads account.",
+          "type": "string"
+        },
+        "tiktok": {
+          "description": "A link to your TikTok account.",
+          "type": "string"
+        },
+        "tumblr": {
+          "description": "A link to your Tumblr account.",
+          "type": "string"
+        },
+        "twitch": {
+          "description": "A link to your Twitch account.",
+          "type": "string"
+        },
+        "twitter": {
+          "description": "A link to your Twitter account. You can use \"x\" insetad of \"twitter\" if you want the new logo in the website.",
+          "type": "string"
+        },
+        "vscode_marketplate": {
+          "description": "A link to your VSCode Marketplace publisher account.",
+          "type": "string"
+        },
+        "x": {
+          "description": "A link to your X account. You can use \"twitter\" instead of \"x\" if you want the old logo in the website.",
+          "type": "string"
+        },
+        "youtube": {
+          "description": "A link to your Youtube account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "title": {
+      "description": "Your job title.",
+      "examples": [
+        "Software Engineer",
+        "Marketing Manager",
+        "Sound Designer"
+      ],
+      "maxLength": 64,
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "title",
+    "birth",
+    "native_language",
+    "known_languages",
+    "social_links"
+  ],
+  "title": "general.json",
+  "type": "object"
 }
