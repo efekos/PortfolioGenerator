@@ -60,6 +60,7 @@ public class Main {
             new LoadLocalesProcess(),
             new SetupBinFolderProcess(),
             new GrabDataProcess(),
+            new LoadColorThemeProcess(),
             new CollectTimelineEventsProcess(),
             new GenerateFileProcess()
     );
