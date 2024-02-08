@@ -21,9 +21,9 @@ public class ColorTheme {
     public static final ColorGradient GREEN_BUTTON_COLOR = new ColorGradient("buttons.greenColor");
     public static final ColorGradient ORANGE_BUTTON_COLOR = new ColorGradient("buttons.orangeColor");
     public static final ColorGradient RED_BUTTON_COLOR = new ColorGradient("buttons.redColor");
-    public static final Color DOWNLOAD_TEXT_COLOR = new Color("buttons.downloadTextColor");
-    public static final Color DOWNLOAD_TEXT_BACKGROUND_COLOR = new Color("buttons.downloadTextBackgroundColor");
-    public static final Color DOWNLOAD_TEXT_BACKGROUND_HOVER_COLOR = new Color("buttons.downloadTextBackgroundHoverColor");
+    public static final Color DOWNLOAD_BUTTON_TEXT_COLOR = new Color("buttons.downloadTextColor");
+    public static final Color DOWNLOAD_BUTTON_BACKGROUND_COLOR = new Color("buttons.downloadBackgroundColor");
+    public static final Color DOWNLOAD_BUTTON_BACKGROUND_HOVER_COLOR = new Color("buttons.downloadBackgroundHoverColor");
     public static final Color ENTRY_BACKGROUND_COLOR = new Color("entry.backgroundColor");
     public static final Color ENTRY_BACKGROUND_HOVER_COLOR = new Color("entry.backgroundHoverColor");
     public static final Color ENTRY_BORDER_COLOR = new Color("entry.borderColor");
