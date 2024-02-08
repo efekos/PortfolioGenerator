@@ -51,8 +51,14 @@ public class LoadColorThemeProcess implements Process{
         if(!theme.isJsonObject()) throw new JsonSyntaxException("Expected an object inside 'color_theme.json'.");
 
         int total = 0;
+        int totalColor = 0;
+        int totalFontFamily = 0;
+        int totalFont = 0;
+        int totalColorGradient = 0;
         for (Field colorField : colors) {
             ColorThemeValue value = (ColorThemeValue) colorField.get(null);
+            Main.DEBUG_LOGGER.info("Loading field: "+colorField.getName()+". JSON key: "+value.key());
+
 
             String[] keys = value.key().split("\\.");
 
@@ -70,8 +76,20 @@ public class LoadColorThemeProcess implements Process{
 
             ColorThemeManager.putColor(value,value.read(finalThing));
             total++;
+
+            switch (value.getClass().getSimpleName()){
+                case "Color"->totalColor++;
+                case "ColorGradient"->totalColorGradient++;
+                case "Font"->totalFont++;
+                case "FontFamily"->totalFontFamily++;
+            }
         }
 
+        Main.DEBUG_LOGGER.info("Final loaded field count: "+total);
+        Main.DEBUG_LOGGER.info("Final loaded color count: "+totalColor);
+        Main.DEBUG_LOGGER.info("Final loaded color gradient count: "+totalColorGradient);
+        Main.DEBUG_LOGGER.info("Final loaded font count: "+totalFont);
+        Main.DEBUG_LOGGER.info("Final loaded font family count: "+totalFontFamily);
         Main.LOGGER.success("Loaded "+total+" color theme values.");
     }
 }
