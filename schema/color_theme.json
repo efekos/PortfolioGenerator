@@ -334,6 +334,7 @@
           "r": 25
         },
         "navigationBarColor": "#232627",
+        "navigationBarSelectedColor": "#0080ff",
         "paginationButtonColor": {
           "b": 37,
           "g": 35,
@@ -436,6 +437,11 @@
         "navigationBarColor": {
           "$ref": "./color.json",
           "default": "#232627",
+          "description": "Background color of the navigation bar"
+        },
+        "navigationBarSelectedColor": {
+          "$ref": "./color.json",
+          "default": "#0080ff",
           "description": "Background color of the navigation bar"
         },
         "paginationButtonColor": {
