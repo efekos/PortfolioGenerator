@@ -9,6 +9,12 @@
     "titleFont":["Franklin Gothic Medium","Arial Narrow","Arial","sans-serif"],
     "linkColor":"#4cbdff"
   },
+  "certificates": {
+    "backgroundColor": {"b": 100, "g": 100, "r": 100},
+    "borderColor": {"b": 100, "g": 100, "r": 100},
+    "borderHoverColor": {"b": 250, "g": 250, "r": 250},
+    "shadowColor": "black"
+  },
   "buttons":{
     "blueColor":["#00E8FF","#0066FF"],
     "greenColor":["#52ff3b","#04520b"],

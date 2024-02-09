@@ -722,7 +722,8 @@
     "buttons",
     "markdown",
     "entry",
-    "projects"
+    "projects",
+    "certificates"
   ],
   "type": "object"
 }
