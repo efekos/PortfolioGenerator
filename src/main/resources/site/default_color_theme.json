@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/color_theme.json",
   "general":{
     "backgroundColor":"#03080E",
     "textColor":"white",
@@ -15,7 +16,8 @@
     "orangeColor":["#FF7A00","#ff0000"],
     "downloadTextColor":"#363636",
     "downloadBackgroundColor":{"r":238,"g":238,"b":238},
-    "downloadBackgroundHoverColor":{"r":200,"g":200,"b":200}
+    "downloadBackgroundHoverColor":{"r":200,"g":200,"b":200},
+    "font": "Lato"
   },
   "markdown":{
     "inlineCodeBackgroundColor":{"r":52,"g":59,"b":65},
@@ -29,7 +31,10 @@
     "altTextColor":"#707070",
     "iconBackgroundColor":"#404040",
     "iconColor":"#999999",
-    "placeholderBackgroundColor":["#101010","#303030"]
+    "placeholderBackgroundColor":["#101010","#303030"],
+    "lighterAltTextColor": "#959595",
+    "backgroundActiveColor": "#dfdfdf",
+    "dotColor": "#252525"
   },
   "projects":{
     "searchBarBackgroundColor":"#1a1b1d",
@@ -40,10 +45,12 @@
     "galleryImageBorderColor":{"r":55,"g":64,"b":73},
     "galleryImageBackgroundColor":{"r":55,"g":64,"b":73},
     "navigationBarColor":"#232627",
-    "paginationBackgroundColor":{"r":33,"g":35,"b":37},
-    "paginationDisabledBackgroundColor":{"r":23,"g":25,"b":27},
+    "paginationButtonColor":{"r":33,"g":35,"b":37},
+    "paginationDisabledButtonColor":{"r":23,"g":25,"b":27},
     "projectLinkColor":"#999999",
     "summaryTextColor":"#888888",
+    "navigationBarSelectedColor": "#0080ff",
+    "paginationDisabledTextColor": {"r": 235,"g": 235,"b": 235},
     "versionTags":{
       "releaseColor":{"r":99,"g":224,"b":118},
       "betaColor":{"r":255,"g":111,"b":0},
