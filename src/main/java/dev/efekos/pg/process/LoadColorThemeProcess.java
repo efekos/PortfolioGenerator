@@ -24,6 +24,8 @@ import dev.efekos.pg.Main;
 import dev.efekos.pg.data.color.ColorTheme;
 import dev.efekos.pg.data.color.ColorThemeManager;
 import dev.efekos.pg.data.color.ColorThemeValue;
+import dev.efekos.pg.resource.ResourceManager;
+import dev.efekos.pg.resource.Resources;
 
 import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
@@ -44,10 +46,15 @@ public class LoadColorThemeProcess implements Process{
 
         List<Field> colors = Arrays.stream(ColorTheme.class.getFields()).filter(field -> Arrays.asList(field.getType().getInterfaces()).contains(ColorThemeValue.class)).toList();
 
+        JsonElement theme;
         Path colorThemeJsonPath = Path.of(context.dataPath, "color_theme.json");
-        if(!Files.exists(colorThemeJsonPath)) throw new FileNotFoundException(colorThemeJsonPath.toString());
-        String themeString = Files.readString(colorThemeJsonPath);
-        JsonElement theme = JsonParser.parseString(themeString);
+        if(Files.exists(colorThemeJsonPath)) {
+            String themeString = Files.readString(colorThemeJsonPath);
+            theme = JsonParser.parseString(themeString);
+        } else {
+            String themeString = ResourceManager.getResource(Resources.JSON_DEFAULT_COLOR_THEME);
+            theme = JsonParser.parseString(themeString);
+        }
         if(!theme.isJsonObject()) throw new JsonSyntaxException("Expected an object inside 'color_theme.json'.");
 
         int total = 0;
