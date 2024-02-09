@@ -17,19 +17,19 @@
 @import "./social_icons.css";
 
 body {
-    background-color: #03080E;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: %%colorTheme.general.backgroundColor%%;
+    color: %%colorTheme.general.textColor%%;
+    font-family: %%colorTheme.general.font%%;
     padding: 3rem;
     font-size: 1.5rem;
 }
 
 h1#name {
-    font-family: Fredoka, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #4C9EFF;
+    font-family: %%colorTheme.general.nameFont%%, %%colorTheme.general.font%%;
+    color: %%colorTheme.general.nameFont%%;
     font-size: 5rem;
     text-align: center;
-    filter: drop-shadow(0rem 0rem 16rem #4C9EFF);
+    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.general.titleColor%%);
     will-change: filter;
     transition: filter 200ms;
     user-select: none;
@@ -37,25 +37,25 @@ h1#name {
 }
 
 h1#name:hover {
-    filter: drop-shadow(0rem 0rem 2rem #4C9EFF);
+    filter: drop-shadow(0rem 0rem 2rem %%colorTheme.general.titleColor%%);
 }
 
 h2#title {
     text-align: center;
     font-size: 2rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: %%colorTheme.general.titleFont%%;
 }
 
 a {
     text-decoration: none;
-    color: #4cbdff;
+    color: %%colorTheme.general.linkColor%%;
 }
 
 .btn {
     font-size: 1.5rem;
     border-radius: 1rem;
     color: white;
-    font-family: Lato, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: %%colorTheme.buttons.font%%, %%colorTheme.general.font%%;
     font-weight: 650;
     will-change: filter;
     transition: filter 1.5s;
@@ -65,50 +65,50 @@ a {
 }
 
 .btn-blue {
-    background: linear-gradient(180deg, #00E8FF 0%, #0066FF 100%);
+    background: %%colorTheme.buttons.blueColor%%;
 }
 
 .btn-blue:hover {
-    filter: drop-shadow(0rem 0rem 16rem #00E8FF);
+    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.buttons.blueColor:last%%);
 }
 
 
 .btn-green {
-    background: linear-gradient(180deg, #52ff3b 0%, #04520b 100%);
+    background: %%colorTheme.buttons.greenColor%%;
 }
 
 .btn-green:hover {
-    filter: drop-shadow(0rem 0rem 16rem #52ff3b);
+    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.buttons.greenColor:last%%);
 }
 
 .btn-red {
-    background: linear-gradient(180deg, #FAFF00 0%, #ff0000 100%);
+    background: %%colorTheme.buttons.redColor%%;
 }
 
 .btn-red:hover {
-    filter: drop-shadow(0rem 0rem 16rem #FAFF00);
+    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.buttons.redColor:last%%);
 }
 
 
 .btn-orange {
-    background: linear-gradient(180deg, #FF7A00 0%, #ff0000 100%);
+    background: %%colorTheme.buttons.orangeColor%%);
 }
 
 .btn-orange:hover {
-    filter: drop-shadow(0rem 0rem 16rem #FF7A00);
+    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.buttons.orangeColor:last%%);
 }
 
 .btn-download {
-    color: #363636;
+    color: %%colorTheme.buttons.downloadTextColor%%;
     padding: 1rem;
     border-radius: 0.5rem;
-    background-color: rgb(238, 238, 238);
+    background-color: %%colorTheme.buttons.downloadBackgroundColor%%;
     will-change: background-color;
     transition: background-color 200ms;
 }
 
 .btn-download:hover {
-    background-color: rgb(200, 200, 200);
+    background-color: %%colorTheme.buttons.downloadBackgroundHoverColor%%;
 }
 
 br {
@@ -116,7 +116,7 @@ br {
 }
 
 code:not([class]) {
-    background-color: rgb(52, 59, 65);
+    background-color: %%colorTheme.markdown.inlineCodeBackgroundColor%%;
     padding: 0.1rem 0.2rem;
     border-radius: 0.5rem;
 }
@@ -128,14 +128,14 @@ footer {
 
 
 .search-bar {
-    background-color: #1a1b1d;
+    background-color: %%colorTheme.projects.searchBarBackgroundColor%%;
     border-radius: 3rem;
     max-width: 25rem;
 }
 
 .search-bar-input {
     background-color: transparent;
-    color: white;
+    color: %%colorTheme.projects.searchBarTextColor%%;
     margin-left: 1rem;
     border: 0;
     font-size: 1.5rem;

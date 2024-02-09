@@ -15,5 +15,5 @@
  */
 
 .version-tag.%%vrtid%% {
-    color: %%vrtcolor%%
+    color: %%colorTheme.projects.versionTags.%%vrtcolor%%%%
 }

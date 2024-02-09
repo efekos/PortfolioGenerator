@@ -27,26 +27,26 @@
 }
 
 .mainList > li {
-    border-left: 0.7rem #252525 dotted;
+    border-left: 0.7rem %%colorTheme.entry.dotColor%% dotted;
     padding-left: 1rem;
 }
 
 .entry {
-    background-color: #202020;
+    background-color: %%colorTheme.entry.backgroundColor%%;
     border-radius: 1rem;
     padding: 1.5rem;
     margin-top: 1rem;
     will-change: background-color;
     transition: background-color 200ms;
-    border: 0.1rem #151515 solid;
+    border: 0.1rem %%colorTheme.entry.borderColor%% solid;
 }
 
 .entry-placeholder {
-    background: linear-gradient(0deg, #101010 0%, #303030 100%);
+    background: %%colorTheme.entry.placeholderBackgroundColor%%;
 }
 
 .entry:hover {
-    background-color: #252525;
+    background-color: %%colorTheme.entry.hoverColor%%;
 }
 
 .entry > div {
@@ -56,7 +56,7 @@
 
 .alt {
     font-size: 1rem;
-    color: #707070;
+    color: %%colorTheme.entry.altTextColor%%;
     font-weight: 750;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -81,12 +81,12 @@
 
 .hidden {
     color: transparent;
-    background-color: #252525;
+    background-color: %%colorTheme.entry.backgroundColor%%;
 }
 
 .markdown {
     padding: 1rem;
-    border: #4d5153 solid 0.15rem;
+    border: %%colorTheme.markdown.contentBorderColor%% solid 0.15rem;
     border-radius: 1rem;
     font-size: 1rem;
 }
@@ -109,12 +109,12 @@
 }
 
 .nav > li#selected {
-    border-bottom: #0080ff 0.25rem solid;
+    border-bottom: %%colorTheme.projects.navigationBarSelectedColor%% 0.25rem solid;
 }
 
 pre[class*="language-"] {
     padding: 1rem;
-    border: #4d5153 0.1rem solid;
+    border: %%colorTheme.markdown.codeBlockBorderColor%% 0.1rem solid;
     border-radius: 0.15rem;
 }
 
@@ -129,17 +129,17 @@ pre[class*="language-"] {
 
 .btn-pagination {
     padding: 1rem;
-    background-color: rgb(33, 35, 37);
+    background-color: %%colorTheme.projects.paginationButtonColor%%;
 }
 
 .btn-pagination:disabled {
-    background-color: rgb(23, 25, 27);
-    color: rgb(235, 235, 235);
+    background-color: %%colorTheme.projects.paginationDisabledButtonColor%%;
+    color: %%colorTheme.projects.paginationDisabledTextColor%%;
     cursor: default;
 }
 
 .project-link {
-    color: #999999;
+    color: %%colorTheme.projects.projectLinkColor%%;
     text-decoration: underline;
 }
 
@@ -147,11 +147,12 @@ pre[class*="language-"] {
     vertical-align: middle;
     margin-bottom: 0.2rem;
     margin-right: 0.25rem;
+    fill: %%colorTheme.projects.projectLinkColor%%;
 }
 
 .text-summary {
     margin: 0 1rem 0 0;
-    color: #888888;
+    color: %%colorTheme.projects.summaryTextColor%%;
 }
 
 .text-no-margin {

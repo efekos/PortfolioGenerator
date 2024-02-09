@@ -26,14 +26,14 @@
 }
 
 .modal-content {
-    background-color: rgb(35, 39, 43);
+    background-color: %%colorTheme.projects.galleryModalBackgroundColor%%;
     display: block;
     margin: 4rem;
     border-radius: 1rem;
 }
 
 .modal-header {
-    background-color: rgb(25, 29, 33);
+    background-color: %%colorTheme.projects.galleryModalHeaderColor%%;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     margin-bottom: 1rem;
@@ -41,7 +41,7 @@
 
 
 .modal-footer {
-    background-color: rgb(25, 29, 33);
+    background-color: %%colorTheme.projects.galleryModalFooterColor%%;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
     margin-top: 1rem;
@@ -61,9 +61,9 @@
 .gallery-image > img {
     cursor: pointer;
     max-width: 15rem;
-    border: 0.25rem solid rgb(55, 64, 73);
+    border: 0.25rem solid %%colorTheme.projects.galleryImageBorderColor%%;
     border-radius: 1rem;
-    background-color: rgb(42, 50, 58);
+    background-color: %%colorTheme.projects.galleryImageBackgroundColor%%;
 }
 
 .gallery-image {
