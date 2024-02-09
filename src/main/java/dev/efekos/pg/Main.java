@@ -114,9 +114,10 @@ public class Main {
             LOGGER.plain(ConsoleColors.RED_BRIGHT + "----------------------------------------");
             LOGGER.error(e.getClass().getSimpleName(), ": ", e.getMessage());
             LOGGER.plain(ConsoleColors.RED_BRIGHT + "----------------------------------------");
-            LOGGER.info("This error may be due to an issue with the provided JSON data or file.");
-            LOGGER.info("Check the syntax and try again. If the same issue still occurs, even");
-            LOGGER.info("though the syntax is correct. Open an issue about it.");
+            LOGGER.error("This error may be due to an issue with the provided JSON data or file.");
+            LOGGER.error("Check the syntax and try again. If the same issue still occurs, even");
+            LOGGER.error("though the syntax is correct. Open an issue about it on github.");
+            LOGGER.error("https://github.com/efekos/PortfolioGenerator/issues");
             LOGGER.plain(ConsoleColors.RED_BRIGHT + "----------------------------------------");
             if (isDebug) e.printStackTrace();
 
@@ -127,11 +128,11 @@ public class Main {
                 LOGGER.plain(ConsoleColors.RED + "----------------------------------------");
                 LOGGER.plain(ConsoleColors.RED + "[PROCESS FAIL] " + ConsoleColors.RESET + e.getClass().getSimpleName() + ": " + e.getMessage());
                 LOGGER.plain(ConsoleColors.RED + "----------------------------------------" + ConsoleColors.RESET);
-                LOGGER.info("Process '" + process.getName() + "' failed.");
-                LOGGER.info("If you are a contributor, run with ", ConsoleColors.BLACK_BRIGHT + "--debug" + ConsoleColors.RESET, " to");
-                LOGGER.info("see the stack trace instead of this message.");
-                LOGGER.info("If you are a normal user, Open an issue on github.");
-                LOGGER.info("https://github.com/efekos/PortfolioGenerator/issues");
+                LOGGER.error("Process '" + process.getName() + "' failed.");
+                LOGGER.error("If you are a contributor, run with ", ConsoleColors.BLACK_BRIGHT + "--debug" + ConsoleColors.RESET, " to");
+                LOGGER.error("see the stack trace instead of this message.");
+                LOGGER.error("If you are a normal user, Open an issue on github.");
+                LOGGER.error("https://github.com/efekos/PortfolioGenerator/issues");
                 LOGGER.plain(ConsoleColors.RED + "----------------------------------------" + ConsoleColors.RESET);
             }
             System.exit(-1);
