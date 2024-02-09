@@ -16,12 +16,17 @@
 
 package dev.efekos.pg.data.schema;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.*;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+import dev.efekos.pg.resource.ResourceManager;
+import dev.efekos.pg.resource.Resources;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class JsonColor implements JsonSchema{
     private int red;
@@ -29,6 +34,9 @@ public class JsonColor implements JsonSchema{
     private int blue;
     private String hex;
     private boolean isHex;
+
+    private static boolean didLoadCssColors;
+    private static List<String> cssColors = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -41,13 +49,33 @@ public class JsonColor implements JsonSchema{
         return color;
     }
 
+    public JsonColor() {
+        if(didLoadCssColors)return;
+        didLoadCssColors = true;
+
+        String resource = ResourceManager.getResource(Resources.JSON_CSS_COLOR_NAMES);
+        JsonElement arrary = JsonParser.parseString(resource);
+
+        for (JsonElement element : arrary.getAsJsonArray()) {
+            cssColors.add(element.getAsString());
+        }
+    }
+
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         if(element.isJsonObject()) readRgb(element.getAsJsonObject(),new DataTypeChecker(context.getCurrentFile()));
         else if (element.isJsonPrimitive()) {
-            setHex(element.getAsString());
-            setHex(true);
-        };
+
+            if (Pattern.compile("^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$").matcher(element.getAsString()).matches()) {
+                setHex(element.getAsString());
+                setHex(true);
+            } else {
+                if(!cssColors.contains(element.getAsString())) throw new JsonParseException("Unknown color: "+element.getAsString());
+                setHex(element.getAsString());
+                setHex(true);
+            }
+
+        } else throw new JsonSyntaxException("Expected a string or an object, got "+element+".");
     }
 
     private void readRgb(JsonObject object,DataTypeChecker checker) {
