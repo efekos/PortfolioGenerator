@@ -11,7 +11,7 @@
   "buttons":{
     "blueColor":["#00E8FF","#0066FF"],
     "greenColor":["#52ff3b","#04520b"],
-    "redColor":["#FaFF00"],
+    "redColor":["#FAFF00", "#ff0000"],
     "orangeColor":["#FF7A00","#ff0000"],
     "downloadTextColor":"#363636",
     "downloadBackgroundColor":{"r":238,"g":238,"b":238},
