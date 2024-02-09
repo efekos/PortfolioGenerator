@@ -17,6 +17,7 @@
 package dev.efekos.pg.output;
 
 import dev.efekos.pg.Main;
+import dev.efekos.pg.data.color.ColorThemeManager;
 import dev.efekos.pg.resource.Resource;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
@@ -50,7 +51,7 @@ public interface Generator {
         file.createNewFile();
 
         FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
-        writer.write(fileString);
+        writer.write(ColorThemeManager.doReplacement(fileString).replaceAll("%%footer%%",ResourceManager.getResource(Resources.HTML_FOOTER)));
         writer.flush();
         writer.close();
 
@@ -66,7 +67,7 @@ public interface Generator {
 
         FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
 
-        writer.write(content.replaceAll("%%footer%%", ResourceManager.getResource(Resources.HTML_FOOTER)));
+        writer.write(ColorThemeManager.doReplacement(content.replaceAll("%%footer%%", ResourceManager.getResource(Resources.HTML_FOOTER))));
         writer.flush();
         writer.close();
         Main.DEBUG_LOGGER.success("Wrote file: ", logPath);
