@@ -18,6 +18,8 @@ package dev.efekos.pg.data.color;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ColorThemeManager {
     private static final Map<String,String> themeMap = new HashMap<>();
@@ -32,5 +34,19 @@ public class ColorThemeManager {
 
     public static String get(ColorThemeValue value){
         return themeMap.get(value);
+    }
+
+    private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("%%colorTheme-([A-Za-z]+(_[A-Za-z]+)+)%%");
+
+    public static String doReplacement(String string){
+        Matcher matcher = PLACEHOLDER_PATTERN.matcher(string);
+
+        return matcher.replaceAll(matchResult -> {
+            String s = string.substring(matchResult.start(), matchResult.end());
+
+            String input = s.substring(13, s.length() - 2 /*also a*/ - 1/*cuz of index system*/);
+
+            return themeMap.getOrDefault(input,"MISSING COLOR THEME KEY: "+input);
+        });
     }
 }
