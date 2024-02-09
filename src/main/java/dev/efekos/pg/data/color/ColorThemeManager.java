@@ -36,7 +36,7 @@ public class ColorThemeManager {
         return themeMap.get(value);
     }
 
-    private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("%%colorTheme-([A-Za-z]+(_[A-Za-z]+)+)%%");
+    private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("%%colorTheme\\.([A-Za-z]+(\\.[A-Za-z]+)+)%%");
 
     public static String doReplacement(String string){
         Matcher matcher = PLACEHOLDER_PATTERN.matcher(string);
@@ -44,7 +44,7 @@ public class ColorThemeManager {
         return matcher.replaceAll(matchResult -> {
             String s = string.substring(matchResult.start(), matchResult.end());
 
-            String input = s.substring(13, s.length() - 2 /*also a*/ - 1/*cuz of index system*/);
+            String input = s.substring(13, s.length() - 2);
 
             return themeMap.getOrDefault(input,"MISSING COLOR THEME KEY: "+input);
         });
