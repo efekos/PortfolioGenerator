@@ -30,10 +30,11 @@ public class ColorTheme {
     public static final Color ENTRY_ALT_TEXT_COLOR = new Color("entry.altTextColor");
     public static final Color ENTRY_ICON_BACKGROUND_COLOR = new Color("entry.iconBackgroundColor");
     public static final Color ENTRY_ICON_COLOR = new Color("entry.iconColor");
-    public static final ColorGradient ENTRY_PLACEHOLDER_BACKGROUND_COLOR = new ColorGradient("entry.placeholderBackgroundColor");
+    public static final HorizontalColorGradient ENTRY_PLACEHOLDER_BACKGROUND_COLOR = new HorizontalColorGradient("entry.placeholderBackgroundColor");
     public static final Color GENERAL_BACKGROUND_COLOR = new Color("general.backgroundColor");
     public static final Color GENERAL_TEXT_COLOR = new Color("general.textColor");
     public static final FontFamily GENERAL_FONT = new FontFamily("general.font");
+    public static final Color GENERAL_LINK_COLOR = new Color("general.linkColor");
     public static final Font GENERAL_NAME_FONT = new Font("general.nameFont");
     public static final Color GENERAL_NAME_COLOR = new Color("general.nameColor");
     public static final FontFamily GENERAL_TITLE_FONT = new FontFamily("general.titleFont");
@@ -44,7 +45,7 @@ public class ColorTheme {
     public static final Color PROJECT_SEARCH_BAR_TEXT_COLOR = new Color("projects.searchBarTextColor");
     public static final Color PROJECT_GALLERY_MODAL_BACKGROUND_COLOR = new Color("projects.galleryModalBackgroundColor");
     public static final Color PROJECT_GALLERY_MODAL_HEADER_BACKGROUND_COLOR = new Color("projects.galleryModalHeaderBackgroundColor");
-    public static final Color PROJECT_GALLERY_MODAL_FOOTER_BACKGROUND__COLOR = new Color("projects.galleryModalFooterBackgroundColor");
+    public static final Color PROJECT_GALLERY_MODAL_FOOTER_BACKGROUND_COLOR = new Color("projects.galleryModalFooterBackgroundColor");
     public static final Color PROJECT_GALLERY_IMAGE_BORDER_COLOR = new Color("projects.galleryImageBorderColor");
     public static final Color PROJECT_GALLERY_IMAGE_BACKGROUND_COLOR = new Color("projects.galleryImageBackgroundColor");
     public static final Color PROJECT_NAVIGATION_BAR_COLOR = new Color("projects.navigationBarColor");
@@ -59,4 +60,12 @@ public class ColorTheme {
     public static final Color PROJECT_VERSION_TAG_PROTOTYPE = new Color("projects.versionTags.prototypeColor");
     public static final Color PROJECT_VERSION_TAG_RC = new Color("projects.versionTags.releaseCandidateColor");
     public static final Color PROJECT_VERSION_TAG_PRE_RELEASE = new Color("projects.versionTags.preReleaseColor");
+    public static final Color PROJECT_VERSION_TAG_SNAPSHOT = new Color("projects.versionTags.snapshotColor");
+    public static final Font BUTTON_FONT = new Font("buttons.font");
+    public static final Color ENTRY_DOT_COLOR = new Color("entry.dotColor");
+    public static final Color PROJECT_PAGINATION_DISABLED_TEXT_COLOR = new Color("projects.paginationDisabledTextColor");
+    public static final Color CERTIFICATE_IMAGE_BACKGROUND_COLOR = new Color("certificates.backgroundColor");
+    public static final Color CERTIFICATE_IMAGE_BORDER_COLOR = new Color("certificates.borderColor");
+    public static final Color CERTIFICATE_IMAGE_BORDER_HOVER_COLOR = new Color("certificates.borderHoverColor");
+    public static final Color CERTIFICATE_IMAGE_SHADOW_COLOR = new Color("certificates.shadowColor");
 }

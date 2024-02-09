@@ -26,10 +26,10 @@ body {
 
 h1#name {
     font-family: %%colorTheme.general.nameFont%%, %%colorTheme.general.font%%;
-    color: %%colorTheme.general.nameFont%%;
+    color: %%colorTheme.general.nameColor%%;
     font-size: 5rem;
     text-align: center;
-    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.general.titleColor%%);
+    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.general.nameColor%%);
     will-change: filter;
     transition: filter 200ms;
     user-select: none;
@@ -37,7 +37,7 @@ h1#name {
 }
 
 h1#name:hover {
-    filter: drop-shadow(0rem 0rem 2rem %%colorTheme.general.titleColor%%);
+    filter: drop-shadow(0rem 0rem 2rem %%colorTheme.general.nameColor%%);
 }
 
 h2#title {

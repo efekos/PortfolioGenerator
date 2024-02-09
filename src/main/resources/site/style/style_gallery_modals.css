@@ -33,7 +33,7 @@
 }
 
 .modal-header {
-    background-color: %%colorTheme.projects.galleryModalHeaderColor%%;
+    background-color: %%colorTheme.projects.galleryModalHeaderBackgroundColor%%;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     margin-bottom: 1rem;
@@ -41,7 +41,7 @@
 
 
 .modal-footer {
-    background-color: %%colorTheme.projects.galleryModalFooterColor%%;
+    background-color: %%colorTheme.projects.galleryModalFooterBackgroundColor%%;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
     margin-top: 1rem;

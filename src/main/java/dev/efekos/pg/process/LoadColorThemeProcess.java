@@ -86,9 +86,11 @@ public class LoadColorThemeProcess implements Process{
                 case "Color"->totalColor++;
                 case "ColorGradient"->{
                     totalColorGradient++;
-
                     ColorThemeManager.putColor(value.key()+":last",((ColorGradient) value).lastColor(finalThing));
-
+                }
+                case "HorizontalColorGradient"->{
+                    totalColorGradient++;
+                    ColorThemeManager.putColor(value.key()+":last",((HorizontalColorGradient) value).lastColor(finalThing));
                 }
                 case "Font"->totalFont++;
                 case "FontFamily"->totalFontFamily++;

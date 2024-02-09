@@ -46,7 +46,7 @@
 }
 
 .entry:hover {
-    background-color: %%colorTheme.entry.hoverColor%%;
+    background-color: %%colorTheme.entry.backgroundHoverColor%%;
 }
 
 .entry > div {

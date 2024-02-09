@@ -25,7 +25,7 @@ import dev.efekos.pg.data.type.DataTypeChecker;
 import java.util.ArrayList;
 import java.util.List;
 
-public record ColorGradient(String key) implements ColorThemeValue {
+public record HorizontalColorGradient(String key) implements ColorThemeValue {
     @Override
     public String read(JsonElement element) {
         DataTypeChecker checker = new DataTypeChecker("color_theme.json");
@@ -62,7 +62,7 @@ public record ColorGradient(String key) implements ColorThemeValue {
 
     private String createLinearGradientWithPercentages(String[] colors) {
         if(colors.length==1) return colors[0];
-        StringBuilder gradient = new StringBuilder("linear-gradient(180deg, ");
+        StringBuilder gradient = new StringBuilder("linear-gradient(90deg, ");
         int increment = 100 / (colors.length - 1); // Calculate percentage increment
 
         for (int i = 0; i < colors.length; i++) {

@@ -16,6 +16,8 @@
 
 package dev.efekos.pg.data.color;
 
+import dev.efekos.pg.Main;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -36,7 +38,7 @@ public class ColorThemeManager {
         return themeMap.get(value);
     }
 
-    private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("%%colorTheme\\.([A-Za-z]+(\\.[A-Za-z]+)+)%%");
+    private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("%%colorTheme\\.([A-Za-z]+(\\.[A-Za-z]+)+(:[A-Za-z]+)?)%%");
 
     public static String doReplacement(String string){
         Matcher matcher = PLACEHOLDER_PATTERN.matcher(string);
@@ -45,6 +47,8 @@ public class ColorThemeManager {
             String s = string.substring(matchResult.start(), matchResult.end());
 
             String input = s.substring(13, s.length() - 2);
+
+            if(!themeMap.containsKey(input)) Main.LOGGER.devWarn("Missing color theme key: "+input);
 
             return themeMap.getOrDefault(input,"MISSING COLOR THEME KEY: "+input);
         });
