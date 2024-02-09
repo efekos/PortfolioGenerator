@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
   "description": "Color theme of the entire website.",
   "properties": {
     "buttons": {
@@ -9,6 +10,7 @@
           "#00E8FF",
           "#0066FF"
         ],
+        "font": "Lato",
         "downloadBackgroundColor": {
           "b": 238,
           "g": 238,
@@ -36,7 +38,7 @@
       "description": "Button colors.",
       "properties": {
         "blueColor": {
-          "default": "[\"#00E8FF\",\"#0066FF\"]",
+          "default": ["#00E8FF","#0066FF"],
           "description": "Color gradient to be used in blue buttons. Each element is a color of the gradient.",
           "items": {
             "$ref": "./color.json"
@@ -67,7 +69,7 @@
           "description": "Text color of  external website buttons (Certificate image download buttons, 'See More' buttons etc.)"
         },
         "greenColor": {
-          "default": "[\"#52ff3b\",\"#04520b\"]",
+          "default": ["#52ff3b","#04520b"],
           "description": "Color Gradient to be used in green 'Projects' button seen at the main page.",
           "items": {
             "$ref": "./color.json"
@@ -75,7 +77,7 @@
           "type": "array"
         },
         "orangeColor": {
-          "default": "[\"#FF7A00\",\"#ff0000\"]",
+          "default": ["#FF7A00","#ff0000"],
           "description": "Color Gradient to be used in orange 'Education' button seen at the main page.",
           "items": {
             "$ref": "./color.json"
@@ -83,12 +85,17 @@
           "type": "array"
         },
         "redColor": {
-          "default": "[\"#FAFF00\",\"#ff0000\"]",
+          "default": ["#FAFF00","#ff0000"],
           "description": "Color Gradient to be used in red 'Experience' button seen at the main page.",
           "items": {
             "$ref": "./color.json"
           },
           "type": "array"
+        },
+        "font": {
+          "default": "Lato",
+          "type": "string",
+          "description": "Font that will be used in the buttons. Main font family will be added after this font."
         }
       },
       "required": [
@@ -98,7 +105,8 @@
         "orangeColor",
         "downloadBackgroundColor",
         "downloadBackgroundHoverColor",
-        "downloadTextColor"
+        "downloadTextColor",
+        "font"
       ],
       "type": "object"
     },
@@ -149,12 +157,20 @@
           "description": "Icon color of entries. Social media icons are not affected by this."
         },
         "placeholderBackgroundColor": {
-          "default": ["#101010","#303030"],
+          "default": [
+            "#101010",
+            "#303030"
+          ],
           "description": "Color gradient to be used in placeholder entries. Mostly noticable at 'Project Versions' page if you have a slow internet connection.",
           "items": {
             "$ref": "./color.json"
           },
           "type": "array"
+        },
+        "dotColor": {
+          "default": "#252525",
+          "description": "Color of the dots seen at 'Education' and 'Experience' pages.",
+          "$ref": "./color.json"
         }
       },
       "required": [
@@ -164,7 +180,8 @@
         "altTextColor",
         "iconBackgroundColor",
         "iconColor",
-        "placeholderBackgroundColor"
+        "placeholderBackgroundColor",
+        "dotColor"
       ],
       "type": "object"
     },
@@ -251,7 +268,8 @@
         "font",
         "nameColor",
         "nameFont",
-        "titleFont"
+        "titleFont",
+        "linkColor"
       ],
       "type": "object"
     },
@@ -302,6 +320,9 @@
           "b": 73,
           "g": 64,
           "r": 55
+        },
+        "paginationDisabledTextColor": {
+          "r": 235,"g": 235,"b": 235
         },
         "galleryImageBorderColor": {
           "b": 73,
@@ -396,6 +417,11 @@
             "r": 55
           },
           "description": "Border color of gallery images."
+        },
+        "paginationDisabledTextColor": {
+          "$ref": "./color.json",
+          "default": {"r": 235,"g": 235,"b": 235},
+          "description": "Color of the text inside disabled pagination buttons."
         },
         "galleryModalBackgroundColor": {
           "$ref": "./color.json",
@@ -601,9 +627,42 @@
         "projectLinkColor",
         "summaryTextColor",
         "versionTags",
-        "galleryModalFooterBackgroundColor"
+        "galleryModalFooterBackgroundColor",
+        "galleryImageBorderColor",
+        "navigationBarSelectedColor",
+        "paginationDisabledTextColor"
       ],
       "type": "object"
+    },
+    "certificates": {
+      "additionalProperties": false,
+      "default": {
+        "backgroundColor": {"r": 100,"g": 100,"b": 100},
+        "borderColor": {"r": 100,"g": 100,"b": 100},
+        "borderHoverColor": {"r": 250,"g": 250,"b": 250},
+        "shadowColor": "black"
+      },
+      "properties": {
+        "backgroundColor": {
+          "$ref": "./color.json",
+          "description": "Background color of the small images seen at 'Certificates' page."
+        },
+        "borderColor": {
+          "$ref": "./color.json",
+          "description": "Border color of the small images seen at 'Certificates' page."
+        },
+        "borderHoverColor": {
+          "$ref": "./color.json",
+          "description": "Hover color of the small images' borders seen at 'Certificates' page."
+        },
+        "shadowColor": {
+          "$ref": "./color.json",
+          "description": "Shadow color of the small images seen at 'Certificates' page."
+        }
+      },
+      "required": ["backgroundColor","borderColor","borderHoverColor","shadowColor"],
+      "title": "Certificates",
+      "description": "Colors related to small images seen in 'Certificates' page."
     }
   },
   "required": [
