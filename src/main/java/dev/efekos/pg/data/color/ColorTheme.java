@@ -24,6 +24,8 @@ public class ColorTheme {
     public static final Color DOWNLOAD_BUTTON_TEXT_COLOR = new Color("buttons.downloadTextColor");
     public static final Color DOWNLOAD_BUTTON_BACKGROUND_COLOR = new Color("buttons.downloadBackgroundColor");
     public static final Color DOWNLOAD_BUTTON_BACKGROUND_HOVER_COLOR = new Color("buttons.downloadBackgroundHoverColor");
+    public static final Color ENTRY_ACTIVE_BACKGROUND_COLOR = new Color("entry.backgroundActiveColor");
+    public static final Color ENTRY_LIGHTER_ALT_TEXT_COLOR = new Color("entry.lighterAltTextColor");
     public static final Color ENTRY_BACKGROUND_COLOR = new Color("entry.backgroundColor");
     public static final Color ENTRY_BACKGROUND_HOVER_COLOR = new Color("entry.backgroundHoverColor");
     public static final Color ENTRY_BORDER_COLOR = new Color("entry.borderColor");

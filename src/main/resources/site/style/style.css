@@ -91,7 +91,7 @@ a {
 
 
 .btn-orange {
-    background: %%colorTheme.buttons.orangeColor%%);
+    background: %%colorTheme.buttons.orangeColor%%;
 }
 
 .btn-orange:hover {
