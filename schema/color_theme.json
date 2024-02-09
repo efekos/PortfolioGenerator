@@ -202,6 +202,11 @@
           "default": "#252525",
           "description": "Hover background color of entries."
         },
+        "backgroundActiveColor": {
+          "$ref": "./color.json",
+          "default": "#dfdfdf",
+          "description": "Click color of entries."
+        },
         "borderColor": {
           "$ref": "./color.json",
           "default": "#151515",
@@ -248,7 +253,8 @@
         "iconColor",
         "placeholderBackgroundColor",
         "dotColor",
-        "lighterAltTextColor"
+        "lighterAltTextColor",
+        "backgroundActiveColor"
       ],
       "type": "object"
     },
