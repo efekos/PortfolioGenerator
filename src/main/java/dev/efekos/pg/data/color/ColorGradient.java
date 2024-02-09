@@ -44,6 +44,7 @@ public record ColorGradient(String key) implements ColorThemeValue {
     }
 
     private String createLinearGradientWithPercentages(String[] colors) {
+        if(colors.length==1) return colors[0];
         StringBuilder gradient = new StringBuilder("linear-gradient(180deg, ");
         int increment = 100 / (colors.length - 1); // Calculate percentage increment
 
