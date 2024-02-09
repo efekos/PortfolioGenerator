@@ -10,24 +10,21 @@
     {
       "properties": {
         "b": {
-          "description": "Green value of this color",
+          "description": "Blue value of this color",
           "maximum": 255,
           "minimum": 0,
-          "title": "Blue",
           "type": "number"
         },
         "g": {
           "description": "Green value of this color",
           "maximum": 255,
           "minimum": 0,
-          "title": "Green",
           "type": "number"
         },
         "r": {
           "description": "Red value of this color",
           "maximum": 255,
           "minimum": 0,
-          "title": "Red",
           "type": "number"
         }
       },
