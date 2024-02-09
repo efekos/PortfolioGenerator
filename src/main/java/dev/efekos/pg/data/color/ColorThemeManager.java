@@ -35,7 +35,7 @@ public class ColorThemeManager {
     }
 
     public static String get(ColorThemeValue value){
-        return themeMap.get(value);
+        return themeMap.get(value.key());
     }
 
     private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("%%colorTheme\\.([A-Za-z]+(\\.[A-Za-z]+)+(:[A-Za-z]+)?)%%");
