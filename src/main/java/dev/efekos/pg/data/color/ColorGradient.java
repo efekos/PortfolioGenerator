@@ -43,6 +43,23 @@ public record ColorGradient(String key) implements ColorThemeValue {
         return createLinearGradientWithPercentages(colors.stream().map(JsonColor::toString).toArray(String[]::new));
     }
 
+    public String lastColor(JsonElement element){
+        DataTypeChecker checker = new DataTypeChecker("color_theme.json");
+
+        checker.expectArray(element);
+
+        JsonArray array = element.getAsJsonArray();
+
+        List<JsonColor> colors = new ArrayList<>();
+
+        for (JsonElement jsonElement : array) {
+            colors.add(JsonColor.from(jsonElement,new DataGrabberContext("color_theme.json")));
+        }
+
+        return colors.get(colors.size()-1).toString();
+    }
+
+
     private String createLinearGradientWithPercentages(String[] colors) {
         if(colors.length==1) return colors[0];
         StringBuilder gradient = new StringBuilder("linear-gradient(180deg, ");

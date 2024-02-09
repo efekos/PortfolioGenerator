@@ -21,9 +21,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import dev.efekos.pg.Main;
-import dev.efekos.pg.data.color.ColorTheme;
-import dev.efekos.pg.data.color.ColorThemeManager;
-import dev.efekos.pg.data.color.ColorThemeValue;
+import dev.efekos.pg.data.color.*;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
 
@@ -86,7 +84,12 @@ public class LoadColorThemeProcess implements Process{
 
             switch (value.getClass().getSimpleName()){
                 case "Color"->totalColor++;
-                case "ColorGradient"->totalColorGradient++;
+                case "ColorGradient"->{
+                    totalColorGradient++;
+
+                    ColorThemeManager.putColor(value.key()+":last",((ColorGradient) value).lastColor(finalThing));
+
+                }
                 case "Font"->totalFont++;
                 case "FontFamily"->totalFontFamily++;
             }
