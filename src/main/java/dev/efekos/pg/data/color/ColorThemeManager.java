@@ -24,23 +24,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ColorThemeManager {
-    private static final Map<String,String> themeMap = new HashMap<>();
+    private static final Map<String, String> themeMap = new HashMap<>();
 
-    public static void putColor(ColorThemeValue value,String s){
-        putColor(value.key(),s);
+    public static void putColor(ColorThemeValue value, String s) {
+        putColor(value.key(), s);
     }
 
-    public static void putColor(String s,String s2){
-        themeMap.put(s,s2);
+    public static void putColor(String s, String s2) {
+        themeMap.put(s, s2);
     }
 
-    public static String get(ColorThemeValue value){
+    public static String get(ColorThemeValue value) {
         return themeMap.get(value.key());
     }
 
     private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("%%colorTheme\\.([A-Za-z]+(\\.[A-Za-z]+)+(:[A-Za-z]+)?)%%");
 
-    public static String doReplacement(String string){
+    public static String doReplacement(String string) {
         Matcher matcher = PLACEHOLDER_PATTERN.matcher(string);
 
         return matcher.replaceAll(matchResult -> {
@@ -48,9 +48,9 @@ public class ColorThemeManager {
 
             String input = s.substring(13, s.length() - 2);
 
-            if(!themeMap.containsKey(input)) Main.LOGGER.devWarn("Missing color theme key: "+input);
+            if (!themeMap.containsKey(input)) Main.LOGGER.devWarn("Missing color theme key: " + input);
 
-            return themeMap.getOrDefault(input,"MISSING COLOR THEME KEY: "+input);
+            return themeMap.getOrDefault(input, "MISSING COLOR THEME KEY: " + input);
         });
     }
 }

@@ -20,5 +20,6 @@ import com.google.gson.JsonElement;
 
 public interface ColorThemeValue {
     String key();
+
     String read(JsonElement element);
 }

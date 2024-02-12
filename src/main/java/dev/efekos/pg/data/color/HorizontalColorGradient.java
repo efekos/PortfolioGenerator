@@ -37,13 +37,13 @@ public record HorizontalColorGradient(String key) implements ColorThemeValue {
         List<JsonColor> colors = new ArrayList<>();
 
         for (JsonElement jsonElement : array) {
-            colors.add(JsonColor.from(jsonElement,new DataGrabberContext("color_theme.json")));
+            colors.add(JsonColor.from(jsonElement, new DataGrabberContext("color_theme.json")));
         }
 
         return createLinearGradientWithPercentages(colors.stream().map(JsonColor::toString).toArray(String[]::new));
     }
 
-    public String lastColor(JsonElement element){
+    public String lastColor(JsonElement element) {
         DataTypeChecker checker = new DataTypeChecker("color_theme.json");
 
         checker.expectArray(element);
@@ -53,15 +53,15 @@ public record HorizontalColorGradient(String key) implements ColorThemeValue {
         List<JsonColor> colors = new ArrayList<>();
 
         for (JsonElement jsonElement : array) {
-            colors.add(JsonColor.from(jsonElement,new DataGrabberContext("color_theme.json")));
+            colors.add(JsonColor.from(jsonElement, new DataGrabberContext("color_theme.json")));
         }
 
-        return colors.get(colors.size()-1).toString();
+        return colors.get(colors.size() - 1).toString();
     }
 
 
     private String createLinearGradientWithPercentages(String[] colors) {
-        if(colors.length==1) return colors[0];
+        if (colors.length == 1) return colors[0];
         StringBuilder gradient = new StringBuilder("linear-gradient(90deg, ");
         int increment = 100 / (colors.length - 1); // Calculate percentage increment
 

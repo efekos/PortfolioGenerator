@@ -23,6 +23,6 @@ import dev.efekos.pg.data.schema.JsonColor;
 public record Color(String key) implements ColorThemeValue {
     @Override
     public String read(JsonElement element) {
-        return JsonColor.from(element,new DataGrabberContext("color_theme.json")).toString();
+        return JsonColor.from(element, new DataGrabberContext("color_theme.json")).toString();
     }
 }

@@ -44,7 +44,7 @@ public record FontFamily(String key) implements ColorThemeValue {
             builder.append("'");
             builder.append(fonts.get(i));
             builder.append("'");
-            if(i+1!=fonts.size()) builder.append(", ");
+            if (i + 1 != fonts.size()) builder.append(", ");
         }
 
         return builder.toString();
