@@ -17,7 +17,6 @@
 package dev.efekos.pg.process;
 
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import dev.efekos.pg.Main;
@@ -25,7 +24,6 @@ import dev.efekos.pg.data.color.*;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
 
-import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;

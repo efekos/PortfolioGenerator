@@ -25,7 +25,6 @@ import dev.efekos.pg.resource.Resources;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class JsonColor implements JsonSchema{
@@ -36,7 +35,7 @@ public class JsonColor implements JsonSchema{
     private boolean isHex;
 
     private static boolean didLoadCssColors;
-    private static List<String> cssColors = new ArrayList<>();
+    private static final List<String> cssColors = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -54,9 +53,9 @@ public class JsonColor implements JsonSchema{
         didLoadCssColors = true;
 
         String resource = ResourceManager.getResource(Resources.JSON_CSS_COLOR_NAMES);
-        JsonElement arrary = JsonParser.parseString(resource);
+        JsonElement array = JsonParser.parseString(resource);
 
-        for (JsonElement element : arrary.getAsJsonArray()) {
+        for (JsonElement element : array.getAsJsonArray()) {
             cssColors.add(element.getAsString());
         }
     }
@@ -66,14 +65,12 @@ public class JsonColor implements JsonSchema{
         if(element.isJsonObject()) readRgb(element.getAsJsonObject(),new DataTypeChecker(context.getCurrentFile()));
         else if (element.isJsonPrimitive()) {
 
-            if (Pattern.compile("^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$").matcher(element.getAsString()).matches()) {
-                setHex(element.getAsString());
-                setHex(true);
-            } else {
-                if(!cssColors.contains(element.getAsString())) throw new JsonParseException("Unknown color: "+element.getAsString());
-                setHex(element.getAsString());
-                setHex(true);
+            if (!Pattern.compile("^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$").matcher(element.getAsString()).matches()) {
+                if (!cssColors.contains(element.getAsString()))
+                    throw new JsonParseException("Unknown color: " + element.getAsString());
             }
+            setHex(element.getAsString());
+            setHex(true);
 
         } else throw new JsonSyntaxException("Expected a string or an object, got "+element+".");
     }
