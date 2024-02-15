@@ -20,6 +20,7 @@
           "g": 200,
           "r": 200
         },
+        "downloadIconColor": "black",
         "downloadTextColor": "#363636",
         "font": "Lato",
         "greenColor": [
@@ -55,7 +56,7 @@
             "g": 238,
             "r": 238
           },
-          "description": "Background color of  external website buttons (Certificate image download buttons, 'See More' buttons etc.)"
+          "description": "Background color of external website buttons (Certificate image download buttons, 'See More' buttons etc.)"
         },
         "downloadBackgroundHoverColor": {
           "$ref": "./color.json",
@@ -64,7 +65,12 @@
             "g": 200,
             "r": 200
           },
-          "description": "Background color of  external website buttons (Certificate image download buttons, 'See More' buttons etc.) when they are hovered"
+          "description": "Background color of external website buttons (Certificate image download buttons, 'See More' buttons etc.) when they are hovered"
+        },
+        "downloadIconColor": {
+          "$ref": "./color.json",
+          "default": "black",
+          "description": "Color of the external website icon at external website buttons. (Certificate image download buttons, 'See More' buttons etc.)"
         },
         "downloadTextColor": {
           "$ref": "./color.json",

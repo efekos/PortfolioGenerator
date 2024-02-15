@@ -23,6 +23,7 @@ public class ColorTheme {
     public static final ColorGradient RED_BUTTON_COLOR = new ColorGradient("buttons.redColor");
     public static final Color DOWNLOAD_BUTTON_TEXT_COLOR = new Color("buttons.downloadTextColor");
     public static final Color DOWNLOAD_BUTTON_BACKGROUND_COLOR = new Color("buttons.downloadBackgroundColor");
+    public static final Color DOWNLOAD_BUTTON_ICON_COLOR = new Color("buttons.downloadIconColor");
     public static final Color DOWNLOAD_BUTTON_BACKGROUND_HOVER_COLOR = new Color("buttons.downloadBackgroundHoverColor");
     public static final Color ENTRY_ACTIVE_BACKGROUND_COLOR = new Color("entry.backgroundActiveColor");
     public static final Color ENTRY_LIGHTER_ALT_TEXT_COLOR = new Color("entry.lighterAltTextColor");
