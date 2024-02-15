@@ -74,7 +74,7 @@ public class Main {
         MAIN_PATH = System.getProperty("user.dir");
         System.out.println("Hello World!");
 
-        context.dataPath = MAIN_PATH+"\\data";
+        context.dataPath = MAIN_PATH + "\\data";
 
         long time = new Date().getTime();
 
