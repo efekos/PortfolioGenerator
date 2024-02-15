@@ -19,20 +19,20 @@ package dev.efekos.pg.text;
 import dev.efekos.pg.data.color.Color;
 import dev.efekos.pg.resource.IconResource;
 
-public class TranslatableText implements Text{
+public class TranslatableText implements Text {
     private String key;
     private Object[] arguments;
 
     private IconResource iconResource;
     private Color color;
 
-    public TranslatableText(String key,Object... arguments) {
+    public TranslatableText(String key, Object... arguments) {
         this.key = key;
         this.arguments = arguments;
     }
 
     public TranslatableText(String key) {
-        this(key,new Object[]{});
+        this(key, new Object[]{});
     }
 
     @Override
@@ -42,7 +42,7 @@ public class TranslatableText implements Text{
 
     @Override
     public String getElement() {
-        return "<span>"+key+"</span>";
+        return "<span>" + key + "</span>";
     }
 
     @Override

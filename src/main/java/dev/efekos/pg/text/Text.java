@@ -19,11 +19,12 @@ package dev.efekos.pg.text;
 import dev.efekos.pg.data.color.Color;
 import dev.efekos.pg.resource.IconResource;
 
-import javax.xml.stream.StreamFilter;
-
 public interface Text {
     String getString();
+
     String getElement();
+
     Text withIcon(IconResource icon);
+
     Text withColor(Color color);
 }
