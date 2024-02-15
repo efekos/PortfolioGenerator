@@ -30,7 +30,7 @@ public class ProjectReleaseEvent implements TimelineEvent{
 
     @Override
     public String getIcon() {
-        return "link/source";
+        return "source";
     }
 
     @Override
