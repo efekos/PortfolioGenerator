@@ -20,7 +20,7 @@ public class IconResource extends Resource{
     private final String outName;
 
     public IconResource(String pathName,String outName) {
-        super("site/images/icon/"+pathName+".svg");
+        super("/site/icon/"+pathName+".svg");
         this.outName = outName;
     }
 

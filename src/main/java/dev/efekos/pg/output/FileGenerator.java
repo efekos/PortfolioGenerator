@@ -224,7 +224,7 @@ public class FileGenerator implements Generator {
         Resources.all().forEach(resource -> {
             if(resource instanceof IconResource iconResource){
                 try {
-                    copyIcon(iconResource.getPathName(),iconResource.getOutName());
+                    copyIcon(iconResource.getPathName(),iconResource.getOutName().replaceAll("/","\\\\"));
                 }catch (Exception e){
                     throw new RuntimeException(e);
                 }
@@ -245,7 +245,10 @@ public class FileGenerator implements Generator {
 
     private void copyIcon(String resourceName, String binName) throws IOException {
         Main.DEBUG_LOGGER.info("Copying icon: " + resourceName);
-        Optional<Resource> optional = Resources.all().stream().filter(resource -> resource.getPathName().equals("/site/icon/" + resourceName + ".svg")).findFirst();
+        Optional<Resource> optional = Resources.all().stream().filter(resource ->
+                        resource instanceof IconResource iconResource ? iconResource.getPathName().equals(resourceName):
+                        resource.getPathName().equals("/site/icon/" + resourceName + ".svg")
+                ).findFirst();
         if (optional.isEmpty())
             throw new MissingResourceException("Missing icon", "dev.efekos.pg.Main", "/site/icon/" + resourceName + ".svg");
 
