@@ -21,6 +21,7 @@ import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.data.timeline.TimelineEvent;
 import dev.efekos.pg.data.type.SocialLinkType;
 import dev.efekos.pg.process.ProcessContext;
+import dev.efekos.pg.resource.IconResource;
 import dev.efekos.pg.resource.Resource;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
@@ -220,33 +221,15 @@ public class FileGenerator implements Generator {
 
         Files.createDirectory(Path.of(binPath, "images", "icon"));
 
-        copyIcon("external_site", "external");
-        copyIcon("clock", "clock");
-        copyIcon("location", "location");
-        copyIcon("university", "university");
-        copyIcon("briefcase", "briefcase");
-        copyIcon("language", "language");
-        copyIcon("birth", "birth");
-        copyIcon("scale", "scale");
-        copyIcon("tag", "tag");
-        copyIcon("project", "project");
-        copyIcon("phone", "phone");
-        copyIcon("letter", "letter");
-        copyIcon("expanded", "expanded");
-        copyIcon("unexpanded", "unexpanded");
-        copyIcon("school", "school");
-        copyIcon("top", "top");
-        copyIcon("degree", "degree");
-        copyIcon("book_open", "book");
-        copyIcon("source","source");
-
-        copyIcon("project_link/doc", "link\\doc");
-        copyIcon("project_link/guide", "link\\guide");
-        copyIcon("project_link/issues", "link\\issues");
-        copyIcon("project_link/main", "link\\main");
-        copyIcon("project_link/source", "link\\source");
-        copyIcon("project_link/support", "link\\support");
-        copyIcon("project_link/wiki", "link\\wiki");
+        Resources.all().forEach(resource -> {
+            if(resource instanceof IconResource iconResource){
+                try {
+                    copyIcon(iconResource.getPathName(),iconResource.getOutName());
+                }catch (Exception e){
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         for (SocialLinkType type : generalInfo.getSocialLinks().keySet()) {
             copyIcon("social/" + type.getId(), "social\\" + type.getId());
