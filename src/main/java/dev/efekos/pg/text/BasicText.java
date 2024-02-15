@@ -16,13 +16,8 @@
 
 package dev.efekos.pg.text;
 
-import dev.efekos.pg.data.color.Color;
-import dev.efekos.pg.resource.IconResource;
-
 public class BasicText implements Text{
     private String text;
-    private IconResource iconResource;
-    private Color color;
 
     public BasicText(String text) {
         this.text = text;
@@ -33,22 +28,6 @@ public class BasicText implements Text{
         return text;
     }
 
-    @Override
-    public String getElement() {
-        return "<span>"+text+"</span>";
-    }
-
-    @Override
-    public Text withIcon(IconResource icon) {
-        this.iconResource = icon;
-        return this;
-    }
-
-    @Override
-    public Text withColor(Color color) {
-        this.color = color;
-        return this;
-    }
 
     public String getText() {
         return text;
@@ -56,21 +35,5 @@ public class BasicText implements Text{
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public IconResource getIconResource() {
-        return iconResource;
-    }
-
-    public void setIconResource(IconResource iconResource) {
-        this.iconResource = iconResource;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 }

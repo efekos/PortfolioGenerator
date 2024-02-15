@@ -19,9 +19,12 @@ package dev.efekos.pg.text;
 import dev.efekos.pg.data.color.Color;
 import dev.efekos.pg.resource.IconResource;
 
+import java.util.regex.Pattern;
+
 public class TranslatableText implements Text {
-    private String key;
-    private Object[] arguments;
+    private final String key;
+    private final Object[] arguments;
+    private static final Pattern ARGUMENT_PATTERN = Pattern.compile("\\{\\d}");
 
     private IconResource iconResource;
     private Color color;
@@ -38,22 +41,5 @@ public class TranslatableText implements Text {
     @Override
     public String getString() {
         return key;
-    }
-
-    @Override
-    public String getElement() {
-        return "<span>" + key + "</span>";
-    }
-
-    @Override
-    public Text withIcon(IconResource icon) {
-        this.iconResource = icon;
-        return this;
-    }
-
-    @Override
-    public Text withColor(Color color) {
-        this.color = color;
-        return this;
     }
 }

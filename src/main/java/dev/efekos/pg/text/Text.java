@@ -16,15 +16,18 @@
 
 package dev.efekos.pg.text;
 
-import dev.efekos.pg.data.color.Color;
-import dev.efekos.pg.resource.IconResource;
-
 public interface Text {
     String getString();
 
-    String getElement();
+    static BasicText literal(String literal){
+        return new BasicText(literal);
+    }
 
-    Text withIcon(IconResource icon);
+    static TranslatableText translatable(String key,Object... objects){
+        return new TranslatableText(key,objects);
+    }
 
-    Text withColor(Color color);
+    static TranslatableText translatable(String key){
+        return Text.translatable(key,new Object[]{});
+    }
 }
