@@ -88,11 +88,11 @@ public class DataGrabber {
 
         if (!Files.exists(path)) throw new FileNotFoundException("'" + path.getFileName().toFile() + "' file missing.");
         String file = Files.readString(path);
-        Main.DEBUG_LOGGER.success("Read file: ",logPath);
+        Main.DEBUG_LOGGER.success("Read file: ", logPath);
         return file;
     }
 
-    public TagColorInfo grabTagColorInfo() throws IOException{
+    public TagColorInfo grabTagColorInfo() throws IOException {
         String path = mainPath + "\\tag_colors.json";
         Main.LOGGER.info("Grabbing file: tag_colors.json");
 
@@ -101,7 +101,7 @@ public class DataGrabber {
 
         TagColorInfo info = new TagColorInfo();
         context.setCurrentFile("tag_colors.json");
-        info.readJson(element,context);
+        info.readJson(element, context);
         Main.LOGGER.success("Grabbed file: tag_colors.json");
         return info;
     }
@@ -109,7 +109,7 @@ public class DataGrabber {
 
     public String grabMarkdownFile(String fileName) throws IOException {
         String file = readFile(mainPath + "\\" + fileName + ".md");
-        Main.DEBUG_LOGGER.info("Reading markdown: ",fileName.replaceAll("\\\\", "/"));
+        Main.DEBUG_LOGGER.info("Reading markdown: ", fileName.replaceAll("\\\\", "/"));
 
         return Utilities.markdownToHtml(file);
     }
@@ -205,8 +205,8 @@ public class DataGrabber {
 
             // gallery
             ProjectGalleryImageList images = new ProjectGalleryImageList();
-            context.setCurrentFile("projects/"+project.getId()+"/gallery.json");
-            images.readJson(JsonParser.parseString(readFile(dir.getPath()+"\\gallery.json")),context);
+            context.setCurrentFile("projects/" + project.getId() + "/gallery.json");
+            images.readJson(JsonParser.parseString(readFile(dir.getPath() + "\\gallery.json")), context);
             project.setGalleryImages(images);
 
             // icon
@@ -232,7 +232,7 @@ public class DataGrabber {
         JsonElement element = JsonParser.parseString(readFile(mainPath + "\\contact.json"));
         ContactInfo contactInfo = new ContactInfo();
         context.setCurrentFile("contact.json");
-        contactInfo.readJson(element,context);
+        contactInfo.readJson(element, context);
 
         Main.LOGGER.success("Grabbed file: contact.json");
         return contactInfo;
