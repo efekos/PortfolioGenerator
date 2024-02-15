@@ -160,4 +160,8 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
+
+    //TODO switch from string to Text
+    //TODO add localization system
+    //TODO wait for like a few decades so someone will translate one word to russian
 }
