@@ -46,6 +46,7 @@ public class Resources {
     public static final Resource HTML_PROJECT_VERSIONS_PAGE = new Resource("/site/html/project_versions.html");
     public static final Resource HTML_PROJECTS_PAGE = new Resource("/site/html/projects.html");
     public static final Resource HTML_SINGLE_CERTIFICATE = new Resource("/site/html/single_certificate.html");
+    public static final Resource ICON_SOURCE = new Resource("/site/icon/source.svg");
     public static final Resource ICON_PROJECT_DOCUMENTATION = new Resource("/site/icon/project_link/doc.svg");
     public static final Resource ICON_PROJECT_GUIDE = new Resource("/site/icon/project_link/guide.svg");
     public static final Resource ICON_PROJECT_ISSUES = new Resource("/site/icon/project_link/issues.svg");

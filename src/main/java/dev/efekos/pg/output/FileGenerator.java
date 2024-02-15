@@ -238,6 +238,7 @@ public class FileGenerator implements Generator {
         copyIcon("top", "top");
         copyIcon("degree", "degree");
         copyIcon("book_open", "book");
+        copyIcon("source","source");
 
         copyIcon("project_link/doc", "link\\doc");
         copyIcon("project_link/guide", "link\\guide");
