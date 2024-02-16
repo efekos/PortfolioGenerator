@@ -23,10 +23,15 @@ import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LocaleHelper {
     private static final Map<String, Locale> localeList = new HashMap<>();
+
+    public static List<Locale> all(){
+        return localeList.values().stream().toList();
+    }
 
     public static void loadLocales() {
         Main.LOGGER.info("Loading locales...");
