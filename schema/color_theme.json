@@ -3,6 +3,9 @@
   "additionalProperties": false,
   "description": "Color theme of the entire website.",
   "properties": {
+    "$schema": {
+      "type": "string"
+    },
     "buttons": {
       "additionalProperties": false,
       "default": {
@@ -198,6 +201,11 @@
           "default": "#707070",
           "description": "Color of the text that isn't the title inside entries."
         },
+        "backgroundActiveColor": {
+          "$ref": "./color.json",
+          "default": "#dfdfdf",
+          "description": "Click color of entries."
+        },
         "backgroundColor": {
           "$ref": "./color.json",
           "default": "#202020",
@@ -207,11 +215,6 @@
           "$ref": "./color.json",
           "default": "#252525",
           "description": "Hover background color of entries."
-        },
-        "backgroundActiveColor": {
-          "$ref": "./color.json",
-          "default": "#dfdfdf",
-          "description": "Click color of entries."
         },
         "borderColor": {
           "$ref": "./color.json",
@@ -718,9 +721,6 @@
         "paginationDisabledTextColor"
       ],
       "type": "object"
-    },
-    "$schema": {
-      "type": "string"
     }
   },
   "required": [
