@@ -16,18 +16,12 @@
 
 package dev.efekos.pg.text;
 
-import dev.efekos.pg.data.color.Color;
-import dev.efekos.pg.resource.IconResource;
-
 import java.util.regex.Pattern;
 
 public class TranslatableText implements Text {
     private final String key;
     private final Object[] arguments;
     private static final Pattern ARGUMENT_PATTERN = Pattern.compile("\\{\\d}");
-
-    private IconResource iconResource;
-    private Color color;
 
     public TranslatableText(String key, Object... arguments) {
         this.key = key;
@@ -40,6 +34,8 @@ public class TranslatableText implements Text {
 
     @Override
     public String getString() {
-        return key;
+        return ARGUMENT_PATTERN.matcher(key).replaceAll(s ->
+                arguments[Integer.parseInt(s.group().substring(1, s.group().length() - 1))].toString()
+        );
     }
 }
