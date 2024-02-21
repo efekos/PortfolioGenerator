@@ -69,6 +69,22 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         List<String> list = Arrays.asList(args);
+
+        if(!list.isEmpty()&&list.get(0).equals("help")){
+            LOGGER.info(ConsoleColors.WHITE_BOLD+"Welcome to PortfolioGenerator!");
+            LOGGER.info("You can run the application without any options");
+            LOGGER.info("to run normally.");
+            LOGGER.info("");
+            LOGGER.info(ConsoleColors.BLACK_BRIGHT+"--auto"+ConsoleColors.RESET+": Finishes the process without asking you");
+            LOGGER.info("to press enter.");
+            LOGGER.info(ConsoleColors.BLACK_BRIGHT+"--debug"+ConsoleColors.RESET+": Shows a lot of more debug information");
+            LOGGER.info("and stack traces when an exception occurs.");
+            LOGGER.info("");
+            LOGGER.info("Press enter to exit...");
+            System.in.read();
+            return;
+        }
+
         isDebug = list.contains("--debug");
         DEBUG_LOGGER.setEnabled(isDebug);
         MAIN_PATH = System.getProperty("user.dir");
