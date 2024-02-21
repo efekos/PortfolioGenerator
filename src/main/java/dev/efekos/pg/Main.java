@@ -161,7 +161,7 @@ public class Main {
         }
     }
 
-    //TODO switch from string to Text
-    //TODO add localization system
+    //TODO translation system in javascript (im so dumb i just realized this shit should not be hardcoded)
+    //TODO text to keys in html templates (some js files has elements too)
     //TODO wait for like a few decades so someone will translate one word to russian
 }
