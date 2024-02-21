@@ -113,6 +113,7 @@ public class Resources {
     public static final Resource SCRIPT_MODRINTH_RELEASE_FINDER = new Resource("/site/script/project_versions_mrl_finder.js");
     public static final Resource SCRIPT_SPIGOT_UPDATE_FINDER = new Resource("/site/script/project_versions_spig_finder.js");
     public static final Resource SCRIPT_PROJECT_SEARCH = new Resource("/site/script/projects_search.js");
+    public static final Resource SCRIPT_LANGUAGE_FINDER = new Resource("/site/script/language_finder.js");
     public static final Resource STYLE_SOCIAL_ICON_TEMPLATE = new Resource("/site/style/template/social_icon.css", true);
     public static final Resource STYLE_PROJECT_TAG_TEMPLATE = new Resource("/site/style/template/style_project_tag.css", true);
     public static final Resource STYLE_PROJECT_VERSION_TAG_TEMPLATE = new Resource("/site/style/template/version_tag.css", true);

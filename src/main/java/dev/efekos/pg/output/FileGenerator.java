@@ -183,6 +183,13 @@ public class FileGenerator implements Generator {
         copyResource(Resources.SCRIPT_PROJECT_SEARCH, "\\projects_search.js", binPath);
         copyResource(Resources.SCRIPT_EXPAND_ENTRIES, "\\expandable_entries.js", binPath);
 
+
+        Main.DEBUG_LOGGER.info("Generating file: language_finder.js");
+        String language = ResourceManager.getResource(Resources.SCRIPT_LANGUAGE_FINDER).replaceAll("%%UUID%%", UUID.randomUUID().toString());
+        writeFile(binPath+"\\language_finder.js",language);
+        Main.DEBUG_LOGGER.success("Generated file: language_finder.js");
+
+
         Main.LOGGER.success("Generates script files");
     }
 
