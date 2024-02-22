@@ -13,14 +13,12 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-const idddd = "%%UUID%%";
-
 const url = "./lang/%LANG%.json";
 
 var currentLang = {};
 
 async function loadLang() {
-    const lang = localStorage.getItem(`pgen-lang-${idddd}`) ?? 'en';
+    const lang = localStorage.getItem(`pgen-lang-36764784`) ?? 'en';
     const res = await fetch(url.replace("%LANG%", lang)).then(res => res.json());
 
     currentLang = res;
@@ -43,7 +41,7 @@ function getKey(key,...args){
 }
 
 async function refreshLang(code) {
-    await localStorage.setItem(`pgen-lang-${idddd}`, code);
+    await localStorage.setItem(`pgen-lang-36764784`, code);
     await loadLang();
     refreshLangKeys();
 }
