@@ -19,9 +19,7 @@ package dev.efekos.pg;
 import com.google.gson.JsonParseException;
 import dev.efekos.pg.process.Process;
 import dev.efekos.pg.process.*;
-import dev.efekos.pg.util.ConsoleColors;
-import dev.efekos.pg.util.DebugLogger;
-import dev.efekos.pg.util.Logger;
+import dev.efekos.pg.util.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,10 +28,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Main {
     /**
@@ -71,17 +66,22 @@ public class Main {
         List<String> list = Arrays.asList(args);
 
         if(!list.isEmpty()&&list.get(0).equals("help")){
-            LOGGER.info(ConsoleColors.WHITE_BOLD+"Welcome to PortfolioGenerator!");
-            LOGGER.info("You can run the application without any options");
-            LOGGER.info("to run normally.");
-            LOGGER.info("");
-            LOGGER.info(ConsoleColors.BLACK_BRIGHT+"--auto"+ConsoleColors.RESET+": Finishes the process without asking you");
-            LOGGER.info("to press enter.");
-            LOGGER.info(ConsoleColors.BLACK_BRIGHT+"--debug"+ConsoleColors.RESET+": Shows a lot of more debug information");
-            LOGGER.info("and stack traces when an exception occurs.");
-            LOGGER.info("");
-            LOGGER.info("Press enter to exit...");
-            System.in.read();
+
+            HelpProvider provider = new HelpProvider();
+
+            if(list.size()==1)provider.printDefault(LOGGER);
+            else {
+                Optional<HelpEntry> helpEntry = HelpProvider.ENTRIES.stream().filter(entry -> entry.name().equals(list.get(1))).findFirst();
+                if(!helpEntry.isPresent()){
+                    LOGGER.error("Unknown command/option: "+list.get(1));
+                    provider.printExit(LOGGER);
+                    return;
+                }
+
+                provider.printEntry(helpEntry.get(),LOGGER);
+                provider.printExit(LOGGER);
+            }
+
             return;
         }
 
