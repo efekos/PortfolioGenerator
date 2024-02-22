@@ -21,6 +21,7 @@
     "redColor":["#FAFF00", "#ff0000"],
     "orangeColor":["#FF7A00","#ff0000"],
     "downloadTextColor":"#363636",
+    "downloadIconColor": "black",
     "downloadBackgroundColor":{"r":238,"g":238,"b":238},
     "downloadBackgroundHoverColor":{"r":200,"g":200,"b":200},
     "font": "Lato"

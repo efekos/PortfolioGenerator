@@ -127,6 +127,7 @@ public class Resources {
     public static final Resource JSON_DEFAULT_COLOR_THEME = new Resource("/site/default_color_theme.json");
     public static final Resource JSON_LANGUAGE_EN = new Resource("/lang/en.json");
     public static final Resource JSON_LANGUAGE_TR = new Resource("/lang/tr.json");
+    public static final Resource HTML_NAVBAR = new Resource("/site/html/template/navbar.html");
 
     private static final List<Resource> list = new ArrayList<>();
 

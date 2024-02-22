@@ -164,3 +164,38 @@ footer {
     place-self: end;
     margin-top: calc(250vh + var(--offset));
 }
+
+.lang-dropdown {
+    position: relative;
+}
+
+.lang-dropdown select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    font-size: 18px;
+    padding: 5px 10px 5px 10px;
+    background-color: #2e2e2e;
+    border-radius: 5px;
+    color: %%colorTheme.general.textColor%%;
+    cursor: pointer;
+    outline: none;
+    max-width: 8rem;
+}
+
+.lang-dropdown select:focus {
+    border-radius: 5px;
+}
+
+.lang-dropdown::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    top: 50%;
+    right: 10px;
+    transform: translate(0, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: %%colorTheme.general.textColor%%;
+    clip-path: polygon(8% 17%, 0% 25%, 50% 84%, 100% 25%, 92% 17%, 50% 65%);
+}

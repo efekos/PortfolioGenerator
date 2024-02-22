@@ -21,7 +21,9 @@ import com.google.gson.JsonParser;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import org.commonmark.internal.inline.AsteriskDelimiterProcessor;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,8 +47,9 @@ public class LocaleHelper {
             JsonObject object = value.getAsJsonObject();
             String name = object.get("name").getAsString();
             String nativeName = object.get("nativeName").getAsString();
+            boolean localization = object.has("localization")?object.get("localization").getAsBoolean():false;
 
-            localeList.put(code, new Locale(code, name, nativeName));
+            localeList.put(code, new Locale(code, name, nativeName,localization));
         });
 
         Main.DEBUG_LOGGER.info("Final locale code count: " + localeList.size());
@@ -59,5 +62,23 @@ public class LocaleHelper {
 
     public static boolean isNotValid(String code) {
         return !localeList.containsKey(code);
+    }
+
+    public static String generateLanguageSelector(){
+        String main  = """
+                <div class="lang-dropdown" onchange="refreshLang(event.target.value)">
+                    <select>
+                        %%OPTIONS%%
+                    </select>
+                    <div class="select-arrow"></div>
+                </div>""";
+
+        List<String> options = new ArrayList<>();
+
+        all().stream().filter(Locale::localization).forEach(locale -> {
+            options.add("<option value=\""+locale.code()+"\">"+locale.nativeName()+"</option>");
+        });
+
+        return main.replace("%%OPTIONS%%",String.join("\n",options));
     }
 }

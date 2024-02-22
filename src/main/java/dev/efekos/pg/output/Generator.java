@@ -21,6 +21,8 @@ import dev.efekos.pg.data.color.ColorThemeManager;
 import dev.efekos.pg.resource.Resource;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import dev.efekos.pg.util.LocaleHelper;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -51,7 +53,10 @@ public interface Generator {
         file.createNewFile();
 
         FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
-        writer.write(ColorThemeManager.doReplacement(fileString).replaceAll("%%footer%%",ResourceManager.getResource(Resources.HTML_FOOTER)));
+        writer.write(ColorThemeManager.doReplacement(fileString)
+                .replaceAll("%%footer%%",ResourceManager.getResource(Resources.HTML_FOOTER))
+                .replaceAll("%%navbar%%",ResourceManager.getResource(Resources.HTML_NAVBAR).replaceAll("%%language%%", LocaleHelper.generateLanguageSelector()))
+        );
         writer.flush();
         writer.close();
 
@@ -67,7 +72,10 @@ public interface Generator {
 
         FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
 
-        writer.write(ColorThemeManager.doReplacement(content.replaceAll("%%footer%%", ResourceManager.getResource(Resources.HTML_FOOTER))));
+        writer.write(ColorThemeManager.doReplacement(content
+                .replaceAll("%%footer%%", ResourceManager.getResource(Resources.HTML_FOOTER))
+                .replaceAll("%%navbar%%",ResourceManager.getResource(Resources.HTML_NAVBAR).replaceAll("%%language%%", LocaleHelper.generateLanguageSelector()))
+        ));
         writer.flush();
         writer.close();
         Main.DEBUG_LOGGER.success("Wrote file: ", logPath);

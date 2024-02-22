@@ -149,7 +149,8 @@
   },
   "en": {
     "name": "English",
-    "nativeName": "English"
+    "nativeName": "English",
+    "localization": true
   },
   "eo": {
     "name": "Esperanto",
@@ -657,7 +658,8 @@
   },
   "tr": {
     "name": "Turkish",
-    "nativeName": "Türkçe"
+    "nativeName": "Türkçe",
+    "localization": true
   },
   "ts": {
     "name": "Tsonga",
