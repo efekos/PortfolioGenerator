@@ -27,7 +27,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public interface Text {
-    public static String translated(String key, int nesting,String... arguments) {
+    public static String translated(String key, String... arguments) {
         StringBuilder builder = new StringBuilder();
 
         builder.append("<span class=\"key\"")
@@ -54,20 +54,6 @@ public interface Text {
         });
 
         builder.append(result).append("</span>");
-
-        return builder.toString();
-    }
-
-    public static String translated(String key,String... arguments){
-        return translated(key,0,arguments);
-    }
-
-    private static String buildQuotes(int amount){
-        StringBuilder builder = new StringBuilder();
-
-        for (int i = 0; i < amount+1; i++) {
-            builder.append("&quot;");
-        }
 
         return builder.toString();
     }

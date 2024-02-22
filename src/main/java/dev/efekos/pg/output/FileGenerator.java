@@ -102,10 +102,7 @@ public class FileGenerator implements Generator {
 
         if (contactInfo.isIncludeSocials()) {
             file = file.replaceAll(
-                    "%%social%%", """
-                            <h2>You can use my social media accounts as well</h2>
-                            %%socialElements%%
-                            """
+                    "%%social%%", "<h2>"+Text.translated("contact.socials")+"</h2> \n\n%%socialElements%%"
             );
         } else file = file.replaceAll("%%social%%", "");
 

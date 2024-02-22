@@ -21,18 +21,18 @@ const versions = [];
 const elementt = document.getElementById("releases");
 
 const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    "month.jan",
+    "month.feb",
+    "month.mar",
+    "month.apr",
+    "month.may",
+    "month.jun",
+    "month.jul",
+    "month.aug",
+    "month.sep",
+    "month.oct",
+    "month.nov",
+    "month.dec"
 ];
 
 fetch(url).then(res => {
@@ -62,11 +62,11 @@ fetch(url).then(res => {
                     <span class="title">${element.version}</span>
                 </div>
                 <div>
-                    <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${months[date.getMonth()]} ${date.getDate()}${getThing(date.getDate())}, ${date.getFullYear()}</span>
+                    <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${getKey("date.format",getKey(months[date.getMonth()]),getThing(date.getDate()),date.getFullYear())}</span>
                 </div>
                 ${element.link ? `
                  <div>
-                    <a href="${element.link}" target="_blank"><button class="btn btn-download">See More<img src="../../images/icon/external.svg" width="24"/></button></a>
+                    <a href="${element.link}" target="_blank"><button class="btn btn-download">${getKey("project.version.more")}<img src="../../images/icon/external.svg" width="24"/></button></a>
                 </div>
                 `:""}
             </div>
@@ -86,8 +86,8 @@ function getThing(day) {
 
     const stringDay = day+"";
 
-    if(stringDay.endsWith("1")) return "st";
-    if(stringDay.endsWith("2")) return "nd";
-    if(stringDay.endsWith("3")) return "rd";
-    return "th";
+    if(stringDay.endsWith("1")) return getKey("day.first",day);
+    if(stringDay.endsWith("2")) return getKey("day.second",day);
+    if(stringDay.endsWith("3")) return getKey("day.third",day);
+    return getKey("day.other",day);
 }

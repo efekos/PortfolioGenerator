@@ -18,15 +18,17 @@ var langUrl = "./lang/%LANG%.json";
 var currentLang = {};
 
 async function loadLang() {
-    const lang = localStorage.getItem(`pgen-lang-36764784`) ?? 'en';
-    const res = await fetch(langUrl.replace("%LANG%", lang)).then(res => res.json());
+    try {
+        const lang = localStorage.getItem(`pgen-lang-36764784`) ?? 'en';
+        const res = await fetch(langUrl.replace("%LANG%", lang)).then(res => res.json());
 
-    currentLang = res;
-    console.log("Successfully loaded language!")
+        currentLang = res;
+        console.log("Successfully loaded language!")
+    } catch (ignored){}
 }
 
 function getKey(key,...args){
-    if(!key in currentLang) throw Error("Unknown translation key: "+key);
+    if(!(key in currentLang)) throw Error("Unknown translation key: "+key);
 
 
     var final = currentLang[key];

@@ -16,18 +16,18 @@
 
 package dev.efekos.pg.data.type;
 
+import dev.efekos.pg.util.Text;
+
 public enum EducationEntryType {
-    SCHOOL("school", "School"),
-    UNIVERSITY("university", "University"),
-    DEGREE("degree", "Degree"),
-    COURSE("course", "Course");
+    SCHOOL("school"),
+    UNIVERSITY("university"),
+    DEGREE("degree"),
+    COURSE("course");
 
     private final String id;
-    private final String display;
 
-    EducationEntryType(String id, String display) {
+    EducationEntryType(String id) {
         this.id = id;
-        this.display = display;
     }
 
     public String getId() {
@@ -35,6 +35,6 @@ public enum EducationEntryType {
     }
 
     public String getDisplay() {
-        return display;
+        return Text.translated("education."+id);
     }
 }

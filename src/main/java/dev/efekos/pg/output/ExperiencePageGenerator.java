@@ -22,6 +22,7 @@ import dev.efekos.pg.data.schema.ExperienceInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import dev.efekos.pg.util.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class ExperiencePageGenerator implements Generator {
         String file = ResourceManager.getResource(Resources.HTML_EXPERIENCE_PAGE)
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%cc%%", currentJobElement)
-                .replaceAll("%%ch%%", !currentJobElement.isEmpty() ? "<h2>Job History</h2><br>" : "")
+                .replaceAll("%%ch%%", !currentJobElement.isEmpty() ? "<h2>"+ Text.translated("title.experience.history") +"</h2><br>" : "")
                 .replaceAll("%%name%%", generalInfo.getName());
 
         writeFile(binPath + "\\experience.html", file);
@@ -80,7 +81,7 @@ public class ExperiencePageGenerator implements Generator {
                     .replaceAll("%%pstart%%", entry.getFrom().toString())
                     .replaceAll("%%pend%%", entry.getTo().toString());
 
-            currentJobElement = "<br><h2>Current Job</h2><br>" + element + "<br><br>";
+            currentJobElement = "<br><h2>"+Text.translated("title.experience.current")+"</h2><br>" + element + "<br><br>";
         }
         Main.DEBUG_LOGGER.success("Generated elements");
     }

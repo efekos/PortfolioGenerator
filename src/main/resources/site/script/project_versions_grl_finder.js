@@ -14,6 +14,8 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+
+
 const url = "https://api.github.com/repos/%%repo%%/releases?per_page=15";
 
 
@@ -26,18 +28,18 @@ const lastPageElement = document.getElementById("lastBtn");
 const firstPageElement = document.getElementById("firstBtn");
 
 const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    "month.jan",
+    "month.feb",
+    "month.mar",
+    "month.apr",
+    "month.may",
+    "month.jun",
+    "month.jul",
+    "month.aug",
+    "month.sep",
+    "month.oct",
+    "month.nov",
+    "month.dec"
 ];
 
 let prevPage = 0;
@@ -111,14 +113,14 @@ function refreshPage(page) {
 
         res.body.forEach(element => {
 
-            var vrt = res.body.prerelease ? { id: "prerelease", name: "Pre-Release" } : { id: "release", name: "Release" };
+            var vrt = res.body.prerelease ? { id: "prerelease", name: getKey("project.version.pre_release") } : { id: "release", name: getKey("project.version.release") };
             const name = element.name.toLowerCase();
             const tagName = element.tag_name.toLowerCase();
-            if (name.includes("beta")||tagName.includes("beta")) vrt = { id: "beta", name: "Beta" };
-            if (name.includes("alpha")||tagName.includes("alpha")) vrt = { id: "alpha", name: "Alpha" };
-            if (name.includes("prototype")||tagName.includes("prototype")) vrt = { id: "prototype", name: "Prototype" };
-            if (name.includes("release candidate")||tagName.includes("release candidate")) vrt = { id: "rc", name: "Release Candidate" };
-            if (name.includes("snapshot")||tagName.includes("snapshot")) vrt = { id: "snapshot", name: "Snapshot" };
+            if (name.includes("beta")||tagName.includes("beta")) vrt = { id: "beta", name: getKey("project.version.beta") };
+            if (name.includes("alpha")||tagName.includes("alpha")) vrt = { id: "alpha", name: getKey("project.version.alpha") };
+            if (name.includes("prototype")||tagName.includes("prototype")) vrt = { id: "prototype", name: getKey("project.version.prototype") };
+            if (name.includes("release candidate")||tagName.includes("release candidate")) vrt = { id: "rc", name: getKey("project.version.release_candidate") };
+            if (name.includes("snapshot")||tagName.includes("snapshot")) vrt = { id: "snapshot", name: getKey("project.version.snapshot") };
 
             const date = new Date();
             date.setTime(Date.parse(element.published_at));
@@ -132,10 +134,10 @@ function refreshPage(page) {
                         <span class="title">${element.tag_name}</span>
                     </div>
                     <div>
-                        <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${months[date.getMonth()]} ${date.getDate()}${getThing(date.getDate())}, ${date.getFullYear()}</span>
+                        <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt"> ${getKey("date.format",getKey(months[date.getMonth()]),getThing(date.getDate()),date.getFullYear())}</span>
                     </div>
                     <div>
-                        <a href="${element.html_url}" target="_blank"><button class="btn btn-download">See More<img src="../../images/icon/external.svg" width="24"/></button></a>
+                        <a href="${element.html_url}" target="_blank"><button class="btn btn-download">${getKey("project.version.more")}<img src="../../images/icon/external.svg" width="24"/></button></a>
                     </div>
                 </div>
                 `
@@ -153,10 +155,10 @@ function getThing(day) {
 
     const stringDay = day+"";
 
-    if(stringDay.endsWith("1")) return "st";
-    if(stringDay.endsWith("2")) return "nd";
-    if(stringDay.endsWith("3")) return "rd";
-    return "th";
+    if(stringDay.endsWith("1")) return getKey("day.first",day);
+    if(stringDay.endsWith("2")) return getKey("day.second",day);
+    if(stringDay.endsWith("3")) return getKey("day.third",day);
+    return getKey("day.other",day);
 }
 
 refreshPage(1);
