@@ -53,10 +53,10 @@
 
 <nav>
     <ul class="nav">
-        <li id="selected"><a href="index.html"><span class="key" id="key-project.description">Description</span></a></li>
+        <li><a href="index.html"><span class="key" id="key-project.description">Description</span></a></li>
         <li><a href="./gallery.html"><span class="key" id="key-project.gallery">Gallery</span></a></li>
         <li><a href="./changelog.html"><span class="key" id="key-project.changelog">Changelog</span></a></li>
-        <li><a href="./versions.html"><span class="key" id="key-project.versions">Versions</span></a></li>
+        <li id="selected"><a href="./versions.html"><span class="key" id="key-project.versions">Versions</span></a></li>
         <li><a href="./license.html"><span class="key" id="key-project.license">License</span></a></li>
         <li><a href="../../projects.html"><span class="key" id="key-button.back">Back</span></a></li>
     </ul>
@@ -73,6 +73,14 @@
 <script src="../../lib/prism.js"></script>
 %%scripts%%
 <script src="../../language_finder.js"></script>
+<script>
+    async function a(){
+        langUrl = "../../lang/%LANG%.json";
+        await loadLang();
+        refreshLangKeys();
+    }
+    a();
+</script>
 </body>
 
 </html>

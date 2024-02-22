@@ -23,6 +23,7 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 import dev.efekos.pg.util.DateHelper;
+import dev.efekos.pg.util.Text;
 
 import java.util.regex.Pattern;
 
@@ -168,6 +169,6 @@ public class DayDate implements JsonSchema,Date {
 
     @Override
     public String toString() {
-        return DateHelper.monthToString(month)+" "+day+DateHelper.getThing(day) + ", " + year;
+        return Text.translated("date.format",DateHelper.monthToString(month),DateHelper.getThing(day),year+"");
     }
 }

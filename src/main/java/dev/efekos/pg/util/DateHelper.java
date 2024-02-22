@@ -19,27 +19,26 @@ package dev.efekos.pg.util;
 public class DateHelper {
     public static String monthToString(int month) {
         return switch (month) {
-            default -> "jan";
-            case 1 -> "January";
-            case 2 -> "February";
-            case 3 -> "March";
-            case 4 -> "April";
-            case 5 -> "May";
-            case 6 -> "June";
-            case 7 -> "July";
-            case 8 -> "August";
-            case 9 -> "September";
-            case 10 -> "October";
-            case 11 -> "November";
-            case 12 -> "December";
+            default -> Text.translated("month.jan");
+            case 2 -> Text.translated("month.feb");
+            case 3 -> Text.translated("month.mar");
+            case 4 -> Text.translated("month.apr");
+            case 5 -> Text.translated("month.may");
+            case 6 -> Text.translated("month.jun");
+            case 7 -> Text.translated("month.jul");
+            case 8 -> Text.translated("month.aug");
+            case 9 -> Text.translated("month.sep");
+            case 10 -> Text.translated("month.oct");
+            case 11 -> Text.translated("month.nov");
+            case 12 -> Text.translated("month.dec");
         };
     }
 
     public static String getThing(int day) {
         String stringDay = day + "";
-        if (stringDay.endsWith("1")) return "st";
-        if (stringDay.endsWith("2")) return "nd";
-        if (stringDay.endsWith("3")) return "rd";
-        return "th";
+        if (stringDay.endsWith("1")) return Text.translated("day.first",day+"");
+        if (stringDay.endsWith("2")) return Text.translated("day.second",day+"");
+        if (stringDay.endsWith("3")) return Text.translated("day.third",day+"");
+        return Text.translated("day.other",day+"");
     }
 }

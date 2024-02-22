@@ -14,6 +14,7 @@
   "button.contact": "Contact",
   "button.education": "Education",
   "button.experience": "Experience",
+  "date.format": "{0} {1}, {2}",
   "button.projects": "Projects",
   "certificate.achieve": "Achieve Date: {0}",
   "contact.email": "Email Address",

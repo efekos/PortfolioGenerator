@@ -48,5 +48,13 @@
 %%footer%%
 
 <script src="../language_finder.js"></script>
+<script>
+    async function a(){
+        langUrl = "../lang/%LANG%.json";
+        await loadLang();
+        refreshLangKeys();
+    }
+    a();
+</script>
 </body>
 </html>

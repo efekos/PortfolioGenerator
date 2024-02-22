@@ -13,13 +13,13 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-const url = "./lang/%LANG%.json";
+var langUrl = "./lang/%LANG%.json";
 
 var currentLang = {};
 
 async function loadLang() {
     const lang = localStorage.getItem(`pgen-lang-36764784`) ?? 'en';
-    const res = await fetch(url.replace("%LANG%", lang)).then(res => res.json());
+    const res = await fetch(langUrl.replace("%LANG%", lang)).then(res => res.json());
 
     currentLang = res;
     console.log("Successfully loaded language!")

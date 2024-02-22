@@ -20,13 +20,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public interface Text {
-    public static String translated(String key, String... arguments) {
+    public static String translated(String key, int nesting,String... arguments) {
         StringBuilder builder = new StringBuilder();
 
         builder.append("<span class=\"key\"")
@@ -36,12 +37,13 @@ public interface Text {
 
 
         for (int i = 0; i < Arrays.asList(arguments).size(); i++) {
-            builder.append(" arg").append(i).append("=\"").append(arguments[i]).append("\"");
+            builder.append(" arg").append(i).append("=\"").append(StringEscapeUtils.escapeHtml4(arguments[i])).append("\""); // this is the nesting I tried. just spamming quotes
         } // <span class="key" id="key-$key" arg0="$arguments[0]"... arg10="$arguments[10]"
 
         JsonElement defaultLang = JsonParser.parseString(ResourceManager.getResource(Resources.JSON_LANGUAGE_EN));
 
         builder.append(">");
+        if(!defaultLang.getAsJsonObject().has(key)) throw new IllegalArgumentException("Unknown translation key: "+key);
         String defaultText = defaultLang.getAsJsonObject().get(key).getAsString();
 
         String result = Pattern.compile("\\{[0-9]+}").matcher(defaultText).replaceAll(matchResult -> {
@@ -52,6 +54,20 @@ public interface Text {
         });
 
         builder.append(result).append("</span>");
+
+        return builder.toString();
+    }
+
+    public static String translated(String key,String... arguments){
+        return translated(key,0,arguments);
+    }
+
+    private static String buildQuotes(int amount){
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < amount+1; i++) {
+            builder.append("&quot;");
+        }
 
         return builder.toString();
     }

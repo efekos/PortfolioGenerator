@@ -44,7 +44,11 @@ public class EducationStartEvent implements TimelineEvent{
 
     @Override
     public String getTitle() {
-        return Text.translated("timeline.education.start",name);
+        return switch (entryType){
+            case COURSE -> Text.translated("timeline.education.start.course",name);
+            case DEGREE -> Text.translated("timeline.education.start.degree",name);
+            case SCHOOL,UNIVERSITY -> Text.translated("timeline.education.start.school",name);
+        };
     }
 
     @Override

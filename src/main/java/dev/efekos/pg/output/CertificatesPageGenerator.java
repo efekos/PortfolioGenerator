@@ -21,6 +21,7 @@ import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import dev.efekos.pg.util.Text;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -96,7 +97,7 @@ public class CertificatesPageGenerator implements Generator {
                     .replaceAll("%%name%%", info.getName())
                     .replaceAll("%%cname%%", certificate.getDisplay().getTitle())
                     .replaceAll("%%cdescription%%", certificate.getDisplay().getDescription())
-                    .replaceAll("%%cdate%%", certificate.getWhen().toString())
+                    .replaceAll("%%cdate%%", Text.translated("certificate.achieve",certificate.getWhen().toString()))
                     .replaceAll("%%cipath%%", imagePath.replaceAll("\\\\", "/"))
                     .replaceAll("%cbuttons%", String.join("", imageButtonElements));
 
