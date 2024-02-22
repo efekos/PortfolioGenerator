@@ -33,33 +33,33 @@
     <br/><br/><br/>
     <div class="center">
         <a href="certificates.html">
-            <button class="btn btn-blue">Certificates</button>
+            <button class="btn btn-blue"><span class="key" id="key-button.certificates">Certificates</span></button>
         </a>
         <a href="education.html">
-            <button class="btn btn-red">Education</button>
+            <button class="btn btn-red"><span class="key" id="key-button.education">Education</span></button>
         </a>
         <a href="experience.html">
-            <button class="btn btn-orange">Experience</button>
+            <button class="btn btn-orange"><span class="key" id="key-button.experience">Experience</span></button>
         </a>
         <a href="projects.html">
-            <button class="btn btn-green">Projects</button>
+            <button class="btn btn-green"><span class="key" id="key-button.projects">Projects</span></button>
         </a>
         <a href="bio.html">
-            <button class="btn btn-blue">Bio</button>
+            <button class="btn btn-blue"><span class="key" id="key-button.biography">Bio</span></button>
         </a>
         <a href="contact.html">
-            <button class="btn btn-blue">Contact</button>
+            <button class="btn btn-blue"><span class="key" id="key-button.contact">Contact</span></button>
         </a>
 
         <br><br>
 
         %%socialElements%%
 
-        <h1>About</h1>
+        <h1><span class="key" id="key-title.about">About</span></h1>
 
         %%aboutEntries%%
 
-        <h1 id="timeline">Timeline</h1>
+        <h1 id="timeline"><span class="key" id="key-title.timeline">Timeline</span></h1>
     </div>
 
     <ul style="list-style: none">
@@ -67,7 +67,7 @@
     </ul>
 
     %%footer%%
-    <a href="#timeline" class="top btn btn-blue">Back to Top <img width="24" src="./images/icon/top.svg"
+    <a href="#timeline" class="top btn btn-blue"><span class="key" id="key-button.back_to_top">Back to Top</span> <img width="24" src="./images/icon/top.svg"
                                                                   style="vertical-align: middle"></a>
     <style>
         .center {
@@ -118,6 +118,7 @@
             display: inline-block;
         }
     </style>
+    <script src="./language_finder.js"></script>
     <script src="./age_calculator.js"></script>
 </div>
 </body>

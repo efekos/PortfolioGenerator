@@ -75,8 +75,12 @@
   "timeline.job.end": "{0} yerinde çalışmayı bıraktı",
   "timeline.job.start": "{1} olarak {0} yerinde çalışmaya başladı",
   "timeline.project": "{0} projesini yayınladı",
-  "timeline.school.end": "{0}'ndan mezun oldu",
-  "timeline.school.start": "{0}'na başladı",
+  "timeline.education.end.school": "{0} adlı okuldan mezun oldu",
+  "timeline.education.start.school": "{0} adlı okula başladı",
+  "timeline.education.start.degree": "{0} adlı derece programına katıldı",
+  "timeline.education.start.course": "{0} adlı kursa başladı",
+  "timeline.education.end.degree": "{0} derecesini kazandı",
+  "timeline.education.end.course": "{0} kursunu bitirdi",
   "title.about": "Hakkında",
   "title.biography": "Biyografi",
   "title.certificates": "Sertifikalar",
@@ -86,5 +90,6 @@
   "title.experience.current": "Geçerli İş",
   "title.experience.history": "Önceki İşler",
   "title.project.license": "{0} Lisansı",
-  "title.projects": "Projeler"
+  "title.projects": "Projeler",
+  "title.timeline": "Zaman Akışı"
 }

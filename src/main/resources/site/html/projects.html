@@ -28,14 +28,14 @@
 
 <body>
 <div style="text-align: center;">
-    <h1>Projects</h1>
+    <h1><span class="key" id="key-title.projects">Projects</span></h1>
 </div>
 
 <div class="search-bar">
     <input type="text" id="search" placeholder="Search..." oninput="onInputChange(event)" class="search-bar-input">
 </div>
 <br>
-Filter by tags:
+<span class="key" id="key-projects.filter">Filter by tag:</span>
 <div id="tagFilters">
 </div>
 
@@ -46,7 +46,7 @@ Filter by tags:
 <br><br><br>
 <div style="text-align: center;">
     <a href="index.html">
-        <button class="btn btn-blue">Back</button>
+        <button class="btn btn-blue"><span class="key" id="key-button.back">Back</span></button>
     </a>
 </div>
 
@@ -54,6 +54,7 @@ Filter by tags:
 %%footer%%
 
 <script src="./projects_search.js"></script>
+<script src="./language_finder.js"></script>
 </body>
 
 </html>

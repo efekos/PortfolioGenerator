@@ -19,6 +19,7 @@ package dev.efekos.pg.data.timeline;
 import dev.efekos.pg.data.schema.Date;
 import dev.efekos.pg.data.schema.MonthDate;
 import dev.efekos.pg.data.type.EducationEntryType;
+import dev.efekos.pg.util.Text;
 
 public class EducationStartEvent implements TimelineEvent{
     private final String name;
@@ -43,7 +44,7 @@ public class EducationStartEvent implements TimelineEvent{
 
     @Override
     public String getTitle() {
-        return "Started "+name;
+        return Text.translated("timeline.education.start",name);
     }
 
     @Override

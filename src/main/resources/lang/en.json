@@ -30,7 +30,7 @@
   "education.school": "School",
   "education.university": "University",
   "footer.contributed": "Also contributed by: {0}",
-  "footer.main": "This website is brought to you by {0}\nwith ♥ and work.",
+  "footer.main": "This website is brought to you by {0}\nwith ♥.",
   "footer.version": "version {0}",
   "month.apr": "April",
   "month.aug": "August",
@@ -75,8 +75,12 @@
   "timeline.job.end": "Stopped working at {0}",
   "timeline.job.start": "Started working at {0} as a {1}",
   "timeline.project": "Released {0}",
-  "timeline.school.end": "Graduated from {0}",
-  "timeline.school.start": "Started {0}",
+  "timeline.education.end.school": "Graduated from {0}",
+  "timeline.education.start.school": "Started going to {0}",
+  "timeline.education.start.degree": "Joined {0} degree program",
+  "timeline.education.start.course": "Attended {0} course",
+  "timeline.education.end.degree": "Earned {0}",
+  "timeline.education.end.course": "Finished {0}",
   "title.about": "About",
   "title.biography": "Biography",
   "title.certificates": "Certificates",
@@ -86,5 +90,6 @@
   "title.experience.current": "Current Job",
   "title.experience.history": "Job History",
   "title.project.license": "{0} License",
-  "title.projects": "Projects"
+  "title.projects": "Projects",
+  "title.timeline": "Timeline"
 }

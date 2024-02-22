@@ -18,6 +18,7 @@ package dev.efekos.pg.data.timeline;
 
 import dev.efekos.pg.data.schema.Date;
 import dev.efekos.pg.data.schema.DayDate;
+import dev.efekos.pg.util.Text;
 
 public class ProjectReleaseEvent implements TimelineEvent{
     private final String projectName;
@@ -35,7 +36,7 @@ public class ProjectReleaseEvent implements TimelineEvent{
 
     @Override
     public String getTitle() {
-        return "Released "+projectName;
+        return Text.translated("timeline.project",projectName);
     }
 
     @Override

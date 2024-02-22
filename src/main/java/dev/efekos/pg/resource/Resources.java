@@ -125,6 +125,8 @@ public class Resources {
     public static final Resource JSON_VALID_LOCALES = new Resource("/valid_locales.json");
     public static final Resource JSON_CSS_COLOR_NAMES = new Resource("/css_color_names.json");
     public static final Resource JSON_DEFAULT_COLOR_THEME = new Resource("/site/default_color_theme.json");
+    public static final Resource JSON_LANGUAGE_EN = new Resource("/lang/en.json");
+    public static final Resource JSON_LANGUAGE_TR = new Resource("/lang/tr.json");
 
     private static final List<Resource> list = new ArrayList<>();
 

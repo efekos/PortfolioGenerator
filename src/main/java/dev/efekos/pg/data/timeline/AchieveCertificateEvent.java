@@ -19,6 +19,7 @@ package dev.efekos.pg.data.timeline;
 import dev.efekos.pg.data.schema.Date;
 import dev.efekos.pg.data.schema.DayDate;
 import dev.efekos.pg.data.type.CertificateType;
+import dev.efekos.pg.util.Text;
 
 public class AchieveCertificateEvent implements TimelineEvent{
     private final DayDate when;
@@ -44,7 +45,7 @@ public class AchieveCertificateEvent implements TimelineEvent{
 
     @Override
     public String getTitle() {
-        return "Achieved "+certificateName;
+        return Text.translated("timeline.certificate",certificateName);
     }
 
     @Override

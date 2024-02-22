@@ -27,17 +27,17 @@
 <div id="root">
 
     <div style="text-align: center">
-        <h1>Contact Information</h1>
+        <h1><span class="key" id="key-title.contact">Contact Information</span></h1>
     </div>
 
     <div class="entry">
         <div>
-            <span class="title">Email Address</span>
+            <span class="title"><span class="key" id="key-contact.email">Email Address</span></span>
             <span class="alt" style="margin-left: 0.5rem;">%%mail%%</span>
         </div>
         <div style="margin-left: 1rem;">
             <a href="mailto:%%mail%%" target="_blank">
-                <button class="btn btn-download">Send an Email <img src="./images/icon/external.svg" width="20"/>
+                <button class="btn btn-download"><span class="key" id="key-contact.email.send">Send an Email</span> <img src="./images/icon/external.svg" width="20"/>
                 </button>
             </a>
         </div>
@@ -45,7 +45,7 @@
 
     <div class="entry">
         <div>
-            <span class="title">Phone Number</span>
+            <span class="title"><span class="key" id="key-contact.phone">Phone Number</span></span>
             <span class="alt">%%phone%%</span>
         </div>
     </div>
@@ -58,7 +58,7 @@
 
         <br><br>
         <a href="index.html">
-            <button class="btn btn-blue">Back</button>
+            <button class="btn btn-blue"><span class="key" id="key-button.back">Back</span></button>
         </a>
     </div>
 
@@ -119,6 +119,7 @@
             right: 1rem;
         }
     </style>
+    <script src="./language_finder.js"></script>
     <script src="./expandable_entries.js"></script>
 </div>
 </body>

@@ -26,6 +26,7 @@ import dev.efekos.pg.resource.Resource;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
 import dev.efekos.pg.util.Locale;
+import dev.efekos.pg.util.Text;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -67,14 +68,14 @@ public class FileGenerator implements Generator {
                 .replaceAll("%%welcomer%%", info.getWelcomer())
                 .replaceAll("%%aboutEntries%%", "<div class=\"entries\">" + String.join("",
                         Arrays.asList(
-                                generateAboutEntry("birth", "Age", "", true),
-                                generateAboutEntry("language", "Native Language", info.getNativeLanguage().name(), false),
-                                generateAboutEntry("language", "Known Languages", String.join(", ", info.getKnownLanguages().stream().map(Locale::name).toList()), false),
-                                generateAboutEntry("university", "Certificates Earned", context.certificates.size() + "", false),
-                                generateAboutEntry("project", "Projects Made", context.projects.size() + "", false),
-                                generateAboutEntry("briefcase", "Jobs Worked", context.experienceInfo.getEntries().size() + "", false),
-                                generateAboutEntry("letter", "Email Address", context.contactInfo.getEmail(), false),
-                                generateAboutEntry("phone", "Phone Number", context.contactInfo.getNumber(), false)
+                                generateAboutEntry("birth", Text.translated("about.age"), "", true),
+                                generateAboutEntry("language", Text.translated("about.lang_native"), info.getNativeLanguage().name(), false),
+                                generateAboutEntry("language", Text.translated("about.lang_known"), String.join(", ", info.getKnownLanguages().stream().map(Locale::name).toList()), false),
+                                generateAboutEntry("university", Text.translated("about.certificates"), context.certificates.size() + "", false),
+                                generateAboutEntry("project", Text.translated("about.projects"), context.projects.size() + "", false),
+                                generateAboutEntry("briefcase", Text.translated("about.jobs"), context.experienceInfo.getEntries().size() + "", false),
+                                generateAboutEntry("letter", Text.translated("about.email"), context.contactInfo.getEmail(), false),
+                                generateAboutEntry("phone", Text.translated("about.phone"), context.contactInfo.getNumber(), false)
                         )
                 ) + "</div>")
                 .replaceAll("%%timeline%%", String.join("", timelineElements))
@@ -281,5 +282,12 @@ public class FileGenerator implements Generator {
         copyResource(Resources.STYLE_LIBRARY_PRISM, "\\lib\\prism.css", binPath);
 
         Main.LOGGER.success("Copied library files");
+    }
+
+    public void copyLanguageFiles() throws IOException {
+        Main.LOGGER.info("Copying language files");
+        copyResource(Resources.JSON_LANGUAGE_EN,"\\lang\\en.json",binPath);
+        copyResource(Resources.JSON_LANGUAGE_TR,"\\lang\\tr.json",binPath);
+        Main.LOGGER.info("Copied language files");
     }
 }

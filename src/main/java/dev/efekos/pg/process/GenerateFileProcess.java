@@ -39,6 +39,7 @@ public class GenerateFileProcess implements Process {
         generator.generateProjectsPage(context.generalInfo, context.projects);
         generator.generateContactPage(context.generalInfo, context.contactInfo);
         generator.copyLibraries();
+        generator.copyLanguageFiles();
 
         // copying
         generator.copyIcons(context.generalInfo);

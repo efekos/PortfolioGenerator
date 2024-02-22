@@ -18,6 +18,7 @@ package dev.efekos.pg.data.timeline;
 
 import dev.efekos.pg.data.schema.Date;
 import dev.efekos.pg.data.schema.MonthDate;
+import dev.efekos.pg.util.Text;
 
 public class JobStartEvent implements TimelineEvent{
     private final String company;
@@ -36,7 +37,7 @@ public class JobStartEvent implements TimelineEvent{
     }
 
     public String getTitle() {
-        return "Started Working at "+ company +" as a "+ pos;
+        return Text.translated("timeline.job.start",company,pos);
     }
 
     @Override
