@@ -89,8 +89,12 @@
   "title.education": "Eğitim Bilgisi",
   "title.experience": "Deneyim Bilgisi",
   "title.experience.current": "Geçerli İş",
+  "footer.translation": "Türkçe diline {0} tarafından çevrildi.",
   "title.experience.history": "Önceki İşler",
   "title.project.license": "{0} Lisansı",
   "title.projects": "Projeler",
-  "title.timeline": "Zaman Akışı"
+  "title.timeline": "Zaman Akışı",
+  "contribution.translation": "Translator",
+  "contribution.support": "Supporter",
+  "contribution.code": "Contributor"
 }

@@ -52,6 +52,7 @@ public class Main {
 
     private static final List<Process> processList = Arrays.asList(
             new ReadResourcesProcess(),
+            new ReadContributionDataProcess(),
             new LoadLocalesProcess(),
             new SetupBinFolderProcess(),
             new GrabDataProcess(),

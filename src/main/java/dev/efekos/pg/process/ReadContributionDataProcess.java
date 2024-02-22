@@ -16,21 +16,36 @@
 
 package dev.efekos.pg.process;
 
-import dev.efekos.pg.data.schema.*;
-import dev.efekos.pg.data.timeline.TimelineEvent;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import dev.efekos.pg.data.schema.Contributor;
+import dev.efekos.pg.resource.ResourceManager;
+import dev.efekos.pg.resource.Resources;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProcessContext {
-    public EducationInfo educationInfo;
-    public GeneralInfo generalInfo;
-    public ExperienceInfo experienceInfo;
-    public String binPath;
-    public ContactInfo contactInfo;
-    public List<Certificate> certificates;
-    public List<Project> projects;
-    public TagColorInfo tagColorInfo;
-    public List<TimelineEvent> collectedTimeline;
-    public String dataPath;
-    public List<Contributor> contributors;
+public class ReadContributionDataProcess implements Process{
+    @Override
+    public String getName() {
+        return "Read contributors";
+    }
+
+    @Override
+    public void init(ProcessContext context) throws Exception {
+        JsonArray array = JsonParser.parseString(ResourceManager.getResource(Resources.JSON_CONTRIBUTORS)).getAsJsonArray();
+
+        List<Contributor> contributors = new ArrayList<>();
+
+        for (JsonElement element : array) {
+            Contributor contributor = new Contributor();
+
+            contributor.readJson(element,null);
+            contributors.add(contributor);
+        }
+
+        context.contributors = contributors;
+    }
 }

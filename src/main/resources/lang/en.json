@@ -30,7 +30,8 @@
   "education.degree": "Degree",
   "education.school": "School",
   "education.university": "University",
-  "footer.contributed": "Also contributed by: {0}",
+  "footer.contributed": "Contributed by: {0}",
+  "footer.translation": "Default English language by: {0}",
   "footer.main": "This website is brought to you by {0}\nwith ♥.",
   "footer.version": "version {0}",
   "month.apr": "April",
@@ -92,5 +93,8 @@
   "title.experience.history": "Job History",
   "title.project.license": "{0} License",
   "title.projects": "Projects",
-  "title.timeline": "Timeline"
+  "title.timeline": "Timeline",
+  "contribution.translation": "Translator",
+  "contribution.code": "Contributor",
+  "contribution.owner": "Project Owner"
 }
