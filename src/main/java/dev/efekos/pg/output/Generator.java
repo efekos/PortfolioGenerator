@@ -44,7 +44,7 @@ public interface Generator {
                 .toLowerCase(Locale.ROOT);
     }
 
-    default void copyResource(Resource resource, String outputLocation, String binPath) throws IOException {
+    default void copyResource(Resource resource, String outputLocation, String binPath,String footer) throws IOException {
         Main.DEBUG_LOGGER.info("Copying resource: " + resource.getPathName());
 
         String fileString = ResourceManager.getResource(resource);
@@ -54,7 +54,7 @@ public interface Generator {
 
         FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
         writer.write(ColorThemeManager.doReplacement(fileString)
-                .replaceAll("%%footer%%",ResourceManager.getResource(Resources.HTML_FOOTER))
+                .replaceAll("%%footer%%",footer)
                 .replaceAll("%%navbar%%",ResourceManager.getResource(Resources.HTML_NAVBAR).replaceAll("%%language%%", LocaleHelper.generateLanguageSelector()))
         );
         writer.flush();
@@ -63,7 +63,7 @@ public interface Generator {
         Main.DEBUG_LOGGER.success("Copied resource: " + resource.getPathName() + " to " + outputLocation.replaceAll("\\\\", "/"));
     }
 
-    default void writeFile(String path, String content) throws IOException {
+    default void writeFile(String path, String content,String footer) throws IOException {
         String logPath = path.replaceAll("/", "\\").replace(Main.getMainPath().toString(), "").replaceAll("\\\\", "/");
         Main.DEBUG_LOGGER.info("Writing file: ", logPath);
         File file = new File(path);
@@ -73,7 +73,7 @@ public interface Generator {
         FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8);
 
         writer.write(ColorThemeManager.doReplacement(content
-                .replaceAll("%%footer%%", ResourceManager.getResource(Resources.HTML_FOOTER))
+                .replaceAll("%%footer%%", footer)
                 .replaceAll("%%navbar%%",ResourceManager.getResource(Resources.HTML_NAVBAR).replaceAll("%%language%%", LocaleHelper.generateLanguageSelector()))
         ));
         writer.flush();

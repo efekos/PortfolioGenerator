@@ -33,17 +33,19 @@ public class ProjectVersionPageGenerator implements Generator {
     private final Project project;
     private final String tags;
     private final String binPath;
+    private final String footer;
 
     private static final String PAGINATION_ELEMENT = ResourceManager.getResource(Resources.HTML_PAGINATION_BUTTONS);
     private static final String PROJECT_RELEASES_TEMPLATE = ResourceManager.getResource(Resources.HTML_PROJECT_RELEASES_ELEMENT);
     private final String links;
 
-    public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project, String tags, String binPath, String links) {
+    public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project, String tags, String binPath, String links,String footer) {
         this.generalInfo = generalInfo;
         this.project = project;
         this.tags = tags;
         this.binPath = binPath;
         this.links = links;
+        this.footer = footer;
     }
 
     public String generate() throws IOException {
@@ -78,7 +80,7 @@ public class ProjectVersionPageGenerator implements Generator {
                 String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_MARKDOWN_FINDER)
                         .replaceAll("%%link%%", versionInfo.getFile());
 
-                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script);
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script,footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/versions_finder.js");
             }
             case GITHUB_RELEASES -> {
@@ -91,7 +93,7 @@ public class ProjectVersionPageGenerator implements Generator {
                 String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_GITHUB_RELEASE_FINDER)
                         .replaceAll("%%repo%%", versionInfo.getFile());
 
-                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script);
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script,footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/versions_finder.js");
             }
             case MODRINTH_VERSIONS -> {
@@ -103,7 +105,7 @@ public class ProjectVersionPageGenerator implements Generator {
                 String script = ResourceManager.getResource(Resources.SCRIPT_MODRINTH_RELEASE_FINDER)
                         .replaceAll("%%id%%", versionInfo.getFile());
 
-                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script);
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script,footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
             }
             case JSON -> {
@@ -115,7 +117,7 @@ public class ProjectVersionPageGenerator implements Generator {
                 String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_JSON_FINDER)
                         .replaceAll("%%link%%", versionInfo.getFile());
 
-                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script);
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script,footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
             }
             case SPIGOTMC_VERSIONS -> {
@@ -128,7 +130,7 @@ public class ProjectVersionPageGenerator implements Generator {
                 String script = ResourceManager.getResource(Resources.SCRIPT_SPIGOT_UPDATE_FINDER)
                         .replaceAll("%%id%%", versionInfo.getFile());
 
-                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script);
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script,footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
             }
             default ->

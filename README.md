@@ -1,5 +1,7 @@
 # PortfolioGenerator
 
+[![Crowdin](https://badges.crowdin.net/p-gen/localized.svg)](https://crowdin.com/project/p-gen)
+
 This tool helps you create a website about you with absolutely zero experience of websites! All you need to do is add a
 few JSON files and run this tool.
 

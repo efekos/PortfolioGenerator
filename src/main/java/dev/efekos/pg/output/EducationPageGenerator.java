@@ -31,8 +31,11 @@ import java.util.List;
 public class EducationPageGenerator implements Generator {
     private final String binPath;
 
-    public EducationPageGenerator(String binPath) {
+   private final String footer;
+
+    public EducationPageGenerator(String binPath, String footer) {
         this.binPath = binPath;
+        this.footer = footer;
     }
 
     public void generate(GeneralInfo generalInfo, EducationInfo info) throws IOException {
@@ -48,7 +51,7 @@ public class EducationPageGenerator implements Generator {
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%name%%", generalInfo.getName());
 
-        writeFile(binPath + "\\education.html", file);
+        writeFile(binPath + "\\education.html", file,footer);
         Main.DEBUG_LOGGER.success("Generated file");
     }
 

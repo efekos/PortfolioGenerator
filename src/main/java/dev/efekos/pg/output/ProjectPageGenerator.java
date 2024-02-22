@@ -35,8 +35,11 @@ import java.util.Map;
 public class ProjectPageGenerator implements Generator {
     private final String binPath;
 
-    public ProjectPageGenerator(String binPath) {
+    private final String footer;
+
+    public ProjectPageGenerator(String binPath, String footer) {
         this.binPath = binPath;
+        this.footer = footer;
     }
 
     private void generateScripts(Project project) throws IOException {
@@ -56,7 +59,7 @@ public class ProjectPageGenerator implements Generator {
             codeblocks.add(generated);
         });
 
-        writeFile(binPath + "\\projects\\" + project.getId() + "\\gallery_modals.js", String.join("\n\n", codeblocks));
+        writeFile(binPath + "\\projects\\" + project.getId() + "\\gallery_modals.js", String.join("\n\n", codeblocks),footer);
         Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId() + "/gallery_modals.js");
     }
 
@@ -64,11 +67,11 @@ public class ProjectPageGenerator implements Generator {
         Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/readme_finder.js");
         String readmeFinder = ResourceManager.getResource(Resources.SCRIPT_README_FINDER)
                 .replaceAll("%%link%%", project.getReadmeFile());
-        writeFile(binPath + "\\projects\\" + project.getId() + "\\readme_finder.js", readmeFinder);
+        writeFile(binPath + "\\projects\\" + project.getId() + "\\readme_finder.js", readmeFinder,footer);
 
         String file = ResourceManager.getResource(Resources.SCRIPT_CHANGELOG_FINDER)
                 .replaceAll("%%link%%", project.getChangeLogFile());
-        writeFile(binPath + "\\projects\\" + project.getId() + "\\changelog_finder.js", file);
+        writeFile(binPath + "\\projects\\" + project.getId() + "\\changelog_finder.js", file,footer);
 
         Main.DEBUG_LOGGER.success("Generated file: projects/" + project.getId() + "/readme_finder.js");
     }
@@ -94,7 +97,7 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%prsummary%%", project.getSummary())
                 .replaceAll("%%prid%%", project.getId());
 
-        writeFile(mainDirectory + "\\index.html", html);
+        writeFile(mainDirectory + "\\index.html", html,footer);
         Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/index.html");
 
         //license.html
@@ -110,7 +113,7 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%prmainwebsite%%", project.getMainWebsite())
                 .replaceAll("%%prflicense%%", project.getFullLicense());
 
-        writeFile(mainDirectory + "\\license.html", license);
+        writeFile(mainDirectory + "\\license.html", license,footer);
         Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/license.html");
 
         //changelog.html
@@ -124,7 +127,7 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%prsummary%%", project.getSummary())
                 .replaceAll("%%prid%%", project.getId());
 
-        writeFile(mainDirectory + "\\changelog.html", changelog);
+        writeFile(mainDirectory + "\\changelog.html", changelog,footer);
         Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/changelog.html");
 
         //gallery.html
@@ -139,12 +142,12 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%prid%%", project.getId())
                 .replaceAll("%%images%%", generateGalleryImageElements(project));
 
-        writeFile(mainDirectory + "\\gallery.html", gallery);
+        writeFile(mainDirectory + "\\gallery.html", gallery,footer);
         Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/gallery.html");
 
         //versions.html
         Main.DEBUG_LOGGER.info("Generating file: projects/", project.getId(), "/versions.html");
-        writeFile(mainDirectory + "\\versions.html", new ProjectVersionPageGenerator(info, project, tags, binPath, links).generate());
+        writeFile(mainDirectory + "\\versions.html", new ProjectVersionPageGenerator(info, project, tags, binPath, links,footer).generate(),footer);
         Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/versions.html");
 
         //assets
@@ -228,7 +231,7 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%name%%", generalInfo.getName())
                 .replaceAll("%%elements%%", String.join("", elements));
 
-        writeFile(binPath + "\\projects.html", file);
+        writeFile(binPath + "\\projects.html", file,footer);
         Main.LOGGER.success("Generated file: projects.html");
         copyIcons(projects);
     }

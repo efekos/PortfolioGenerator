@@ -199,3 +199,41 @@ footer {
     background-color: %%colorTheme.general.textColor%%;
     clip-path: polygon(8% 17%, 0% 25%, 50% 84%, 100% 25%, 92% 17%, 50% 65%);
 }
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: fit-content;
+    background-color: rgb(60, 60,60);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip .tooltiptext {
+    width: fit-content;
+    padding: 0.5rem;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.contributor {
+    border-radius: 3rem;
+    border: 1.5px gray solid;
+    margin: 0.2rem;
+}

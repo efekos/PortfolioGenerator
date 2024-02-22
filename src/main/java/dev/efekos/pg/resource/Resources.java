@@ -129,6 +129,7 @@ public class Resources {
     public static final Resource JSON_LANGUAGE_TR = new Resource("/lang/tr.json");
     public static final Resource HTML_NAVBAR = new Resource("/site/html/template/navbar.html");
     public static final Resource JSON_CONTRIBUTORS = new Resource("/contributors.json");
+    public static final Resource HTML_CONTRIBUTOR = new Resource("/site/html/template/contributor.html");
 
     private static final List<Resource> list = new ArrayList<>();
 

@@ -31,9 +31,11 @@ import java.util.List;
 
 public class ExperiencePageGenerator implements Generator {
     private final String binPath;
+    private final String footer;
 
-    public ExperiencePageGenerator(String binPath) {
+    public ExperiencePageGenerator(String binPath,String footer) {
         this.binPath = binPath;
+        this.footer = footer;
     }
 
     public void generate(GeneralInfo generalInfo, ExperienceInfo info) throws IOException {
@@ -51,7 +53,7 @@ public class ExperiencePageGenerator implements Generator {
                 .replaceAll("%%ch%%", !currentJobElement.isEmpty() ? "<h2>"+ Text.translated("title.experience.history") +"</h2><br>" : "")
                 .replaceAll("%%name%%", generalInfo.getName());
 
-        writeFile(binPath + "\\experience.html", file);
+        writeFile(binPath + "\\experience.html", file,footer);
         Main.DEBUG_LOGGER.success("Generated file");
     }
 

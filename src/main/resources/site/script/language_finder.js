@@ -39,7 +39,7 @@ function getKey(key,...args){
         final = final.replace(`{${i}}`,element);
     }
 
-    return final;
+    return final.replaceAll("\n","<br>");
 }
 
 async function refreshLang(code) {

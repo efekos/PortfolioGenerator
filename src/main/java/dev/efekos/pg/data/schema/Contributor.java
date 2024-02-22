@@ -27,6 +27,7 @@ import java.util.List;
 public class Contributor implements JsonSchema{
     private String avatarUrl;
     private String name;
+    private String url;
     private List<String> translated;
     private List<String> categories;
 
@@ -36,6 +37,7 @@ public class Contributor implements JsonSchema{
 
         setAvatarUrl(object.get("avatar").getAsString());
         setName(object.get("name").getAsString());
+        setUrl(object.get("url").getAsString());
         setTranslated(new ArrayList<>());
         setCategories(new ArrayList<>());
 
@@ -47,6 +49,14 @@ public class Contributor implements JsonSchema{
         for (JsonElement jsonElement : object.get("categories").getAsJsonArray()) {
             categories.add(jsonElement.getAsString());
         }
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getAvatarUrl() {

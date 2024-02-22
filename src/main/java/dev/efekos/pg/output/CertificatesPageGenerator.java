@@ -35,8 +35,11 @@ public class CertificatesPageGenerator implements Generator {
 
     private final String binPath;
 
-    public CertificatesPageGenerator(String binPath) {
+    private final String footer;
+
+    public CertificatesPageGenerator(String binPath, String footer) {
         this.binPath = binPath;
+        this.footer = footer;
     }
 
     public void generateActualFile(GeneralInfo info, List<Certificate> certificates) throws IOException {
@@ -49,7 +52,7 @@ public class CertificatesPageGenerator implements Generator {
                 .replaceAll("%%title%%", info.getTitle())
                 .replaceAll("%%images%%", String.join("\n", elementList));
 
-        writeFile(binPath + "\\certificates.html", fileString);
+        writeFile(binPath + "\\certificates.html", fileString,footer);
         Main.LOGGER.success("Generated file: certificates.html");
     }
 
@@ -102,7 +105,7 @@ public class CertificatesPageGenerator implements Generator {
                     .replaceAll("%cbuttons%", String.join("", imageButtonElements));
 
             String outputPath = binPath + "\\certificate\\" + makeId(certificate.getDisplay().getTitle()) + ".html";
-            writeFile(outputPath, certificateFile);
+            writeFile(outputPath, certificateFile,footer);
             Main.DEBUG_LOGGER.success("Generated file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
         }
         Main.LOGGER.success("Generated single certificate files");
