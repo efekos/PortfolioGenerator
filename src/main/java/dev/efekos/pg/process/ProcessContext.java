@@ -33,4 +33,5 @@ public class ProcessContext {
     public List<TimelineEvent> collectedTimeline;
     public String dataPath;
     public List<Contributor> contributors;
+    public String footer;
 }
