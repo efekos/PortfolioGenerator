@@ -18,7 +18,6 @@ package dev.efekos.pg.process;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dev.efekos.pg.data.schema.Contributor;
 import dev.efekos.pg.resource.ResourceManager;
@@ -27,7 +26,7 @@ import dev.efekos.pg.resource.Resources;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadContributionDataProcess implements Process{
+public class ReadContributionDataProcess implements Process {
     @Override
     public String getName() {
         return "Read contributors";
@@ -42,7 +41,7 @@ public class ReadContributionDataProcess implements Process{
         for (JsonElement element : array) {
             Contributor contributor = new Contributor();
 
-            contributor.readJson(element,null);
+            contributor.readJson(element, null);
             contributors.add(contributor);
         }
 

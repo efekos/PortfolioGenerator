@@ -16,16 +16,16 @@
 
 package dev.efekos.pg.resource;
 
-public class IconResource extends Resource{
+public class IconResource extends Resource {
     private final String outName;
 
-    public IconResource(String pathName,String outName) {
-        super("/site/icon/"+pathName+".svg");
+    public IconResource(String pathName, String outName) {
+        super("/site/icon/" + pathName + ".svg");
         this.outName = outName;
     }
 
     public IconResource(String pathName) {
-        this(pathName,pathName);
+        this(pathName, pathName);
     }
 
     public String getOutName() {

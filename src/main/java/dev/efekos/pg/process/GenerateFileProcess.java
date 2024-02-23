@@ -26,7 +26,7 @@ public class GenerateFileProcess implements Process {
 
     @Override
     public void init(ProcessContext context) throws Exception {
-        FileGenerator generator = new FileGenerator(context.binPath,context.footer);
+        FileGenerator generator = new FileGenerator(context.binPath, context.footer);
 
         // generating
         generator.generateIndexFile(context);

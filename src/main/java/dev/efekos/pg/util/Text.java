@@ -23,7 +23,6 @@ import dev.efekos.pg.resource.Resources;
 import org.apache.commons.text.StringEscapeUtils;
 
 import java.util.Arrays;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public interface Text {
@@ -43,13 +42,14 @@ public interface Text {
         JsonElement defaultLang = JsonParser.parseString(ResourceManager.getResource(Resources.JSON_LANGUAGE_EN));
 
         builder.append(">");
-        if(!defaultLang.getAsJsonObject().has(key)) throw new IllegalArgumentException("Unknown translation key: "+key);
+        if (!defaultLang.getAsJsonObject().has(key))
+            throw new IllegalArgumentException("Unknown translation key: " + key);
         String defaultText = defaultLang.getAsJsonObject().get(key).getAsString();
 
         String result = Pattern.compile("\\{[0-9]+}").matcher(defaultText).replaceAll(matchResult -> {
             String s = matchResult.group();
             int i = Integer.parseInt(s.substring(1, s.length() - 1));
-            if(Arrays.asList(arguments).size()<i+1)return s;
+            if (Arrays.asList(arguments).size() < i + 1) return s;
             else return arguments[i];
         });
 

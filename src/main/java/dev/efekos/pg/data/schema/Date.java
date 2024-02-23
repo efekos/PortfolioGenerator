@@ -16,7 +16,7 @@
 
 package dev.efekos.pg.data.schema;
 
-public interface Date extends Comparable<Date>{
+public interface Date extends Comparable<Date> {
     // empty interface, only exists to define date classes (DayDate and MonthDate) as a date
     int compareTo(Date other);
 }

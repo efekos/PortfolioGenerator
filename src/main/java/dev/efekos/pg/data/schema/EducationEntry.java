@@ -42,8 +42,8 @@ public class EducationEntry implements JsonSchema, TimelineEventSource {
     @Override
     public List<TimelineEvent> getEvents() {
         return Arrays.asList(
-                new EducationStartEvent(title,start,type),
-                new EducationEndEvent(until,title,type)
+                new EducationStartEvent(title, start, type),
+                new EducationEndEvent(until, title, type)
         );
     }
 

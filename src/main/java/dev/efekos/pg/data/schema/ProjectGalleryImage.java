@@ -26,7 +26,7 @@ import dev.efekos.pg.data.type.RequiredDataType;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProjectGalleryImage implements JsonSchema{
+public class ProjectGalleryImage implements JsonSchema {
     private String name;
     private String description;
     private String file;
@@ -35,26 +35,27 @@ public class ProjectGalleryImage implements JsonSchema{
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
-        
+
         checker.expectObject(element);
         JsonObject object = element.getAsJsonObject();
 
-        checker.searchExceptions(object,"name", RequiredDataType.STRING);
-        checker.searchExceptions(object,"description", RequiredDataType.STRING);
-        checker.searchExceptions(object,"file", RequiredDataType.STRING);
+        checker.searchExceptions(object, "name", RequiredDataType.STRING);
+        checker.searchExceptions(object, "description", RequiredDataType.STRING);
+        checker.searchExceptions(object, "file", RequiredDataType.STRING);
 
         this.name = object.get("name").getAsString();
         this.description = object.get("description").getAsString();
-        this.file = object.get("file").getAsString().replaceAll("\\\\","/");
-        if(ALLOWED_IMAGE_TYPES.stream().noneMatch(this.file::contains)) throw new JsonParseException("Unsupported image type. Use png or jpeg");
+        this.file = object.get("file").getAsString().replaceAll("\\\\", "/");
+        if (ALLOWED_IMAGE_TYPES.stream().noneMatch(this.file::contains))
+            throw new JsonParseException("Unsupported image type. Use png or jpeg");
 
 
         //id
         String[] split = file.split("/");
-        this.id = split[split.length-1].replace(".","");
+        this.id = split[split.length - 1].replace(".", "");
     }
 
-    private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList("png","jpg","jpeg","PNG","JPEG","JPG");
+    private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList("png", "jpg", "jpeg", "PNG", "JPEG", "JPG");
 
     public ProjectGalleryImage() {
     }

@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 /**
  * Represents a date that just needs a day, year, and month.
  */
-public class DayDate implements JsonSchema,Date {
+public class DayDate implements JsonSchema, Date {
     /**
      * Day of the date. Will be day of the month (such as 2nd July, but not Tuesday)
      */
@@ -149,7 +149,7 @@ public class DayDate implements JsonSchema,Date {
         int monthCompared;
         int dayCompared;
 
-        if(other instanceof DayDate dayDate){
+        if (other instanceof DayDate dayDate) {
             yearCompared = year.compareTo(dayDate.year);
             monthCompared = month.compareTo(dayDate.month);
             dayCompared = day.compareTo(dayDate.day);
@@ -169,6 +169,6 @@ public class DayDate implements JsonSchema,Date {
 
     @Override
     public String toString() {
-        return Text.translated("date.format",DateHelper.monthToString(month),DateHelper.getThing(day),year+"");
+        return Text.translated("date.format", DateHelper.monthToString(month), DateHelper.getThing(day), year + "");
     }
 }

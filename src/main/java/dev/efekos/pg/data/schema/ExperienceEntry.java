@@ -40,8 +40,8 @@ public class ExperienceEntry implements JsonSchema, TimelineEventSource {
     @Override
     public List<TimelineEvent> getEvents() {
         ArrayList<TimelineEvent> list = new ArrayList<>();
-        list.add(new JobStartEvent(company,position,from));
-        if(!currentJob) list.add(new JobEndEvent(company,to));
+        list.add(new JobStartEvent(company, position, from));
+        if (!currentJob) list.add(new JobEndEvent(company, to));
 
         return list;
     }

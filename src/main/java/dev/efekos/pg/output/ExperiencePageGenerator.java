@@ -33,7 +33,7 @@ public class ExperiencePageGenerator implements Generator {
     private final String binPath;
     private final String footer;
 
-    public ExperiencePageGenerator(String binPath,String footer) {
+    public ExperiencePageGenerator(String binPath, String footer) {
         this.binPath = binPath;
         this.footer = footer;
     }
@@ -50,10 +50,10 @@ public class ExperiencePageGenerator implements Generator {
         String file = ResourceManager.getResource(Resources.HTML_EXPERIENCE_PAGE)
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%cc%%", currentJobElement)
-                .replaceAll("%%ch%%", !currentJobElement.isEmpty() ? "<h2>"+ Text.translated("title.experience.history") +"</h2><br>" : "")
+                .replaceAll("%%ch%%", !currentJobElement.isEmpty() ? "<h2>" + Text.translated("title.experience.history") + "</h2><br>" : "")
                 .replaceAll("%%name%%", generalInfo.getName());
 
-        writeFile(binPath + "\\experience.html", file,footer);
+        writeFile(binPath + "\\experience.html", file, footer);
         Main.DEBUG_LOGGER.success("Generated file");
     }
 
@@ -83,7 +83,7 @@ public class ExperiencePageGenerator implements Generator {
                     .replaceAll("%%pstart%%", entry.getFrom().toString())
                     .replaceAll("%%pend%%", entry.getTo().toString());
 
-            currentJobElement = "<br><h2>"+Text.translated("title.experience.current")+"</h2><br>" + element + "<br><br>";
+            currentJobElement = "<br><h2>" + Text.translated("title.experience.current") + "</h2><br>" + element + "<br><br>";
         }
         Main.DEBUG_LOGGER.success("Generated elements");
     }

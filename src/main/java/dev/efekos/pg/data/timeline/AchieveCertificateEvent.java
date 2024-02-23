@@ -21,7 +21,7 @@ import dev.efekos.pg.data.schema.DayDate;
 import dev.efekos.pg.data.type.CertificateType;
 import dev.efekos.pg.util.Text;
 
-public class AchieveCertificateEvent implements TimelineEvent{
+public class AchieveCertificateEvent implements TimelineEvent {
     private final DayDate when;
     private final String certificateName;
     private final CertificateType type;
@@ -34,7 +34,7 @@ public class AchieveCertificateEvent implements TimelineEvent{
 
     @Override
     public String getIcon() {
-        return switch (type){
+        return switch (type) {
             case SCHOOL -> "school";
             case UNIVERSITY -> "university";
             case PROJECT -> "link/source";
@@ -45,7 +45,7 @@ public class AchieveCertificateEvent implements TimelineEvent{
 
     @Override
     public String getTitle() {
-        return Text.translated("timeline.certificate",certificateName);
+        return Text.translated("timeline.certificate", certificateName);
     }
 
     @Override

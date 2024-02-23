@@ -31,7 +31,7 @@ import java.util.List;
 public class EducationPageGenerator implements Generator {
     private final String binPath;
 
-   private final String footer;
+    private final String footer;
 
     public EducationPageGenerator(String binPath, String footer) {
         this.binPath = binPath;
@@ -51,7 +51,7 @@ public class EducationPageGenerator implements Generator {
                 .replaceAll("%%entries%%", String.join("", elementsGenerated))
                 .replaceAll("%%name%%", generalInfo.getName());
 
-        writeFile(binPath + "\\education.html", file,footer);
+        writeFile(binPath + "\\education.html", file, footer);
         Main.DEBUG_LOGGER.success("Generated file");
     }
 

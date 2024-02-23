@@ -39,7 +39,7 @@ public class ProjectVersionPageGenerator implements Generator {
     private static final String PROJECT_RELEASES_TEMPLATE = ResourceManager.getResource(Resources.HTML_PROJECT_RELEASES_ELEMENT);
     private final String links;
 
-    public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project, String tags, String binPath, String links,String footer) {
+    public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project, String tags, String binPath, String links, String footer) {
         this.generalInfo = generalInfo;
         this.project = project;
         this.tags = tags;
@@ -80,7 +80,7 @@ public class ProjectVersionPageGenerator implements Generator {
                 String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_MARKDOWN_FINDER)
                         .replaceAll("%%link%%", versionInfo.getFile());
 
-                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script,footer);
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script, footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/versions_finder.js");
             }
             case GITHUB_RELEASES -> {
@@ -93,7 +93,7 @@ public class ProjectVersionPageGenerator implements Generator {
                 String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_GITHUB_RELEASE_FINDER)
                         .replaceAll("%%repo%%", versionInfo.getFile());
 
-                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script,footer);
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script, footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/versions_finder.js");
             }
             case MODRINTH_VERSIONS -> {
@@ -105,7 +105,7 @@ public class ProjectVersionPageGenerator implements Generator {
                 String script = ResourceManager.getResource(Resources.SCRIPT_MODRINTH_RELEASE_FINDER)
                         .replaceAll("%%id%%", versionInfo.getFile());
 
-                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script,footer);
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script, footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
             }
             case JSON -> {
@@ -117,7 +117,7 @@ public class ProjectVersionPageGenerator implements Generator {
                 String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_JSON_FINDER)
                         .replaceAll("%%link%%", versionInfo.getFile());
 
-                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script,footer);
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script, footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
             }
             case SPIGOTMC_VERSIONS -> {
@@ -130,7 +130,7 @@ public class ProjectVersionPageGenerator implements Generator {
                 String script = ResourceManager.getResource(Resources.SCRIPT_SPIGOT_UPDATE_FINDER)
                         .replaceAll("%%id%%", versionInfo.getFile());
 
-                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script,footer);
+                writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script, footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
             }
             default ->

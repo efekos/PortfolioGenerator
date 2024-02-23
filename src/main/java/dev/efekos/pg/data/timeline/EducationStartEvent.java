@@ -21,7 +21,7 @@ import dev.efekos.pg.data.schema.MonthDate;
 import dev.efekos.pg.data.type.EducationEntryType;
 import dev.efekos.pg.util.Text;
 
-public class EducationStartEvent implements TimelineEvent{
+public class EducationStartEvent implements TimelineEvent {
     private final String name;
     private final MonthDate when;
     private final EducationEntryType entryType;
@@ -34,7 +34,7 @@ public class EducationStartEvent implements TimelineEvent{
 
     @Override
     public String getIcon() {
-        return switch (entryType){
+        return switch (entryType) {
             case UNIVERSITY -> "university";
             case SCHOOL -> "school";
             case COURSE -> "book";
@@ -44,10 +44,10 @@ public class EducationStartEvent implements TimelineEvent{
 
     @Override
     public String getTitle() {
-        return switch (entryType){
-            case COURSE -> Text.translated("timeline.education.start.course",name);
-            case DEGREE -> Text.translated("timeline.education.start.degree",name);
-            case SCHOOL,UNIVERSITY -> Text.translated("timeline.education.start.school",name);
+        return switch (entryType) {
+            case COURSE -> Text.translated("timeline.education.start.course", name);
+            case DEGREE -> Text.translated("timeline.education.start.degree", name);
+            case SCHOOL, UNIVERSITY -> Text.translated("timeline.education.start.school", name);
         };
     }
 

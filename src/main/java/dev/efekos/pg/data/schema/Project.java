@@ -48,7 +48,7 @@ public class Project implements JsonSchema, TimelineEventSource {
 
     @Override
     public List<TimelineEvent> getEvents() {
-        return List.of(new ProjectReleaseEvent(displayName,release));
+        return List.of(new ProjectReleaseEvent(displayName, release));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class Project implements JsonSchema, TimelineEventSource {
         checker.searchExceptions(object, "version", RequiredDataType.STRING);
         checker.searchExceptions(object, "license", RequiredDataType.STRING);
         checker.searchExceptions(object, "readme_link", RequiredDataType.STRING);
-        checker.searchExceptions(object,"version_info",RequiredDataType.OBJECT);
+        checker.searchExceptions(object, "version_info", RequiredDataType.OBJECT);
 
 
         // display name,main website, changelog file, summary, version, license, readme file
@@ -89,9 +89,10 @@ public class Project implements JsonSchema, TimelineEventSource {
         JsonObject linksObject = object.get("links").getAsJsonObject();
         linksObject.asMap().forEach((key, link) -> {
             Optional<ProjectLinkType> id = ProjectLinkType.findById(key);
-            if(id.isEmpty()) throw new JsonParseException("Unknown link id '"+key+"'");
+            if (id.isEmpty()) throw new JsonParseException("Unknown link id '" + key + "'");
 
-            if (this.links.containsKey(id.get())) throw new JsonParseException("Link id '" + key + "' used more than once");
+            if (this.links.containsKey(id.get()))
+                throw new JsonParseException("Link id '" + key + "' used more than once");
             this.links.put(id.get(), link.getAsString());
         });
 
@@ -104,7 +105,7 @@ public class Project implements JsonSchema, TimelineEventSource {
         // version info
         JsonElement versionInfoElement = object.get("version_info");
         VersionInfo info = new VersionInfo();
-        info.readJson(versionInfoElement,context);
+        info.readJson(versionInfoElement, context);
         this.versionInfo = info;
     }
 

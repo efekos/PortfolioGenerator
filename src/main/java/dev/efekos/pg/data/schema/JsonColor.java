@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class JsonColor implements JsonSchema{
+public class JsonColor implements JsonSchema {
     private int red;
     private int green;
     private int blue;
@@ -39,17 +39,17 @@ public class JsonColor implements JsonSchema{
 
     @Override
     public String toString() {
-        return isHex?hex:"rgb("+red+","+green+","+blue+")";
+        return isHex ? hex : "rgb(" + red + "," + green + "," + blue + ")";
     }
 
-    public static JsonColor from(JsonElement element, DataGrabberContext context){
+    public static JsonColor from(JsonElement element, DataGrabberContext context) {
         JsonColor color = new JsonColor();
-        color.readJson(element,context);
+        color.readJson(element, context);
         return color;
     }
 
     public JsonColor() {
-        if(didLoadCssColors)return;
+        if (didLoadCssColors) return;
         didLoadCssColors = true;
 
         String resource = ResourceManager.getResource(Resources.JSON_CSS_COLOR_NAMES);
@@ -62,7 +62,7 @@ public class JsonColor implements JsonSchema{
 
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
-        if(element.isJsonObject()) readRgb(element.getAsJsonObject(),new DataTypeChecker(context.getCurrentFile()));
+        if (element.isJsonObject()) readRgb(element.getAsJsonObject(), new DataTypeChecker(context.getCurrentFile()));
         else if (element.isJsonPrimitive()) {
 
             if (!Pattern.compile("^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$").matcher(element.getAsString()).matches()) {
@@ -72,13 +72,13 @@ public class JsonColor implements JsonSchema{
             setHex(element.getAsString());
             setHex(true);
 
-        } else throw new JsonSyntaxException("Expected a string or an object, got "+element+".");
+        } else throw new JsonSyntaxException("Expected a string or an object, got " + element + ".");
     }
 
-    private void readRgb(JsonObject object,DataTypeChecker checker) {
-        checker.searchExceptions(object,"r", RequiredDataType.INTEGER);
-        checker.searchExceptions(object,"g", RequiredDataType.INTEGER);
-        checker.searchExceptions(object,"b", RequiredDataType.INTEGER);
+    private void readRgb(JsonObject object, DataTypeChecker checker) {
+        checker.searchExceptions(object, "r", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "g", RequiredDataType.INTEGER);
+        checker.searchExceptions(object, "b", RequiredDataType.INTEGER);
 
         setHex(false);
         setRed(object.get("r").getAsInt());

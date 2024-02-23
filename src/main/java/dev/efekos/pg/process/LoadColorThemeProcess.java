@@ -30,7 +30,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
-public class LoadColorThemeProcess implements Process{
+public class LoadColorThemeProcess implements Process {
     @Override
     public String getName() {
         return "Load Color Theme";
@@ -44,14 +44,14 @@ public class LoadColorThemeProcess implements Process{
 
         JsonElement theme;
         Path colorThemeJsonPath = Path.of(context.dataPath, "color_theme.json");
-        if(Files.exists(colorThemeJsonPath)) {
+        if (Files.exists(colorThemeJsonPath)) {
             String themeString = Files.readString(colorThemeJsonPath);
             theme = JsonParser.parseString(themeString);
         } else {
             String themeString = ResourceManager.getResource(Resources.JSON_DEFAULT_COLOR_THEME);
             theme = JsonParser.parseString(themeString);
         }
-        if(!theme.isJsonObject()) throw new JsonSyntaxException("Expected an object inside 'color_theme.json'.");
+        if (!theme.isJsonObject()) throw new JsonSyntaxException("Expected an object inside 'color_theme.json'.");
 
         int total = 0;
         int totalColor = 0;
@@ -60,7 +60,7 @@ public class LoadColorThemeProcess implements Process{
         int totalColorGradient = 0;
         for (Field colorField : colors) {
             ColorThemeValue value = (ColorThemeValue) colorField.get(null);
-            Main.DEBUG_LOGGER.info("Loading field: "+colorField.getName()+". JSON key: "+value.key());
+            Main.DEBUG_LOGGER.info("Loading field: " + colorField.getName() + ". JSON key: " + value.key());
 
 
             String[] keys = value.key().split("\\.");
@@ -69,37 +69,38 @@ public class LoadColorThemeProcess implements Process{
 
             for (int i = 0; i < keys.length; i++) {
                 String key = keys[i];
-                if(!(finalThing.isJsonObject()&&finalThing.getAsJsonObject().has(key))){
-                    if(i+1==keys.length) throw new JsonSyntaxException("Missing key '"+value.key()+"' in 'color_theme.json'");
+                if (!(finalThing.isJsonObject() && finalThing.getAsJsonObject().has(key))) {
+                    if (i + 1 == keys.length)
+                        throw new JsonSyntaxException("Missing key '" + value.key() + "' in 'color_theme.json'");
                     else continue;
                 }
 
                 finalThing = finalThing.getAsJsonObject().get(key);
             }
 
-            ColorThemeManager.putColor(value,value.read(finalThing));
+            ColorThemeManager.putColor(value, value.read(finalThing));
             total++;
 
-            switch (value.getClass().getSimpleName()){
-                case "Color"->totalColor++;
-                case "ColorGradient"->{
+            switch (value.getClass().getSimpleName()) {
+                case "Color" -> totalColor++;
+                case "ColorGradient" -> {
                     totalColorGradient++;
-                    ColorThemeManager.putColor(value.key()+":last",((ColorGradient) value).lastColor(finalThing));
+                    ColorThemeManager.putColor(value.key() + ":last", ((ColorGradient) value).lastColor(finalThing));
                 }
-                case "HorizontalColorGradient"->{
+                case "HorizontalColorGradient" -> {
                     totalColorGradient++;
-                    ColorThemeManager.putColor(value.key()+":last",((HorizontalColorGradient) value).lastColor(finalThing));
+                    ColorThemeManager.putColor(value.key() + ":last", ((HorizontalColorGradient) value).lastColor(finalThing));
                 }
-                case "Font"->totalFont++;
-                case "FontFamily"->totalFontFamily++;
+                case "Font" -> totalFont++;
+                case "FontFamily" -> totalFontFamily++;
             }
         }
 
-        Main.DEBUG_LOGGER.info("Final loaded field count: "+total);
-        Main.DEBUG_LOGGER.info("Final loaded color count: "+totalColor);
-        Main.DEBUG_LOGGER.info("Final loaded color gradient count: "+totalColorGradient);
-        Main.DEBUG_LOGGER.info("Final loaded font count: "+totalFont);
-        Main.DEBUG_LOGGER.info("Final loaded font family count: "+totalFontFamily);
-        Main.LOGGER.success("Loaded "+total+" color theme values.");
+        Main.DEBUG_LOGGER.info("Final loaded field count: " + total);
+        Main.DEBUG_LOGGER.info("Final loaded color count: " + totalColor);
+        Main.DEBUG_LOGGER.info("Final loaded color gradient count: " + totalColorGradient);
+        Main.DEBUG_LOGGER.info("Final loaded font count: " + totalFont);
+        Main.DEBUG_LOGGER.info("Final loaded font family count: " + totalFontFamily);
+        Main.LOGGER.success("Loaded " + total + " color theme values.");
     }
 }

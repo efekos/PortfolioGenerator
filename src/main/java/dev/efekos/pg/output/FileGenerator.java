@@ -38,7 +38,7 @@ public class FileGenerator implements Generator {
     private final String binPath;
     private final String footer;
 
-    public FileGenerator(String binPath,String footer) {
+    public FileGenerator(String binPath, String footer) {
         this.binPath = binPath;
         this.footer = footer;
     }
@@ -83,7 +83,7 @@ public class FileGenerator implements Generator {
                 .replaceAll("%%timeline%%", String.join("", timelineElements))
                 .replaceAll("%%socialElements%%", String.join("", socialLinkElements));
 
-        writeFile(binPath + "\\index.html", fileString,footer);
+        writeFile(binPath + "\\index.html", fileString, footer);
 
         Main.LOGGER.success("Generated file: index.html");
     }
@@ -104,7 +104,7 @@ public class FileGenerator implements Generator {
 
         if (contactInfo.isIncludeSocials()) {
             file = file.replaceAll(
-                    "%%social%%", "<h2>"+Text.translated("contact.socials")+"</h2> \n\n%%socialElements%%"
+                    "%%social%%", "<h2>" + Text.translated("contact.socials") + "</h2> \n\n%%socialElements%%"
             );
         } else file = file.replaceAll("%%social%%", "");
 
@@ -113,7 +113,7 @@ public class FileGenerator implements Generator {
                 .replaceAll("%%mail%%", contactInfo.getEmail())
                 .replaceAll("%%phone%%", contactInfo.getNumber())
                 .replaceAll("%%places%%", String.join("\n", contactInfo.getPlaces().stream().map(this::generatePlaceEntry).toList()))
-                .replaceAll("%%socialElements%%", String.join("", socialLinkElements)),footer);
+                .replaceAll("%%socialElements%%", String.join("", socialLinkElements)), footer);
 
         Main.LOGGER.success("Generated file: contact.html");
     }
@@ -143,7 +143,7 @@ public class FileGenerator implements Generator {
     }
 
     public void generateExperienceFile(GeneralInfo generalInfo, ExperienceInfo experienceInfo) throws IOException {
-        ExperiencePageGenerator generator = new ExperiencePageGenerator(binPath,footer);
+        ExperiencePageGenerator generator = new ExperiencePageGenerator(binPath, footer);
 
         generator.generate(generalInfo, experienceInfo);
     }
@@ -151,17 +151,17 @@ public class FileGenerator implements Generator {
     public void generateStyleFiles(GeneralInfo info, TagColorInfo tagColorInfo) throws IOException {
         Main.LOGGER.info("Copying static style files");
 
-        copyResource(Resources.STYLE_MAIN, "\\style\\main_style.css", binPath,footer);
-        copyResource(Resources.STYLE_CERTIFICATES, "\\style\\certificates.css", binPath,footer);
-        copyResource(Resources.STYLE_EDUCATION, "\\style\\education.css", binPath,footer);
-        copyResource(Resources.STYLE_PROJECTS, "\\style\\projects.css", binPath,footer);
-        copyResource(Resources.STYLE_GALLERY_MODALS, "\\style\\gallery_modals.css", binPath,footer);
+        copyResource(Resources.STYLE_MAIN, "\\style\\main_style.css", binPath, footer);
+        copyResource(Resources.STYLE_CERTIFICATES, "\\style\\certificates.css", binPath, footer);
+        copyResource(Resources.STYLE_EDUCATION, "\\style\\education.css", binPath, footer);
+        copyResource(Resources.STYLE_PROJECTS, "\\style\\projects.css", binPath, footer);
+        copyResource(Resources.STYLE_GALLERY_MODALS, "\\style\\gallery_modals.css", binPath, footer);
 
         Main.LOGGER.success("Copied all static style files");
 
         Main.LOGGER.info("Generating non-static style files");
 
-        StyleFileGenerator generator = new StyleFileGenerator(binPath,footer);
+        StyleFileGenerator generator = new StyleFileGenerator(binPath, footer);
 
         generator.generateProjectTags(tagColorInfo);
         generator.generateSocialIcons(info);
@@ -176,17 +176,17 @@ public class FileGenerator implements Generator {
         // age_calculator.js
         Main.DEBUG_LOGGER.info("Generating file: age_calculator.js");
         String string = ResourceManager.getResource(Resources.SCRIPT_AGE_CALCULATOR).replaceAll("%%byear%%", info.getBirthDate().getYear() + "");
-        writeFile(binPath + "\\age_calculator.js", string,footer);
+        writeFile(binPath + "\\age_calculator.js", string, footer);
         Main.DEBUG_LOGGER.success("Generated file: age_calculator.js");
 
         // project_search.js
-        copyResource(Resources.SCRIPT_PROJECT_SEARCH, "\\projects_search.js", binPath,footer);
-        copyResource(Resources.SCRIPT_EXPAND_ENTRIES, "\\expandable_entries.js", binPath,footer);
+        copyResource(Resources.SCRIPT_PROJECT_SEARCH, "\\projects_search.js", binPath, footer);
+        copyResource(Resources.SCRIPT_EXPAND_ENTRIES, "\\expandable_entries.js", binPath, footer);
 
 
         Main.DEBUG_LOGGER.info("Generating file: language_finder.js");
         String language = ResourceManager.getResource(Resources.SCRIPT_LANGUAGE_FINDER).replaceAll("%%UUID%%", UUID.randomUUID().toString());
-        writeFile(binPath+"\\language_finder.js",language,footer);
+        writeFile(binPath + "\\language_finder.js", language, footer);
         Main.DEBUG_LOGGER.success("Generated file: language_finder.js");
 
 
@@ -196,7 +196,7 @@ public class FileGenerator implements Generator {
     public void generateCertificatesFile(GeneralInfo info, List<Certificate> certificates) throws IOException {
         Main.LOGGER.info("Generating certificate pages");
 
-        CertificatesPageGenerator generator = new CertificatesPageGenerator(binPath,footer);
+        CertificatesPageGenerator generator = new CertificatesPageGenerator(binPath, footer);
 
         generator.generateActualFile(info, certificates);
         generator.copyImages(certificates);
@@ -212,14 +212,14 @@ public class FileGenerator implements Generator {
         String bio = info.getBio();
         String bioFile = ResourceManager.getResource(Resources.HTML_BIO_PAGE).replaceAll("%%bio%%", bio);
 
-        writeFile(binPath + "\\bio.html", bioFile,footer);
+        writeFile(binPath + "\\bio.html", bioFile, footer);
 
 
         Main.LOGGER.success("Generated file: bio.html");
     }
 
     public void generateEducationFile(GeneralInfo info, EducationInfo educationInfo) throws IOException {
-        EducationPageGenerator generator = new EducationPageGenerator(binPath,footer);
+        EducationPageGenerator generator = new EducationPageGenerator(binPath, footer);
         generator.generate(info, educationInfo);
     }
 
@@ -229,10 +229,10 @@ public class FileGenerator implements Generator {
         Files.createDirectory(Path.of(binPath, "images", "icon"));
 
         Resources.all().forEach(resource -> {
-            if(resource instanceof IconResource iconResource){
+            if (resource instanceof IconResource iconResource) {
                 try {
-                    copyIcon(iconResource.getPathName(),iconResource.getOutName().replaceAll("/","\\\\"));
-                }catch (Exception e){
+                    copyIcon(iconResource.getPathName(), iconResource.getOutName().replaceAll("/", "\\\\"));
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
@@ -244,7 +244,7 @@ public class FileGenerator implements Generator {
 
         Files.copy(Path.of(Main.getMainPath().toString(), "data", "profile.png"), Path.of(binPath, "images", "profile.png"));
 
-        writeFile(binPath + "\\images\\icon\\credit_note.txt", "Every icon that doesn't contain a copyright is from heroicons.com (not including 'social' folder).",footer);
+        writeFile(binPath + "\\images\\icon\\credit_note.txt", "Every icon that doesn't contain a copyright is from heroicons.com (not including 'social' folder).", footer);
 
 
         Main.LOGGER.success("Copied icons");
@@ -253,20 +253,20 @@ public class FileGenerator implements Generator {
     private void copyIcon(String resourceName, String binName) throws IOException {
         Main.DEBUG_LOGGER.info("Copying icon: " + resourceName);
         Optional<Resource> optional = Resources.all().stream().filter(resource ->
-                        resource instanceof IconResource iconResource ? iconResource.getPathName().equals(resourceName):
+                resource instanceof IconResource iconResource ? iconResource.getPathName().equals(resourceName) :
                         resource.getPathName().equals("/site/icon/" + resourceName + ".svg")
-                ).findFirst();
+        ).findFirst();
         if (optional.isEmpty())
             throw new MissingResourceException("Missing icon", "dev.efekos.pg.Main", "/site/icon/" + resourceName + ".svg");
 
         String string = ResourceManager.getResource(optional.get());
-        writeFile(binPath + "\\images\\icon\\" + binName + ".svg", string,footer);
+        writeFile(binPath + "\\images\\icon\\" + binName + ".svg", string, footer);
         Main.DEBUG_LOGGER.success("Copied icon: " + resourceName);
     }
 
     public void generateProjectsPage(GeneralInfo generalInfo, List<Project> projects) throws Exception {
         Main.LOGGER.info("Generating projects page");
-        ProjectPageGenerator generator = new ProjectPageGenerator(binPath,footer);
+        ProjectPageGenerator generator = new ProjectPageGenerator(binPath, footer);
 
         generator.generateMainPage(generalInfo, projects);
         generator.generateSinglePages(generalInfo, projects);
@@ -276,17 +276,17 @@ public class FileGenerator implements Generator {
     public void copyLibraries() throws IOException {
         Main.LOGGER.info("Copying library files");
 
-        copyResource(Resources.SCRIPT_LIBRARY_MARKED, "\\lib\\marked.js", binPath,footer);
-        copyResource(Resources.SCRIPT_LIBRARY_PRISM, "\\lib\\prism.js", binPath,footer);
-        copyResource(Resources.STYLE_LIBRARY_PRISM, "\\lib\\prism.css", binPath,footer);
+        copyResource(Resources.SCRIPT_LIBRARY_MARKED, "\\lib\\marked.js", binPath, footer);
+        copyResource(Resources.SCRIPT_LIBRARY_PRISM, "\\lib\\prism.js", binPath, footer);
+        copyResource(Resources.STYLE_LIBRARY_PRISM, "\\lib\\prism.css", binPath, footer);
 
         Main.LOGGER.success("Copied library files");
     }
 
     public void copyLanguageFiles() throws IOException {
         Main.LOGGER.info("Copying language files");
-        copyResource(Resources.JSON_LANGUAGE_EN,"\\lang\\en.json",binPath,footer);
-        copyResource(Resources.JSON_LANGUAGE_TR,"\\lang\\tr.json",binPath,footer);
+        copyResource(Resources.JSON_LANGUAGE_EN, "\\lang\\en.json", binPath, footer);
+        copyResource(Resources.JSON_LANGUAGE_TR, "\\lang\\tr.json", binPath, footer);
         Main.LOGGER.info("Copied language files");
     }
 }

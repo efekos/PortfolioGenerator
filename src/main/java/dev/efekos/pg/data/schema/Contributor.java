@@ -24,7 +24,7 @@ import dev.efekos.pg.data.DataGrabberContext;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Contributor implements JsonSchema{
+public class Contributor implements JsonSchema {
     private String avatarUrl;
     private String name;
     private String url;

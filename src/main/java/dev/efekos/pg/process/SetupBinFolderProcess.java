@@ -22,7 +22,7 @@ import org.apache.commons.io.FileUtils;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class SetupBinFolderProcess implements Process{
+public class SetupBinFolderProcess implements Process {
     @Override
     public String getName() {
         return "Setup Bin Folder";
@@ -30,7 +30,7 @@ public class SetupBinFolderProcess implements Process{
 
     @Override
     public void init(ProcessContext context) throws Exception {
-        Path binPath = Path.of(Main.getMainPath().toString(),"bin");
+        Path binPath = Path.of(Main.getMainPath().toString(), "bin");
 
         Main.LOGGER.info("Deleting bin directory");
         FileUtils.deleteDirectory(binPath.toFile());

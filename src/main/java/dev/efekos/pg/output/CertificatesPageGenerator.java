@@ -52,7 +52,7 @@ public class CertificatesPageGenerator implements Generator {
                 .replaceAll("%%title%%", info.getTitle())
                 .replaceAll("%%images%%", String.join("\n", elementList));
 
-        writeFile(binPath + "\\certificates.html", fileString,footer);
+        writeFile(binPath + "\\certificates.html", fileString, footer);
         Main.LOGGER.success("Generated file: certificates.html");
     }
 
@@ -100,12 +100,12 @@ public class CertificatesPageGenerator implements Generator {
                     .replaceAll("%%name%%", info.getName())
                     .replaceAll("%%cname%%", certificate.getDisplay().getTitle())
                     .replaceAll("%%cdescription%%", certificate.getDisplay().getDescription())
-                    .replaceAll("%%cdate%%", Text.translated("certificate.achieve",certificate.getWhen().toString()))
+                    .replaceAll("%%cdate%%", Text.translated("certificate.achieve", certificate.getWhen().toString()))
                     .replaceAll("%%cipath%%", imagePath.replaceAll("\\\\", "/"))
                     .replaceAll("%cbuttons%", String.join("", imageButtonElements));
 
             String outputPath = binPath + "\\certificate\\" + makeId(certificate.getDisplay().getTitle()) + ".html";
-            writeFile(outputPath, certificateFile,footer);
+            writeFile(outputPath, certificateFile, footer);
             Main.DEBUG_LOGGER.success("Generated file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
         }
         Main.LOGGER.success("Generated single certificate files");

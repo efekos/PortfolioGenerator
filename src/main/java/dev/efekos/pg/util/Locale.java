@@ -16,5 +16,5 @@
 
 package dev.efekos.pg.util;
 
-public record Locale(String code, String name, String nativeName,boolean localization) {
+public record Locale(String code, String name, String nativeName, boolean localization) {
 }

@@ -27,7 +27,7 @@ import dev.efekos.pg.data.type.RequiredDataType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactInfo implements JsonSchema{
+public class ContactInfo implements JsonSchema {
     private String email;
     private String number;
     private boolean includeSocials;
@@ -40,10 +40,10 @@ public class ContactInfo implements JsonSchema{
         checker.expectObject(element);
         JsonObject object = element.getAsJsonObject();
 
-        checker.searchExceptions(object,"email", RequiredDataType.STRING);
-        checker.searchExceptions(object,"number",RequiredDataType.STRING);
-        checker.searchExceptions(object,"socials",RequiredDataType.BOOLEAN);
-        checker.searchExceptions(object,"places",RequiredDataType.ARRAY);
+        checker.searchExceptions(object, "email", RequiredDataType.STRING);
+        checker.searchExceptions(object, "number", RequiredDataType.STRING);
+        checker.searchExceptions(object, "socials", RequiredDataType.BOOLEAN);
+        checker.searchExceptions(object, "places", RequiredDataType.ARRAY);
 
         this.email = object.get("email").getAsString();
         this.number = object.get("number").getAsString();
@@ -53,7 +53,7 @@ public class ContactInfo implements JsonSchema{
         JsonArray array = object.getAsJsonArray("places");
         for (JsonElement placeElement : array) {
             Place place = new Place();
-            place.readJson(placeElement,context);
+            place.readJson(placeElement, context);
             this.places.add(place);
         }
     }

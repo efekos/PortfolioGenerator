@@ -17,14 +17,13 @@
 package dev.efekos.pg.data.type;
 
 public enum VersionType {
-    RELEASE("release","Release","releaseColor"),
-    BETA("beta","Beta","betaColor"),
-    ALPHA("alpha","Alpha","alphaColor"),
-    PROTOTYPE("prototype","Prototype","prototypeColor"),
-    SNAPSHOT("snapshot","Snapshot","snapshotColor"),
-    RELEASE_CANDIDATE("rc","Release Candidate","releaseCandidateColor"),
-    PRE_RELEASE("pre_release","Pre-Release","preReleaseColor")
-    ;
+    RELEASE("release", "Release", "releaseColor"),
+    BETA("beta", "Beta", "betaColor"),
+    ALPHA("alpha", "Alpha", "alphaColor"),
+    PROTOTYPE("prototype", "Prototype", "prototypeColor"),
+    SNAPSHOT("snapshot", "Snapshot", "snapshotColor"),
+    RELEASE_CANDIDATE("rc", "Release Candidate", "releaseCandidateColor"),
+    PRE_RELEASE("pre_release", "Pre-Release", "preReleaseColor");
 
     private final String id;
     private final String display;

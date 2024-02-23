@@ -16,4 +16,5 @@
 
 package dev.efekos.pg.util;
 
-public record HelpEntry(String name,String shortDesc,String longDesc,String colorChar) { }
+public record HelpEntry(String name, String shortDesc, String longDesc, String colorChar) {
+}

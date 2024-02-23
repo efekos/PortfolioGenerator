@@ -35,6 +35,6 @@ public enum EducationEntryType {
     }
 
     public String getDisplay() {
-        return Text.translated("education."+id);
+        return Text.translated("education." + id);
     }
 }

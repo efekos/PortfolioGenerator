@@ -67,20 +67,20 @@ public class Main {
     public static void main(String[] args) throws Exception {
         List<String> list = Arrays.asList(args);
 
-        if(!list.isEmpty()&&list.get(0).equals("help")){
+        if (!list.isEmpty() && list.get(0).equals("help")) {
 
             HelpProvider provider = new HelpProvider();
 
-            if(list.size()==1)provider.printDefault(LOGGER);
+            if (list.size() == 1) provider.printDefault(LOGGER);
             else {
                 Optional<HelpEntry> helpEntry = HelpProvider.ENTRIES.stream().filter(entry -> entry.name().equals(list.get(1))).findFirst();
-                if(!helpEntry.isPresent()){
-                    LOGGER.error("Unknown command/option: "+list.get(1));
+                if (!helpEntry.isPresent()) {
+                    LOGGER.error("Unknown command/option: " + list.get(1));
                     provider.printExit(LOGGER);
                     return;
                 }
 
-                provider.printEntry(helpEntry.get(),LOGGER);
+                provider.printEntry(helpEntry.get(), LOGGER);
                 provider.printExit(LOGGER);
             }
 

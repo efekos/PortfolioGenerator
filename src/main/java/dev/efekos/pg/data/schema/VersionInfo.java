@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class VersionInfo implements JsonSchema{
+public class VersionInfo implements JsonSchema {
 
     private VersionInfoType type;
     private List<Version> versions = new ArrayList<>();
@@ -43,12 +43,12 @@ public class VersionInfo implements JsonSchema{
         checker.expectObject(element);
         JsonObject object = element.getAsJsonObject();
 
-        checker.searchExceptions(object,"type", RequiredDataType.STRING);
+        checker.searchExceptions(object, "type", RequiredDataType.STRING);
 
         try {
             this.type = VersionInfoType.valueOf(object.get("type").getAsString().toUpperCase(Locale.ENGLISH));
         } catch (IllegalArgumentException e) {
-            throw new JsonParseException("Unknown version info type '"+object.get("type").getAsString()+"'");
+            throw new JsonParseException("Unknown version info type '" + object.get("type").getAsString() + "'");
         }
 
         if (type == VersionInfoType.OBJECT) {

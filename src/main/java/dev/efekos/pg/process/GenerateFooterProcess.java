@@ -16,7 +16,6 @@
 
 package dev.efekos.pg.process;
 
-import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.Contributor;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
@@ -37,18 +36,18 @@ public class GenerateFooterProcess implements Process {
 
         List<String> contributorElements = context.contributors.stream().map(GenerateFooterProcess::generateContributor).toList();
 
-        context.footer = template.replace("%%contributors%%",Text.translated("footer.contributed",String.join("",contributorElements)));
+        context.footer = template.replace("%%contributors%%", Text.translated("footer.contributed", String.join("", contributorElements)));
     }
 
-    public static String generateContributor(Contributor contributor){
+    public static String generateContributor(Contributor contributor) {
         String template = ResourceManager.getResource(Resources.HTML_CONTRIBUTOR);
 
-        List<String> list = contributor.getCategories().stream().map(string -> "<li>"+Text.translated("contribution." + string)+"</li>").toList();
+        List<String> list = contributor.getCategories().stream().map(string -> "<li>" + Text.translated("contribution." + string) + "</li>").toList();
 
         return template
-                .replace("%%avatar%%",contributor.getAvatarUrl())
-                .replace("%%name%%",contributor.getName())
-                .replace("%%link%%",contributor.getUrl())
-                .replace("%%categories%%",list.isEmpty()?"":"<ul>"+String.join("",list)+"</ul>");
+                .replace("%%avatar%%", contributor.getAvatarUrl())
+                .replace("%%name%%", contributor.getName())
+                .replace("%%link%%", contributor.getUrl())
+                .replace("%%categories%%", list.isEmpty() ? "" : "<ul>" + String.join("", list) + "</ul>");
     }
 }

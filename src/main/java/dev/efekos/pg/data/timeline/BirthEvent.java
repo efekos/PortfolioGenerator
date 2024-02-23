@@ -20,7 +20,7 @@ import dev.efekos.pg.data.schema.Date;
 import dev.efekos.pg.data.schema.DayDate;
 import dev.efekos.pg.util.Text;
 
-public class BirthEvent implements TimelineEvent{
+public class BirthEvent implements TimelineEvent {
     private final DayDate when;
 
     public BirthEvent(DayDate when) {

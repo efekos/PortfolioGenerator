@@ -28,7 +28,7 @@ import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-public class ProjectGalleryImageList implements JsonSchema{
+public class ProjectGalleryImageList implements JsonSchema {
     private final List<ProjectGalleryImage> actualList = new ArrayList<>();
 
     @Override

@@ -21,7 +21,6 @@ import com.google.gson.JsonParser;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
-import org.commonmark.internal.inline.AsteriskDelimiterProcessor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +30,7 @@ import java.util.Map;
 public class LocaleHelper {
     private static final Map<String, Locale> localeList = new HashMap<>();
 
-    public static List<Locale> all(){
+    public static List<Locale> all() {
         return localeList.values().stream().toList();
     }
 
@@ -47,9 +46,9 @@ public class LocaleHelper {
             JsonObject object = value.getAsJsonObject();
             String name = object.get("name").getAsString();
             String nativeName = object.get("nativeName").getAsString();
-            boolean localization = object.has("localization")?object.get("localization").getAsBoolean():false;
+            boolean localization = object.has("localization") ? object.get("localization").getAsBoolean() : false;
 
-            localeList.put(code, new Locale(code, name, nativeName,localization));
+            localeList.put(code, new Locale(code, name, nativeName, localization));
         });
 
         Main.DEBUG_LOGGER.info("Final locale code count: " + localeList.size());
@@ -64,8 +63,8 @@ public class LocaleHelper {
         return !localeList.containsKey(code);
     }
 
-    public static String generateLanguageSelector(){
-        String main  = """
+    public static String generateLanguageSelector() {
+        String main = """
                 <div class="lang-dropdown" onchange="refreshLang(event.target.value)">
                     <select>
                         %%OPTIONS%%
@@ -76,9 +75,9 @@ public class LocaleHelper {
         List<String> options = new ArrayList<>();
 
         all().stream().filter(Locale::localization).forEach(locale -> {
-            options.add("<option value=\""+locale.code()+"\">"+locale.nativeName()+"</option>");
+            options.add("<option value=\"" + locale.code() + "\">" + locale.nativeName() + "</option>");
         });
 
-        return main.replace("%%OPTIONS%%",String.join("\n",options));
+        return main.replace("%%OPTIONS%%", String.join("\n", options));
     }
 }

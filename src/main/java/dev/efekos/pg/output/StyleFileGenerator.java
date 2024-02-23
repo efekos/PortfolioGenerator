@@ -33,8 +33,9 @@ public class StyleFileGenerator implements Generator {
     private final String footer;
 
 
-    public StyleFileGenerator(String binPath,String footer) {
-        this.binPath = binPath;this.footer = footer;
+    public StyleFileGenerator(String binPath, String footer) {
+        this.binPath = binPath;
+        this.footer = footer;
     }
 
     public void generateSocialIcons(GeneralInfo info) throws IOException {
@@ -60,7 +61,7 @@ public class StyleFileGenerator implements Generator {
                         .replaceAll("%%i%%", type.getId()))
         );
 
-        writeFile(binPath + "\\style\\social_icons.css", String.join("\n", generatedSelections),footer);
+        writeFile(binPath + "\\style\\social_icons.css", String.join("\n", generatedSelections), footer);
         Main.DEBUG_LOGGER.success("Generated file: style/social_icons.css");
     }
 
@@ -70,7 +71,7 @@ public class StyleFileGenerator implements Generator {
         String template = ResourceManager.getResource(Resources.STYLE_PROJECT_TAG_TEMPLATE);
         tagColorInfo.getColors().forEach((key, color) -> generatedSelectors.add(template.replaceAll("%%tcolor%%", color).replaceAll("%%tname%%", key)));
 
-        writeFile(binPath + "\\style\\project_tags.css", String.join("\n", generatedSelectors),footer);
+        writeFile(binPath + "\\style\\project_tags.css", String.join("\n", generatedSelectors), footer);
         Main.DEBUG_LOGGER.success("Generated file: style/project_tags.css");
     }
 
@@ -91,7 +92,7 @@ public class StyleFileGenerator implements Generator {
             generatedSelectors.add(template.replaceAll("%%vrtid%%", type.getId()).replaceAll("%%vrtcolor%%", type.getColor()));
         }
 
-        writeFile(binPath + "\\style\\versions.css", String.join("\n\n", generatedSelectors),footer);
+        writeFile(binPath + "\\style\\versions.css", String.join("\n\n", generatedSelectors), footer);
         Main.DEBUG_LOGGER.success("Generated file: style/versions.css");
     }
 }

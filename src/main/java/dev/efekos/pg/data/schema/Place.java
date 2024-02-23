@@ -25,7 +25,7 @@ import dev.efekos.pg.data.type.RequiredDataType;
 
 import java.util.Objects;
 
-public class Place implements JsonSchema{
+public class Place implements JsonSchema {
     private String displayName;
     private String website;
     private String mapsLink;
@@ -38,11 +38,11 @@ public class Place implements JsonSchema{
 
         JsonObject object = element.getAsJsonObject();
 
-        checker.searchExceptions(object,"maps", RequiredDataType.STRING);
-        checker.searchExceptions(object,"display", RequiredDataType.STRING);
-        checker.searchExceptions(object,"address", RequiredDataType.STRING);
+        checker.searchExceptions(object, "maps", RequiredDataType.STRING);
+        checker.searchExceptions(object, "display", RequiredDataType.STRING);
+        checker.searchExceptions(object, "address", RequiredDataType.STRING);
 
-        if(object.has("website")) this.website = object.get("website").getAsString();
+        if (object.has("website")) this.website = object.get("website").getAsString();
 
         this.mapsLink = object.get("maps").getAsString();
         this.address = object.get("address").getAsString();
@@ -54,7 +54,7 @@ public class Place implements JsonSchema{
     }
 
     public String getWebsite() {
-        return Objects.isNull(website)?"": "<span class=\"alt\">"+website+"</span>";
+        return Objects.isNull(website) ? "" : "<span class=\"alt\">" + website + "</span>";
     }
 
     public void setWebsite(String website) {

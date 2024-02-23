@@ -36,9 +36,9 @@ public class DateHelper {
 
     public static String getThing(int day) {
         String stringDay = day + "";
-        if (stringDay.endsWith("1")) return Text.translated("day.first",day+"");
-        if (stringDay.endsWith("2")) return Text.translated("day.second",day+"");
-        if (stringDay.endsWith("3")) return Text.translated("day.third",day+"");
-        return Text.translated("day.other",day+"");
+        if (stringDay.endsWith("1")) return Text.translated("day.first", day + "");
+        if (stringDay.endsWith("2")) return Text.translated("day.second", day + "");
+        if (stringDay.endsWith("3")) return Text.translated("day.third", day + "");
+        return Text.translated("day.other", day + "");
     }
 }

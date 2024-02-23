@@ -20,7 +20,7 @@ import dev.efekos.pg.data.schema.Date;
 import dev.efekos.pg.data.schema.MonthDate;
 import dev.efekos.pg.util.Text;
 
-public class JobEndEvent implements TimelineEvent{
+public class JobEndEvent implements TimelineEvent {
     private final String company;
     private final MonthDate when;
 
@@ -35,7 +35,7 @@ public class JobEndEvent implements TimelineEvent{
     }
 
     public String getTitle() {
-        return Text.translated("timeline.job.end",company);
+        return Text.translated("timeline.job.end", company);
     }
 
     @Override

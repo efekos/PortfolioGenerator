@@ -30,7 +30,10 @@ import dev.efekos.pg.data.type.SocialLinkType;
 import dev.efekos.pg.util.Locale;
 import dev.efekos.pg.util.LocaleHelper;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class GeneralInfo implements JsonSchema, TimelineEventSource {
     private String name;
