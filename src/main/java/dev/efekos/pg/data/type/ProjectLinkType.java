@@ -16,22 +16,24 @@
 
 package dev.efekos.pg.data.type;
 
+import dev.efekos.pg.util.Text;
+
 import java.util.Arrays;
 import java.util.Optional;
 
 public enum ProjectLinkType {
-    ISSUES("issues", "Issue Tracker"),
-    SOURCE("source", "Source"),
-    SUPPORT("support", "Support"),
-    WIKI("wiki", "Wiki"),
-    DOCUMENTATION("doc", "Documentation"),
-    GUIDE("guide", "Guide");
+    ISSUES("issues","project.link.issues"),
+    SOURCE("source","project.link.source"),
+    SUPPORT("support","project.link.support"),
+    WIKI("wiki","project.link.wiki"),
+    DOCUMENTATION("doc","project.link.documentation"),
+    GUIDE("guide","project.link.guide");
     private final String id;
-    private final String display;
+    private final String key;
 
-    ProjectLinkType(String id, String display) {
+    ProjectLinkType(String id,String key) {
         this.id = id;
-        this.display = display;
+        this.key = key;
     }
 
     public String getId() {
@@ -39,10 +41,14 @@ public enum ProjectLinkType {
     }
 
     public String getDisplay() {
-        return display;
+        return Text.translated(key);
     }
 
     public static Optional<ProjectLinkType> findById(String id) {
         return Arrays.stream(values()).filter(socialLinkType -> socialLinkType.id.equals(id)).findFirst();
+    }
+
+    public String getKey() {
+        return key;
     }
 }

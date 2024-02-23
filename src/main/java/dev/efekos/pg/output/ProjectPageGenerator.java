@@ -23,7 +23,9 @@ import dev.efekos.pg.data.schema.ProjectGalleryImage;
 import dev.efekos.pg.data.type.ProjectLinkType;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import dev.efekos.pg.util.Text;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -106,7 +108,7 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%prid%%", project.getId())
-                .replaceAll("%%prlicense%%", project.getLicense())
+                .replaceAll("%%prlicense%%", Text.translated("title.project.license",project.getLicense()))
                 .replaceAll("%%tags%%", tags)
                 .replaceAll("%%prsummary%%", project.getSummary())
                 .replaceAll("%%links%%", links)
@@ -161,10 +163,11 @@ public class ProjectPageGenerator implements Generator {
     private List<String> generateLinkElements(Map<ProjectLinkType, String> links) {
         List<String> elementsGenerated = new ArrayList<>();
 
-        links.forEach((projectLinkType, s) -> elementsGenerated.add("<a target=\"_blank\" href=\"%%link%%\" class=\"project-link\" ><img src=\"../../images/icon/link/%%id%%.svg\" alt=\"%%display%% Icon\" width=\"24\" class=\"project-link-icon\">%%display%%</a>"
+        links.forEach((projectLinkType, s) -> elementsGenerated.add("<a target=\"_blank\" href=\"%%link%%\" class=\"project-link\" ><img src=\"../../images/icon/link/%%id%%.svg\" alt=\"%%key%% Icon\" width=\"24\" class=\"project-link-icon\">%%display%%</a>"
                 .replaceAll("%%link%%", s)
                 .replaceAll("%%display%%", projectLinkType.getDisplay())
                 .replaceAll("%%id%%", projectLinkType.getId())
+                .replaceAll("%%key%%", StringEscapeUtils.escapeHtml4(Text.translated(projectLinkType.getKey())))
         ));
 
         return elementsGenerated;
