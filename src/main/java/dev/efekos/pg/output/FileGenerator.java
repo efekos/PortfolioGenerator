@@ -16,17 +16,24 @@
 
 package dev.efekos.pg.output;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import dev.efekos.pg.Main;
 import dev.efekos.pg.data.schema.*;
 import dev.efekos.pg.data.timeline.TimelineEvent;
 import dev.efekos.pg.data.type.SocialLinkType;
+import dev.efekos.pg.process.GenerateFooterProcess;
 import dev.efekos.pg.process.ProcessContext;
+import dev.efekos.pg.process.ReadContributionDataProcess;
 import dev.efekos.pg.resource.IconResource;
 import dev.efekos.pg.resource.Resource;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
 import dev.efekos.pg.util.Locale;
 import dev.efekos.pg.util.Text;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -170,7 +177,7 @@ public class FileGenerator implements Generator {
         Main.LOGGER.success("Generates all non-static style files");
     }
 
-    public void generateScriptFiles(GeneralInfo info) throws IOException {
+    public void generateScriptFiles(GeneralInfo info,List<Contributor> contributors) throws IOException {
         Main.LOGGER.info("Generating script files");
 
         // age_calculator.js
@@ -184,13 +191,36 @@ public class FileGenerator implements Generator {
         copyResource(Resources.SCRIPT_EXPAND_ENTRIES, "\\expandable_entries.js", binPath, footer);
 
 
+        // language_finder.js
+
+        JsonObject object = convertToJson(contributors);
+
         Main.DEBUG_LOGGER.info("Generating file: language_finder.js");
-        String language = ResourceManager.getResource(Resources.SCRIPT_LANGUAGE_FINDER).replaceAll("%%UUID%%", UUID.randomUUID().toString());
+        String language = ResourceManager.getResource(Resources.SCRIPT_LANGUAGE_FINDER)
+                        .replaceAll("%%CONTRIBUTORS%%", StringEscapeUtils.escapeJson(new Gson().toJson(object)));
         writeFile(binPath + "\\language_finder.js", language, footer);
         Main.DEBUG_LOGGER.success("Generated file: language_finder.js");
 
 
         Main.LOGGER.success("Generates script files");
+    }
+
+    private JsonObject convertToJson(List<Contributor> contributors) {
+        JsonObject object = new JsonObject();
+
+        for (Contributor contributor : contributors) {
+            for (String s : contributor.getTranslated()) {
+                if(!object.has(s)) object.add(s,new JsonArray());
+
+                String string = GenerateFooterProcess.generateContributor(contributor);
+
+                JsonArray array = object.get(s).getAsJsonArray();
+                array.add(string);
+                object.add(s,array);
+            }
+        }
+
+        return object;
     }
 
     public void generateCertificatesFile(GeneralInfo info, List<Certificate> certificates) throws IOException {

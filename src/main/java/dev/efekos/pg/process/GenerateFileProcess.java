@@ -32,7 +32,7 @@ public class GenerateFileProcess implements Process {
         generator.generateIndexFile(context);
         generator.generateCertificatesFile(context.generalInfo, context.certificates);
         generator.generateBioFile(context.generalInfo);
-        generator.generateScriptFiles(context.generalInfo);
+        generator.generateScriptFiles(context.generalInfo,context.contributors);
         generator.generateEducationFile(context.generalInfo, context.educationInfo);
         generator.generateExperienceFile(context.generalInfo, context.experienceInfo);
         generator.generateStyleFiles(context.generalInfo, context.tagColorInfo);

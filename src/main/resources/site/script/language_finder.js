@@ -17,12 +17,21 @@ var langUrl = "./lang/%LANG%.json";
 
 var currentLang = {};
 
+// Change this value only if you are a bitch, and you want to disrespect the work of people.
+const localizationContributorData = %%CONTRIBUTORS%%;
+
+
 async function loadLang() {
     try {
         const lang = localStorage.getItem(`pgen-lang-36764784`) ?? 'en';
         const res = await fetch(langUrl.replace("%LANG%", lang)).then(res => res.json());
 
         currentLang = res;
+
+        const element = document.getElementById("translators");
+
+        element.innerHTML = getKey("footer.translation",localizationContributorData[lang].join(""))
+
         console.log("Successfully loaded language!")
     } catch (ignored){}
 }
@@ -45,7 +54,12 @@ function getKey(key,...args){
 async function refreshLang(code) {
     await localStorage.setItem(`pgen-lang-36764784`, code);
     await loadLang();
+
+    const element = document.getElementById("translators");
+
+    element.innerHTML = getKey("footer.translation",localizationContributorData[code].join(""))
     refreshLangKeys();
+
 }
 
 function refreshLangKeys(){

@@ -36,7 +36,7 @@ public interface Text {
 
 
         for (int i = 0; i < Arrays.asList(arguments).size(); i++) {
-            builder.append(" arg").append(i).append("=\"").append(StringEscapeUtils.escapeHtml4(arguments[i])).append("\""); // this is the nesting I tried. just spamming quotes
+            builder.append(" arg").append(i).append("=\"").append(StringEscapeUtils.escapeHtml4(arguments[i])).append("\"");
         } // <span class="key" id="key-$key" arg0="$arguments[0]"... arg10="$arguments[10]"
 
         JsonElement defaultLang = JsonParser.parseString(ResourceManager.getResource(Resources.JSON_LANGUAGE_EN));
