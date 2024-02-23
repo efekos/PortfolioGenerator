@@ -74,7 +74,7 @@ public class Main {
             if (list.size() == 1) provider.printDefault(LOGGER);
             else {
                 Optional<HelpEntry> helpEntry = HelpProvider.ENTRIES.stream().filter(entry -> entry.name().equals(list.get(1))).findFirst();
-                if (!helpEntry.isPresent()) {
+                if (helpEntry.isEmpty()) {
                     LOGGER.error("Unknown command/option: " + list.get(1));
                     provider.printExit(LOGGER);
                     return;

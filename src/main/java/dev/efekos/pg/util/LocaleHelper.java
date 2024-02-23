@@ -46,7 +46,7 @@ public class LocaleHelper {
             JsonObject object = value.getAsJsonObject();
             String name = object.get("name").getAsString();
             String nativeName = object.get("nativeName").getAsString();
-            boolean localization = object.has("localization") ? object.get("localization").getAsBoolean() : false;
+            boolean localization = object.has("localization") && object.get("localization").getAsBoolean();
 
             localeList.put(code, new Locale(code, name, nativeName, localization));
         });
@@ -74,9 +74,7 @@ public class LocaleHelper {
 
         List<String> options = new ArrayList<>();
 
-        all().stream().filter(Locale::localization).forEach(locale -> {
-            options.add("<option value=\"" + locale.code() + "\">" + locale.nativeName() + "</option>");
-        });
+        all().stream().filter(Locale::localization).forEach(locale -> options.add("<option value=\"" + locale.code() + "\">" + locale.nativeName() + "</option>"));
 
         return main.replace("%%OPTIONS%%", String.join("\n", options));
     }

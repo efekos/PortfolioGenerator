@@ -26,7 +26,7 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public interface Text {
-    public static String translated(String key, String... arguments) {
+    static String translated(String key, String... arguments) {
         StringBuilder builder = new StringBuilder();
 
         builder.append("<span class=\"key\"")
