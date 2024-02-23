@@ -32,7 +32,7 @@ public class GenerateFooterProcess implements Process {
     @Override
     public void init(ProcessContext context) throws Exception {
         String template = ResourceManager.getResource(Resources.HTML_FOOTER)
-                .replace("%%version%%", Text.translated("footer.version", "1.1.0"));
+                .replace("%%version%%", Text.translated("footer.version", "1.2.0"));
 
         List<String> contributorElements = context.contributors.stream().map(GenerateFooterProcess::generateContributor).toList();
 
