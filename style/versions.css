@@ -20,7 +20,7 @@
  */
 
 .version-tag.release {
-    color: rgb(99, 224, 118)
+    color: rgb(99,224,118)
 }
 
 /*
@@ -40,7 +40,7 @@
  */
 
 .version-tag.beta {
-    color: rgb(255, 111, 0)
+    color: rgb(255,111,0)
 }
 
 /*
@@ -60,7 +60,7 @@
  */
 
 .version-tag.alpha {
-    color: rgb(255, 59, 20)
+    color: rgb(255,59,20)
 }
 
 /*
@@ -80,7 +80,7 @@
  */
 
 .version-tag.prototype {
-    color: rgb(64, 119, 230)
+    color: rgb(64,119,230)
 }
 
 /*
@@ -100,7 +100,7 @@
  */
 
 .version-tag.snapshot {
-    color: rgb(245, 240, 93)
+    color: rgb(245,240,93)
 }
 
 /*
@@ -120,7 +120,7 @@
  */
 
 .version-tag.rc {
-    color: rgb(130, 219, 94)
+    color: rgb(130,219,94)
 }
 
 /*
@@ -140,5 +140,5 @@
  */
 
 .version-tag.pre_release {
-    color: rgb(110, 219, 66)
+    color: rgb(110,219,66)
 }

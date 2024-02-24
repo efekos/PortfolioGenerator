@@ -18,8 +18,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>John Doe - Simpler</title>
     <link rel="stylesheet" href="../../style/main_style.css">
     <link rel="stylesheet" href="../../style/projects.css">
@@ -29,6 +29,30 @@
 </head>
 
 <body>
+<!--
+  ~ Copyright 2024 efekos
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+<div class="navbar">
+    <div style="text-align: right"><div class="lang-dropdown" onchange="refreshLang(event.target.value)">
+    <select>
+        <option value="tr">Türkçe</option>
+<option value="en">English</option>
+    </select>
+    <div class="select-arrow"></div>
+</div></div>
+</div>
 
 <div class="horizontal-list">
     <div>
@@ -39,10 +63,13 @@
         <h3 class="text-summary">Spigot plugin development API</h3>
     </div>
     <div>
-        <a target="_blank" href="https://efekos.github.io/Simpler/" class="project-link" ><img src="../../images/icon/link/wiki.svg" alt="Wiki Icon" width="24" class="project-link-icon">Wiki</a><br><a target="_blank" href="https://github.com/efekos/Simpler" class="project-link" ><img src="../../images/icon/link/source.svg" alt="Source Icon" width="24" class="project-link-icon">Source</a><br><a target="_blank" href="https://patreon.com/efekos" class="project-link" ><img src="../../images/icon/link/support.svg" alt="Support Icon" width="24" class="project-link-icon">Support</a><br><a target="_blank" href="https://efekos.github.io/Simpler/" class="project-link" ><img src="../../images/icon/link/guide.svg" alt="Guide Icon" width="24" class="project-link-icon">Guide</a><br><a target="_blank" href="https://github.com/efekos/Simpler/issues" class="project-link" ><img src="../../images/icon/link/issues.svg" alt="Issue Tracker Icon" width="24" class="project-link-icon">Issue Tracker</a><br><a target="_blank" href="https://efekos.github.io/Simpler/" class="project-link" ><img src="../../images/icon/link/doc.svg" alt="Documentation Icon" width="24" class="project-link-icon">Documentation</a>
+        <a target="_blank" href="https://efekos.github.io/Simpler/" class="project-link" ><img src="../../images/icon/link/wiki.svg" alt="&lt;span class=&quot;key&quot; id=&quot;key-project.link.wiki&quot;&gt;Wiki&lt;/span&gt; Icon" width="24" class="project-link-icon"><span class="key" id="key-project.link.wiki">Wiki</span></a><br><a target="_blank" href="https://efekos.github.io/Simpler/" class="project-link" ><img src="../../images/icon/link/guide.svg" alt="&lt;span class=&quot;key&quot; id=&quot;key-project.link.guide&quot;&gt;Guide&lt;/span&gt; Icon" width="24" class="project-link-icon"><span class="key" id="key-project.link.guide">Guide</span></a><br><a target="_blank" href="https://github.com/efekos/Simpler/issues" class="project-link" ><img src="../../images/icon/link/issues.svg" alt="&lt;span class=&quot;key&quot; id=&quot;key-project.link.issues&quot;&gt;Issue Tracker&lt;/span&gt; Icon" width="24" class="project-link-icon"><span class="key" id="key-project.link.issues">Issue Tracker</span></a><br><a target="_blank" href="https://patreon.com/efekos" class="project-link" ><img src="../../images/icon/link/support.svg" alt="&lt;span class=&quot;key&quot; id=&quot;key-project.link.support&quot;&gt;Support&lt;/span&gt; Icon" width="24" class="project-link-icon"><span class="key" id="key-project.link.support">Support</span></a><br><a target="_blank" href="https://efekos.github.io/Simpler/" class="project-link" ><img src="../../images/icon/link/doc.svg" alt="&lt;span class=&quot;key&quot; id=&quot;key-project.link.documentation&quot;&gt;Documentation&lt;/span&gt; Icon" width="24" class="project-link-icon"><span class="key" id="key-project.link.documentation">Documentation</span></a><br><a target="_blank" href="https://github.com/efekos/Simpler" class="project-link" ><img src="../../images/icon/link/source.svg" alt="&lt;span class=&quot;key&quot; id=&quot;key-project.link.source&quot;&gt;Source&lt;/span&gt; Icon" width="24" class="project-link-icon"><span class="key" id="key-project.link.source">Source</span></a>
     </div>
     <div style="margin-left: 2rem;">
-        <a href="https://efekos.github.io/projects/simpler/" target="_blank" style="display: inline-block;"><button class="btn btn-download">Official Website <img src="../../images/icon/external.svg" width="24"/></button></a>
+        <a href="https://efekos.github.io/projects/simpler/" target="_blank" style="display: inline-block;">
+            <button class="btn btn-download"><span class="key" id="key-project.link.website">Official Website</span> <img src="../../images/icon/external.svg" width="24"/>
+            </button>
+        </a>
     </div>
 </div>
 
@@ -50,18 +77,18 @@
 
 <nav>
     <ul class="nav">
-        <li><a href="index.html">Description</a></li>
-        <li><a href="./gallery.html">Gallery</a></li>
-        <li><a href="./changelog.html">Changelog</a></li>
-        <li id="selected"><a href="./versions.html">Versions</a></li>
-        <li><a href="./license.html">License</a></li>
-        <li><a href="../../projects.html">Back</a></li>
+        <li><a href="index.html"><span class="key" id="key-project.description">Description</span></a></li>
+        <li><a href="./gallery.html"><span class="key" id="key-project.gallery">Gallery</span></a></li>
+        <li><a href="./changelog.html"><span class="key" id="key-project.changelog">Changelog</span></a></li>
+        <li id="selected"><a href="./versions.html"><span class="key" id="key-project.versions">Versions</span></a></li>
+        <li><a href="./license.html"><span class="key" id="key-project.license">License</span></a></li>
+        <li><a href="../../projects.html"><span class="key" id="key-button.back">Back</span></a></li>
     </ul>
 </nav>
 
 <br><br>
 
-<h2>Versions</h2>
+<h2><span class="key" id="key-project.versions">Versions</span></h2>
 
 <!--
   ~ Copyright 2024 efekos
@@ -79,11 +106,11 @@
   ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   -->
 
-<button onclick="refreshPage(firstPage)" id="firstBtn" class="btn btn-pagination">First</button>
-<button onclick="refreshPage(prevPage)" id="prevBtn" class="btn btn-pagination">Prev</button>
+<button onclick="refreshPage(firstPage)" id="firstBtn" class="btn btn-pagination"><span class="key" id="key-project.page.first">First</span></button>
+<button onclick="refreshPage(prevPage)" id="prevBtn" class="btn btn-pagination"><span class="key" id="key-project.page.previous">Prev</span></button>
 <span id="cur"></span>
-<button onclick="refreshPage(nextPage)" id="nextBtn" class="btn btn-pagination">Next</button>
-<button onclick="refreshPage(lastPage)" id="lastBtn" class="btn btn-pagination">Last</button>
+<button onclick="refreshPage(nextPage)" id="nextBtn" class="btn btn-pagination"><span class="key" id="key-project.page.next">Next</span></button>
+<button onclick="refreshPage(lastPage)" id="lastBtn" class="btn btn-pagination"><span class="key" id="key-project.page.last">Last</span></button>
 
 <!--
   ~ Copyright 2024 efekos
@@ -110,29 +137,25 @@
     <div class="entry entry-placeholder" style="min-height: 4.5rem;"></div>
 </div>
 
-<!--
-  ~ Copyright 2024 efekos
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
-  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  -->
-
 <footer>
-    This website is brought to you by <a href="https://github.com/efekos" target="_blank">efekos/</a><a href="https://github.com/efekos/PortfolioGenerator" target="_blank">PortfolioGenerator</a><br>
-    with &hearts; and work.
+        <span class="key" id="key-footer.main" arg0="<a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>">This website is brought to you by <a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>
+        <br>with &heartsuit;</span> <br>
+        <span class="key" id="key-footer.version" arg0="1.2.0">version 1.2.0</span> <br>
+        <span id="translators"></span> <br>
+        <span class="key" id="key-footer.contributed" arg0="&lt;a href=&quot;https://github.com/efekos&quot; class=&quot;avatar&quot; target=&quot;_blank&quot;&gt;&lt;div class=&quot;tooltip&quot;&gt;&lt;span class=&quot;tooltiptext&quot;&gt;efekos&lt;ul&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.code&quot;&gt;Contributor&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.translation&quot;&gt;Translator&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/u/56752400?v=4&quot; alt=&quot;efekos's github profile&quot; width=&quot;32&quot; height=&quot;32&quot; class=&quot;contributor&quot;&gt;&lt;/div&gt;&lt;/a&gt;">Contributed by: <a href="https://github.com/efekos" class="avatar" target="_blank"><div class="tooltip"><span class="tooltiptext">efekos<ul><li><span class="key" id="key-contribution.code">Contributor</span></li><li><span class="key" id="key-contribution.translation">Translator</span></li></ul></span><img src="https://avatars.githubusercontent.com/u/56752400?v=4" alt="efekos's github profile" width="32" height="32" class="contributor"></div></a></span>
 </footer>
 
 <script src="../../lib/prism.js"></script>
 <script src="./versions_finder.js"></script>
+<script src="../../language_finder.js"></script>
+<script>
+    async function a(){
+        langUrl = "../../lang/%LANG%.json";
+        await loadLang();
+        refreshLangKeys();
+    }
+    a();
+</script>
 </body>
 
 </html>

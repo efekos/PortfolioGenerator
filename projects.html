@@ -18,8 +18,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>John Doe - Projects</title>
     <link rel="stylesheet" href="./style/main_style.css">
     <link rel="stylesheet" href="./style/projects.css">
@@ -27,14 +27,39 @@
 </head>
 
 <body>
+<!--
+  ~ Copyright 2024 efekos
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+<div class="navbar">
+    <div style="text-align: right"><div class="lang-dropdown" onchange="refreshLang(event.target.value)">
+    <select>
+        <option value="tr">Türkçe</option>
+<option value="en">English</option>
+    </select>
+    <div class="select-arrow"></div>
+</div></div>
+</div>
 <div style="text-align: center;">
-    <h1>Projects</h1>
+    <h1><span class="key" id="key-title.projects">Projects</span></h1>
 </div>
 
 <div class="search-bar">
     <input type="text" id="search" placeholder="Search..." oninput="onInputChange(event)" class="search-bar-input">
-</div><br>
-Filter by tags:
+</div>
+<br>
+<span class="key" id="key-projects.filter">Filter by tag:</span>
 <div id="tagFilters">
 </div>
 
@@ -66,9 +91,10 @@ Filter by tags:
             <span class="alt">Spigot plugin development API</span>
         </div>
         <div>
-            <img src="./images/icon/scale.svg" width="20" class="type-text" /><span class="alt">MIT</span><br>
-            <img src="./images/icon/tag.svg" width="20" class="type-text" /><span class="alt">1.6.3</span><br>
-            <img src="./images/icon/clock.svg" width="20" class="type-text" /><span class="alt">April 22nd, 2022</span><br>
+            <img src="./images/icon/scale.svg" width="20" class="type-text"/><span class="alt">MIT</span><br>
+            <img src="./images/icon/tag.svg" width="20" class="type-text"/><span class="alt">1.6.3</span><br>
+            <img src="./images/icon/clock.svg" width="20" class="type-text"/><span
+                class="alt"><span class="key" id="key-date.format" arg0="&lt;span class=&quot;key&quot; id=&quot;key-month.apr&quot;&gt;April&lt;/span&gt;" arg1="&lt;span class=&quot;key&quot; id=&quot;key-day.second&quot; arg0=&quot;22&quot;&gt;2nd&lt;/span&gt;" arg2="2022"><span class="key" id="key-month.apr">April</span> <span class="key" id="key-day.second" arg0="22">2nd</span>, 2022</span></span><br>
         </div>
         <div class="tagsTag">
             <div class="project-tag-spigot">spigot</div><div class="project-tag-java">java</div><div class="project-tag-minecraft">minecraft</div><div class="project-tag-library">library</div>
@@ -100,9 +126,10 @@ Filter by tags:
             <span class="alt">Spigot plugin development API</span>
         </div>
         <div>
-            <img src="./images/icon/scale.svg" width="20" class="type-text" /><span class="alt">MIT</span><br>
-            <img src="./images/icon/tag.svg" width="20" class="type-text" /><span class="alt">1.6.3</span><br>
-            <img src="./images/icon/clock.svg" width="20" class="type-text" /><span class="alt">April 22nd, 2022</span><br>
+            <img src="./images/icon/scale.svg" width="20" class="type-text"/><span class="alt">MIT</span><br>
+            <img src="./images/icon/tag.svg" width="20" class="type-text"/><span class="alt">1.6.3</span><br>
+            <img src="./images/icon/clock.svg" width="20" class="type-text"/><span
+                class="alt"><span class="key" id="key-date.format" arg0="&lt;span class=&quot;key&quot; id=&quot;key-month.apr&quot;&gt;April&lt;/span&gt;" arg1="&lt;span class=&quot;key&quot; id=&quot;key-day.second&quot; arg0=&quot;22&quot;&gt;2nd&lt;/span&gt;" arg2="2022"><span class="key" id="key-month.apr">April</span> <span class="key" id="key-day.second" arg0="22">2nd</span>, 2022</span></span><br>
         </div>
         <div class="tagsTag">
             <div class="project-tag-good">good</div><div class="project-tag-cool">cool</div><div class="project-tag-duplicate">duplicate</div><div class="project-tag-library">library</div>
@@ -112,32 +139,22 @@ Filter by tags:
 
 <br><br><br>
 <div style="text-align: center;">
-    <a href="index.html"><button class="btn btn-blue">Back</button></a>
+    <a href="index.html">
+        <button class="btn btn-blue"><span class="key" id="key-button.back">Back</span></button>
+    </a>
 </div>
 
 
-<!--
-  ~ Copyright 2024 efekos
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
-  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  -->
-
 <footer>
-    This website is brought to you by <a href="https://github.com/efekos" target="_blank">efekos/</a><a href="https://github.com/efekos/PortfolioGenerator" target="_blank">PortfolioGenerator</a><br>
-    with &hearts; and work.
+        <span class="key" id="key-footer.main" arg0="<a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>">This website is brought to you by <a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>
+        <br>with &heartsuit;</span> <br>
+        <span class="key" id="key-footer.version" arg0="1.2.0">version 1.2.0</span> <br>
+        <span id="translators"></span> <br>
+        <span class="key" id="key-footer.contributed" arg0="&lt;a href=&quot;https://github.com/efekos&quot; class=&quot;avatar&quot; target=&quot;_blank&quot;&gt;&lt;div class=&quot;tooltip&quot;&gt;&lt;span class=&quot;tooltiptext&quot;&gt;efekos&lt;ul&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.code&quot;&gt;Contributor&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.translation&quot;&gt;Translator&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/u/56752400?v=4&quot; alt=&quot;efekos's github profile&quot; width=&quot;32&quot; height=&quot;32&quot; class=&quot;contributor&quot;&gt;&lt;/div&gt;&lt;/a&gt;">Contributed by: <a href="https://github.com/efekos" class="avatar" target="_blank"><div class="tooltip"><span class="tooltiptext">efekos<ul><li><span class="key" id="key-contribution.code">Contributor</span></li><li><span class="key" id="key-contribution.translation">Translator</span></li></ul></span><img src="https://avatars.githubusercontent.com/u/56752400?v=4" alt="efekos's github profile" width="32" height="32" class="contributor"></div></a></span>
 </footer>
 
 <script src="./projects_search.js"></script>
+<script src="./language_finder.js"></script>
 </body>
 
 </html>

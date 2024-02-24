@@ -25,24 +25,6 @@
     <link rel="icon" href="../images/profile.png">
 </head>
 <body>
-
-<h1>English Course</h1>
-
-<div>
-    <img src="../images/certificate/english.png" class="certificate-image"/>
-</div>
-<h2>Achieve Date: November 23rd, 2007</h2>
-
-<a href="../images/certificate/english.jpg" target="_blank"><button class="btn btn-download">JPG <img src="../images/icon/external.svg" width="24"/></button></a><a href="../images/certificate/english.png" target="_blank"><button class="btn btn-download">PNG <img src="../images/icon/external.svg" width="24"/></button></a><a href="../images/certificate/english.jpeg" target="_blank"><button class="btn btn-download">JPEG <img src="../images/icon/external.svg" width="24"/></button></a>
-
-<br><br>
-
-It was a really big course that covers every aspect of English. I can talk like a native speaker just because I rewatched this course a dozen times!
-
-<br><br>
-
-<a href="../certificates.html"><button class="btn btn-blue">Back</button></a>
-
 <!--
   ~ Copyright 2024 efekos
   ~
@@ -58,10 +40,51 @@ It was a really big course that covers every aspect of English. I can talk like 
   ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
   ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   -->
+<div class="navbar">
+    <div style="text-align: right"><div class="lang-dropdown" onchange="refreshLang(event.target.value)">
+    <select>
+        <option value="tr">Türkçe</option>
+<option value="en">English</option>
+    </select>
+    <div class="select-arrow"></div>
+</div></div>
+</div>
+
+<h1>English Course</h1>
+
+<div>
+    <img src="../images/certificate/english.png" class="certificate-image"/>
+</div>
+<h2><span class="key" id="key-certificate.achieve" arg0="&lt;span class=&quot;key&quot; id=&quot;key-date.format&quot; arg0=&quot;&amp;lt;span class=&amp;quot;key&amp;quot; id=&amp;quot;key-month.nov&amp;quot;&amp;gt;November&amp;lt;/span&amp;gt;&quot; arg1=&quot;&amp;lt;span class=&amp;quot;key&amp;quot; id=&amp;quot;key-day.third&amp;quot; arg0=&amp;quot;23&amp;quot;&amp;gt;3rd&amp;lt;/span&amp;gt;&quot; arg2=&quot;2007&quot;&gt;&lt;span class=&quot;key&quot; id=&quot;key-month.nov&quot;&gt;November&lt;/span&gt; &lt;span class=&quot;key&quot; id=&quot;key-day.third&quot; arg0=&quot;23&quot;&gt;3rd&lt;/span&gt;, 2007&lt;/span&gt;">Achieve Date: <span class="key" id="key-date.format" arg0="&lt;span class=&quot;key&quot; id=&quot;key-month.nov&quot;&gt;November&lt;/span&gt;" arg1="&lt;span class=&quot;key&quot; id=&quot;key-day.third&quot; arg0=&quot;23&quot;&gt;3rd&lt;/span&gt;" arg2="2007"><span class="key" id="key-month.nov">November</span> <span class="key" id="key-day.third" arg0="23">3rd</span>, 2007</span></span></h2>
+
+<a href="../images/certificate/english.jpg" target="_blank"><button class="btn btn-download">JPG <img src="../images/icon/external.svg" width="24"/></button></a><a href="../images/certificate/english.png" target="_blank"><button class="btn btn-download">PNG <img src="../images/icon/external.svg" width="24"/></button></a><a href="../images/certificate/english.jpeg" target="_blank"><button class="btn btn-download">JPEG <img src="../images/icon/external.svg" width="24"/></button></a>
+
+<br><br>
+
+It was a really big course that covers every aspect of English. I can talk like a native speaker just because I rewatched this course a dozen times!
+
+<br><br>
+
+<a href="../certificates.html">
+    <button class="btn btn-blue"><span class="key" id="key-button.back">Back</span></button>
+</a>
 
 <footer>
-    This website is brought to you by <a href="https://github.com/efekos" target="_blank">efekos/</a><a href="https://github.com/efekos/PortfolioGenerator" target="_blank">PortfolioGenerator</a><br>
-    with &hearts; and work.
+        <span class="key" id="key-footer.main" arg0="<a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>">This website is brought to you by <a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>
+        <br>with &heartsuit;</span> <br>
+        <span class="key" id="key-footer.version" arg0="1.2.0">version 1.2.0</span> <br>
+        <span id="translators"></span> <br>
+        <span class="key" id="key-footer.contributed" arg0="&lt;a href=&quot;https://github.com/efekos&quot; class=&quot;avatar&quot; target=&quot;_blank&quot;&gt;&lt;div class=&quot;tooltip&quot;&gt;&lt;span class=&quot;tooltiptext&quot;&gt;efekos&lt;ul&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.code&quot;&gt;Contributor&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.translation&quot;&gt;Translator&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/u/56752400?v=4&quot; alt=&quot;efekos's github profile&quot; width=&quot;32&quot; height=&quot;32&quot; class=&quot;contributor&quot;&gt;&lt;/div&gt;&lt;/a&gt;">Contributed by: <a href="https://github.com/efekos" class="avatar" target="_blank"><div class="tooltip"><span class="tooltiptext">efekos<ul><li><span class="key" id="key-contribution.code">Contributor</span></li><li><span class="key" id="key-contribution.translation">Translator</span></li></ul></span><img src="https://avatars.githubusercontent.com/u/56752400?v=4" alt="efekos's github profile" width="32" height="32" class="contributor"></div></a></span>
 </footer>
+
+<script src="../language_finder.js"></script>
+<script>
+    async function a(){
+        langUrl = "../lang/%LANG%.json";
+        await loadLang();
+        refreshLangKeys();
+    }
+    a();
+</script>
 </body>
 </html>

@@ -26,13 +26,37 @@
 </head>
 
 <body>
+<!--
+  ~ Copyright 2024 efekos
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+<div class="navbar">
+    <div style="text-align: right"><div class="lang-dropdown" onchange="refreshLang(event.target.value)">
+    <select>
+        <option value="tr">Türkçe</option>
+<option value="en">English</option>
+    </select>
+    <div class="select-arrow"></div>
+</div></div>
+</div>
 
 <div style="text-align: center;">
-    <h1 class="glow-white">Education</h1>
+    <h1 class="glow-white"><span class="key" id="key-title.education">Education Information</span></h1>
 
     <br>
     <a href="index.html">
-        <button class="btn btn-blue">Back</button>
+        <button class="btn btn-blue"><span class="key" id="key-button.back">Back</span></button>
     </a>
     <br><br>
 </div>
@@ -58,15 +82,17 @@
 <li>
     <div class="entry">
         <div>
-            <img src="./images/icon/university.svg" alt="School" width="25" class="icon" />
+            <img src="./images/icon/university.svg" alt="School" width="25" class="icon"/>
         </div>
         <div>
             <span class="title">Zvezdochka Elementary School</span>
         </div>
         <div>
-            <img src="./images/icon/university.svg" width="20" class="type-text"/><span class="alt">School</span><br>
-            <img src="./images/icon/location.svg" width="20" class="type-text"/><span class="alt">Novosibirsk / Russia</span><br>
-            <img src="./images/icon/clock.svg" width="20" class="type-text"/><span class="alt">June, 2000 - September, 2005</span>
+            <img src="./images/icon/university.svg" width="20" class="type-text"/><span class="alt"><span class="key" id="key-education.school">School</span></span><br>
+            <img src="./images/icon/location.svg" width="20" class="type-text"/><span
+                class="alt">Novosibirsk / Russia</span><br>
+            <img src="./images/icon/clock.svg" width="20" class="type-text"/><span
+                class="alt"><span class="key" id="key-month.jun">June</span>, 2000 - <span class="key" id="key-month.sep">September</span>, 2005</span>
         </div>
     </div>
 </li><!--
@@ -88,15 +114,17 @@
 <li>
     <div class="entry">
         <div>
-            <img src="./images/icon/university.svg" alt="School" width="25" class="icon" />
+            <img src="./images/icon/university.svg" alt="School" width="25" class="icon"/>
         </div>
         <div>
             <span class="title">Sputnik Secondary School</span>
         </div>
         <div>
-            <img src="./images/icon/university.svg" width="20" class="type-text"/><span class="alt">School</span><br>
-            <img src="./images/icon/location.svg" width="20" class="type-text"/><span class="alt">Novosibirsk / Russia</span><br>
-            <img src="./images/icon/clock.svg" width="20" class="type-text"/><span class="alt">August, 2006 - September, 2011</span>
+            <img src="./images/icon/university.svg" width="20" class="type-text"/><span class="alt"><span class="key" id="key-education.school">School</span></span><br>
+            <img src="./images/icon/location.svg" width="20" class="type-text"/><span
+                class="alt">Novosibirsk / Russia</span><br>
+            <img src="./images/icon/clock.svg" width="20" class="type-text"/><span
+                class="alt"><span class="key" id="key-month.aug">August</span>, 2006 - <span class="key" id="key-month.sep">September</span>, 2011</span>
         </div>
     </div>
 </li><!--
@@ -118,15 +146,17 @@
 <li>
     <div class="entry">
         <div>
-            <img src="./images/icon/university.svg" alt="School" width="25" class="icon" />
+            <img src="./images/icon/university.svg" alt="School" width="25" class="icon"/>
         </div>
         <div>
             <span class="title">Lomonosov High School</span>
         </div>
         <div>
-            <img src="./images/icon/university.svg" width="20" class="type-text"/><span class="alt">School</span><br>
-            <img src="./images/icon/location.svg" width="20" class="type-text"/><span class="alt">Novosibirsk / Russia</span><br>
-            <img src="./images/icon/clock.svg" width="20" class="type-text"/><span class="alt">May, 2012 - March, 2016</span>
+            <img src="./images/icon/university.svg" width="20" class="type-text"/><span class="alt"><span class="key" id="key-education.school">School</span></span><br>
+            <img src="./images/icon/location.svg" width="20" class="type-text"/><span
+                class="alt">Novosibirsk / Russia</span><br>
+            <img src="./images/icon/clock.svg" width="20" class="type-text"/><span
+                class="alt"><span class="key" id="key-month.may">May</span>, 2012 - <span class="key" id="key-month.mar">March</span>, 2016</span>
         </div>
     </div>
 </li><!--
@@ -148,41 +178,31 @@
 <li>
     <div class="entry">
         <div>
-            <img src="./images/icon/university.svg" alt="School" width="25" class="icon" />
+            <img src="./images/icon/university.svg" alt="School" width="25" class="icon"/>
         </div>
         <div>
             <span class="title">Harvard University</span>
         </div>
         <div>
-            <img src="./images/icon/university.svg" width="20" class="type-text"/><span class="alt">University</span><br>
-            <img src="./images/icon/location.svg" width="20" class="type-text"/><span class="alt">Cambridge / United States</span><br>
-            <img src="./images/icon/clock.svg" width="20" class="type-text"/><span class="alt">February, 2017 - June, 2021</span>
+            <img src="./images/icon/university.svg" width="20" class="type-text"/><span class="alt"><span class="key" id="key-education.university">University</span></span><br>
+            <img src="./images/icon/location.svg" width="20" class="type-text"/><span
+                class="alt">Cambridge / United States</span><br>
+            <img src="./images/icon/clock.svg" width="20" class="type-text"/><span
+                class="alt"><span class="key" id="key-month.feb">February</span>, 2017 - <span class="key" id="key-month.jun">June</span>, 2021</span>
         </div>
     </div>
 </li>
 </ul>
 
 
-<!--
-  ~ Copyright 2024 efekos
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
-  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  -->
-
 <footer>
-    This website is brought to you by <a href="https://github.com/efekos" target="_blank">efekos/</a><a href="https://github.com/efekos/PortfolioGenerator" target="_blank">PortfolioGenerator</a><br>
-    with &hearts; and work.
+        <span class="key" id="key-footer.main" arg0="<a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>">This website is brought to you by <a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>
+        <br>with &heartsuit;</span> <br>
+        <span class="key" id="key-footer.version" arg0="1.2.0">version 1.2.0</span> <br>
+        <span id="translators"></span> <br>
+        <span class="key" id="key-footer.contributed" arg0="&lt;a href=&quot;https://github.com/efekos&quot; class=&quot;avatar&quot; target=&quot;_blank&quot;&gt;&lt;div class=&quot;tooltip&quot;&gt;&lt;span class=&quot;tooltiptext&quot;&gt;efekos&lt;ul&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.code&quot;&gt;Contributor&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.translation&quot;&gt;Translator&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/u/56752400?v=4&quot; alt=&quot;efekos's github profile&quot; width=&quot;32&quot; height=&quot;32&quot; class=&quot;contributor&quot;&gt;&lt;/div&gt;&lt;/a&gt;">Contributed by: <a href="https://github.com/efekos" class="avatar" target="_blank"><div class="tooltip"><span class="tooltiptext">efekos<ul><li><span class="key" id="key-contribution.code">Contributor</span></li><li><span class="key" id="key-contribution.translation">Translator</span></li></ul></span><img src="https://avatars.githubusercontent.com/u/56752400?v=4" alt="efekos's github profile" width="32" height="32" class="contributor"></div></a></span>
 </footer>
+<script src="./language_finder.js"></script>
 </body>
 
 </html>

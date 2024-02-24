@@ -24,25 +24,53 @@
     <link rel="icon" href="./images/profile.png">
 </head>
 <body>
+<!--
+  ~ Copyright 2024 efekos
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+<div class="navbar">
+    <div style="text-align: right"><div class="lang-dropdown" onchange="refreshLang(event.target.value)">
+    <select>
+        <option value="tr">Türkçe</option>
+<option value="en">English</option>
+    </select>
+    <div class="select-arrow"></div>
+</div></div>
+</div>
+
 <div id="root">
 
     <div style="text-align: center">
-        <h1>Contact Information</h1>
+        <h1><span class="key" id="key-title.contact">Contact Information</span></h1>
     </div>
 
     <div class="entry">
         <div>
-            <span class="title">Email Address</span>
+            <span class="title"><span class="key" id="key-contact.email">Email Address</span></span>
             <span class="alt" style="margin-left: 0.5rem;">business@johndoe.com</span>
         </div>
         <div style="margin-left: 1rem;">
-            <a href="mailto:business@johndoe.com" target="_blank"><button class="btn btn-download">Send an Email <img src="./images/icon/external.svg" width="20"/></button></a>
+            <a href="mailto:business@johndoe.com" target="_blank">
+                <button class="btn btn-download"><span class="key" id="key-contact.email.send">Send an Email</span> <img src="./images/icon/external.svg" width="20"/>
+                </button>
+            </a>
         </div>
     </div>
 
     <div class="entry">
         <div>
-            <span class="title">Phone Number</span>
+            <span class="title"><span class="key" id="key-contact.phone">Phone Number</span></span>
             <span class="alt">+7 306 395-396-769</span>
         </div>
     </div>
@@ -69,11 +97,14 @@
         
     </div>
     <div style="margin-left: 1rem;">
-        <a href="https://you.really/expected/something/like/this/is/just/an/example"><button class="btn btn-download">See on Google Maps <img src="./images/icon/external.svg" width="20" /></button></a>
+        <a href="https://you.really/expected/something/like/this/is/just/an/example">
+            <button class="btn btn-download"><span class="key" id="key-contact.location">See on Google Maps</span> <img src="./images/icon/external.svg" width="20"/>
+            </button>
+        </a>
     </div>
     <br class="toggle" hidden>
     <div class="toggle" hidden>
-                <span class="alt" style="color: #959595;" style="margin-top: 1.5rem;" hidden><br>Baumana St, 18, Krasnoyarsk, Krasnoyarsk Krai, Russia, 660028</span>
+        <span class="alt" style="color: #959595;" style="margin-top: 1.5rem;" hidden><br>Baumana St, 18, Krasnoyarsk, Krasnoyarsk Krai, Russia, 660028</span>
     </div>
     <img src="./images/icon/expanded.svg" alt="expand icon" width="24" class="entry-expand-icon">
 </div>
@@ -99,19 +130,43 @@
         
     </div>
     <div style="margin-left: 1rem;">
-        <a href="https://you.really/expected/something/like/this/is/just/an/example"><button class="btn btn-download">See on Google Maps <img src="./images/icon/external.svg" width="20" /></button></a>
+        <a href="https://you.really/expected/something/like/this/is/just/an/example">
+            <button class="btn btn-download"><span class="key" id="key-contact.location">See on Google Maps</span> <img src="./images/icon/external.svg" width="20"/>
+            </button>
+        </a>
     </div>
     <br class="toggle" hidden>
     <div class="toggle" hidden>
-                <span class="alt" style="color: #959595;" style="margin-top: 1.5rem;" hidden><br>I didn't want to put someone's house here just to make it look like a legitimate address</span>
+        <span class="alt" style="color: #959595;" style="margin-top: 1.5rem;" hidden><br>I didn't want to put someone's house here just to make it look like a legitimate address</span>
     </div>
     <img src="./images/icon/expanded.svg" alt="expand icon" width="24" class="entry-expand-icon">
 </div>
 
     <br><br>
     <div style="text-align: center">
-        <h2>You can use my social media accounts as well</h2>
+        <h2><span class="key" id="key-contact.socials">Or you can use my social media accounts</span></h2> 
+
 <!--
+  ~ Copyright 2024 efekos
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<a target="_blank" href="https://twitter.com/johndoe">
+    <div class="social-icon icon-twitter">
+        <img src="images/icon/social/twitter.svg" alt="Icon" width="24">
+    </div>
+</a><!--
   ~ Copyright 2024 efekos
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
@@ -130,6 +185,26 @@
 <a target="_blank" href="https://www.youtube.com/@JohnDoe-lt9oc">
     <div class="social-icon icon-youtube">
         <img src="images/icon/social/youtube.svg" alt="Icon" width="24">
+    </div>
+</a><!--
+  ~ Copyright 2024 efekos
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<a target="_blank" href="https://github.com/johndoe">
+    <div class="social-icon icon-github">
+        <img src="images/icon/social/github.svg" alt="Icon" width="24">
     </div>
 </a><!--
   ~ Copyright 2024 efekos
@@ -167,78 +242,24 @@
   ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   -->
 
-<a target="_blank" href="https://twitter.com/johndoe">
-    <div class="social-icon icon-twitter">
-        <img src="images/icon/social/twitter.svg" alt="Icon" width="24">
-    </div>
-</a><!--
-  ~ Copyright 2024 efekos
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
-  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  -->
-
 <a target="_blank" href="https://x.com/johndoe">
     <div class="social-icon icon-x">
         <img src="images/icon/social/x.svg" alt="Icon" width="24">
     </div>
-</a><!--
-  ~ Copyright 2024 efekos
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
-  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  -->
-
-<a target="_blank" href="https://github.com/johndoe">
-    <div class="social-icon icon-github">
-        <img src="images/icon/social/github.svg" alt="Icon" width="24">
-    </div>
 </a>
-
 
         <br><br>
         <a href="index.html">
-            <button class="btn btn-blue">Back</button>
+            <button class="btn btn-blue"><span class="key" id="key-button.back">Back</span></button>
         </a>
     </div>
 
-    <!--
-  ~ Copyright 2024 efekos
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
-  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  -->
-
-<footer>
-    This website is brought to you by <a href="https://github.com/efekos" target="_blank">efekos/</a><a href="https://github.com/efekos/PortfolioGenerator" target="_blank">PortfolioGenerator</a><br>
-    with &hearts; and work.
+    <footer>
+        <span class="key" id="key-footer.main" arg0="<a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>">This website is brought to you by <a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>
+        <br>with &heartsuit;</span> <br>
+        <span class="key" id="key-footer.version" arg0="1.2.0">version 1.2.0</span> <br>
+        <span id="translators"></span> <br>
+        <span class="key" id="key-footer.contributed" arg0="&lt;a href=&quot;https://github.com/efekos&quot; class=&quot;avatar&quot; target=&quot;_blank&quot;&gt;&lt;div class=&quot;tooltip&quot;&gt;&lt;span class=&quot;tooltiptext&quot;&gt;efekos&lt;ul&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.code&quot;&gt;Contributor&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.translation&quot;&gt;Translator&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/u/56752400?v=4&quot; alt=&quot;efekos's github profile&quot; width=&quot;32&quot; height=&quot;32&quot; class=&quot;contributor&quot;&gt;&lt;/div&gt;&lt;/a&gt;">Contributed by: <a href="https://github.com/efekos" class="avatar" target="_blank"><div class="tooltip"><span class="tooltiptext">efekos<ul><li><span class="key" id="key-contribution.code">Contributor</span></li><li><span class="key" id="key-contribution.translation">Translator</span></li></ul></span><img src="https://avatars.githubusercontent.com/u/56752400?v=4" alt="efekos's github profile" width="32" height="32" class="contributor"></div></a></span>
 </footer>
     <style>
 
@@ -296,6 +317,7 @@
             right: 1rem;
         }
     </style>
+    <script src="./language_finder.js"></script>
     <script src="./expandable_entries.js"></script>
 </div>
 </body>

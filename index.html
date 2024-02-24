@@ -24,6 +24,30 @@
     <link rel="icon" href="./images/profile.png">
 </head>
 <body>
+<!--
+  ~ Copyright 2024 efekos
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+<div class="navbar">
+    <div style="text-align: right"><div class="lang-dropdown" onchange="refreshLang(event.target.value)">
+    <select>
+        <option value="tr">Türkçe</option>
+<option value="en">English</option>
+    </select>
+    <div class="select-arrow"></div>
+</div></div>
+</div>
 <div id="root">
     <h1 id="name">John Doe</h1>
     <h2 id="title">Marketing & Full-Stack Developer</h2>
@@ -34,22 +58,22 @@
     <br/><br/><br/>
     <div class="center">
         <a href="certificates.html">
-            <button class="btn btn-blue">Certificates</button>
+            <button class="btn btn-blue"><span class="key" id="key-button.certificates">Certificates</span></button>
         </a>
         <a href="education.html">
-            <button class="btn btn-red">Education</button>
+            <button class="btn btn-red"><span class="key" id="key-button.education">Education</span></button>
         </a>
         <a href="experience.html">
-            <button class="btn btn-orange">Experience</button>
+            <button class="btn btn-orange"><span class="key" id="key-button.experience">Experience</span></button>
         </a>
         <a href="projects.html">
-            <button class="btn btn-green">Projects</button>
+            <button class="btn btn-green"><span class="key" id="key-button.projects">Projects</span></button>
         </a>
         <a href="bio.html">
-            <button class="btn btn-blue">Bio</button>
+            <button class="btn btn-blue"><span class="key" id="key-button.biography">Bio</span></button>
         </a>
         <a href="contact.html">
-            <button class="btn btn-blue">Contact</button>
+            <button class="btn btn-blue"><span class="key" id="key-button.contact">Contact</span></button>
         </a>
 
         <br><br>
@@ -70,9 +94,49 @@
   ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   -->
 
+<a target="_blank" href="https://twitter.com/johndoe">
+    <div class="social-icon icon-twitter">
+        <img src="images/icon/social/twitter.svg" alt="Icon" width="24">
+    </div>
+</a><!--
+  ~ Copyright 2024 efekos
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
 <a target="_blank" href="https://www.youtube.com/@JohnDoe-lt9oc">
     <div class="social-icon icon-youtube">
         <img src="images/icon/social/youtube.svg" alt="Icon" width="24">
+    </div>
+</a><!--
+  ~ Copyright 2024 efekos
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<a target="_blank" href="https://github.com/johndoe">
+    <div class="social-icon icon-github">
+        <img src="images/icon/social/github.svg" alt="Icon" width="24">
     </div>
 </a><!--
   ~ Copyright 2024 efekos
@@ -110,53 +174,13 @@
   ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   -->
 
-<a target="_blank" href="https://twitter.com/johndoe">
-    <div class="social-icon icon-twitter">
-        <img src="images/icon/social/twitter.svg" alt="Icon" width="24">
-    </div>
-</a><!--
-  ~ Copyright 2024 efekos
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
-  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  -->
-
 <a target="_blank" href="https://x.com/johndoe">
     <div class="social-icon icon-x">
         <img src="images/icon/social/x.svg" alt="Icon" width="24">
     </div>
-</a><!--
-  ~ Copyright 2024 efekos
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
-  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  -->
-
-<a target="_blank" href="https://github.com/johndoe">
-    <div class="social-icon icon-github">
-        <img src="images/icon/social/github.svg" alt="Icon" width="24">
-    </div>
 </a>
 
-        <h1>About</h1>
+        <h1><span class="key" id="key-title.about">About</span></h1>
 
         <div class="entries"><!--
   ~ Copyright 2024 efekos
@@ -177,11 +201,11 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/birth.svg" alt="Icon" width="24" />
+            <img src="images/icon/birth.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Age</span><br>
+        <span class="title"><span class="key" id="key-about.age">Age</span></span><br>
         <span class="alt" id="age"></span>
     </div>
 </div><!--
@@ -203,11 +227,11 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/language.svg" alt="Icon" width="24" />
+            <img src="images/icon/language.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Native Language</span><br>
+        <span class="title"><span class="key" id="key-about.lang_native">Native Language</span></span><br>
         <span class="alt" >Russian</span>
     </div>
 </div><!--
@@ -229,11 +253,11 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/language.svg" alt="Icon" width="24" />
+            <img src="images/icon/language.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Known Languages</span><br>
+        <span class="title"><span class="key" id="key-about.lang_known">Known Languages</span></span><br>
         <span class="alt" >Azerbaijani, English, Russian, Japanese, Spanish</span>
     </div>
 </div><!--
@@ -255,11 +279,11 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/university.svg" alt="Icon" width="24" />
+            <img src="images/icon/university.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Certificates Earned</span><br>
+        <span class="title"><span class="key" id="key-about.certificates">Certificates Earned</span></span><br>
         <span class="alt" >1</span>
     </div>
 </div><!--
@@ -281,11 +305,11 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/project.svg" alt="Icon" width="24" />
+            <img src="images/icon/project.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Projects Made</span><br>
+        <span class="title"><span class="key" id="key-about.projects">Projects Made</span></span><br>
         <span class="alt" >2</span>
     </div>
 </div><!--
@@ -307,11 +331,11 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/briefcase.svg" alt="Icon" width="24" />
+            <img src="images/icon/briefcase.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Jobs Worked</span><br>
+        <span class="title"><span class="key" id="key-about.jobs">Jobs Worked</span></span><br>
         <span class="alt" >3</span>
     </div>
 </div><!--
@@ -333,11 +357,11 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/letter.svg" alt="Icon" width="24" />
+            <img src="images/icon/letter.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Email Address</span><br>
+        <span class="title"><span class="key" id="key-about.email">Email Address</span></span><br>
         <span class="alt" >business@johndoe.com</span>
     </div>
 </div><!--
@@ -359,16 +383,16 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/phone.svg" alt="Icon" width="24" />
+            <img src="images/icon/phone.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Phone Number</span><br>
+        <span class="title"><span class="key" id="key-about.phone">Phone Number</span></span><br>
         <span class="alt" >+7 306 395-396-769</span>
     </div>
 </div></div>
 
-        <h1 id="timeline">Timeline</h1>
+        <h1 id="timeline"><span class="key" id="key-title.timeline">Timeline</span></h1>
     </div>
 
     <ul style="list-style: none">
@@ -391,12 +415,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/birth.svg" alt="Icon" width="24" />
+            <img src="images/icon/birth.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Born</span><br>
-        <span class="alt" >April 13rd, 1988</span>
+        <span class="title"><span class="key" id="key-timeline.born">Born</span></span><br>
+        <span class="alt" ><span class="key" id="key-date.format" arg0="&lt;span class=&quot;key&quot; id=&quot;key-month.apr&quot;&gt;April&lt;/span&gt;" arg1="&lt;span class=&quot;key&quot; id=&quot;key-day.third&quot; arg0=&quot;13&quot;&gt;3rd&lt;/span&gt;" arg2="1988"><span class="key" id="key-month.apr">April</span> <span class="key" id="key-day.third" arg0="13">3rd</span>, 1988</span></span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -417,12 +441,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/school.svg" alt="Icon" width="24" />
+            <img src="images/icon/school.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Started Zvezdochka Elementary School</span><br>
-        <span class="alt" >June, 2000</span>
+        <span class="title"><span class="key" id="key-timeline.education.start.school" arg0="Zvezdochka Elementary School">Started going to Zvezdochka Elementary School</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.jun">June</span>, 2000</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -443,12 +467,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/school.svg" alt="Icon" width="24" />
+            <img src="images/icon/school.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Graduated from Zvezdochka Elementary School</span><br>
-        <span class="alt" >September, 2005</span>
+        <span class="title"><span class="key" id="key-timeline.education.end.school" arg0="Zvezdochka Elementary School">Graduated from Zvezdochka Elementary School</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.sep">September</span>, 2005</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -469,12 +493,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/school.svg" alt="Icon" width="24" />
+            <img src="images/icon/school.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Started Sputnik Secondary School</span><br>
-        <span class="alt" >August, 2006</span>
+        <span class="title"><span class="key" id="key-timeline.education.start.school" arg0="Sputnik Secondary School">Started going to Sputnik Secondary School</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.aug">August</span>, 2006</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -495,12 +519,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/book.svg" alt="Icon" width="24" />
+            <img src="images/icon/book.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Achieved English Course</span><br>
-        <span class="alt" >November 23rd, 2007</span>
+        <span class="title"><span class="key" id="key-timeline.certificate" arg0="English Course">Achieved English Course</span></span><br>
+        <span class="alt" ><span class="key" id="key-date.format" arg0="&lt;span class=&quot;key&quot; id=&quot;key-month.nov&quot;&gt;November&lt;/span&gt;" arg1="&lt;span class=&quot;key&quot; id=&quot;key-day.third&quot; arg0=&quot;23&quot;&gt;3rd&lt;/span&gt;" arg2="2007"><span class="key" id="key-month.nov">November</span> <span class="key" id="key-day.third" arg0="23">3rd</span>, 2007</span></span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -521,12 +545,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/school.svg" alt="Icon" width="24" />
+            <img src="images/icon/school.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Graduated from Sputnik Secondary School</span><br>
-        <span class="alt" >September, 2011</span>
+        <span class="title"><span class="key" id="key-timeline.education.end.school" arg0="Sputnik Secondary School">Graduated from Sputnik Secondary School</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.sep">September</span>, 2011</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -547,12 +571,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/school.svg" alt="Icon" width="24" />
+            <img src="images/icon/school.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Started Lomonosov High School</span><br>
-        <span class="alt" >May, 2012</span>
+        <span class="title"><span class="key" id="key-timeline.education.start.school" arg0="Lomonosov High School">Started going to Lomonosov High School</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.may">May</span>, 2012</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -573,12 +597,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/school.svg" alt="Icon" width="24" />
+            <img src="images/icon/school.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Graduated from Lomonosov High School</span><br>
-        <span class="alt" >March, 2016</span>
+        <span class="title"><span class="key" id="key-timeline.education.end.school" arg0="Lomonosov High School">Graduated from Lomonosov High School</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.mar">March</span>, 2016</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -599,12 +623,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/university.svg" alt="Icon" width="24" />
+            <img src="images/icon/university.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Started Harvard University</span><br>
-        <span class="alt" >February, 2017</span>
+        <span class="title"><span class="key" id="key-timeline.education.start.school" arg0="Harvard University">Started going to Harvard University</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.feb">February</span>, 2017</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -625,12 +649,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/university.svg" alt="Icon" width="24" />
+            <img src="images/icon/university.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Graduated from Harvard University</span><br>
-        <span class="alt" >June, 2021</span>
+        <span class="title"><span class="key" id="key-timeline.education.end.school" arg0="Harvard University">Graduated from Harvard University</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.jun">June</span>, 2021</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -651,12 +675,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/briefcase.svg" alt="Icon" width="24" />
+            <img src="images/icon/briefcase.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Started Working at ThDay Studios as a Janitor</span><br>
-        <span class="alt" >July, 2021</span>
+        <span class="title"><span class="key" id="key-timeline.job.start" arg0="ThDay Studios" arg1="Janitor">Started working at ThDay Studios as a Janitor</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.jul">July</span>, 2021</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -677,12 +701,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/briefcase.svg" alt="Icon" width="24" />
+            <img src="images/icon/briefcase.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Stopped Working at ThDay Studios</span><br>
-        <span class="alt" >August, 2021</span>
+        <span class="title"><span class="key" id="key-timeline.job.end" arg0="ThDay Studios">Stopped working at ThDay Studios</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.aug">August</span>, 2021</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -703,12 +727,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/briefcase.svg" alt="Icon" width="24" />
+            <img src="images/icon/briefcase.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Started Working at OuterStealth as a Marketing Manager</span><br>
-        <span class="alt" >September, 2021</span>
+        <span class="title"><span class="key" id="key-timeline.job.start" arg0="OuterStealth" arg1="Marketing Manager">Started working at OuterStealth as a Marketing Manager</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.sep">September</span>, 2021</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -729,12 +753,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/link/source.svg" alt="Icon" width="24" />
+            <img src="images/icon/source.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Released Simpler</span><br>
-        <span class="alt" >April 22nd, 2022</span>
+        <span class="title"><span class="key" id="key-timeline.project" arg0="Simpler">Released Simpler</span></span><br>
+        <span class="alt" ><span class="key" id="key-date.format" arg0="&lt;span class=&quot;key&quot; id=&quot;key-month.apr&quot;&gt;April&lt;/span&gt;" arg1="&lt;span class=&quot;key&quot; id=&quot;key-day.second&quot; arg0=&quot;22&quot;&gt;2nd&lt;/span&gt;" arg2="2022"><span class="key" id="key-month.apr">April</span> <span class="key" id="key-day.second" arg0="22">2nd</span>, 2022</span></span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -755,12 +779,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/link/source.svg" alt="Icon" width="24" />
+            <img src="images/icon/source.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Released Simpler (Copied For testing search stuff)</span><br>
-        <span class="alt" >April 22nd, 2022</span>
+        <span class="title"><span class="key" id="key-timeline.project" arg0="Simpler (Copied For testing search stuff)">Released Simpler (Copied For testing search stuff)</span></span><br>
+        <span class="alt" ><span class="key" id="key-date.format" arg0="&lt;span class=&quot;key&quot; id=&quot;key-month.apr&quot;&gt;April&lt;/span&gt;" arg1="&lt;span class=&quot;key&quot; id=&quot;key-day.second&quot; arg0=&quot;22&quot;&gt;2nd&lt;/span&gt;" arg2="2022"><span class="key" id="key-month.apr">April</span> <span class="key" id="key-day.second" arg0="22">2nd</span>, 2022</span></span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -781,12 +805,12 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/briefcase.svg" alt="Icon" width="24" />
+            <img src="images/icon/briefcase.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Stopped Working at OuterStealth</span><br>
-        <span class="alt" >November, 2022</span>
+        <span class="title"><span class="key" id="key-timeline.job.end" arg0="OuterStealth">Stopped working at OuterStealth</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.nov">November</span>, 2022</span>
     </div>
 </div></li><li><!--
   ~ Copyright 2024 efekos
@@ -807,37 +831,25 @@
 <div class="entry">
     <div>
         <div class="icon">
-            <img src="images/icon/briefcase.svg" alt="Icon" width="24" />
+            <img src="images/icon/briefcase.svg" alt="Icon" width="24"/>
         </div>
     </div>
     <div>
-        <span class="title">Started Working at Minkopost as a Website Developer</span><br>
-        <span class="alt" >December, 2022</span>
+        <span class="title"><span class="key" id="key-timeline.job.start" arg0="Minkopost" arg1="Website Developer">Started working at Minkopost as a Website Developer</span></span><br>
+        <span class="alt" ><span class="key" id="key-month.dec">December</span>, 2022</span>
     </div>
 </div></li>
     </ul>
 
-    <!--
-  ~ Copyright 2024 efekos
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-  ~ documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
-  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-  ~ persons to whom the Software is furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  -->
-
-<footer>
-    This website is brought to you by <a href="https://github.com/efekos" target="_blank">efekos/</a><a href="https://github.com/efekos/PortfolioGenerator" target="_blank">PortfolioGenerator</a><br>
-    with &hearts; and work.
+    <footer>
+        <span class="key" id="key-footer.main" arg0="<a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>">This website is brought to you by <a href=https://github.com/efekos target=_blank >efekos</a><a href=https://github.com/efekos/PortfolioGenerator target=_blank >/PortfolioGenerator</a>
+        <br>with &heartsuit;</span> <br>
+        <span class="key" id="key-footer.version" arg0="1.2.0">version 1.2.0</span> <br>
+        <span id="translators"></span> <br>
+        <span class="key" id="key-footer.contributed" arg0="&lt;a href=&quot;https://github.com/efekos&quot; class=&quot;avatar&quot; target=&quot;_blank&quot;&gt;&lt;div class=&quot;tooltip&quot;&gt;&lt;span class=&quot;tooltiptext&quot;&gt;efekos&lt;ul&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.code&quot;&gt;Contributor&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;key&quot; id=&quot;key-contribution.translation&quot;&gt;Translator&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/u/56752400?v=4&quot; alt=&quot;efekos's github profile&quot; width=&quot;32&quot; height=&quot;32&quot; class=&quot;contributor&quot;&gt;&lt;/div&gt;&lt;/a&gt;">Contributed by: <a href="https://github.com/efekos" class="avatar" target="_blank"><div class="tooltip"><span class="tooltiptext">efekos<ul><li><span class="key" id="key-contribution.code">Contributor</span></li><li><span class="key" id="key-contribution.translation">Translator</span></li></ul></span><img src="https://avatars.githubusercontent.com/u/56752400?v=4" alt="efekos's github profile" width="32" height="32" class="contributor"></div></a></span>
 </footer>
-    <a href="#timeline" class="top btn btn-blue">Back to Top <img width="24" src="./images/icon/top.svg" style="vertical-align: middle"></a>
+    <a href="#timeline" class="top btn btn-blue"><span class="key" id="key-button.back_to_top">Back to Top</span> <img width="24" src="./images/icon/top.svg"
+                                                                  style="vertical-align: middle"></a>
     <style>
         .center {
             text-align: center;
@@ -887,6 +899,7 @@
             display: inline-block;
         }
     </style>
+    <script src="./language_finder.js"></script>
     <script src="./age_calculator.js"></script>
 </div>
 </body>

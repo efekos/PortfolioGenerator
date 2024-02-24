@@ -26,8 +26,8 @@
     list-style: none;
 }
 
-.mainList>li {
-    border-left:0.7rem #252525 dotted;
+.mainList > li {
+    border-left: 0.7rem #252525 dotted;
     padding-left: 1rem;
 }
 
@@ -42,14 +42,14 @@
 }
 
 .entry-placeholder {
-    background: linear-gradient(0deg, #101010 0%,#303030 100%);
+    background: linear-gradient(90deg, #101010 0%, #303030);
 }
 
 .entry:hover {
     background-color: #252525;
 }
 
-.entry>div {
+.entry > div {
     display: inline-block;
     vertical-align: middle;
 }
@@ -81,7 +81,7 @@
 
 .hidden {
     color: transparent;
-    background-color: #252525;
+    background-color: #202020;
 }
 
 .markdown {
@@ -100,7 +100,7 @@
     border-radius: 1rem;
 }
 
-.nav>li {
+.nav > li {
     display: inline-block;
     margin-left: 0.1rem;
     margin-right: 0.1rem;
@@ -108,7 +108,7 @@
     user-select: none;
 }
 
-.nav>li#selected {
+.nav > li#selected {
     border-bottom: #0080ff 0.25rem solid;
 }
 
@@ -123,17 +123,17 @@ pre[class*="language-"] {
     vertical-align: middle;
 }
 
-.nav>li>a{
+.nav > li > a {
     color: white;
 }
 
 .btn-pagination {
     padding: 1rem;
-    background-color: rgb(33, 35, 37);
+    background-color: rgb(33,35,37);
 }
 
 .btn-pagination:disabled {
-    background-color: rgb(23, 25, 27);
+    background-color: rgb(23,25,27);
     color: rgb(235,235,235);
     cursor: default;
 }
@@ -147,6 +147,7 @@ pre[class*="language-"] {
     vertical-align: middle;
     margin-bottom: 0.2rem;
     margin-right: 0.25rem;
+    fill: #999999;
 }
 
 .text-summary {
