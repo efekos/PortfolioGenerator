@@ -9,7 +9,7 @@ make to this project, and I hope this project gets better with your contribution
 
 Websites generated with Portfolio Generator has a localization system. If you would like to help us, consider the [Crowdin](https://crowdin.com/project/p-gen)
 page! After you log in to Crowdin with an account, you can easily start translating. When at least 50% of the translation
-in a language is approved, that language will be added to the project, along with everyone who contributed to the translation
+in a language is done, that language will be added to the project, along with everyone who contributed to the translation
 for that language.
 
 ### Coding
