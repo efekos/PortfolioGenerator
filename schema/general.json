@@ -157,7 +157,7 @@
           "description": "A link to your Twitter account. You can use \"x\" insetad of \"twitter\" if you want the new logo in the website.",
           "type": "string"
         },
-        "vscode_marketplate": {
+        "vscode_marketplace": {
           "description": "A link to your VSCode Marketplace publisher account.",
           "type": "string"
         },
