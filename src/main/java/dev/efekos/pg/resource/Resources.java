@@ -80,6 +80,9 @@ public class Resources {
     public static final Resource ICON_TWITTER = new Resource("/site/icon/social/twitter.svg");
     public static final Resource ICON_VSCODE_MARKETPLACE = new Resource("/site/icon/social/vscode_marketplace.svg");
     public static final Resource ICON_X = new Resource("/site/icon/social/x.svg");
+    public static final Resource ICON_QUORA = new Resource("/site/icon/social/quora.svg");
+    public static final Resource ICON_TUMBLR = new Resource("/site/icon/social/tumblr.svg");
+    public static final Resource ICON_PINTEREST = new Resource("/site/icon/social/pinterest.svg");
     public static final Resource ICON_YOUTUBE = new Resource("/site/icon/social/youtube.svg");
     public static final IconResource ICON_CAKE = new IconResource("birth");
     public static final IconResource ICON_BOOK_OPEN = new IconResource("book_open", "book");
