@@ -27,27 +27,27 @@ import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.ProjectLinkType;
 import dev.efekos.pg.data.type.RequiredDataType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.*;
 
-@Getter
+@Data
 public class Project implements JsonSchema, TimelineEventSource {
-    @Setter private String id; // not in json
-            private String displayName;
-    @Setter private Map<ProjectLinkType, String> links = new HashMap<>();
-            private String mainWebsite;
-            private String changeLogFile;
-    @Setter private List<String> tags = new ArrayList<>();
-            private String readmeFile; // not in json
-    @Setter private String summary;
-    @Setter private String version;
-    @Setter private String license;
-    @Setter private String fullLicense; // not in json
-    @Setter private DayDate release;
-    @Setter private ProjectGalleryImageList galleryImages;
-            private VersionInfo versionInfo;
+
+    private String id; // not in json
+    private String displayName;
+    private Map<ProjectLinkType, String> links = new HashMap<>();
+    private String mainWebsite;
+    private String changeLogFile;
+    private List<String> tags = new ArrayList<>();
+    private String readmeFile; // not in json
+    private String summary;
+    private String version;
+    private String license;
+    private String fullLicense; // not in json
+    private DayDate release;
+    private ProjectGalleryImageList galleryImages;
+    private VersionInfo versionInfo;
 
     @Override
     public List<TimelineEvent> getEvents() {

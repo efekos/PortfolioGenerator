@@ -21,6 +21,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,8 @@ import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
+@ToString
+@EqualsAndHashCode
 public class ProjectGalleryImageList implements JsonSchema {
     private final List<ProjectGalleryImage> actualList = new ArrayList<>();
 
@@ -56,7 +60,6 @@ public class ProjectGalleryImageList implements JsonSchema {
     public boolean contains(ProjectGalleryImage o) {
         return actualList.contains(o);
     }
-
 
     public boolean add(ProjectGalleryImage projectGalleryImage) {
         return actualList.add(projectGalleryImage);

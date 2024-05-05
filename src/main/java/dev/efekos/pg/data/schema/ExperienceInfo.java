@@ -24,17 +24,16 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.timeline.TimelineEvent;
 import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+@Data
 public class ExperienceInfo implements JsonSchema, TimelineEventSource {
 
-    @Setter private List<ExperienceEntry> entries;
-            private ExperienceEntry currentJob = null;
+    private List<ExperienceEntry> entries;
+    private ExperienceEntry currentJob = null;
 
     @Override
     public List<TimelineEvent> getEvents() {

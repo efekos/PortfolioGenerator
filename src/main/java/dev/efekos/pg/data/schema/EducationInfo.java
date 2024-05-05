@@ -35,9 +35,6 @@ public class EducationInfo implements JsonSchema, TimelineEventSource {
 
     private List<EducationEntry> entries;
 
-    public EducationInfo() {
-    }
-
     @Override
     public List<TimelineEvent> getEvents() {
         List<TimelineEvent> events = new ArrayList<>();

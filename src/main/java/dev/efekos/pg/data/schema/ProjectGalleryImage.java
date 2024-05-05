@@ -29,6 +29,7 @@ import java.util.List;
 
 @Data
 public class ProjectGalleryImage implements JsonSchema {
+
     private String name;
     private String description;
     private String file;

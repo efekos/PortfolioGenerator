@@ -22,16 +22,17 @@ import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Objects;
 
+@Data
 public class Place implements JsonSchema {
-            @Getter private String displayName;
-            @Setter private String website;
-            @Getter private String mapsLink;
-    @Setter @Getter private String address;
+
+    private String displayName;
+    private String website;
+    private String mapsLink;
+    private String address;
 
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {

@@ -23,20 +23,18 @@ import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+@Data
 public class ContactInfo implements JsonSchema {
 
-    @Setter private String email;
-    @Setter private String number;
-            private boolean includeSocials;
-    @Setter private List<Place> places = new ArrayList<>();
-
+    private String email;
+    private String number;
+    private boolean includeSocials;
+    private List<Place> places = new ArrayList<>();
 
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {

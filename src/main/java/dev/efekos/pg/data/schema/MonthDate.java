@@ -23,11 +23,13 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 import dev.efekos.pg.util.DateHelper;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.regex.Pattern;
 
+@EqualsAndHashCode
 public class MonthDate implements JsonSchema, Date {
     @Getter @Setter private Integer month;
     @Getter @Setter private Integer year;

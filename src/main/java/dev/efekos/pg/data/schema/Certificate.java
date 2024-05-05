@@ -28,19 +28,18 @@ import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.CertificateType;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.*;
 
-@Setter
+@Data
 public class Certificate implements JsonSchema, TimelineEventSource {
     private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList("png", "jpg", "jpeg", "pdf");
 
-    @Getter private Map<String, String> images;
-    @Getter private DayDate when;
-            private CertificateType certificateType;
-    @Getter private CertificateDisplay display;
+    private Map<String, String> images;
+    private DayDate when;
+    private CertificateType certificateType;
+    private CertificateDisplay display;
 
     @Override
     public List<TimelineEvent> getEvents() {
