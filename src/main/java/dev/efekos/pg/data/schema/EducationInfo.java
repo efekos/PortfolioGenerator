@@ -25,11 +25,14 @@ import dev.efekos.pg.data.timeline.TimelineEvent;
 import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.EducationEntryType;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class EducationInfo implements JsonSchema, TimelineEventSource {
+
     private List<EducationEntry> entries;
 
     public EducationInfo() {
@@ -44,14 +47,6 @@ public class EducationInfo implements JsonSchema, TimelineEventSource {
         }
 
         return events;
-    }
-
-    public List<EducationEntry> getEntries() {
-        return entries;
-    }
-
-    public void setEntries(List<EducationEntry> entries) {
-        this.entries = entries;
     }
 
     @Override

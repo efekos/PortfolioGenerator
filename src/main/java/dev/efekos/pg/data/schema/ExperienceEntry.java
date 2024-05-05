@@ -26,16 +26,19 @@ import dev.efekos.pg.data.timeline.TimelineEvent;
 import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class ExperienceEntry implements JsonSchema, TimelineEventSource {
-    private String company;
-    private String position;
-    private MonthDate from;
-    private MonthDate to;
-    private boolean currentJob;
+            private String company;
+    @Setter private String position;
+    @Setter private MonthDate from;
+    @Setter private MonthDate to;
+            private boolean currentJob;
 
     @Override
     public List<TimelineEvent> getEvents() {
@@ -48,38 +51,6 @@ public class ExperienceEntry implements JsonSchema, TimelineEventSource {
 
     public ExperienceEntry() {
 
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public MonthDate getFrom() {
-        return from;
-    }
-
-    public void setFrom(MonthDate from) {
-        this.from = from;
-    }
-
-    public MonthDate getTo() {
-        return to;
-    }
-
-    public void setTo(MonthDate to) {
-        this.to = to;
-    }
-
-    public boolean isCurrentJob() {
-        return currentJob;
     }
 
     @Override

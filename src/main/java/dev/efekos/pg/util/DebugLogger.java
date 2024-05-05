@@ -16,20 +16,15 @@
 
 package dev.efekos.pg.util;
 
+import lombok.Data;
+
 import java.time.LocalTime;
 
+@Data
 public class DebugLogger {
     private boolean enabled;
 
     public DebugLogger() {
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public void info(String... text) {

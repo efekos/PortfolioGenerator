@@ -22,14 +22,16 @@ import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
 public class Place implements JsonSchema {
-    private String displayName;
-    private String website;
-    private String mapsLink;
-    private String address;
+            @Getter private String displayName;
+            @Setter private String website;
+            @Getter private String mapsLink;
+    @Setter @Getter private String address;
 
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
@@ -49,27 +51,8 @@ public class Place implements JsonSchema {
         this.displayName = object.get("display").getAsString();
     }
 
-    public String getDisplayName() {
-        return displayName;
-    }
-
     public String getWebsite() {
         return Objects.isNull(website) ? "" : "<span class=\"alt\">" + website + "</span>";
     }
 
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-    public String getMapsLink() {
-        return mapsLink;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }

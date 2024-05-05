@@ -22,16 +22,20 @@ import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+@Setter
+@Getter
 public class JsonColor implements JsonSchema {
     private int red;
     private int green;
     private int blue;
-    private String hex;
+    private String hexString;
     private boolean isHex;
 
     private static boolean didLoadCssColors;
@@ -39,7 +43,7 @@ public class JsonColor implements JsonSchema {
 
     @Override
     public String toString() {
-        return isHex ? hex : "rgb(" + red + "," + green + "," + blue + ")";
+        return isHex ? hexString : "rgb(" + red + "," + green + "," + blue + ")";
     }
 
     public static JsonColor from(JsonElement element, DataGrabberContext context) {
@@ -69,7 +73,7 @@ public class JsonColor implements JsonSchema {
                 if (!cssColors.contains(element.getAsString()))
                     throw new JsonParseException("Unknown color: " + element.getAsString());
             }
-            setHex(element.getAsString());
+            setHexString(element.getAsString());
             setHex(true);
 
         } else throw new JsonSyntaxException("Expected a string or an object, got " + element + ".");
@@ -86,43 +90,4 @@ public class JsonColor implements JsonSchema {
         setBlue(object.get("b").getAsInt());
     }
 
-    public void setHex(boolean hex) {
-        isHex = hex;
-    }
-
-    public int getRed() {
-        return red;
-    }
-
-    public void setRed(int red) {
-        this.red = red;
-    }
-
-    public int getGreen() {
-        return green;
-    }
-
-    public void setGreen(int green) {
-        this.green = green;
-    }
-
-    public int getBlue() {
-        return blue;
-    }
-
-    public void setBlue(int blue) {
-        this.blue = blue;
-    }
-
-    public String getHex() {
-        return hex;
-    }
-
-    public void setHex(String hex) {
-        this.hex = hex;
-    }
-
-    public boolean isHex() {
-        return isHex;
-    }
 }

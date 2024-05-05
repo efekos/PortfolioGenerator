@@ -21,7 +21,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import dev.efekos.pg.Main;
+import lombok.Getter;
 
+@Getter
 public class DataTypeChecker {
 
     private final String currentFile;
@@ -32,10 +34,6 @@ public class DataTypeChecker {
 
     public DataTypeChecker() {
         this(Main.getMainPath().toString());
-    }
-
-    public String getCurrentFile() {
-        return currentFile;
     }
 
     public void searchExceptions(JsonObject object, String requiredKey, RequiredDataType type) throws JsonParseException {

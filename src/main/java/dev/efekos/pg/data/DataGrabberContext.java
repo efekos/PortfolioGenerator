@@ -16,6 +16,9 @@
 
 package dev.efekos.pg.data;
 
+import lombok.Getter;
+
+@Getter
 public class DataGrabberContext {
     private String currentFile;
 
@@ -25,10 +28,6 @@ public class DataGrabberContext {
 
     public void setCurrentFile(String currentFile) {
         this.currentFile = currentFile.replaceAll("\\\\", "/");
-    }
-
-    public String getCurrentFile() {
-        return currentFile;
     }
 
 }

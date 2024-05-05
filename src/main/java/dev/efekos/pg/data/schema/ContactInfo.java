@@ -23,15 +23,19 @@ import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class ContactInfo implements JsonSchema {
-    private String email;
-    private String number;
-    private boolean includeSocials;
-    private List<Place> places = new ArrayList<>();
+
+    @Setter private String email;
+    @Setter private String number;
+            private boolean includeSocials;
+    @Setter private List<Place> places = new ArrayList<>();
 
 
     @Override
@@ -58,34 +62,7 @@ public class ContactInfo implements JsonSchema {
         }
     }
 
-    public List<Place> getPlaces() {
-        return places;
-    }
-
-    public void setPlaces(List<Place> places) {
-        this.places = places;
-    }
-
-    public boolean isIncludeSocials() {
-        return includeSocials;
-    }
-
     public ContactInfo() {
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
 }

@@ -25,11 +25,13 @@ import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 import dev.efekos.pg.data.type.VersionInfoType;
 import dev.efekos.pg.data.type.VersionType;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+@Data
 public class VersionInfo implements JsonSchema {
 
     private VersionInfoType type;
@@ -67,27 +69,4 @@ public class VersionInfo implements JsonSchema {
         }
     }
 
-    public VersionInfoType getType() {
-        return type;
-    }
-
-    public void setType(VersionInfoType type) {
-        this.type = type;
-    }
-
-    public List<Version> getVersions() {
-        return versions;
-    }
-
-    public void setVersions(List<Version> versions) {
-        this.versions = versions;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
 }

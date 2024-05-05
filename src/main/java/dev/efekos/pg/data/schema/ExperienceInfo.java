@@ -24,14 +24,17 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.timeline.TimelineEvent;
 import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class ExperienceInfo implements JsonSchema, TimelineEventSource {
 
-    private List<ExperienceEntry> entries;
-    private ExperienceEntry currentJob = null;
+    @Setter private List<ExperienceEntry> entries;
+            private ExperienceEntry currentJob = null;
 
     @Override
     public List<TimelineEvent> getEvents() {
@@ -46,18 +49,6 @@ public class ExperienceInfo implements JsonSchema, TimelineEventSource {
 
     public ExperienceInfo(List<ExperienceEntry> entries) {
         this.entries = entries;
-    }
-
-    public List<ExperienceEntry> getEntries() {
-        return entries;
-    }
-
-    public void setEntries(List<ExperienceEntry> entries) {
-        this.entries = entries;
-    }
-
-    public ExperienceEntry getCurrentJob() {
-        return currentJob;
     }
 
     public boolean hasCurrentJob() {

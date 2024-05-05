@@ -22,10 +22,12 @@ import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
+import lombok.Data;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Data
 public class ProjectGalleryImage implements JsonSchema {
     private String name;
     private String description;
@@ -57,38 +59,4 @@ public class ProjectGalleryImage implements JsonSchema {
 
     private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList("png", "jpg", "jpeg", "PNG", "JPEG", "JPG");
 
-    public ProjectGalleryImage() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
 }

@@ -16,13 +16,12 @@
 
 package dev.efekos.pg.resource;
 
+import lombok.Getter;
+
 public class Resource {
+    @Getter
     private final String pathName;
     private final boolean removeCopyright;
-
-    public String getPathName() {
-        return pathName;
-    }
 
     public boolean shouldRemoveCopyright() {
         return removeCopyright;

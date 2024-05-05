@@ -27,12 +27,15 @@ import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.EducationEntryType;
 import dev.efekos.pg.data.type.RequiredDataType;
+import lombok.Data;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+@Data
 public class EducationEntry implements JsonSchema, TimelineEventSource {
+
     private EducationEntryType type;
     private String title;
     private MonthDate start;
@@ -88,43 +91,4 @@ public class EducationEntry implements JsonSchema, TimelineEventSource {
         this.until = untilDate;
     }
 
-    public EducationEntryType getType() {
-        return type;
-    }
-
-    public void setType(EducationEntryType type) {
-        this.type = type;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public MonthDate getStart() {
-        return start;
-    }
-
-    public void setStart(MonthDate start) {
-        this.start = start;
-    }
-
-    public MonthDate getUntil() {
-        return until;
-    }
-
-    public void setUntil(MonthDate until) {
-        this.until = until;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 }
