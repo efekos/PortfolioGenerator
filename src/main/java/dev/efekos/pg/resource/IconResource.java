@@ -16,6 +16,9 @@
 
 package dev.efekos.pg.resource;
 
+import lombok.Getter;
+
+@Getter
 public class IconResource extends Resource {
     private final String outName;
 
@@ -28,7 +31,4 @@ public class IconResource extends Resource {
         this(pathName, pathName);
     }
 
-    public String getOutName() {
-        return outName;
-    }
 }

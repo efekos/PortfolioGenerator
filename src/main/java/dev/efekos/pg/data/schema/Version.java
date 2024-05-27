@@ -24,15 +24,19 @@ import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
 import dev.efekos.pg.data.type.VersionType;
+import lombok.Data;
 
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Optional;
 
+@Data
 public class Version implements JsonSchema {
+
     private DayDate releaseDate;
     private String version;
     private VersionType type;
+    private String link;
 
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
@@ -63,15 +67,6 @@ public class Version implements JsonSchema {
         releaseDate.readJson(object.get("release_date"), context);
     }
 
-    private String link;
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
 
     public Version(DayDate releaseDate, String version, VersionType type) {
         this.releaseDate = releaseDate;
@@ -79,23 +74,4 @@ public class Version implements JsonSchema {
         this.type = type;
     }
 
-    public DayDate getReleaseDate() {
-        return releaseDate;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public VersionType getType() {
-        return type;
-    }
-
-    public void setType(VersionType type) {
-        this.type = type;
-    }
 }

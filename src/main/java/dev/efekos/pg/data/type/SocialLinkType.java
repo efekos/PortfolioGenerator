@@ -17,10 +17,12 @@
 package dev.efekos.pg.data.type;
 
 import com.google.gson.JsonParseException;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.Optional;
 
+@Getter
 public enum SocialLinkType {
     CURSEFORGE("curseforge", "rgb(59, 41, 29)", "rgb(73, 50, 35)"),
     DISCORD("discord", "rgb(49, 50, 122)", "rgb(63, 69, 158)"),
@@ -61,18 +63,6 @@ public enum SocialLinkType {
         this.id = id;
         this.normalColor = normalColor;
         this.highlightColor = highlightColor;
-    }
-
-    public String getNormalColor() {
-        return normalColor;
-    }
-
-    public String getHighlightColor() {
-        return highlightColor;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public static SocialLinkType findById(String id) {

@@ -16,6 +16,9 @@
 
 package dev.efekos.pg.data.type;
 
+import lombok.Getter;
+
+@Getter
 public enum CertificateType {
     COURSE("course"),
     SCHOOL("school"),
@@ -29,7 +32,4 @@ public enum CertificateType {
         this.id = id;
     }
 
-    public String getId() {
-        return id;
-    }
 }

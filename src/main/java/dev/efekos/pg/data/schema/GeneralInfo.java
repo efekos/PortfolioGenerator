@@ -29,6 +29,8 @@ import dev.efekos.pg.data.type.RequiredDataType;
 import dev.efekos.pg.data.type.SocialLinkType;
 import dev.efekos.pg.util.Locale;
 import dev.efekos.pg.util.LocaleHelper;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,14 +38,14 @@ import java.util.List;
 import java.util.Map;
 
 public class GeneralInfo implements JsonSchema, TimelineEventSource {
-    private String name;
-    private DayDate birthDate;
-    private String title;
-    private String nativeLanguage;
-    private List<String> knownLanguages;
-    private String welcomer;
-    private String bio;
-    private final Map<SocialLinkType, String> socialLinks = new HashMap<>();
+    @Setter @Getter private String name;
+            @Getter private DayDate birthDate;
+    @Setter @Getter private String title;
+                    private String nativeLanguage;
+                    private List<String> knownLanguages;
+    @Setter @Getter private String welcomer;
+    @Setter @Getter private String bio;
+            @Getter private final Map<SocialLinkType, String> socialLinks = new HashMap<>();
 
     public GeneralInfo(String name, DayDate birthDate, String title) {
         this.name = name;
@@ -64,27 +66,7 @@ public class GeneralInfo implements JsonSchema, TimelineEventSource {
         return knownLanguages.stream().map(LocaleHelper::getLocale).toList();
     }
 
-    public String getWelcomer() {
-        return welcomer;
-    }
-
-    public void setWelcomer(String welcomer) {
-        this.welcomer = welcomer;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
     public GeneralInfo() {
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -147,23 +129,4 @@ public class GeneralInfo implements JsonSchema, TimelineEventSource {
         });
     }
 
-    public Map<SocialLinkType, String> getSocialLinks() {
-        return socialLinks;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public DayDate getBirthDate() {
-        return birthDate;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }

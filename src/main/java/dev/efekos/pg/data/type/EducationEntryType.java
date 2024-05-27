@@ -17,7 +17,9 @@
 package dev.efekos.pg.data.type;
 
 import dev.efekos.pg.util.Text;
+import lombok.Getter;
 
+@Getter
 public enum EducationEntryType {
     SCHOOL("school"),
     UNIVERSITY("university"),
@@ -28,10 +30,6 @@ public enum EducationEntryType {
 
     EducationEntryType(String id) {
         this.id = id;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getDisplay() {

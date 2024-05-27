@@ -20,10 +20,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
+import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Data
 public class TagColorInfo implements JsonSchema {
 
     private final Map<String, String> colors = new HashMap<>();
@@ -35,7 +37,4 @@ public class TagColorInfo implements JsonSchema {
         element.getAsJsonObject().asMap().forEach((key, jsonElement) -> colors.put(key, jsonElement.getAsString()));
     }
 
-    public Map<String, String> getColors() {
-        return colors;
-    }
 }

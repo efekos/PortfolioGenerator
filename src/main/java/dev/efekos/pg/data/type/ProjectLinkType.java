@@ -17,10 +17,12 @@
 package dev.efekos.pg.data.type;
 
 import dev.efekos.pg.util.Text;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.Optional;
 
+@Getter
 public enum ProjectLinkType {
     ISSUES("issues", "project.link.issues"),
     SOURCE("source", "project.link.source"),
@@ -36,10 +38,6 @@ public enum ProjectLinkType {
         this.key = key;
     }
 
-    public String getId() {
-        return id;
-    }
-
     public String getDisplay() {
         return Text.translated(key);
     }
@@ -48,7 +46,4 @@ public enum ProjectLinkType {
         return Arrays.stream(values()).filter(socialLinkType -> socialLinkType.id.equals(id)).findFirst();
     }
 
-    public String getKey() {
-        return key;
-    }
 }

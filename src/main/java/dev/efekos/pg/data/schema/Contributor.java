@@ -20,11 +20,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class Contributor implements JsonSchema {
+
     private String avatarUrl;
     private String name;
     private String url;
@@ -49,45 +52,5 @@ public class Contributor implements JsonSchema {
         for (JsonElement jsonElement : object.get("categories").getAsJsonArray()) {
             categories.add(jsonElement.getAsString());
         }
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<String> getTranslated() {
-        return translated;
-    }
-
-    public void setTranslated(List<String> translated) {
-        this.translated = translated;
-    }
-
-    public List<String> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
     }
 }

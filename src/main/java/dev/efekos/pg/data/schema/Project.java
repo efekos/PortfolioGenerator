@@ -27,10 +27,13 @@ import dev.efekos.pg.data.timeline.TimelineEventSource;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.ProjectLinkType;
 import dev.efekos.pg.data.type.RequiredDataType;
+import lombok.Data;
 
 import java.util.*;
 
+@Data
 public class Project implements JsonSchema, TimelineEventSource {
+
     private String id; // not in json
     private String displayName;
     private Map<ProjectLinkType, String> links = new HashMap<>();
@@ -109,95 +112,4 @@ public class Project implements JsonSchema, TimelineEventSource {
         this.versionInfo = info;
     }
 
-    public VersionInfo getVersionInfo() {
-        return versionInfo;
-    }
-
-    public ProjectGalleryImageList getGalleryImages() {
-        return galleryImages;
-    }
-
-    public void setGalleryImages(ProjectGalleryImageList galleryImages) {
-        this.galleryImages = galleryImages;
-    }
-
-    public DayDate getRelease() {
-        return release;
-    }
-
-    public void setRelease(DayDate release) {
-        this.release = release;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public Map<ProjectLinkType, String> getLinks() {
-        return links;
-    }
-
-    public void setLinks(Map<ProjectLinkType, String> links) {
-        this.links = links;
-    }
-
-    public String getMainWebsite() {
-        return mainWebsite;
-    }
-
-    public String getFullLicense() {
-        return fullLicense;
-    }
-
-    public void setFullLicense(String fullLicense) {
-        this.fullLicense = fullLicense;
-    }
-
-    public String getChangeLogFile() {
-        return changeLogFile;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
-    }
-
-    public String getReadmeFile() {
-        return readmeFile;
-    }
-
-    public String getLicense() {
-        return license;
-    }
-
-    public void setLicense(String license) {
-        this.license = license;
-    }
 }

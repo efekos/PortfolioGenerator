@@ -16,6 +16,9 @@
 
 package dev.efekos.pg.data.type;
 
+import lombok.Getter;
+
+@Getter
 public enum VersionType {
     RELEASE("release", "Release", "releaseColor"),
     BETA("beta", "Beta", "betaColor"),
@@ -35,15 +38,4 @@ public enum VersionType {
         this.color = color;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getDisplay() {
-        return display;
-    }
-
-    public String getColor() {
-        return color;
-    }
 }
