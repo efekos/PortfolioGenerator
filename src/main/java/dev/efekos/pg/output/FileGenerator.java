@@ -175,7 +175,7 @@ public class FileGenerator implements Generator {
         Main.LOGGER.success("Generates all non-static style files");
     }
 
-    public void generateScriptFiles(GeneralInfo info,List<Contributor> contributors) throws IOException {
+    public void generateScriptFiles(GeneralInfo info, List<Contributor> contributors) throws IOException {
         Main.LOGGER.info("Generating script files");
 
         // age_calculator.js
@@ -195,7 +195,7 @@ public class FileGenerator implements Generator {
 
         Main.DEBUG_LOGGER.info("Generating file: language_finder.js");
         String language = ResourceManager.getResource(Resources.SCRIPT_LANGUAGE_FINDER)
-                        .replaceAll("%%CONTRIBUTORS%%", StringEscapeUtils.escapeJson(new Gson().toJson(object)));
+                .replaceAll("%%CONTRIBUTORS%%", StringEscapeUtils.escapeJson(new Gson().toJson(object)));
         writeFile(binPath + "\\language_finder.js", language, footer);
         Main.DEBUG_LOGGER.success("Generated file: language_finder.js");
 
@@ -208,13 +208,13 @@ public class FileGenerator implements Generator {
 
         for (Contributor contributor : contributors) {
             for (String s : contributor.getTranslated()) {
-                if(!object.has(s)) object.add(s,new JsonArray());
+                if (!object.has(s)) object.add(s, new JsonArray());
 
                 String string = GenerateFooterProcess.generateContributor(contributor);
 
                 JsonArray array = object.get(s).getAsJsonArray();
                 array.add(string);
-                object.add(s,array);
+                object.add(s, array);
             }
         }
 

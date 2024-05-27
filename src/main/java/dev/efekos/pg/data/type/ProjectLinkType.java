@@ -22,16 +22,16 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum ProjectLinkType {
-    ISSUES("issues","project.link.issues"),
-    SOURCE("source","project.link.source"),
-    SUPPORT("support","project.link.support"),
-    WIKI("wiki","project.link.wiki"),
-    DOCUMENTATION("doc","project.link.documentation"),
-    GUIDE("guide","project.link.guide");
+    ISSUES("issues", "project.link.issues"),
+    SOURCE("source", "project.link.source"),
+    SUPPORT("support", "project.link.support"),
+    WIKI("wiki", "project.link.wiki"),
+    DOCUMENTATION("doc", "project.link.documentation"),
+    GUIDE("guide", "project.link.guide");
     private final String id;
     private final String key;
 
-    ProjectLinkType(String id,String key) {
+    ProjectLinkType(String id, String key) {
         this.id = id;
         this.key = key;
     }

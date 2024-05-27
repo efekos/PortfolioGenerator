@@ -14,8 +14,15 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-const %%imid%%modalElement = document.getElementById("modal-%%imid%%");
+const %
+%
+imid % % modalElement = document.getElementById("modal-%%imid%%");
 
-function change%%imid%%Modal(value) {
-   %%imid%%modalElement.style.display = value ? "block" : "none";
+function change
+
+%%
+imid % % Modal(value)
+{
+%%
+    imid % % modalElement.style.display = value ? "block" : "none";
 }

@@ -43,7 +43,8 @@
     </div>
     <div style="margin-left: 2rem;">
         <a href="%%prmainwebsite%%" target="_blank" style="display: inline-block;">
-            <button class="btn btn-download"><span class="key" id="key-project.link.website">Official Website</span> <img src="../../images/icon/external.svg" width="24"/>
+            <button class="btn btn-download"><span class="key" id="key-project.link.website">Official Website</span>
+                <img src="../../images/icon/external.svg" width="24"/>
             </button>
         </a>
     </div>
@@ -55,7 +56,8 @@
     <ul class="nav">
         <li><a href="index.html"><span class="key" id="key-project.description">Description</span></a></li>
         <li><a href="./gallery.html"><span class="key" id="key-project.gallery">Gallery</span></a></li>
-        <li id="selected"><a href="./changelog.html"><span class="key" id="key-project.changelog">Changelog</span></a></li>
+        <li id="selected"><a href="./changelog.html"><span class="key" id="key-project.changelog">Changelog</span></a>
+        </li>
         <li><a href="./versions.html"><span class="key" id="key-project.versions">Versions</span></a></li>
         <li><a href="./license.html"><span class="key" id="key-project.license">License</span></a></li>
         <li><a href="../../projects.html"><span class="key" id="key-button.back">Back</span></a></li>
@@ -73,11 +75,12 @@
 <script src="./changelog_finder.js"></script>
 <script src="../../language_finder.js"></script>
 <script>
-    async function a(){
+    async function a() {
         langUrl = "../../lang/%LANG%.json";
         await loadLang();
         refreshLangKeys();
     }
+
     a();
 </script>
 </body>

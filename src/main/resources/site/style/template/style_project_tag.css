@@ -14,12 +14,27 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-.project-tag-%%tname%% {
-    background-color: rgba(%%tcolor%%,0.5);
-    color: white;
-    border: rgb(%%tcolor%%) solid 0.1rem;
-    border-radius: 2rem;
-    padding: 0.5rem 1rem;
-    display: inline-block;
-    margin: 0.25rem;
+.project-tag-
+
+%
+%
+tname
+
+%
+%
+{
+    background-color: rgba(%% tcolor%%, 0.5)
+;
+    color: white
+;
+    border: rgb(%% tcolor%%) solid 0.1rem
+;
+    border-radius: 2rem
+;
+    padding: 0.5rem 1rem
+;
+    display: inline-block
+;
+    margin: 0.25rem
+;
 }

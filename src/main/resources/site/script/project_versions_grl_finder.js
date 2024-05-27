@@ -15,9 +15,7 @@
  */
 
 
-
 const url = "https://api.github.com/repos/%%repo%%/releases?per_page=15";
-
 
 
 const elementt = document.getElementById("releases");
@@ -89,7 +87,9 @@ function refreshPage(page) {
 
 
     fetch(url + `&page=${page}`).then(res => {
-        return res.json().then(body => { return { body, headers: res.headers }; });
+        return res.json().then(body => {
+            return {body, headers: res.headers};
+        });
     }).then(res => {
         const linkHeader = res.headers.get("Link");
 
@@ -104,23 +104,41 @@ function refreshPage(page) {
             if (sp.rel === "next") nextPage = getPageNumber(sp.link);
         });
 
-        if (nextPage != -1) curPageElement.innerText = nextPage - 1 + " / " + (lastPage==-1?nextPage-1:lastPage);
-        if (prevPage != -1) curPageElement.innerText = prevPage + 1 + " / " + (lastPage==-1?prevPage+1:lastPage);
+        if (nextPage != -1) curPageElement.innerText = nextPage - 1 + " / " + (lastPage == -1 ? nextPage - 1 : lastPage);
+        if (prevPage != -1) curPageElement.innerText = prevPage + 1 + " / " + (lastPage == -1 ? prevPage + 1 : lastPage);
         nextPageElement.disabled = nextPage == -1;
         prevPageElement.disabled = prevPage == -1;
         firstPageElement.disabled = nextPage == 2;
-        lastPageElement.disabled = lastPage==-1;
+        lastPageElement.disabled = lastPage == -1;
 
         res.body.forEach(element => {
 
-            var vrt = res.body.prerelease ? { id: "prerelease", name: getKey("project.version.pre_release") } : { id: "release", name: getKey("project.version.release") };
+            var vrt = res.body.prerelease ? {
+                id: "prerelease",
+                name: getKey("project.version.pre_release")
+            } : {id: "release", name: getKey("project.version.release")};
             const name = element.name.toLowerCase();
             const tagName = element.tag_name.toLowerCase();
-            if (name.includes("beta")||tagName.includes("beta")) vrt = { id: "beta", name: getKey("project.version.beta") };
-            if (name.includes("alpha")||tagName.includes("alpha")) vrt = { id: "alpha", name: getKey("project.version.alpha") };
-            if (name.includes("prototype")||tagName.includes("prototype")) vrt = { id: "prototype", name: getKey("project.version.prototype") };
-            if (name.includes("release candidate")||tagName.includes("release candidate")) vrt = { id: "rc", name: getKey("project.version.release_candidate") };
-            if (name.includes("snapshot")||tagName.includes("snapshot")) vrt = { id: "snapshot", name: getKey("project.version.snapshot") };
+            if (name.includes("beta") || tagName.includes("beta")) vrt = {
+                id: "beta",
+                name: getKey("project.version.beta")
+            };
+            if (name.includes("alpha") || tagName.includes("alpha")) vrt = {
+                id: "alpha",
+                name: getKey("project.version.alpha")
+            };
+            if (name.includes("prototype") || tagName.includes("prototype")) vrt = {
+                id: "prototype",
+                name: getKey("project.version.prototype")
+            };
+            if (name.includes("release candidate") || tagName.includes("release candidate")) vrt = {
+                id: "rc",
+                name: getKey("project.version.release_candidate")
+            };
+            if (name.includes("snapshot") || tagName.includes("snapshot")) vrt = {
+                id: "snapshot",
+                name: getKey("project.version.snapshot")
+            };
 
             const date = new Date();
             date.setTime(Date.parse(element.published_at));
@@ -134,7 +152,7 @@ function refreshPage(page) {
                         <span class="title">${element.tag_name}</span>
                     </div>
                     <div>
-                        <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt"> ${getKey("date.format",getKey(months[date.getMonth()]),getThing(date.getDate()),date.getFullYear())}</span>
+                        <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt"> ${getKey("date.format", getKey(months[date.getMonth()]), getThing(date.getDate()), date.getFullYear())}</span>
                     </div>
                     <div>
                         <a href="${element.html_url}" target="_blank"><button class="btn btn-download">${getKey("project.version.more")}<img src="../../images/icon/external.svg" width="24"/></button></a>
@@ -151,14 +169,14 @@ function refreshPage(page) {
 }
 
 function getThing(day) {
-    if(typeof day !== "number") throw new TypeError("day must be number");
+    if (typeof day !== "number") throw new TypeError("day must be number");
 
-    const stringDay = day+"";
+    const stringDay = day + "";
 
-    if(stringDay.endsWith("1")) return getKey("day.first",day);
-    if(stringDay.endsWith("2")) return getKey("day.second",day);
-    if(stringDay.endsWith("3")) return getKey("day.third",day);
-    return getKey("day.other",day);
+    if (stringDay.endsWith("1")) return getKey("day.first", day);
+    if (stringDay.endsWith("2")) return getKey("day.second", day);
+    if (stringDay.endsWith("3")) return getKey("day.third", day);
+    return getKey("day.other", day);
 }
 
 refreshPage(1);

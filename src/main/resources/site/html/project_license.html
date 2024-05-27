@@ -42,7 +42,8 @@
     </div>
     <div style="margin-left: 2rem;">
         <a href="%%prmainwebsite%%" target="_blank" style="display: inline-block;">
-            <button class="btn btn-download"><span class="key" id="key-project.link.website">Official Website</span> <img src="../../images/icon/external.svg" width="24"/>
+            <button class="btn btn-download"><span class="key" id="key-project.link.website">Official Website</span>
+                <img src="../../images/icon/external.svg" width="24"/>
             </button>
         </a>
     </div>
@@ -72,11 +73,12 @@
 %%footer%%
 <script src="../../language_finder.js"></script>
 <script>
-    async function a(){
+    async function a() {
         langUrl = "../../lang/%LANG%.json";
         await loadLang();
         refreshLangKeys();
     }
+
     a();
 </script>
 </body>

@@ -41,14 +41,14 @@ fetch(url).then(res => {
 
     res.forEach(element => {
 
-        var vrt = { id: "release", name: "Release" };
+        var vrt = {id: "release", name: "Release"};
         const name = element.type;
-        if(name==="beta") vrt = {id:"beta",name:"Beta"}
-        if(name==="alpha") vrt = {id:"alpha",name:"Alpha"}
-        if(name==="prototype") vrt = {id:"prototype",name:"Prototype"}
-        if(name==="rc") vrt = {id:"rc",name:"Release Candidate"}
-        if(name==="snapshot") vrt = {id:"snapshot",name:"Snapshot"}
-        if(name==="pre_release") vrt = {id:"pre_release",name:"Pre-Release"}
+        if (name === "beta") vrt = {id: "beta", name: "Beta"}
+        if (name === "alpha") vrt = {id: "alpha", name: "Alpha"}
+        if (name === "prototype") vrt = {id: "prototype", name: "Prototype"}
+        if (name === "rc") vrt = {id: "rc", name: "Release Candidate"}
+        if (name === "snapshot") vrt = {id: "snapshot", name: "Snapshot"}
+        if (name === "pre_release") vrt = {id: "pre_release", name: "Pre-Release"}
 
         const date = new Date();
         date.setTime(Date.parse(element.release_date));
@@ -62,13 +62,13 @@ fetch(url).then(res => {
                     <span class="title">${element.version}</span>
                 </div>
                 <div>
-                    <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${getKey("date.format",getKey(months[date.getMonth()]),getThing(date.getDate()),date.getFullYear())}</span>
+                    <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${getKey("date.format", getKey(months[date.getMonth()]), getThing(date.getDate()), date.getFullYear())}</span>
                 </div>
                 ${element.link ? `
                  <div>
                     <a href="${element.link}" target="_blank"><button class="btn btn-download">${getKey("project.version.more")}<img src="../../images/icon/external.svg" width="24"/></button></a>
                 </div>
-                `:""}
+                ` : ""}
             </div>
             `
         );
@@ -76,18 +76,18 @@ fetch(url).then(res => {
 
         elementt.innerHTML = versions.join("\n\n");
     })
-}).then(()=>{
+}).then(() => {
     Prism.highlightAll();
 });
 
 
 function getThing(day) {
-    if(typeof day !== "number") throw new TypeError("day must be number");
+    if (typeof day !== "number") throw new TypeError("day must be number");
 
-    const stringDay = day+"";
+    const stringDay = day + "";
 
-    if(stringDay.endsWith("1")) return getKey("day.first",day);
-    if(stringDay.endsWith("2")) return getKey("day.second",day);
-    if(stringDay.endsWith("3")) return getKey("day.third",day);
-    return getKey("day.other",day);
+    if (stringDay.endsWith("1")) return getKey("day.first", day);
+    if (stringDay.endsWith("2")) return getKey("day.second", day);
+    if (stringDay.endsWith("3")) return getKey("day.third", day);
+    return getKey("day.other", day);
 }

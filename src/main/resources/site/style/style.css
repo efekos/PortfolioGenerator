@@ -17,19 +17,19 @@
 @import "./social_icons.css";
 
 body {
-    background-color: %%colorTheme.general.backgroundColor%%;
-    color: %%colorTheme.general.textColor%%;
-    font-family: %%colorTheme.general.font%%;
+    background-color:%% colorTheme . general . backgroundColor%%;
+    color:%% colorTheme . general . textColor%%;
+    font-family:%% colorTheme . general . font%%;
     padding: 3rem;
     font-size: 1.5rem;
 }
 
 h1#name {
-    font-family: %%colorTheme.general.nameFont%%, %%colorTheme.general.font%%;
-    color: %%colorTheme.general.nameColor%%;
+    font-family:%% colorTheme . general . nameFont%%, %% colorTheme . general . font%%;
+    color:%% colorTheme . general . nameColor%%;
     font-size: 5rem;
     text-align: center;
-    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.general.nameColor%%);
+    filter: drop-shadow(0rem 0rem 16rem%% colorTheme.general.nameColor%%);
     will-change: filter;
     transition: filter 200ms;
     user-select: none;
@@ -37,25 +37,25 @@ h1#name {
 }
 
 h1#name:hover {
-    filter: drop-shadow(0rem 0rem 2rem %%colorTheme.general.nameColor%%);
+    filter: drop-shadow(0rem 0rem 2rem%% colorTheme.general.nameColor%%);
 }
 
 h2#title {
     text-align: center;
     font-size: 2rem;
-    font-family: %%colorTheme.general.titleFont%%;
+    font-family:%% colorTheme . general . titleFont%%;
 }
 
 a {
     text-decoration: none;
-    color: %%colorTheme.general.linkColor%%;
+    color:%% colorTheme . general . linkColor%%;
 }
 
 .btn {
     font-size: 1.5rem;
     border-radius: 1rem;
     color: white;
-    font-family: %%colorTheme.buttons.font%%, %%colorTheme.general.font%%;
+    font-family:%% colorTheme . buttons . font%%, %% colorTheme . general . font%%;
     font-weight: 650;
     will-change: filter;
     transition: filter 1.5s;
@@ -65,50 +65,66 @@ a {
 }
 
 .btn-blue {
-    background: %%colorTheme.buttons.blueColor%%;
+    background:%% colorTheme . buttons . blueColor%%;
 }
 
 .btn-blue:hover {
-    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.buttons.blueColor:last%%);
+    filter: drop-shadow(0rem 0rem 16rem%% colorTheme.buttons.
+
+    blueColor:last
+
+% %);
 }
 
 
 .btn-green {
-    background: %%colorTheme.buttons.greenColor%%;
+    background:%% colorTheme . buttons . greenColor%%;
 }
 
 .btn-green:hover {
-    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.buttons.greenColor:last%%);
+    filter: drop-shadow(0rem 0rem 16rem%% colorTheme.buttons.
+
+    greenColor:last
+
+% %);
 }
 
 .btn-red {
-    background: %%colorTheme.buttons.redColor%%;
+    background:%% colorTheme . buttons . redColor%%;
 }
 
 .btn-red:hover {
-    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.buttons.redColor:last%%);
+    filter: drop-shadow(0rem 0rem 16rem%% colorTheme.buttons.
+
+    redColor:last
+
+% %);
 }
 
 
 .btn-orange {
-    background: %%colorTheme.buttons.orangeColor%%;
+    background:%% colorTheme . buttons . orangeColor%%;
 }
 
 .btn-orange:hover {
-    filter: drop-shadow(0rem 0rem 16rem %%colorTheme.buttons.orangeColor:last%%);
+    filter: drop-shadow(0rem 0rem 16rem%% colorTheme.buttons.
+
+    orangeColor:last
+
+% %);
 }
 
 .btn-download {
-    color: %%colorTheme.buttons.downloadTextColor%%;
+    color:%% colorTheme . buttons . downloadTextColor%%;
     padding: 1rem;
     border-radius: 0.5rem;
-    background-color: %%colorTheme.buttons.downloadBackgroundColor%%;
+    background-color:%% colorTheme . buttons . downloadBackgroundColor%%;
     will-change: background-color;
     transition: background-color 200ms;
 }
 
 .btn-download:hover {
-    background-color: %%colorTheme.buttons.downloadBackgroundHoverColor%%;
+    background-color:%% colorTheme . buttons . downloadBackgroundHoverColor%%;
 }
 
 br {
@@ -116,7 +132,7 @@ br {
 }
 
 code:not([class]) {
-    background-color: %%colorTheme.markdown.inlineCodeBackgroundColor%%;
+    background-color:%% colorTheme . markdown . inlineCodeBackgroundColor%%;
     padding: 0.1rem 0.2rem;
     border-radius: 0.5rem;
 }
@@ -128,14 +144,14 @@ footer {
 
 
 .search-bar {
-    background-color: %%colorTheme.projects.searchBarBackgroundColor%%;
+    background-color:%% colorTheme . projects . searchBarBackgroundColor%%;
     border-radius: 3rem;
     max-width: 25rem;
 }
 
 .search-bar-input {
     background-color: transparent;
-    color: %%colorTheme.projects.searchBarTextColor%%;
+    color:%% colorTheme . projects . searchBarTextColor%%;
     margin-left: 1rem;
     border: 0;
     font-size: 1.5rem;
@@ -177,7 +193,7 @@ footer {
     padding: 5px 10px 5px 10px;
     background-color: #2e2e2e;
     border-radius: 5px;
-    color: %%colorTheme.general.textColor%%;
+    color:%% colorTheme . general . textColor%%;
     cursor: pointer;
     outline: none;
     max-width: 8rem;
@@ -196,7 +212,7 @@ footer {
     transform: translate(0, -50%);
     width: 12px;
     height: 12px;
-    background-color: %%colorTheme.general.textColor%%;
+    background-color:%% colorTheme . general . textColor%%;
     clip-path: polygon(8% 17%, 0% 25%, 50% 84%, 100% 25%, 92% 17%, 50% 65%);
 }
 
@@ -209,7 +225,7 @@ footer {
 .tooltip .tooltiptext {
     visibility: hidden;
     width: fit-content;
-    background-color: rgb(60, 60,60);
+    background-color: rgb(60, 60, 60);
     color: #fff;
     text-align: center;
     padding: 5px 0;

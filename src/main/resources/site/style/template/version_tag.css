@@ -14,6 +14,14 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-.version-tag.%%vrtid%% {
-    color: %%colorTheme.projects.versionTags.%%vrtcolor%%%%
+.version-tag.
+
+%
+%
+vrtid
+
+%
+%
+{
+    color:%% colorTheme . projects . versionTags .%% vrtcolor%%%%
 }

@@ -27,26 +27,26 @@
 }
 
 .mainList > li {
-    border-left: 0.7rem %%colorTheme.entry.dotColor%% dotted;
+    border-left: 0.7rem%% colorTheme . entry . dotColor%% dotted;
     padding-left: 1rem;
 }
 
 .entry {
-    background-color: %%colorTheme.entry.backgroundColor%%;
+    background-color:%% colorTheme . entry . backgroundColor%%;
     border-radius: 1rem;
     padding: 1.5rem;
     margin-top: 1rem;
     will-change: background-color;
     transition: background-color 200ms;
-    border: 0.1rem %%colorTheme.entry.borderColor%% solid;
+    border: 0.1rem%% colorTheme . entry . borderColor%% solid;
 }
 
 .entry-placeholder {
-    background: %%colorTheme.entry.placeholderBackgroundColor%%;
+    background:%% colorTheme . entry . placeholderBackgroundColor%%;
 }
 
 .entry:hover {
-    background-color: %%colorTheme.entry.backgroundHoverColor%%;
+    background-color:%% colorTheme . entry . backgroundHoverColor%%;
 }
 
 .entry > div {
@@ -56,7 +56,7 @@
 
 .alt {
     font-size: 1rem;
-    color: %%colorTheme.entry.altTextColor%%;
+    color:%% colorTheme . entry . altTextColor%%;
     font-weight: 750;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -81,12 +81,12 @@
 
 .hidden {
     color: transparent;
-    background-color: %%colorTheme.entry.backgroundColor%%;
+    background-color:%% colorTheme . entry . backgroundColor%%;
 }
 
 .markdown {
     padding: 1rem;
-    border: %%colorTheme.markdown.contentBorderColor%% solid 0.15rem;
+    border:%% colorTheme . markdown . contentBorderColor%% solid 0.15rem;
     border-radius: 1rem;
     font-size: 1rem;
 }
@@ -109,12 +109,12 @@
 }
 
 .nav > li#selected {
-    border-bottom: %%colorTheme.projects.navigationBarSelectedColor%% 0.25rem solid;
+    border-bottom:%% colorTheme . projects . navigationBarSelectedColor%% 0.25rem solid;
 }
 
 pre[class*="language-"] {
     padding: 1rem;
-    border: %%colorTheme.markdown.codeBlockBorderColor%% 0.1rem solid;
+    border:%% colorTheme . markdown . codeBlockBorderColor%% 0.1rem solid;
     border-radius: 0.15rem;
 }
 
@@ -129,17 +129,17 @@ pre[class*="language-"] {
 
 .btn-pagination {
     padding: 1rem;
-    background-color: %%colorTheme.projects.paginationButtonColor%%;
+    background-color:%% colorTheme . projects . paginationButtonColor%%;
 }
 
 .btn-pagination:disabled {
-    background-color: %%colorTheme.projects.paginationDisabledButtonColor%%;
-    color: %%colorTheme.projects.paginationDisabledTextColor%%;
+    background-color:%% colorTheme . projects . paginationDisabledButtonColor%%;
+    color:%% colorTheme . projects . paginationDisabledTextColor%%;
     cursor: default;
 }
 
 .project-link {
-    color: %%colorTheme.projects.projectLinkColor%%;
+    color:%% colorTheme . projects . projectLinkColor%%;
     text-decoration: underline;
 }
 
@@ -147,12 +147,12 @@ pre[class*="language-"] {
     vertical-align: middle;
     margin-bottom: 0.2rem;
     margin-right: 0.25rem;
-    fill: %%colorTheme.projects.projectLinkColor%%;
+    fill:%% colorTheme . projects . projectLinkColor%%;
 }
 
 .text-summary {
     margin: 0 1rem 0 0;
-    color: %%colorTheme.projects.summaryTextColor%%;
+    color:%% colorTheme . projects . summaryTextColor%%;
 }
 
 .text-no-margin {

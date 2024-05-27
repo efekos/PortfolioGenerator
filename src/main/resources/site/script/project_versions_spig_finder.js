@@ -59,31 +59,33 @@ function refreshPage(page) {
 
 
     fetch(url + `&page=${page}`).then(res => {
-        return res.json().then(body => { return { body, headers: res.headers }; });
+        return res.json().then(body => {
+            return {body, headers: res.headers};
+        });
     }).then(res => {
         lastPage = Number.parseInt(res.headers.get("X-Page-Count"));
-        nextPage = Number.parseInt(res.headers.get("X-Page-Index"))+1;
-        prevPage = Number.parseInt(res.headers.get("X-Page-Index"))-1;
+        nextPage = Number.parseInt(res.headers.get("X-Page-Index")) + 1;
+        prevPage = Number.parseInt(res.headers.get("X-Page-Index")) - 1;
 
-        if (nextPage != -1) curPageElement.innerText = nextPage - 1 + " / " + (lastPage==-1?nextPage-1:lastPage);
-        nextPageElement.disabled = nextPage == lastPage+1;
+        if (nextPage != -1) curPageElement.innerText = nextPage - 1 + " / " + (lastPage == -1 ? nextPage - 1 : lastPage);
+        nextPageElement.disabled = nextPage == lastPage + 1;
         prevPageElement.disabled = prevPage == 0;
         firstPageElement.disabled = nextPage == 2;
-        lastPageElement.disabled = prevPage+1 == lastPage;
+        lastPageElement.disabled = prevPage + 1 == lastPage;
 
         res.body.forEach(element => {
 
-            var vrt = { id: "release", name: "Release" };
+            var vrt = {id: "release", name: "Release"};
             const name = element.title.toLowerCase();
-            if(name.includes("beta")) vrt = {id:"beta",name:"Beta"}
-            if(name.includes("alpha")) vrt = {id:"alpha",name:"Alpha"}
-            if(name.includes("prototype")) vrt = {id:"prototype",name:"Prototype"}
-            if(name.includes("release candidate")) vrt = {id:"rc",name:"Release Candidate"}
-            if(name.includes("snapshot")) vrt = {id:"snapshot",name:"Snapshot"}
-            if(name.includes("pre release")) vrt = {id:"pre_release",name: "Pre-Release"}
+            if (name.includes("beta")) vrt = {id: "beta", name: "Beta"}
+            if (name.includes("alpha")) vrt = {id: "alpha", name: "Alpha"}
+            if (name.includes("prototype")) vrt = {id: "prototype", name: "Prototype"}
+            if (name.includes("release candidate")) vrt = {id: "rc", name: "Release Candidate"}
+            if (name.includes("snapshot")) vrt = {id: "snapshot", name: "Snapshot"}
+            if (name.includes("pre release")) vrt = {id: "pre_release", name: "Pre-Release"}
 
             const date = new Date();
-            date.setTime(element.date*1000);
+            date.setTime(element.date * 1000);
 
 
             versions.push(
@@ -94,7 +96,7 @@ function refreshPage(page) {
                     <span class="title">${element.title}</span>
                 </div>
                 <div>
-                    <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${getKey("date.format",getKey(months[date.getMonth()]),getThing(date.getDate()),date.getFullYear())}</span>
+                    <img src="../../images/icon/clock.svg" alt="Clock Icon" width="20" style="vertical-align: middle;" /><span class="alt">${getKey("date.format", getKey(months[date.getMonth()]), getThing(date.getDate()), date.getFullYear())}</span>
                 </div>
                 <div>
                     <a href="https://www.spigotmc.org/resources/%%id%%/update?update=${element.id}" target="_blank"><button class="btn btn-download">${getKey("project.version.more")}<img src="../../images/icon/external.svg" width="24" /></button></a>
@@ -113,12 +115,12 @@ function refreshPage(page) {
 refreshPage(1);
 
 function getThing(day) {
-    if(typeof day !== "number") throw new TypeError("day must be number");
+    if (typeof day !== "number") throw new TypeError("day must be number");
 
-    const stringDay = day+"";
+    const stringDay = day + "";
 
-    if(stringDay.endsWith("1")) return getKey("day.first",day);
-    if(stringDay.endsWith("2")) return getKey("day.second",day);
-    if(stringDay.endsWith("3")) return getKey("day.third",day);
-    return getKey("day.other",day);
+    if (stringDay.endsWith("1")) return getKey("day.first", day);
+    if (stringDay.endsWith("2")) return getKey("day.second", day);
+    if (stringDay.endsWith("3")) return getKey("day.third", day);
+    return getKey("day.other", day);
 }

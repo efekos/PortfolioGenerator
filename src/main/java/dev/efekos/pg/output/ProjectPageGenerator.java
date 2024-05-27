@@ -108,7 +108,7 @@ public class ProjectPageGenerator implements Generator {
                 .replaceAll("%%name%%", info.getName())
                 .replaceAll("%%prname%%", project.getDisplayName())
                 .replaceAll("%%prid%%", project.getId())
-                .replaceAll("%%prlicense%%", Text.translated("title.project.license",project.getLicense()))
+                .replaceAll("%%prlicense%%", Text.translated("title.project.license", project.getLicense()))
                 .replaceAll("%%tags%%", tags)
                 .replaceAll("%%prsummary%%", project.getSummary())
                 .replaceAll("%%links%%", links)

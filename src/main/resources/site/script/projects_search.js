@@ -32,7 +32,7 @@ for (let i = 0; i < elements.length; i++) {
         tags.push(element.innerText);
     }
 
-    data.push({ title, tags, element });
+    data.push({title, tags, element});
 }
 
 // collecting tags
@@ -48,8 +48,6 @@ allTags.forEach(tag => {
     tagElements.push(`<input type="checkbox" class="filter-tag" name="filter-tag-${tag}" id="filter-tag-${tag}" onchange="onFilterChange(event)"><label for="filter-tag-${tag}">${tag}</label>`);
 });
 tagFiltersElement.innerHTML = tagElements.join("<br>");
-
-
 
 
 function onInputChange(e) {
@@ -74,7 +72,7 @@ function onFilterChange(event) {
     }
 
     doSearch(document.getElementById("search").value);
-    if(event.target.checked) selectedTags.push(event.target.id.substring(11)); else selectedTags = selectedTags.filter(r=>r!=event.target.id.substring(11));
+    if (event.target.checked) selectedTags.push(event.target.id.substring(11)); else selectedTags = selectedTags.filter(r => r != event.target.id.substring(11));
 }
 
 function doSearch(v) {
@@ -84,9 +82,9 @@ function doSearch(v) {
             dat.element.hidden = !hasFilteredTag;
         });
     } else {
-        const tag  = selectedTags[0]
-        data.forEach(dat=>{
-            if(!dat.tags.includes(tag))// means it should not be hidden but is hidden
+        const tag = selectedTags[0]
+        data.forEach(dat => {
+            if (!dat.tags.includes(tag))// means it should not be hidden but is hidden
                 dat.element.hidden = false;
         })
     }

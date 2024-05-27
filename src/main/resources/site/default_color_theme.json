@@ -1,71 +1,181 @@
 {
   "$schema": "https://raw.githubusercontent.com/efekos/PortfolioGenerator/master/schema/color_theme.json",
-  "general":{
-    "backgroundColor":"#03080E",
-    "textColor":"white",
-    "font":["Segoe UI","Tahoma","Geneva","Verdana","sans-serif"],
-    "nameFont":"Fredoka",
-    "nameColor":"#4C9EFF",
-    "titleFont":["Franklin Gothic Medium","Arial Narrow","Arial","sans-serif"],
-    "linkColor":"#4cbdff"
+  "general": {
+    "backgroundColor": "#03080E",
+    "textColor": "white",
+    "font": [
+      "Segoe UI",
+      "Tahoma",
+      "Geneva",
+      "Verdana",
+      "sans-serif"
+    ],
+    "nameFont": "Fredoka",
+    "nameColor": "#4C9EFF",
+    "titleFont": [
+      "Franklin Gothic Medium",
+      "Arial Narrow",
+      "Arial",
+      "sans-serif"
+    ],
+    "linkColor": "#4cbdff"
   },
   "certificates": {
-    "backgroundColor": {"b": 100, "g": 100, "r": 100},
-    "borderColor": {"b": 100, "g": 100, "r": 100},
-    "borderHoverColor": {"b": 250, "g": 250, "r": 250},
+    "backgroundColor": {
+      "b": 100,
+      "g": 100,
+      "r": 100
+    },
+    "borderColor": {
+      "b": 100,
+      "g": 100,
+      "r": 100
+    },
+    "borderHoverColor": {
+      "b": 250,
+      "g": 250,
+      "r": 250
+    },
     "shadowColor": "black"
   },
-  "buttons":{
-    "blueColor":["#00E8FF","#0066FF"],
-    "greenColor":["#52ff3b","#04520b"],
-    "redColor":["#FAFF00", "#ff0000"],
-    "orangeColor":["#FF7A00","#ff0000"],
-    "downloadTextColor":"#363636",
+  "buttons": {
+    "blueColor": [
+      "#00E8FF",
+      "#0066FF"
+    ],
+    "greenColor": [
+      "#52ff3b",
+      "#04520b"
+    ],
+    "redColor": [
+      "#FAFF00",
+      "#ff0000"
+    ],
+    "orangeColor": [
+      "#FF7A00",
+      "#ff0000"
+    ],
+    "downloadTextColor": "#363636",
     "downloadIconColor": "black",
-    "downloadBackgroundColor":{"r":238,"g":238,"b":238},
-    "downloadBackgroundHoverColor":{"r":200,"g":200,"b":200},
+    "downloadBackgroundColor": {
+      "r": 238,
+      "g": 238,
+      "b": 238
+    },
+    "downloadBackgroundHoverColor": {
+      "r": 200,
+      "g": 200,
+      "b": 200
+    },
     "font": "Lato"
   },
-  "markdown":{
-    "inlineCodeBackgroundColor":{"r":52,"g":59,"b":65},
-    "contentBorderColor":"#4d5153",
-    "codeBlockBorderColor":"#4d5153"
+  "markdown": {
+    "inlineCodeBackgroundColor": {
+      "r": 52,
+      "g": 59,
+      "b": 65
+    },
+    "contentBorderColor": "#4d5153",
+    "codeBlockBorderColor": "#4d5153"
   },
-  "entry":{
-    "backgroundColor":"#202020",
-    "backgroundHoverColor":"#252525",
-    "borderColor":"#151515",
-    "altTextColor":"#707070",
-    "iconBackgroundColor":"#404040",
-    "iconColor":"#999999",
-    "placeholderBackgroundColor":["#101010","#303030"],
+  "entry": {
+    "backgroundColor": "#202020",
+    "backgroundHoverColor": "#252525",
+    "borderColor": "#151515",
+    "altTextColor": "#707070",
+    "iconBackgroundColor": "#404040",
+    "iconColor": "#999999",
+    "placeholderBackgroundColor": [
+      "#101010",
+      "#303030"
+    ],
     "lighterAltTextColor": "#959595",
     "backgroundActiveColor": "#dfdfdf",
     "dotColor": "#252525"
   },
-  "projects":{
-    "searchBarBackgroundColor":"#1a1b1d",
-    "searchBarTextColor":"white",
-    "galleryModalBackgroundColor":{"r":35,"g":39,"b":43},
-    "galleryModalHeaderBackgroundColor":{"r":25,"g":29,"b":33},
-    "galleryModalFooterBackgroundColor":{"r":25,"g":29,"b":33},
-    "galleryImageBorderColor":{"r":55,"g":64,"b":73},
-    "galleryImageBackgroundColor":{"r":55,"g":64,"b":73},
-    "navigationBarColor":"#232627",
-    "paginationButtonColor":{"r":33,"g":35,"b":37},
-    "paginationDisabledButtonColor":{"r":23,"g":25,"b":27},
-    "projectLinkColor":"#999999",
-    "summaryTextColor":"#888888",
+  "projects": {
+    "searchBarBackgroundColor": "#1a1b1d",
+    "searchBarTextColor": "white",
+    "galleryModalBackgroundColor": {
+      "r": 35,
+      "g": 39,
+      "b": 43
+    },
+    "galleryModalHeaderBackgroundColor": {
+      "r": 25,
+      "g": 29,
+      "b": 33
+    },
+    "galleryModalFooterBackgroundColor": {
+      "r": 25,
+      "g": 29,
+      "b": 33
+    },
+    "galleryImageBorderColor": {
+      "r": 55,
+      "g": 64,
+      "b": 73
+    },
+    "galleryImageBackgroundColor": {
+      "r": 55,
+      "g": 64,
+      "b": 73
+    },
+    "navigationBarColor": "#232627",
+    "paginationButtonColor": {
+      "r": 33,
+      "g": 35,
+      "b": 37
+    },
+    "paginationDisabledButtonColor": {
+      "r": 23,
+      "g": 25,
+      "b": 27
+    },
+    "projectLinkColor": "#999999",
+    "summaryTextColor": "#888888",
     "navigationBarSelectedColor": "#0080ff",
-    "paginationDisabledTextColor": {"r": 235,"g": 235,"b": 235},
-    "versionTags":{
-      "releaseColor":{"r":99,"g":224,"b":118},
-      "betaColor":{"r":255,"g":111,"b":0},
-      "alphaColor":{"r":255,"g":59,"b":20},
-      "prototypeColor":{"r":64,"g":119,"b":230},
-      "snapshotColor":{"r":245,"g":240,"b":93},
-      "releaseCandidateColor":{"r":130,"g":219,"b":94},
-      "preReleaseColor":{"r":110,"g":219,"b":66}
+    "paginationDisabledTextColor": {
+      "r": 235,
+      "g": 235,
+      "b": 235
+    },
+    "versionTags": {
+      "releaseColor": {
+        "r": 99,
+        "g": 224,
+        "b": 118
+      },
+      "betaColor": {
+        "r": 255,
+        "g": 111,
+        "b": 0
+      },
+      "alphaColor": {
+        "r": 255,
+        "g": 59,
+        "b": 20
+      },
+      "prototypeColor": {
+        "r": 64,
+        "g": 119,
+        "b": 230
+      },
+      "snapshotColor": {
+        "r": 245,
+        "g": 240,
+        "b": 93
+      },
+      "releaseCandidateColor": {
+        "r": 130,
+        "g": 219,
+        "b": 94
+      },
+      "preReleaseColor": {
+        "r": 110,
+        "g": 219,
+        "b": 66
+      }
     }
   }
 }

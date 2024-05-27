@@ -23,22 +23,22 @@
 }
 
 .mainList > li {
-    border-left: 0.7rem %%colorTheme.entry.dotColor%% dotted;
+    border-left: 0.7rem%% colorTheme . entry . dotColor%% dotted;
     padding-left: 1rem;
 }
 
 .entry {
-    background-color: %%colorTheme.entry.backgroundColor%%;
+    background-color:%% colorTheme . entry . backgroundColor%%;
     border-radius: 1rem;
     padding: 1.5rem;
     margin-top: 1rem;
     will-change: background-color;
     transition: background-color 200ms;
-    border: 0.1rem %%colorTheme.entry.borderColor%% solid;
+    border: 0.1rem%% colorTheme . entry . borderColor%% solid;
 }
 
 .entry:hover {
-    background-color: %%colorTheme.entry.backgroundHoverColor%%;
+    background-color:%% colorTheme . entry . backgroundHoverColor%%;
 }
 
 .entry > div {
@@ -48,7 +48,7 @@
 
 .alt {
     font-size: 1rem;
-    color: %%colorTheme.entry.altTextColor%%;
+    color:%% colorTheme . entry . altTextColor%%;
     font-weight: 750;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .icon {
-    background-color: %%colorTheme.entry.iconBackgroundColor%%;
+    background-color:%% colorTheme . entry . iconBackgroundColor%%;
     padding: 1rem;
     border-radius: 100rem;
 }
