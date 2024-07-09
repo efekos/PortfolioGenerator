@@ -22,7 +22,7 @@ import com.google.gson.JsonParseException;
 import dev.efekos.pg.data.DataGrabberContext;
 import dev.efekos.pg.data.type.DataTypeChecker;
 import dev.efekos.pg.data.type.RequiredDataType;
-import lombok.*;
+import lombok.Data;
 
 import java.util.Objects;
 

@@ -36,6 +36,9 @@ public class ContactInfo implements JsonSchema {
     private boolean includeSocials;
     private List<Place> places = new ArrayList<>();
 
+    public ContactInfo() {
+    }
+
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
@@ -58,9 +61,6 @@ public class ContactInfo implements JsonSchema {
             place.readJson(placeElement, context);
             this.places.add(place);
         }
-    }
-
-    public ContactInfo() {
     }
 
 }

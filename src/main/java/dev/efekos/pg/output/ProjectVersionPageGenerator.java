@@ -29,14 +29,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectVersionPageGenerator implements Generator {
+    private static final String PAGINATION_ELEMENT = ResourceManager.getResource(Resources.HTML_PAGINATION_BUTTONS);
+    private static final String PROJECT_RELEASES_TEMPLATE = ResourceManager.getResource(Resources.HTML_PROJECT_RELEASES_ELEMENT);
     private final GeneralInfo generalInfo;
     private final Project project;
     private final String tags;
     private final String binPath;
     private final String footer;
-
-    private static final String PAGINATION_ELEMENT = ResourceManager.getResource(Resources.HTML_PAGINATION_BUTTONS);
-    private static final String PROJECT_RELEASES_TEMPLATE = ResourceManager.getResource(Resources.HTML_PROJECT_RELEASES_ELEMENT);
     private final String links;
 
     public ProjectVersionPageGenerator(GeneralInfo generalInfo, Project project, String tags, String binPath, String links, String footer) {

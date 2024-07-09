@@ -32,6 +32,7 @@ public class EducationPageGenerator implements Generator {
     private final String binPath;
 
     private final String footer;
+    private final List<String> elementsGenerated = new ArrayList<>();
 
     public EducationPageGenerator(String binPath, String footer) {
         this.binPath = binPath;
@@ -54,8 +55,6 @@ public class EducationPageGenerator implements Generator {
         writeFile(binPath + "\\education.html", file, footer);
         Main.DEBUG_LOGGER.success("Generated file");
     }
-
-    private final List<String> elementsGenerated = new ArrayList<>();
 
     private void generateElements(EducationInfo info) {
         Main.DEBUG_LOGGER.info("Generating elements");

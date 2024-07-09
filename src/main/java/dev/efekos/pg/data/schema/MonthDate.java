@@ -31,8 +31,13 @@ import java.util.regex.Pattern;
 
 @EqualsAndHashCode
 public class MonthDate implements JsonSchema, Date {
-    @Getter @Setter private Integer month;
-    @Getter @Setter private Integer year;
+    private final Pattern STRING_DATE_PATTERN = Pattern.compile("[0-9]{4}-[0-9]{2}");
+    @Getter
+    @Setter
+    private Integer month;
+    @Getter
+    @Setter
+    private Integer year;
 
     public MonthDate(int month, int year) {
         this.month = month;
@@ -64,8 +69,6 @@ public class MonthDate implements JsonSchema, Date {
         this.month = object.get("month").getAsInt();
         this.year = object.get("year").getAsInt();
     }
-
-    private final Pattern STRING_DATE_PATTERN = Pattern.compile("[0-9]{4}-[0-9]{2}");
 
     @Override
     public int compareTo(Date other) {

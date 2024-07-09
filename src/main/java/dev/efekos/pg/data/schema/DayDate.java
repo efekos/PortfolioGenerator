@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
  * Represents a date that just needs a day, year, and month.
  */
 public class DayDate implements JsonSchema, Date {
+    private final Pattern STRING_DATE_PATTERN = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
     /**
      * Day of the date. Will be day of the month (such as 2nd July, but not Tuesday)
      */
@@ -111,7 +112,6 @@ public class DayDate implements JsonSchema, Date {
         this.year = year;
     }
 
-
     public void readJson(JsonElement element, DataGrabberContext context) {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
 
@@ -130,8 +130,6 @@ public class DayDate implements JsonSchema, Date {
         this.month = Integer.parseInt(members[1]);
         this.day = Integer.parseInt(members[2]);
     }
-
-    private final Pattern STRING_DATE_PATTERN = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
 
     private void parseObject(JsonObject object, DataTypeChecker checker) {
         checker.searchExceptions(object, "year", RequiredDataType.INTEGER);

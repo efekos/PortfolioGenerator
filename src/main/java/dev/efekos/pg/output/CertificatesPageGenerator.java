@@ -42,6 +42,11 @@ public class CertificatesPageGenerator implements Generator {
         this.footer = footer;
     }
 
+    private static String makeFileButton(String imageType, String imagePath) {
+
+        return "<a href=\"../images/certificate/" + imagePath + "\" target=\"_blank\"><button class=\"btn btn-download\">" + imageType.toUpperCase(Locale.ROOT) + " <img src=\"../images/icon/external.svg\" width=\"24\"/></button></a>";
+    }
+
     public void generateActualFile(GeneralInfo info, List<Certificate> certificates) throws IOException {
         Main.LOGGER.info("Generating file: certificates.html");
 
@@ -109,10 +114,5 @@ public class CertificatesPageGenerator implements Generator {
             Main.DEBUG_LOGGER.success("Generated file: certificate/" + makeId(certificate.getDisplay().getTitle()) + ".html");
         }
         Main.LOGGER.success("Generated single certificate files");
-    }
-
-    private static String makeFileButton(String imageType, String imagePath) {
-
-        return "<a href=\"../images/certificate/" + imagePath + "\" target=\"_blank\"><button class=\"btn btn-download\">" + imageType.toUpperCase(Locale.ROOT) + " <img src=\"../images/icon/external.svg\" width=\"24\"/></button></a>";
     }
 }

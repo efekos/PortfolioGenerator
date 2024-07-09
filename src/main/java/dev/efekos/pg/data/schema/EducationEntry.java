@@ -42,20 +42,20 @@ public class EducationEntry implements JsonSchema, TimelineEventSource {
     private MonthDate until;
     private String location;
 
-    @Override
-    public List<TimelineEvent> getEvents() {
-        return Arrays.asList(
-                new EducationStartEvent(title, start, type),
-                new EducationEndEvent(until, title, type)
-        );
-    }
-
     public EducationEntry(EducationEntryType type, String title, MonthDate start, MonthDate until, String location) {
         this.type = type;
         this.title = title;
         this.start = start;
         this.until = until;
         this.location = location;
+    }
+
+    @Override
+    public List<TimelineEvent> getEvents() {
+        return Arrays.asList(
+                new EducationStartEvent(title, start, type),
+                new EducationEndEvent(until, title, type)
+        );
     }
 
     @Override

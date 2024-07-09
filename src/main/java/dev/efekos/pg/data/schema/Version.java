@@ -38,6 +38,12 @@ public class Version implements JsonSchema {
     private VersionType type;
     private String link;
 
+    public Version(DayDate releaseDate, String version, VersionType type) {
+        this.releaseDate = releaseDate;
+        this.version = version;
+        this.type = type;
+    }
+
     @Override
     public void readJson(JsonElement element, DataGrabberContext context) throws JsonParseException {
         DataTypeChecker checker = new DataTypeChecker(context.getCurrentFile());
@@ -65,13 +71,6 @@ public class Version implements JsonSchema {
         else this.link = null;
         this.releaseDate = new DayDate(0, 0, 0);
         releaseDate.readJson(object.get("release_date"), context);
-    }
-
-
-    public Version(DayDate releaseDate, String version, VersionType type) {
-        this.releaseDate = releaseDate;
-        this.version = version;
-        this.type = type;
     }
 
 }

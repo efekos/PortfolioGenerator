@@ -25,12 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CollectTimelineEventsProcess implements Process {
+    private static final List<String> EXCLUDED_FIELDS = List.of("collectedTimeline");
+
     @Override
     public String getName() {
         return "Collect Timeline Events";
     }
-
-    private static final List<String> EXCLUDED_FIELDS = List.of("collectedTimeline");
 
     @Override
     public void init(ProcessContext context) throws Exception {

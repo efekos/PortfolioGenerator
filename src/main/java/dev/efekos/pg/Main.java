@@ -31,25 +31,9 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class Main {
-    /**
-     * Main path that the program is running.
-     */
-    private static String MAIN_PATH;
-
     public static final Logger LOGGER = new Logger();
     public static final DebugLogger DEBUG_LOGGER = new DebugLogger();
-
-    /**
-     * Returns a main path.
-     *
-     * @return main path that the program is running.
-     */
-    public static Path getMainPath() {
-        return Path.of(MAIN_PATH);
-    }
-
     private static final ProcessContext context = new ProcessContext();
-
     private static final List<Process> processList = Arrays.asList(
             new ReadResourcesProcess(),
             new ReadContributionDataProcess(),
@@ -61,8 +45,20 @@ public class Main {
             new CollectTimelineEventsProcess(),
             new GenerateFileProcess()
     );
-
+    /**
+     * Main path that the program is running.
+     */
+    private static String MAIN_PATH;
     private static boolean isDebug;
+
+    /**
+     * Returns a main path.
+     *
+     * @return main path that the program is running.
+     */
+    public static Path getMainPath() {
+        return Path.of(MAIN_PATH);
+    }
 
     public static void main(String[] args) throws Exception {
         List<String> list = Arrays.asList(args);

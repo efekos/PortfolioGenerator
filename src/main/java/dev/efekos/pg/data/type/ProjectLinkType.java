@@ -38,12 +38,12 @@ public enum ProjectLinkType {
         this.key = key;
     }
 
-    public String getDisplay() {
-        return Text.translated(key);
-    }
-
     public static Optional<ProjectLinkType> findById(String id) {
         return Arrays.stream(values()).filter(socialLinkType -> socialLinkType.id.equals(id)).findFirst();
+    }
+
+    public String getDisplay() {
+        return Text.translated(key);
     }
 
 }

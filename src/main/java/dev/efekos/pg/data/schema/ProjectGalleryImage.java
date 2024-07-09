@@ -30,6 +30,7 @@ import java.util.List;
 @Data
 public class ProjectGalleryImage implements JsonSchema {
 
+    private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList("png", "jpg", "jpeg", "PNG", "JPEG", "JPG");
     private String name;
     private String description;
     private String file;
@@ -57,7 +58,5 @@ public class ProjectGalleryImage implements JsonSchema {
         String[] split = file.split("/");
         this.id = split[split.length - 1].replace(".", "");
     }
-
-    private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList("png", "jpg", "jpeg", "PNG", "JPEG", "JPG");
 
 }

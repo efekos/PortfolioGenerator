@@ -38,19 +38,32 @@ import java.util.List;
 import java.util.Map;
 
 public class GeneralInfo implements JsonSchema, TimelineEventSource {
-    @Setter @Getter private String name;
-            @Getter private DayDate birthDate;
-    @Setter @Getter private String title;
-                    private String nativeLanguage;
-                    private List<String> knownLanguages;
-    @Setter @Getter private String welcomer;
-    @Setter @Getter private String bio;
-            @Getter private final Map<SocialLinkType, String> socialLinks = new HashMap<>();
+    @Getter
+    private final Map<SocialLinkType, String> socialLinks = new HashMap<>();
+    @Setter
+    @Getter
+    private String name;
+    @Getter
+    private DayDate birthDate;
+    @Setter
+    @Getter
+    private String title;
+    private String nativeLanguage;
+    private List<String> knownLanguages;
+    @Setter
+    @Getter
+    private String welcomer;
+    @Setter
+    @Getter
+    private String bio;
 
     public GeneralInfo(String name, DayDate birthDate, String title) {
         this.name = name;
         this.birthDate = birthDate;
         this.title = title;
+    }
+
+    public GeneralInfo() {
     }
 
     @Override
@@ -64,9 +77,6 @@ public class GeneralInfo implements JsonSchema, TimelineEventSource {
 
     public List<Locale> getKnownLanguages() {
         return knownLanguages.stream().map(LocaleHelper::getLocale).toList();
-    }
-
-    public GeneralInfo() {
     }
 
     @Override

@@ -32,25 +32,13 @@ import java.util.regex.Pattern;
 @Setter
 @Getter
 public class JsonColor implements JsonSchema {
+    private static final List<String> cssColors = new ArrayList<>();
+    private static boolean didLoadCssColors;
     private int red;
     private int green;
     private int blue;
     private String hexString;
     private boolean isHex;
-
-    private static boolean didLoadCssColors;
-    private static final List<String> cssColors = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return isHex ? hexString : "rgb(" + red + "," + green + "," + blue + ")";
-    }
-
-    public static JsonColor from(JsonElement element, DataGrabberContext context) {
-        JsonColor color = new JsonColor();
-        color.readJson(element, context);
-        return color;
-    }
 
     public JsonColor() {
         if (didLoadCssColors) return;
@@ -62,6 +50,17 @@ public class JsonColor implements JsonSchema {
         for (JsonElement element : array.getAsJsonArray()) {
             cssColors.add(element.getAsString());
         }
+    }
+
+    public static JsonColor from(JsonElement element, DataGrabberContext context) {
+        JsonColor color = new JsonColor();
+        color.readJson(element, context);
+        return color;
+    }
+
+    @Override
+    public String toString() {
+        return isHex ? hexString : "rgb(" + red + "," + green + "," + blue + ")";
     }
 
     @Override

@@ -23,6 +23,10 @@ import java.util.HashMap;
 public class ResourceManager {
     private static final HashMap<Resource, String> resourceMap = new HashMap<>();
 
+    public static String getResource(Resource resource) {
+        return resourceMap.get(resource);
+    }
+
     public void init() {
         Main.LOGGER.info("Loading resources");
         Resources.all().forEach(this::putResource);
@@ -68,9 +72,5 @@ public class ResourceManager {
             s = s.replace(CSS_COPYRIGHT_TEXT, "").replace(HTML_COPYRIGHT_TEXT, "");
         }
         resourceMap.put(resource, s);
-    }
-
-    public static String getResource(Resource resource) {
-        return resourceMap.get(resource);
     }
 }

@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 
 public class ColorThemeManager {
     private static final Map<String, String> themeMap = new HashMap<>();
+    private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("%%colorTheme\\.([A-Za-z]+(\\.[A-Za-z]+)+(:[A-Za-z]+)?)%%");
 
     public static void putColor(ColorThemeValue value, String s) {
         putColor(value.key(), s);
@@ -37,8 +38,6 @@ public class ColorThemeManager {
     public static String get(ColorThemeValue value) {
         return themeMap.get(value.key());
     }
-
-    private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("%%colorTheme\\.([A-Za-z]+(\\.[A-Za-z]+)+(:[A-Za-z]+)?)%%");
 
     public static String doReplacement(String string) {
         Matcher matcher = PLACEHOLDER_PATTERN.matcher(string);

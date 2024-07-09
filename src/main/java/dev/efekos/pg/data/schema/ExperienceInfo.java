@@ -35,6 +35,10 @@ public class ExperienceInfo implements JsonSchema, TimelineEventSource {
     private List<ExperienceEntry> entries;
     private ExperienceEntry currentJob = null;
 
+    public ExperienceInfo(List<ExperienceEntry> entries) {
+        this.entries = entries;
+    }
+
     @Override
     public List<TimelineEvent> getEvents() {
         ArrayList<TimelineEvent> list = new ArrayList<>();
@@ -44,10 +48,6 @@ public class ExperienceInfo implements JsonSchema, TimelineEventSource {
         }
 
         return list;
-    }
-
-    public ExperienceInfo(List<ExperienceEntry> entries) {
-        this.entries = entries;
     }
 
     public boolean hasCurrentJob() {

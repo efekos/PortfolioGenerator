@@ -41,6 +41,9 @@ public class Certificate implements JsonSchema, TimelineEventSource {
     private CertificateType certificateType;
     private CertificateDisplay display;
 
+    public Certificate() {
+    }
+
     @Override
     public List<TimelineEvent> getEvents() {
         return List.of(
@@ -95,12 +98,8 @@ public class Certificate implements JsonSchema, TimelineEventSource {
         });
     }
 
-
     private String toImagePath(String path) {
         return Main.getMainPath() + "\\data\\certificates\\" + path.replaceAll("/", "\\\\");
-    }
-
-    public Certificate() {
     }
 
 }

@@ -23,10 +23,6 @@ public class Resource {
     private final String pathName;
     private final boolean removeCopyright;
 
-    public boolean shouldRemoveCopyright() {
-        return removeCopyright;
-    }
-
     public Resource(String pathName) {
         this.pathName = pathName;
         this.removeCopyright = false;
@@ -35,5 +31,9 @@ public class Resource {
     public Resource(String pathName, boolean removeCopyright) {
         this.pathName = pathName;
         this.removeCopyright = removeCopyright;
+    }
+
+    public boolean shouldRemoveCopyright() {
+        return removeCopyright;
     }
 }
