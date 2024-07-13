@@ -34,4 +34,13 @@ public class PlaceholderSet {
         return this;
     }
 
+    public String apply(String base){
+        String s = base;
+
+        for (Placeholder placeholder : placeholders)
+            s = s.replaceAll("%%"+placeholder.getKey()+"%%", placeholder.getValue());
+
+        return s;
+    }
+
 }

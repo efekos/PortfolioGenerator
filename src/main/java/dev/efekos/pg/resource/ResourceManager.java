@@ -30,12 +30,7 @@ public class ResourceManager {
     }
 
     public static String getResource(Resource resource, PlaceholderSet placeholderSet) {
-        String s = getResource(resource);
-
-        for (Placeholder placeholder : placeholderSet.getPlaceholders())
-            s = s.replaceAll("%%"+placeholder.getKey()+"%%", placeholder.getValue());
-
-        return s;
+        return placeholderSet.apply(getResource(resource));
     }
 
     public void init() {
