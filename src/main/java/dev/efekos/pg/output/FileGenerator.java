@@ -30,6 +30,7 @@ import dev.efekos.pg.resource.Resource;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
 import dev.efekos.pg.util.Locale;
+import dev.efekos.pg.util.PlaceholderSet;
 import dev.efekos.pg.util.Text;
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -69,24 +70,25 @@ public class FileGenerator implements Generator {
             timelineElements.add("<li>" + generateAboutEntry(event.getIcon(), event.getTitle(), event.getTime(), false) + "</li>");
         }
 
-        String fileString = ResourceManager.getResource(Resources.HTML_INDEX_PAGE)
-                .replaceAll("%%name%%", info.getName())
-                .replaceAll("%%title%%", info.getTitle())
-                .replaceAll("%%welcomer%%", info.getWelcomer())
-                .replaceAll("%%aboutEntries%%", "<div class=\"entries\">" + String.join("",
-                        Arrays.asList(
-                                generateAboutEntry("birth", Text.translated("about.age"), "", true),
-                                generateAboutEntry("language", Text.translated("about.lang_native"), info.getNativeLanguage().name(), false),
-                                generateAboutEntry("language", Text.translated("about.lang_known"), String.join(", ", info.getKnownLanguages().stream().map(Locale::name).toList()), false),
-                                generateAboutEntry("university", Text.translated("about.certificates"), context.certificates.size() + "", false),
-                                generateAboutEntry("project", Text.translated("about.projects"), context.projects.size() + "", false),
-                                generateAboutEntry("briefcase", Text.translated("about.jobs"), context.experienceInfo.getEntries().size() + "", false),
-                                generateAboutEntry("letter", Text.translated("about.email"), context.contactInfo.getEmail(), false),
-                                generateAboutEntry("phone", Text.translated("about.phone"), context.contactInfo.getNumber(), false)
-                        )
-                ) + "</div>")
-                .replaceAll("%%timeline%%", String.join("", timelineElements))
-                .replaceAll("%%socialElements%%", String.join("", socialLinkElements));
+        String fileString = ResourceManager.getResource(Resources.HTML_INDEX_PAGE,new PlaceholderSet()
+                        .holder("name",info.getName())
+                        .holder("title",info.getTitle())
+                        .holder("welcomer",info.getWelcomer())
+                        .holder("aboutEntries","<div class=\"entries\">" + String.join("",
+                                Arrays.asList(
+                                        generateAboutEntry("birth", Text.translated("about.age"), "", true),
+                                        generateAboutEntry("language", Text.translated("about.lang_native"), info.getNativeLanguage().name(), false),
+                                        generateAboutEntry("language", Text.translated("about.lang_known"), String.join(", ", info.getKnownLanguages().stream().map(Locale::name).toList()), false),
+                                        generateAboutEntry("university", Text.translated("about.certificates"), context.certificates.size() + "", false),
+                                        generateAboutEntry("project", Text.translated("about.projects"), context.projects.size() + "", false),
+                                        generateAboutEntry("briefcase", Text.translated("about.jobs"), context.experienceInfo.getEntries().size() + "", false),
+                                        generateAboutEntry("letter", Text.translated("about.email"), context.contactInfo.getEmail(), false),
+                                        generateAboutEntry("phone", Text.translated("about.phone"), context.contactInfo.getNumber(), false)
+                                )
+                        ) + "</div>")
+                        .holder("timeline",String.join("", timelineElements))
+                        .holder("socialElements",String.join("", socialLinkElements))
+                );
 
         writeFile(binPath + "\\index.html", fileString, footer);
 
@@ -105,46 +107,40 @@ public class FileGenerator implements Generator {
             }
         });
 
-        String file = ResourceManager.getResource(Resources.HTML_CONTACT_PAGE);
+        String file = ResourceManager.getResource(Resources.HTML_CONTACT_PAGE,new PlaceholderSet()
+                .holder("social",contactInfo.isIncludeSocials()?"<h2>" + Text.translated("contact.socials") + "</h2> \n\n%%socialElements%%" :"")
+                .holder("name",generalInfo.getName())
+                .holder("mail",contactInfo.getEmail())
+                .holder("phone",contactInfo.getNumber())
+                .holder("places",String.join("\n", contactInfo.getPlaces().stream().map(this::generatePlaceEntry).toList()))
+                .holder("socialElements",String.join("", socialLinkElements))
+        );
 
-        if (contactInfo.isIncludeSocials()) {
-            file = file.replaceAll(
-                    "%%social%%", "<h2>" + Text.translated("contact.socials") + "</h2> \n\n%%socialElements%%"
-            );
-        } else file = file.replaceAll("%%social%%", "");
-
-        writeFile(binPath + "\\contact.html", file
-                .replaceAll("%%name%%", generalInfo.getName())
-                .replaceAll("%%mail%%", contactInfo.getEmail())
-                .replaceAll("%%phone%%", contactInfo.getNumber())
-                .replaceAll("%%places%%", String.join("\n", contactInfo.getPlaces().stream().map(this::generatePlaceEntry).toList()))
-                .replaceAll("%%socialElements%%", String.join("", socialLinkElements)), footer);
+        writeFile(binPath + "\\contact.html", file, footer);
 
         Main.LOGGER.success("Generated file: contact.html");
     }
 
     private String generatePlaceEntry(Place place) {
-        String file = ResourceManager.getResource(Resources.HTML_PLACE_ENTRY_TEMPLATE);
-
-        return file
-                .replaceAll("%%plmaps%%", place.getMapsLink())
-                .replaceAll("%%plwebsite%%", place.getWebsite())
-                .replaceAll("%%pldisplay%%", place.getDisplayName())
-                .replaceAll("%%pladdress%%", place.getAddress());
+        return ResourceManager.getResource(Resources.HTML_PLACE_ENTRY_TEMPLATE,new PlaceholderSet()
+                .holder("plmaps",place.getMapsLink())
+                .holder("plwebsite",place.getWebsite())
+                .holder("pldisplay",place.getDisplayName())
+                .holder("pladdress",place.getAddress()));
     }
 
     private String generateAboutEntry(String icon, String title, String alt, boolean age) {
-        String templateEntry = ResourceManager.getResource(Resources.HTML_ABOUT_ENTRY_TEMPLATE);
-
-        return templateEntry.replaceAll("%%title%%", title)
-                .replaceAll("%%icon%%", icon)
-                .replaceAll("%%i%%", age ? "id=\"age\"" : "")
-                .replaceAll("%%alt%%", alt);
+        return ResourceManager.getResource(Resources.HTML_ABOUT_ENTRY_TEMPLATE,new PlaceholderSet()
+                .holder("title",title)
+                .holder("icon",icon)
+                .holder("i",age ? "id=\"age\"" : "")
+                .holder("alt",alt));
     }
 
     private String generateSocialElement(SocialLinkType type, String link) throws IOException {
-        String templateElement = ResourceManager.getResource(Resources.HTML_SOCIAL_ICON_TEMPLATE);
-        return templateElement.replaceAll("%%link%%", link).replaceAll("%%icon%%", type.getId());
+        return ResourceManager.getResource(Resources.HTML_SOCIAL_ICON_TEMPLATE,new PlaceholderSet()
+                .holder("link",link)
+                .holder("icon",type.getId()));
     }
 
     public void generateExperienceFile(GeneralInfo generalInfo, ExperienceInfo experienceInfo) throws IOException {
@@ -194,13 +190,13 @@ public class FileGenerator implements Generator {
         JsonObject object = convertToJson(contributors);
 
         Main.DEBUG_LOGGER.info("Generating file: language_finder.js");
-        String language = ResourceManager.getResource(Resources.SCRIPT_LANGUAGE_FINDER)
-                .replaceAll("%%CONTRIBUTORS%%", StringEscapeUtils.escapeJson(new Gson().toJson(object)));
+        String language = ResourceManager.getResource(Resources.SCRIPT_LANGUAGE_FINDER,new PlaceholderSet()
+                        .holder("CONTRIBUTORS",StringEscapeUtils.escapeJson(new Gson().toJson(object))));
         writeFile(binPath + "\\language_finder.js", language, footer);
         Main.DEBUG_LOGGER.success("Generated file: language_finder.js");
 
 
-        Main.LOGGER.success("Generates script files");
+        Main.LOGGER.success("Generated script files");
     }
 
     private JsonObject convertToJson(List<Contributor> contributors) {
@@ -238,7 +234,7 @@ public class FileGenerator implements Generator {
 
 
         String bio = info.getBio();
-        String bioFile = ResourceManager.getResource(Resources.HTML_BIO_PAGE).replaceAll("%%bio%%", bio);
+        String bioFile = ResourceManager.getResource(Resources.HTML_BIO_PAGE,new PlaceholderSet().holder("bio",bio));
 
         writeFile(binPath + "\\bio.html", bioFile, footer);
 

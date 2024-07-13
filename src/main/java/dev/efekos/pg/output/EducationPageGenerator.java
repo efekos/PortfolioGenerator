@@ -22,6 +22,7 @@ import dev.efekos.pg.data.schema.EducationInfo;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import dev.efekos.pg.util.PlaceholderSet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,9 +49,9 @@ public class EducationPageGenerator implements Generator {
 
     private void generateFile(GeneralInfo generalInfo) throws IOException {
         Main.DEBUG_LOGGER.info("Generating file");
-        String file = ResourceManager.getResource(Resources.HTML_EDUCATION_PAGE)
-                .replaceAll("%%entries%%", String.join("", elementsGenerated))
-                .replaceAll("%%name%%", generalInfo.getName());
+        String file = ResourceManager.getResource(Resources.HTML_EDUCATION_PAGE,new PlaceholderSet()
+                        .holder("entries",String.join("", elementsGenerated))
+                        .holder("name",generalInfo.getName()));
 
         writeFile(binPath + "\\education.html", file, footer);
         Main.DEBUG_LOGGER.success("Generated file");
@@ -63,11 +64,13 @@ public class EducationPageGenerator implements Generator {
 
         elementsGenerated.clear();
         for (EducationEntry entry : entries) {
-            String element = ResourceManager.getResource(Resources.HTML_EDUCATION_ENTRY_TEMPLATE).replaceAll("%%pname%%", entry.getTitle())
-                    .replaceAll("%%ptype%%", entry.getType().getDisplay())
-                    .replaceAll("%%plocation%%", entry.getLocation())
-                    .replaceAll("%%pstart%%", entry.getStart().toString())
-                    .replaceAll("%%pend%%", entry.getUntil().toString());
+            String element = ResourceManager.getResource(Resources.HTML_EDUCATION_ENTRY_TEMPLATE,new PlaceholderSet()
+                            .holder("pname",entry.getTitle())
+                            .holder("ptype",entry.getType().getDisplay())
+                            .holder("plocation",entry.getLocation())
+                            .holder("pstart",entry.getStart().toString())
+                            .holder("pend",entry.getUntil().toString())
+                    );
 
             elementsGenerated.add(element);
         }

@@ -21,6 +21,8 @@ import dev.efekos.pg.data.schema.Certificate;
 import dev.efekos.pg.data.schema.GeneralInfo;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import dev.efekos.pg.util.Placeholder;
+import dev.efekos.pg.util.PlaceholderSet;
 import dev.efekos.pg.util.Text;
 
 import java.io.FileNotFoundException;
@@ -52,10 +54,10 @@ public class CertificatesPageGenerator implements Generator {
 
         List<String> elementList = certificates.stream().map(certificate -> "<a href=\"./certificate/" + makeIdForLink(certificate.getDisplay().getTitle()) + ".html\"><img class=\"certificate-image-small\" src=\"./images/certificate/" + certificate.getDisplay().getImage() + "\" alt=\"" + certificate.getDisplay().getTitle() + "\" />").toList();
 
-        String fileString = ResourceManager.getResource(Resources.HTML_CERTIFICATES_PAGE)
-                .replaceAll("%%name%%", info.getName())
-                .replaceAll("%%title%%", info.getTitle())
-                .replaceAll("%%images%%", String.join("\n", elementList));
+        String fileString = ResourceManager.getResource(Resources.HTML_CERTIFICATES_PAGE,new PlaceholderSet()
+                        .holder("name",info.getName())
+                        .holder("title",info.getTitle())
+                        .holder("images",String.join("\n", elementList)));
 
         writeFile(binPath + "\\certificates.html", fileString, footer);
         Main.LOGGER.success("Generated file: certificates.html");
@@ -101,13 +103,14 @@ public class CertificatesPageGenerator implements Generator {
             )));
 
 
-            String certificateFile = resourceFile
-                    .replaceAll("%%name%%", info.getName())
-                    .replaceAll("%%cname%%", certificate.getDisplay().getTitle())
-                    .replaceAll("%%cdescription%%", certificate.getDisplay().getDescription())
-                    .replaceAll("%%cdate%%", Text.translated("certificate.achieve", certificate.getWhen().toString()))
-                    .replaceAll("%%cipath%%", imagePath.replaceAll("\\\\", "/"))
-                    .replaceAll("%cbuttons%", String.join("", imageButtonElements));
+            String certificateFile = new PlaceholderSet()
+                    .holder("name",info.getName())
+                    .holder("cname",certificate.getDisplay().getTitle())
+                    .holder("cdescription",certificate.getDisplay().getDescription())
+                    .holder("cdate",Text.translated("certificate.achieve",certificate.getWhen().toString()))
+                    .holder("cipath",imagePath.replaceAll("\\\\", "/"))
+                    .holder("cbuttons",String.join("", imageButtonElements))
+                    .apply(resourceFile);
 
             String outputPath = binPath + "\\certificate\\" + makeId(certificate.getDisplay().getTitle()) + ".html";
             writeFile(outputPath, certificateFile, footer);
