@@ -33,6 +33,10 @@ public class ResourceManager {
         return placeholderSet.apply(getResource(resource));
     }
 
+    public static String getResource(Resource resource, Placeholder placeholder) {
+        return getResource(resource,new PlaceholderSet().holder(placeholder.getKey(),placeholder.getValue()));
+    }
+
     public void init() {
         Main.LOGGER.info("Loading resources");
         Resources.all().forEach(this::putResource);
