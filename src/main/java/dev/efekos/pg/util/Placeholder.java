@@ -24,4 +24,11 @@ public class Placeholder {
     private String key;
     private String value;
 
+    public Placeholder(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public Placeholder() {
+    }
 }
