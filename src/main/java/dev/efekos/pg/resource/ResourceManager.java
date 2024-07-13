@@ -17,6 +17,8 @@
 package dev.efekos.pg.resource;
 
 import dev.efekos.pg.Main;
+import dev.efekos.pg.util.Placeholder;
+import dev.efekos.pg.util.PlaceholderSet;
 
 import java.util.HashMap;
 
@@ -25,6 +27,15 @@ public class ResourceManager {
 
     public static String getResource(Resource resource) {
         return resourceMap.get(resource);
+    }
+
+    public static String getResource(Resource resource, PlaceholderSet placeholderSet) {
+        String s = getResource(resource);
+
+        for (Placeholder placeholder : placeholderSet.getPlaceholders())
+            s = s.replaceAll("%%"+placeholder.getKey()+"%%", placeholder.getValue());
+
+        return s;
     }
 
     public void init() {
