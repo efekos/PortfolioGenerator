@@ -23,6 +23,8 @@ import dev.efekos.pg.data.schema.Version;
 import dev.efekos.pg.data.schema.VersionInfo;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import dev.efekos.pg.util.Placeholder;
+import dev.efekos.pg.util.PlaceholderSet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,8 +78,7 @@ public class ProjectVersionPageGenerator implements Generator {
 
                 Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/versions_finder.js");
 
-                String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_MARKDOWN_FINDER)
-                        .replaceAll("%%link%%", versionInfo.getFile());
+                String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_MARKDOWN_FINDER,new Placeholder("link",versionInfo.getFile()));
 
                 writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script, footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/versions_finder.js");
@@ -89,8 +90,7 @@ public class ProjectVersionPageGenerator implements Generator {
 
                 Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/versions_finder.js");
 
-                String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_GITHUB_RELEASE_FINDER)
-                        .replaceAll("%%repo%%", versionInfo.getFile());
+                String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_GITHUB_RELEASE_FINDER,new Placeholder("repo",versionInfo.getFile()));
 
                 writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script, footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects/", project.getId(), "/versions_finder.js");
@@ -101,8 +101,7 @@ public class ProjectVersionPageGenerator implements Generator {
 
                 Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/versions_finder.js");
 
-                String script = ResourceManager.getResource(Resources.SCRIPT_MODRINTH_RELEASE_FINDER)
-                        .replaceAll("%%id%%", versionInfo.getFile());
+                String script = ResourceManager.getResource(Resources.SCRIPT_MODRINTH_RELEASE_FINDER,new Placeholder("id",versionInfo.getFile()));
 
                 writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script, footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
@@ -113,8 +112,7 @@ public class ProjectVersionPageGenerator implements Generator {
 
                 Main.DEBUG_LOGGER.info("Generating file: projects/" + project.getId() + "/versions_finder.js");
 
-                String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_JSON_FINDER)
-                        .replaceAll("%%link%%", versionInfo.getFile());
+                String script = ResourceManager.getResource(Resources.SCRIPT_VERSIONS_JSON_FINDER,new Placeholder("link",versionInfo.getFile()));
 
                 writeFile(binPath + "\\projects\\" + project.getId() + "\\versions_finder.js", script, footer);
                 Main.DEBUG_LOGGER.success("Generated file: projects", project.getId(), "/versions_finder.js");
@@ -136,15 +134,15 @@ public class ProjectVersionPageGenerator implements Generator {
                     Main.LOGGER.devWarn(" Not implemented version info type found: '", versionInfo.getType().toString(), "'");
         }
 
-        return ResourceManager.getResource(Resources.HTML_PROJECT_VERSIONS_PAGE)
-                .replaceAll("%%name%%", generalInfo.getName())
-                .replaceAll("%%prname%%", project.getDisplayName())
-                .replaceAll("%%tags%%", tags)
-                .replaceAll("%%links%%", links)
-                .replaceAll("%%prsummary%%", project.getSummary())
-                .replaceAll("%%prmainwebsite%%", project.getMainWebsite())
-                .replaceAll("%%prid%%", project.getId())
-                .replaceAll("%%scripts%%", String.join("\n", scripts))
-                .replaceAll("%%mainElement%%", String.join("\n\n", elements));
+        return ResourceManager.getResource(Resources.HTML_PROJECT_VERSIONS_PAGE,new PlaceholderSet()
+                        .holder("name",generalInfo.getName())
+                        .holder("prname",project.getDisplayName())
+                        .holder("tags",tags)
+                        .holder("links",links)
+                        .holder("prsummary",project.getSummary())
+                        .holder("prmainwebsite",project.getMainWebsite())
+                        .holder("prid",project.getId())
+                        .holder("scripts",String.join("\n", scripts))
+                        .holder("mainElement",String.join("\n\n", elements)));
     }
 }

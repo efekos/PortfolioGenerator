@@ -22,6 +22,8 @@ import dev.efekos.pg.data.schema.TagColorInfo;
 import dev.efekos.pg.data.type.VersionType;
 import dev.efekos.pg.resource.ResourceManager;
 import dev.efekos.pg.resource.Resources;
+import dev.efekos.pg.util.Placeholder;
+import dev.efekos.pg.util.PlaceholderSet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,11 +57,11 @@ public class StyleFileGenerator implements Generator {
                   
                 """);
         info.getSocialLinks().forEach((type, link) -> generatedSelections.add(
-                ResourceManager.getResource(Resources.STYLE_SOCIAL_ICON_TEMPLATE)
-                        .replaceAll("%%n%%", type.getNormalColor())
-                        .replaceAll("%%h%%", type.getHighlightColor())
-                        .replaceAll("%%i%%", type.getId()))
-        );
+                ResourceManager.getResource(Resources.STYLE_SOCIAL_ICON_TEMPLATE,new PlaceholderSet()
+                                .holder("n",type.getNormalColor())
+                                .holder("h",type.getHighlightColor())
+                                .holder("i",type.getId()))
+        ));
 
         writeFile(binPath + "\\style\\social_icons.css", String.join("\n", generatedSelections), footer);
         Main.DEBUG_LOGGER.success("Generated file: style/social_icons.css");
